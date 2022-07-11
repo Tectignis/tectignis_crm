@@ -8,7 +8,7 @@ include("config.php");
 if(isset($_POST['submit'])){
     $Firm_Name=$_POST['Fname'];
     $Authorized_Name=$_POST['Aname'];
-    $Email=$_POST['Email'];
+    $Email=$_POST['email'];
     $Mobile_Number=$_POST['number'];
     $Category=$_POST['category'];
     $status="Activated";
