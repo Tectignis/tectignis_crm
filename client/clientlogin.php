@@ -13,7 +13,7 @@ if($row>0){
     $Password=$row['Password'];
     $hashpassword=password_verify($Password1,$Password);
     if($hashpassword){
-      $_SESSION['id']=$row['id'];
+      $_SESSION['id']=$row['Client_Code'];
 
         header("location:index.php");
     }else{
