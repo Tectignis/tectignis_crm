@@ -1,27 +1,22 @@
 <?php
 session_start();
 include("config.php");
-if(isset($_POST['login'])){
-$Email=$_POST['email'];
-$Password1=$_POST['password'];
+if(isset($_POST['submit'])){
+$New_password=$_POST['newpassword'];
+$Confirm_password=$_POST['confirmpassword'];
+$Email=$_GET['email'];
 
-$sql=mysqli_query($conn,"select * from login where Email='$Email'");
-$row=mysqli_fetch_array($sql);
-
-if($row>0){
-    $Email=$row['Email'];
-    $Password=$row['Password'];
-    $hashpassword=password_verify($Password1,$Password);
-    if($hashpassword){
-      $_SESSION['id']=$row['Id'];
-
-        header("location:index.php");
+if   ($New_password==$Confirm_password){
+  $hasPassword=password_hash($New_password,PASSWORD_BCRYPT);
+  $sql=mysqli_query($conn,"UPDATE `login` SET `Password`='$hasPassword' WHERE Email='$Email'");
+   if($sql==1){
+        header("location:adminlogin.php");
     }else{
         echo "<script>alert('Password is incorrect');</script>";
     }
-}
+  }
 else{
-    echo "<script>alert('Invalid Email Id');</script>";
+  echo'<script>alert("password does not match");</script>';
 }
 }
 
@@ -91,20 +86,21 @@ border-bottom-right-radius: .3rem;
                 <form method="post">
 
                   <div class="form-outline mb-4">
-                    <input type="email" id="email" class="form-control"
-                    name="email"
-                      placeholder="Enter Email address">
-                    <label class="form-label" >Email</label>
+                    <input type="password" id="newpassword" class="form-control"
+                    name="newpassword"
+                      placeholder="Password">
+                    <label class="form-label" >New Password</label>
                   </div>
 
                   <div class="form-outline mb-4">
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password">
-                    <label class="form-label">Password</label>
+                    <input type="password" id="confirmpassword" class="form-control"
+                    name="confirmpassword"
+                      placeholder="Password">
+                    <label class="form-label" >Confirm New Password</label>
                   </div>
 
                   <div class="text-center pt-1 mb-5 pb-1">
-                    <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="login" name="login" id="login" value="login">Login</button>
-                    <a class="text-muted" href="forgotpassword.php">Forgot password?</a>
+                    <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit" name="submit" id="submit" value="login">Submit</button>
 
                   </div>
                 </form>

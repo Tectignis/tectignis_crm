@@ -48,6 +48,13 @@
                 Add Leads
               </p>
             </a>
+
+            <li class="nav-item">
+            <a href="changepassword.php" class="nav-link">
+              <p>
+                Change Password
+              </p>
+            </a>
   
       <!-- /.sidebar-menu -->
     </div>

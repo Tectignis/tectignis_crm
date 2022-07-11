@@ -15,7 +15,7 @@
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
       </li>
-      <button type="logout" name="logout" class="btn btn-primary">Logout</button>
+      <a href="clientlogout.php" type="logout" name="logout" class="btn btn-primary">Logout</button>
         </a>
       </li>
     </ul>

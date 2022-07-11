@@ -1,30 +1,19 @@
 <?php
 session_start();
 include("config.php");
-if(isset($_POST['login'])){
+if(isset($_POST['submit'])){
 $Email=$_POST['email'];
-$Password1=$_POST['password'];
 
 $sql=mysqli_query($conn,"select * from login where Email='$Email'");
 $row=mysqli_fetch_array($sql);
 
 if($row>0){
     $Email=$row['Email'];
-    $Password=$row['Password'];
-    $hashpassword=password_verify($Password1,$Password);
-    if($hashpassword){
-      $_SESSION['id']=$row['Id'];
-
-        header("location:index.php");
+        header("location:password.php?email=$Email");
     }else{
-        echo "<script>alert('Password is incorrect');</script>";
+        echo "<script>alert('Invalid Email Id');</script>";
     }
 }
-else{
-    echo "<script>alert('Invalid Email Id');</script>";
-}
-}
-
 
 ?>
 <!DOCTYPE html>
@@ -97,14 +86,8 @@ border-bottom-right-radius: .3rem;
                     <label class="form-label" >Email</label>
                   </div>
 
-                  <div class="form-outline mb-4">
-                    <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password">
-                    <label class="form-label">Password</label>
-                  </div>
-
                   <div class="text-center pt-1 mb-5 pb-1">
-                    <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="login" name="login" id="login" value="login">Login</button>
-                    <a class="text-muted" href="forgotpassword.php">Forgot password?</a>
+                    <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit" name="submit" id="submit" value="login">Submit</button>
 
                   </div>
                 </form>
