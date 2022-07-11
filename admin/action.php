@@ -15,6 +15,7 @@ if(isset($_POST['submit'])){
 date_default_timezone_set('Asia/Kolkata');
 $Date = date('d-m-y h:i:s');
 $Password= rand(100000, 999999);
+$hasPassword=password_hash($Password,PASSWORD_BCRYPT);
 
 
 $from = 'Enquiry <naiduvedant@gmail.com>' . "\r\n";
@@ -78,7 +79,7 @@ foreach($_POST as $key => $value){
 }
 if( mail($sendTo,$subject,$emailText, "From:" .$from)){
 
-    $sql=mysqli_query($conn,"insert into client( `Firm_Name`, `Authorized_Name`, `Email`, `Mobile_Number`, `Category`, `Status`, `Date`, `Password`) values('$Firm_Name','$Authorized_Name','$Email','$Mobile_Number','$Category','$status', $Date', $Password')");
+    $sql=mysqli_query($conn,"insert into client( `Firm_Name`, `Authorized_Name`, `Email`, `Mobile_Number`, `Category`, `Status`, `Date`, `Password`) values('$Firm_Name','$Authorized_Name','$Email','$Mobile_Number','$Category','$status', $Date', $hasPassword')");
 
     if($sql==1){
         echo '<script>alert("data successfully submitted");</script>';
