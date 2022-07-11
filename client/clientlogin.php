@@ -104,6 +104,7 @@ border-bottom-right-radius: .3rem;
 
                   <div class="text-center pt-1 mb-5 pb-1">
                     <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="login" name="login" id="login" value="login">Login</button>
+                    <a class="text-muted" href="forgotpassword.php">Forgot password?</a>
                   </div>
                 </form>
 
