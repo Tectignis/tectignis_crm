@@ -160,7 +160,7 @@ border-bottom-right-radius: .3rem;
                   </div>
                   
                   <div class="pt-1 mb-5 pb-1">
-                    <a  class="btn btn-primary fa-lg gradient-custom-2 mb-3" type="submit" name="forgot" id="forgot" value="forgot">Forgot</a>
+                    <button  class="btn btn-primary fa-lg gradient-custom-2 mb-3" type="submit" name="forgot" id="forgot" value="forgot">Forgot</button>
                 
                     <a href="clientlogin.php" class="btn btn-primary fa-lg gradient-custom-2 mb-3" type="cancel" name="cancel" id="cancel" value="cancel">Cancel</a>
                   </div>
