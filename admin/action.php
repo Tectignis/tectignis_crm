@@ -15,7 +15,7 @@ if(isset($_POST['submit'])){
 date_default_timezone_set('Asia/Kolkata');
 $Date = date('d-m-y h:i:s');
 $Password= rand(100000, 999999);
-$#Password=
+
 
 $from = 'Enquiry <naiduvedant@gmail.com>' . "\r\n";
 $sendTo = 'Enquiry <'.$Email.'>';
