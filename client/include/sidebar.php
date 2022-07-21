@@ -29,33 +29,38 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
             <a href="index.php" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+            <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
               </p>
             </a>
+          </li>
           
           <li class="nav-item">
             <a href="client.php" class="nav-link">
+            <i class="fa fa-fw fa-user"></i>
               <p>
                 Add Client
               </p>
             </a>
-           
+          </li>
           <li class="nav-item">
             <a href="lead.php" class="nav-link">
               <p>
                 Add Leads
               </p>
             </a>
-
-            <li class="nav-item">
+          </li>
+           <li class="nav-item">
             <a href="changepassword.php" class="nav-link">
+              <i class="nav-icon fas fa-solid fa-key"></i>
               <p>
                 Change Password
               </p>
             </a>
-  
+          </li>
+</ul>
+</nav>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
