@@ -31,7 +31,7 @@
           
           <li class="nav-item">
             <a href="client.php" class="nav-link one">
-            <i class="nav-icon fa fa-fw fa-user"></i>
+            <i class="nav-icon fa fa-fw fa-user-plus"></i>
               <p>
                 Add Client
               </p>

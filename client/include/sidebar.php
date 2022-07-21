@@ -1,9 +1,14 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <div class=" mt-3 pb-3 mb-3">
-    <a href="index3.html" style="text-decoration: none" class="brand-link">
+    <a href="#" style="text-decoration: none" class="brand-link">
       <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Client</span>
+      <span class="brand-text font-weight-light">
+        <?php
+        $name=$_SESSION["aname"];
+        echo $name;
+        ?>
+      </span>
     </a>
 </div>
     <!-- Sidebar -->
@@ -31,7 +36,7 @@
           
           <li class="nav-item">
             <a href="client.php" class="nav-link">
-            <i class="nav-icon fa fa-fw fa-user"></i>
+            <i class="nav-icon fa fa-fw fa-user-plus"></i>
               <p>
                 Add Client
               </p>
@@ -50,6 +55,14 @@
             <i class="nav-icon fas fa-th"></i>
               <p>
                 Ticket
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="ticketform.php" class="nav-link">
+            <i class="nav-icon fas fa-id-card"></i>
+              <p>
+               Profile
               </p>
             </a>
           </li>

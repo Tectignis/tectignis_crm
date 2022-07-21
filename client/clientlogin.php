@@ -6,14 +6,18 @@ $Email=$_POST['email'];
 $Password1=$_POST['password'];
 
 $sql=mysqli_query($conn,"select * from client where Email='$Email' AND Status='Activated'");
-$row=mysqli_fetch_array($sql);
 
-if($row>0){
-    $Email=$row['Email'];
-    $Password=$row['Password'];
-    $hashpassword=password_verify($Password1,$Password);
-    if($hashpassword){
-      $_SESSION['id']=$row['Client_Code'];
+if(mysqli_num_rows($sql)>0){
+  $row=mysqli_fetch_assoc($sql); 
+  $verify=password_verify($Password1,$row['Password']);
+
+ if($verify==1){
+  // $_SESSION['aemail']=$row['email'];
+   $_SESSION['aname']=$row['Authorized_Name'];
+  //   $_SESSION['aid']=$row['user_id'];
+  //   $_SESSION['aaddress']=$row['office_address'];
+  //   $_SESSION['admin']=$row['is_admin'];
+  //   $d=$_SESSION['aid'];
 
         header("location:index.php");
     }else{
