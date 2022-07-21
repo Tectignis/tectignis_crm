@@ -52,13 +52,12 @@ include("include/sidebar.php");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Clients</h1>
+            <h1>Client Details</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Clients</li>
-              <li class="breadcrumb-item active">Add client</li>
+              <li class="breadcrumb-item active">Ticket</li>
             </ol>
           </div>
         </div>
@@ -71,68 +70,34 @@ include("include/sidebar.php");
         <!-- SELECT2 EXAMPLE -->
         <div class="card card-default">
           <div class="card-header">
-            <h3 class="card-title">Add Clients</h3>
+            <h3 class="card-title">Client Form</h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
           <form action="action.php" method="post">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Firm Name</label>
-                  <input type="text" class="form-control" name="Fname" id="name" placeholder="Firm Name" required>
-                </div>
-                <!-- /.form-group -->
-                <div class="form-group">
-                <label>Mobile Number</label>
-                  <input type="text" minlength="10" maxlength="10" class="form-control" name="number" id="number" placeholder="Mobile Number" required>
-                  <span id="numberspan" class="mb-4"></span>
-                </div>
-                <!-- /.form-group -->
-              </div>
-              <!-- /.col -->
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Authorized Name</label>
-                  <input type="text" class="form-control" name="Aname" id="Aname" placeholder="Authorized Name" required>
-                  <span id="Anamespan" class="mb-4"></span>
-                </div>
-                <!-- /.form-group -->
-                <div class="form-group">
-                  <label>Email</label>
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
-                </div>
-                <!-- /.form-group -->
-              </div>
-              <!-- /.col -->
-            </div>
-            <!-- /.row -->
+                                    <div class="card-body">
 
-            <div class="row">
-              <div class="col-12 col-sm-6">
-                <div class="form-group">
-                <label>Category</label>
-                  <select class="form-control select2" name="category" style="width: 100%;">
-                    <option selected="selected">Select</option>
-                    <option>Hotel</option>
-                    <option>Real Estate</option>
-                    <option>Doctor</option>
-                    <option>Delaware</option>
-                    <option>Tennessee</option>
-                    <option>Texas</option>
-                  </select>
-                </div>
-                <button type="submit" name="submit" id="sub" class="btn btn-primary float-right my-3 " style="margin-right: 5px;">
+
+                                        <div class="form-group row">
+                                            <label for="exampleprop" style="font-size: 1.3em;" class="col-sm-2 col-form-label">Description</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" placeholder="Description" name="description" id="description" required>
+                                                    
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="exampleprop" style="font-size: 1.3em;"  class="col-sm-2 col-form-label">Comment</label>
+                                            <div class="col-sm-8">
+                                                <input type="textarea" name="comment" class="form-control" id="comment"
+                                                    placeholder="Comment" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                        </div>
+                                        <button type="submit" name="submit" id="sub" class="btn btn-primary float-right my-3 " style="margin-right: 5px;">
                     Submit
-                <!-- /.form-group -->
-              </div>
-              <!-- /.col -->
-              
-              <!-- /.col -->
-            </div>
-            <!-- /.row -->
-          </div>
-          </form>
+                                    </form>
           <!-- /.card-body -->
          
         </div>
@@ -322,71 +287,6 @@ include("include/sidebar.php");
   // DropzoneJS Demo Code End
 </script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
- $("#Anamespan").hide();
-	    $("#Aname").keyup(function(){
-	     txt_check();
-	   });
-	   function txt_check(){
-      validenqName="no";
-		   let txt=$("#Aname").val();
-		   let vali =/^[A-Za-z ]+$/;
-		   if(!vali.test(txt)){
-			  $("#Anamespan").show().html("Enter Alphabets only").css("color","red").focus();
-			  txt_err=false;
-			  return false;
-		   }
-		   else{
-        validenqName="yes";
-		       $("#Anamespan").hide();
-		       
-		   }
-	   }
 
-     $("#numberspan").hide();
-	    $("#number").keyup(function(){
-	     mobile_check();
-	   });
-	   function mobile_check(){
-		   let mobileno=$("#number").val();
-		   let vali =/^\d{10}$/; 
-		   if(!vali.test(mobileno)){
-        validenqtMobile="no";
-			    $("#numberspan").show().html("*Invalid Mobile No").css("color","red").focus();
-				mobile_err=false;
-			 return false;
-		   }
-		   else{
-        validenqtMobile="yes";
-		       $("#numberspan").hide(); 
-		   }
-	   }
- 
-     $("#sub").click(function(){
-       txt_err = true;
-       mobile_err=true;
-             txt_check();
-             mobile_check();
-			   
-			   if((txt_err==true)  && (mobile_err=true)){
-			      return true;
-			   }
-			   else{return false;}
-		  });
-
-        let  validenqName, validenqtMobile;
-
- let submitenant = document.getElementById("sub");
-     submitenant.addEventListener("click", function(){
-
-     if(validenqName == "no" || validenqtMobile =="no"){
-         swal("Oops...", "Please fill all the fields", "error");
-     }
-         else{
-             swal("Saved!", " data successfully submitted", "success", 3000);
-         }
-     });
-
-  </script>
 </body>
 </html>

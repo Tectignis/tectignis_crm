@@ -5,3 +5,11 @@
       <b>Version</b> 3.2.0
     </div>
   </footer>
+  <script> 
+  $(document).ready(function () {
+  
+  $(".one").click(function (){
+    $(this).addClass("active").siblings().removeClass("active");
+  });
+})
+</script>

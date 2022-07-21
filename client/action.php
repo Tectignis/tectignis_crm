@@ -83,3 +83,22 @@ if(isset($_GET['statusno'])){
     }
 }
 ?>
+
+<?php
+//ticket
+if(isset($_POST['submit'])){
+    
+    
+    $ticket_no=$_POST['ticket_no'];
+    $Description=$_POST['description'];
+    $Comment=$_POST['comment'];
+
+    $sql=mysqli_query($conn,"INSERT INTO `ticket`(`ticket_no`, `Description`, `Comment`) VALUES ('$ticket_no','$Description','$Comment')");
+     if($sql==1){
+        echo"<script>alert('new record has been added succesfully!');</script>";
+     }
+     else{
+        echo"<script>alert('connection failed!');</script>";
+     }
+}
+?>
