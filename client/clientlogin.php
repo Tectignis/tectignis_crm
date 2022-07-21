@@ -5,7 +5,7 @@ if(isset($_POST['login'])){
 $Email=$_POST['email'];
 $Password1=$_POST['password'];
 
-$sql=mysqli_query($conn,"select * from client where Email='$Email'");
+$sql=mysqli_query($conn,"select * from client where Email='$Email' AND Status='Activated'");
 $row=mysqli_fetch_array($sql);
 
 if($row>0){

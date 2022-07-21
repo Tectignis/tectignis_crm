@@ -74,7 +74,7 @@ include("include/sidebar.php");
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-          <form action="action.php" method="post">
+          <form method="post">
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
@@ -85,7 +85,7 @@ include("include/sidebar.php");
                   ?>
 
 
-                      <select class="form-control select2" name="Fname" style="width: 100%;">
+                      <select class="form-control select2" name="Fname" style="width: 100%;" required>
 
                         <option selected="selected" disabled>Select</option>
                         <?php
@@ -379,7 +379,7 @@ $(document).ready(function(){
 	   function mobile_check(){
       validenqtMobile="no";
 		   let mobileno=$("#number").val();
-		   let vali =/^\d{10}$/; 
+		   let vali =/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/; 
 		   if(!vali.test(mobileno)){
        
 			    $("#numberspan").show().html("*Invalid Mobile No").css("color","red").focus();
@@ -394,7 +394,20 @@ $(document).ready(function(){
  
      
 	   $("#sub").click(function(){
-       
+      if(validenqName =="no" || validenqtMobile =="no"){
+         swal({
+  title: "Oops...!",
+  text: "Please fill all the fields!",
+  icon: "error",
+});
+     }
+         else{
+          swal({
+  title: "Saved!",
+  text: "data successfully submitted",
+  icon: "success",
+}).then(function(){window.location="lead.php"; });
+         }
       mobile_err=true;
             
              mobile_check();
@@ -408,18 +421,15 @@ $(document).ready(function(){
     </script>
     <script>
         
-
- let submitenant = document.getElementById("sub");
-     submitenant.addEventListener("click", function(){
-
-      if(validenqName == "no" || validenqtMobile == "no"){
-         swal("Oops...", "Please fill all the fields", "error");
-     }
-         else{
-             swal("Saved!", "data successfully submitted", "success",3000);
-         }
-     });
    
   </script>
+
+<?php if(isset($_POST['submitt'])){
+    $Firm_Name=$_POST['Fname'];
+    $Client_Name=$_POST['Cname'];
+    $Mobile_Number=$_POST['number'];
+    $Requirement=$_POST['requirement'];
+    $sql=mysqli_query($conn,"INSERT INTO `lead`(`Firm_Name`, `Client_Name`, `Mobile_Number`, `Requirement`) VALUES ('$Firm_Name','$Client_Name','$Mobile_Number','$Requirement')");
+} ?>
 </body>
 </html>
