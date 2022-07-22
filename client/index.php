@@ -1,6 +1,8 @@
 <?php
 session_start();
 include("config.php");
+
+$id=$_SESSION['id'];
 if(!isset($_SESSION['id']))
 {
   header("location:clientlogin.php");
@@ -83,7 +85,7 @@ if(!isset($_SESSION['id']))
             <div class="small-box bg-success">
               <div class="inner">
               <?php
-              $query=mysqli_query($conn,"select * from lead");
+              $query=mysqli_query($conn,"select * from lead where Firm_Name='$id'");
                $count1=mysqli_num_rows($query);
                 ?>
                <h3><?php echo $count1; ?></h3>

@@ -97,7 +97,7 @@ include("include/sidebar.php");
 
                         ?>
 
-                        <option value="<?php echo $sql['Firm_Name']; ?>"> <?php echo $sql['Firm_Name']; ?></option>
+                        <option value="<?php echo $sql['Client_Code']; ?>"> <?php echo $sql['Firm_Name']; ?></option>
                         <?php } ?>
                       </select>
                 </div>
@@ -155,12 +155,9 @@ include("include/sidebar.php");
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.2.0
-    </div>
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-  </footer>
+  <?php
+  include("include/footer.php");
+  ?>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -424,13 +421,5 @@ $(document).ready(function(){
         
    
   </script>
-
-<?php if(isset($_POST['submitt'])){
-    $Firm_Name=$_POST['Fname'];
-    $Client_Name=$_POST['Cname'];
-    $Mobile_Number=$_POST['number'];
-    $Requirement=$_POST['requirement'];
-    $sql=mysqli_query($conn,"INSERT INTO `lead`(`Firm_Name`, `Client_Name`, `Mobile_Number`, `Requirement`) VALUES ('$Firm_Name','$Client_Name','$Mobile_Number','$Requirement')");
-} ?>
 </body>
 </html>

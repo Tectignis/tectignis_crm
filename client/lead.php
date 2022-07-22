@@ -1,6 +1,8 @@
 <?php
 session_start();
 include("config.php");
+
+$id=$_SESSION['id'];
 if(!isset($_SESSION['id']))
 {
   header("location:clientlogin.php");
@@ -94,7 +96,7 @@ include("include/sidebar.php");
                   </thead>
                   <tbody>
                   <?php
-                    $sql=mysqli_query($conn,"select * from lead");
+                    $sql=mysqli_query($conn,"select * from lead where Firm_Name='$id'");
                     $count=1;
                   while ($row=mysqli_fetch_array($sql)){ 
           ?>

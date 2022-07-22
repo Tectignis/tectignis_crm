@@ -110,6 +110,24 @@ include("config.php");
               <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+              <?php
+              $query=mysqli_query($conn,"select * from ticket");
+              $count1=mysqli_num_rows($query);
+               ?>
+               <h3><?php echo $count1; ?></h3>
+
+                <p>Total Tickets</p>
+              </div>
+              <div class="icon">
+              <i class="fas fa-solid fa-ticket"></i>             
+             </div>
+              <a href="tickettable.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
           <!-- ./col -->
 
           <!-- ./col -->
