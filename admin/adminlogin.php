@@ -6,16 +6,14 @@ $Email=$_POST['email'];
 $Password1=$_POST['password'];
 
 $sql=mysqli_query($conn,"select * from login where Email='$Email'");
-$row=mysqli_fetch_array($sql);
+if(mysqli_num_rows($sql)>0){
+  $row=mysqli_fetch_assoc($sql); 
+  $verify=password_verify($Password1,$row['Password']);
 
-if($row>0){
-    $Email=$row['Email'];
-    $Password=$row['Password'];
-    $hashpassword=password_verify($Password1,$Password);
-    if($hashpassword){
-      $_SESSION['id']=$row['Id'];
-
-        header("location:index.php");
+ if($verify==1){
+    $_SESSION['aid']=$row['id'];
+   
+    header("location:index.php");
     }else{
         echo "<script>alert('Password is incorrect');</script>";
     }

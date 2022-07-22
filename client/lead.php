@@ -13,7 +13,7 @@ if(!isset($_SESSION['id']))
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | DataTables</title>
+  <title>Leads | CRM</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -76,9 +76,7 @@ include("include/sidebar.php");
             <div class="card">
                 <div class="card-header">
                   <h5 class="card-title">List of Leads</h5>    
-                      <a href="addlead.php" button type="button" class="btn btn-primary float-right my-3 " style="margin-right: 5px;">
-                    + Add Lead
-                  </a>
+
                 </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -108,7 +106,7 @@ include("include/sidebar.php");
                 <td><?php echo $row['Requirement']; ?></td>
                 <td><?php echo $row['Created_On']; ?></td>
                     <td style="text-align:center">
-                     <a href="action.php?delid=<?php echo $row['Id']; ?>"><button type="button" class="btn btn-danger btn-rounded btn-icon"  style="color: aliceblue"> <i class="fas fa-trash"></i> </button></a> </td>
+                     <a href="action.php?delid=<?php echo $row['Id']; ?>"><button type="button"  onclick="return confirm('Are you sure you want to delete this item')" class="btn btn-danger btn-rounded btn-icon"  style="color: aliceblue"> <i class="fas fa-trash"></i> </button></a> </td>
                   </tr>
                   <?php $count++; } ?>
                  
@@ -128,12 +126,7 @@ include("include/sidebar.php");
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.2.0
-    </div>
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-  </footer>
+  <?php include"include/footer.php";?>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

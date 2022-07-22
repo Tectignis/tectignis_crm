@@ -1,5 +1,6 @@
 <?php
 include("config.php");
+
 ?>
 
 <!DOCTYPE html>
@@ -113,7 +114,7 @@ include("include/sidebar.php");
                     }?></td>
 
                     <td style="text-align:center">
-                     <a href="action.php?delidd=<?php echo $row['Client_Code']; ?>"><button type="button" class="btn btn-danger btn-rounded btn-icon"> <i class="fas fa-trash"></i> </button></a> </td>
+                     <a href="action.php?delidd=<?php echo $row['Client_Code']; ?>"><button  onclick="return confirm('Are you sure you want to delete this item')" type="button" class="btn btn-danger btn-rounded btn-icon"> <i class="fas fa-trash"></i> </button></a> </td>
                   </tr>
                   <?php $count++; } ?>
                   

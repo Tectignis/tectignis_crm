@@ -1,10 +1,11 @@
 <?php
 session_start();
 include("config.php");
-// if(!isset($_SESSION['id']))
-// {
-//   header("location:clientlogin.php");
-// }
+if(!isset($_SESSION['id']))
+{
+  header("location:clientlogin.php");
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +13,7 @@ include("config.php");
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>Dashboard | CRM</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -42,7 +43,6 @@ include("config.php");
   <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
   </div>
-
   <!-- Navbar -->
   <?php include"include/header.php";?>
 
@@ -76,24 +76,7 @@ include("config.php");
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-info">
-              <div class="inner">
-              <?php
-              $query=mysqli_query($conn,"select * from client");
-               $count1=mysqli_num_rows($query);
-                ?>
-               <h3><?php echo $count1; ?></h3>
-
-                <p>Total Clients</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-bag"></i>
-              </div>
-              <a href="client.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
+         
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->

@@ -6,10 +6,8 @@
     </div>
   </footer>
   <script> 
-  $(document).ready(function () {
-  
-  $(".one").click(function (){
-    $(this).addClass("active").siblings().removeClass("active");
-  });
-})
+  $(".one").on("click", function() {
+  $(".one").removeClass(".active");
+  $(this).addClass(".active");
+});
 </script>

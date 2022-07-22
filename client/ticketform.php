@@ -12,7 +12,7 @@ if(!isset($_SESSION['id']))
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Advanced form elements</title>
+  <title> Add Ticket | CRM</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -75,27 +75,42 @@ include("include/sidebar.php");
           <!-- /.card-header -->
           <div class="card-body">
           <form action="action.php" method="post">
+          <?php $sql=mysqli_query($conn,"select * from ticket where Client_Code='".$_SESSION['id']."' order by id desc");
+                     
+                      $arr=mysqli_fetch_array($sql);
+                      $dnk=$arr['id'];
+                      $lastid=$dnk+1;
+                     
+                      if(empty($lastid)){
+						           $number="0000";
+					           }else{
+						          $id=str_pad($lastid + 0, 4,0, STR_PAD_LEFT);
+					        	  $number="$id";
+					            }	
+                    
+                      
+                      					  ?>
                                     <div class="card-body">
 
 
-                                        <div class="form-group row">
-                                            <label for="exampleprop" style="font-size: 1.3em;" class="col-sm-2 col-form-label">Description</label>
-                                            <div class="col-sm-8">
-                                                <input type="text" class="form-control" placeholder="Description" name="description" id="description" required>
+                                        <div class="form-group">
+                                            <label for="exampleprop" style="font-size: 1.3em;" class="col-sm-2 col-form-label">Subject</label>
+                                            <div class="col-sm-12">
+                                              <input type="hidden" value="<?php echo $number; ?>" name="ticket_no">
+                                                <input type="text" class="form-control" placeholder="Subject" name="description" id="description" required>
                                                     
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="exampleprop" style="font-size: 1.3em;"  class="col-sm-2 col-form-label">Comment</label>
-                                            <div class="col-sm-8">
-                                                <input type="textarea" name="comment" class="form-control" id="comment"
-                                                    placeholder="Comment" required>
+                                        <div class="form-group">
+                                            <label for="exampleprop" style="font-size: 1.3em;"  class="col-sm-2 col-form-label">Description</label>
+                                            <div class="col-sm-12">
+                                                <textarea name="comment" class="form-control" id="comment" placeholder="Description" required></textarea>
                                             </div>
                                         </div>
 
-                                        <div class="form-group row">
+                                        <div class="form-group">
                                         </div>
-                                        <button type="submit" name="submit" id="sub" class="btn btn-primary float-right my-3 " style="margin-right: 5px;">
+                                        <button type="submit" name="ticket" id="sub" class="btn btn-primary float-right my-3 " style="margin-right: 5px;">
                     Submit
                                     </form>
           <!-- /.card-body -->
@@ -110,12 +125,7 @@ include("include/sidebar.php");
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.2.0
-    </div>
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
-  </footer>
+  <?php include"include/footer.php";?>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

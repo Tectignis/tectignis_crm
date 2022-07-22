@@ -14,7 +14,8 @@ if(mysqli_num_rows($sql)>0){
  if($verify==1){
   // $_SESSION['aemail']=$row['email'];
    $_SESSION['aname']=$row['Authorized_Name'];
-  //   $_SESSION['aid']=$row['user_id'];
+   $_SESSION['firm']=$row['Firm_Name'];
+     $_SESSION['id']=$row['Client_Code'];
   //   $_SESSION['aaddress']=$row['office_address'];
   //   $_SESSION['admin']=$row['is_admin'];
   //   $d=$_SESSION['aid'];
@@ -36,7 +37,7 @@ else{
     <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login</title>
+    <title>Login | CRM</title>
         <!-- Font Awesome -->
 <link
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"

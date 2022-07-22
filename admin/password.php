@@ -1,5 +1,4 @@
 <?php
-session_start();
 include("config.php");
 if(isset($_POST['submit'])){
 $New_password=$_POST['newpassword'];

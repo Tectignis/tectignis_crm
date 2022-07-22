@@ -1,5 +1,12 @@
 <?php
 include("config.php");
+if(isset($_GET['delid'])){
+  $id=mysqli_real_escape_string($conn,$_GET['delid']);
+  $sql=mysqli_query($conn,"delete from ticket where id='$id'");
+  if($sql=1){
+      header("location:tickettable.php");
+  }
+  }
 ?>
 
 <!DOCTYPE html>
@@ -80,25 +87,29 @@ include("include/sidebar.php");
                   <tr>
                     <th>Sr no.</th>
                     <th>Ticket No.</th>
+                    <td>Firm Name</td>
+                    <th>Subject</th>
                     <th>Description</th>
-                    <th>Comment</th>
+
                     <th>Action No.</th>
                   </tr>
                   </thead>
                   <tbody>
                     <?php
-                    $sql=mysqli_query($conn,"select * from ticket");
+                    $sql=mysqli_query($conn,"select ticket.*, client.* from ticket inner join client on ticket.Client_Code=client.Client_Code");
                     $count=1;
                   while ($row=mysqli_fetch_array($sql)){ 
           ?>
             <tr>
                 <td><?php echo $count;?></td>
+                
                 <td><?php echo $row['ticket_no']; ?></td>
+                <td><?php echo $row['Firm_Name']; ?></td>
+                <td><?php echo $row['Comment']; ?></td> 
                 <td><?php echo $row['Description']; ?></td>
-                <td><?php echo $row['Comment']; ?></td>
 
                     <td style="text-align:center">
-                     <a href="action.php?delidd=<?php echo $row['ticket_no']; ?>"><button type="button" class="btn btn-danger btn-rounded btn-icon"> <i class="fas fa-trash"></i> </button></a> </td>
+                     <a href="tickettable.php?delid=<?php echo $row['id']; ?>"><button type="button" class="btn btn-danger btn-rounded btn-icon"> <i class="fas fa-trash"></i> </button></a> </td>
                   </tr>
                   <?php $count++; } ?>
                   

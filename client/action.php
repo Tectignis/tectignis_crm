@@ -1,5 +1,6 @@
 <?php
 include("config.php");
+session_start();
 ?>
 
 <?php
@@ -86,16 +87,16 @@ if(isset($_GET['statusno'])){
 
 <?php
 //ticket
-if(isset($_POST['submit'])){
+if(isset($_POST['ticket'])){
     
-    
+    $id=$_SESSION['id'];
     $ticket_no=$_POST['ticket_no'];
     $Description=$_POST['description'];
     $Comment=$_POST['comment'];
 
-    $sql=mysqli_query($conn,"INSERT INTO `ticket`(`ticket_no`, `Description`, `Comment`) VALUES ('$ticket_no','$Description','$Comment')");
+    $sql=mysqli_query($conn,"INSERT INTO `ticket`(`ticket_no`, `Description`, `Comment`,`Client_Code`) VALUES ('$ticket_no','$Description','$Comment' ,'$id')");
      if($sql==1){
-        echo"<script>alert('new record has been added succesfully!');</script>";
+        echo"<script>alert('new record has been added succesfully!');window.location='tickettable.php'</script>";
      }
      else{
         echo"<script>alert('connection failed!');</script>";

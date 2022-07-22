@@ -1,6 +1,7 @@
 <?php
 include("config.php");
 include("action.php");
+
 ?>
 
 <!DOCTYPE html>

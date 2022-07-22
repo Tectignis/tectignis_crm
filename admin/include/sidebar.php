@@ -1,3 +1,6 @@
+<?php
+$page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
+?>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <div class=" mt-3 pb-3 mb-3">
@@ -21,8 +24,8 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            <a href="index.php" class="nav-link active">
+          <li class="nav-item">
+            <a href="index.php" class="nav-link <?= $page == 'index.php' ? 'active':'' ?>">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -30,7 +33,7 @@
             </a>
           
           <li class="nav-item">
-            <a href="client.php" class="nav-link one">
+            <a href="client.php" class="nav-link <?= $page == 'client.php' || $page == 'addclient.php' ? 'active':'' ?>">
             <i class="nav-icon fa fa-fw fa-user-plus"></i>
               <p>
                 Add Client
@@ -38,7 +41,7 @@
             </a>
            
           <li class="nav-item">
-            <a href="lead.php" class="nav-link one">
+            <a href="lead.php" class="nav-link <?= $page == 'lead.php'|| $page == 'addlead.php' ? 'active':'' ?>">
             <i class="nav-icon fa fa-fw fa-users"></i>
               <p>
                 Add Leads
@@ -46,7 +49,7 @@
             </a>
 
             <li class="nav-item">
-            <a href="tickettable.php" class="nav-link">
+            <a href="tickettable.php" class="nav-link <?= $page == 'tickettable.php' ? 'active':'' ?>">
             <i class="nav-icon fas fa-th"></i>
               <p>
                 Ticket
@@ -55,7 +58,7 @@
           </li>
 
             <li class="nav-item">
-            <a href="changepassword.php" class="nav-link one">
+            <a href="changepassword.php" class="nav-link <?= $page == 'changepassword.php' ? 'active':'' ?>">
             <i class="nav-icon fas fa-solid fa-key"></i>
               <p>
                 Change Password

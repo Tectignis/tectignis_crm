@@ -1,3 +1,7 @@
+<?php
+$page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
+?>
+
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <div class=" mt-3 pb-3 mb-3">
@@ -25,8 +29,8 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            <a href="index.php" class="nav-link active">
+          <li class="nav-item">
+            <a href="index.php" class="nav-link <?= $page == 'index.php' ? 'active':'' ?>">
             <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -34,40 +38,25 @@
             </a>
           </li>
           
+       
           <li class="nav-item">
-            <a href="client.php" class="nav-link">
-            <i class="nav-icon fa fa-fw fa-user-plus"></i>
-              <p>
-                Add Client
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="lead.php" class="nav-link">
+            <a href="lead.php" class="nav-link <?= $page == 'lead.php'  ? 'active':'' ?>">
             <i class="nav-icon fa fa-fw fa-users"></i>
               <p>
-                Add Leads
+              Leads
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="ticketform.php" class="nav-link">
+            <a href="tickettable.php" class="nav-link <?= $page == 'tickettable.php' || $page == 'ticketform.php' ? 'active':'' ?>">
             <i class="nav-icon fas fa-th"></i>
               <p>
                 Ticket
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="ticketform.php" class="nav-link">
-            <i class="nav-icon fas fa-id-card"></i>
-              <p>
-               Profile
-              </p>
-            </a>
-          </li>
            <li class="nav-item">
-            <a href="changepassword.php" class="nav-link">
+            <a href="changepassword.php" class="nav-link <?= $page == 'changepassword.php' ? 'active':'' ?>">
               <i class="nav-icon fas fa-solid fa-key"></i>
               <p>
                 Change Password

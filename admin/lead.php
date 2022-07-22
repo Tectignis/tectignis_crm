@@ -103,7 +103,7 @@ include("include/sidebar.php");
                 <td><?php echo $row['Requirement']; ?></td>
                 <td><?php echo $row['Created_On']; ?></td>
                     <td style="text-align:center">
-                     <a href="action.php?delid=<?php echo $row['Id']; ?>"><button type="button" class="btn btn-danger btn-rounded btn-icon"  style="color: aliceblue"> <i class="fas fa-trash"></i> </button></a> </td>
+                     <a href="action.php?delid=<?php echo $row['Id']; ?>"><button type="button"  onclick="return confirm('Are you sure you want to delete this item')" class="btn btn-danger btn-rounded btn-icon"  style="color: aliceblue"> <i class="fas fa-trash"></i> </button></a> </td>
                   </tr>
                   <?php $count++; } ?>
                  
