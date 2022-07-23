@@ -91,15 +91,16 @@ include("include/sidebar.php");
                   </thead>
                   <tbody>
                   <?php
-                    $sql=mysqli_query($conn,"select lead.*, client.* from lead inner join client on lead.Firm_Name=client.Client_Code");
+                    $sql=mysqli_query($conn,"select *, lead.Mobile_Number as mob from lead inner join client on lead.Firm_Name=client.Client_Code");
                     $count=1;
                   while ($row=mysqli_fetch_array($sql)){ 
+
           ?>
             <tr>
                 <td><?php echo $count;?></td>
                 <td><?php echo $row['Firm_Name']; ?></td>
                 <td><?php echo $row['Client_Name']; ?></td>
-                <td><?php echo $row['Mobile_Number']; ?></td>
+                <td><?php echo $row['mob']; ?></td>
                 <td><?php echo $row['Requirement']; ?></td>
                 <td><?php echo $row['Created_On']; ?></td>
                     <td style="text-align:center">
