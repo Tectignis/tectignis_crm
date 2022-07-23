@@ -14,7 +14,7 @@ if(isset($_GET['delid'])){
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | DataTables</title>
+  <title>Admin CRM | Ticket</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -36,6 +36,9 @@ if(isset($_GET['delid'])){
     .card-title{
 float:left;
 padding:20px;
+    }
+    a{
+      text-decoration:none;
     }
     </style>
 </head>
@@ -60,7 +63,7 @@ include("include/sidebar.php");
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
               <li class="breadcrumb-item active">Ticket</li>
             </ol>
           </div>
@@ -78,7 +81,7 @@ include("include/sidebar.php");
 
             <div class="card">
                 <div class="card-header">
-                  <h5 class="card-title">List of Client</h5>
+                  <h5 class="card-title">List of Ticket</h5>
                 </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -90,7 +93,7 @@ include("include/sidebar.php");
                     <td>Firm Name</td>
                     <th>Subject</th>
                     <th>Description</th>
-
+                    <th>Status</th>
                     <th>Action No.</th>
                   </tr>
                   </thead>
@@ -107,35 +110,65 @@ include("include/sidebar.php");
                 <td><?php echo $row['Firm_Name']; ?></td>
                 <td><?php echo $row['Comment']; ?></td> 
                 <td><?php echo $row['Description']; ?></td>
+                <td><?php echo $row['Status']; ?></td>
 
                     <td style="text-align:center">
+                   <button type="button" class="btn btn-primary btn-rounded btn-icon setting" data-toggle="modal" data-id='<?php echo $row['id']; ?>'> <i class="fas fa-wrench"></i></button>
                      <a href="tickettable.php?delid=<?php echo $row['id']; ?>"><button type="button" class="btn btn-danger btn-rounded btn-icon"> <i class="fas fa-trash"></i> </button></a> </td>
                   </tr>
                   <?php $count++; } ?>
                   
                 </table>
               </div>
+              <div class="modal fade closemaual" id="dnkModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="close" class="close" data-dismiss="modal" aria-label="close">
+         <span aria-hidden="true">&times;</span> 
+        </button>
+      </div>
+      <div class="modal-body">
+      <form>
+        <div class="form-group">
+                <label>Dropdown</label>
+                  <select class="form-control select2" name="category" style="width: 100%;">
+                    <option selected="selected">Select</option>
+                    <option>Open</option>
+                    <option>Hold</option>
+                    <option>Inprocess</option>
+                    <option>Closed</option>
+                  </select>
+        </div>
+        <div class="form-group">
+        <label>Comment</label>
+                  <textarea class="form-control" name="comment" id="comment" placeholder="Comment"></textarea>
+         </div>
+  </form>
+  </div>
+  <div class="modal-footer">
+    <button type="close" class="btn btn-default" data-dismiss="modal" name="close" id="close">Close</button>  
+    <button type="submit" class="btn btn-primary" name="submit" id="submit"> Submit</button>
+    </div>
+    </div>
+    </div>
+    </div>
+</div>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
           </div>
           <!-- /.col -->
-        </div>
+       
         <!-- /.row -->
-      </div>
+      
       <!-- /.container-fluid -->
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
   <?php include"include/footer.php";?>
-
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
 
@@ -169,6 +202,26 @@ include("include/sidebar.php");
    
   });
 </script>
+
+<script>
+          $(document).ready(function(){
+          $('.setting').click(function(){
+            let dnkk = $(this).data('id');
+
+            $.ajax({
+            url: 'check.php',
+            type: 'post',
+            data: {dnkk: dnkk},
+            success: function(response5){ 
+              $('.body5').html(response5);
+              $('#dnkModal5').modal('show'); 
+            }
+          });
+          });
+
+
+          });
+          </script>
 
 </body>
 </html>

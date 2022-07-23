@@ -74,4 +74,6 @@ if(isset($_POST['Edit'])){
     echo "<script> alert ('connection failed !');window.location.href='client.php'</script>";
  }
 }
+
+
 ?>

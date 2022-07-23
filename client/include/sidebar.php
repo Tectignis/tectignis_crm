@@ -55,6 +55,14 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="profile.php" class="nav-link <?= $page == 'profile.php' ? 'active':'' ?>">
+            <i class="nav-icon fas fa-address-card"></i>
+              <p>
+                Profile
+              </p>
+            </a>
+          </li>
            <li class="nav-item">
             <a href="changepassword.php" class="nav-link <?= $page == 'changepassword.php' ? 'active':'' ?>">
               <i class="nav-icon fas fa-solid fa-key"></i>

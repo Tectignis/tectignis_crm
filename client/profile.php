@@ -1,11 +1,20 @@
+<?php
+session_start();
+include("config.php");
+$id=$_SESSION['id'];
 
+if(!isset($_SESSION['id']))
+{
+  header("location:clientlogin.php");
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin CRM | Change Password</title>
+  <title>Profile | CRM</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -30,28 +39,28 @@
   <link rel="stylesheet" href="plugins/dropzone/min/dropzone.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
-<?php
+  <!-- Navbar -->
+  <?php
 include("include/header.php");
 include("include/sidebar.php");
 ?>
-
-<!-- Content Wrapper. Contains page content -->
+  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Password</h1>
+            <h1>Profile</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-              <li class="breadcrumb-item active">Change Password</li>
-              
+              <li class="breadcrumb-item active">Profile</li>
             </ol>
           </div>
         </div>
@@ -61,50 +70,44 @@ include("include/sidebar.php");
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-12">
         <!-- SELECT2 EXAMPLE -->
         <div class="card card-default">
           <div class="card-header">
-            <h3 class="card-title">Change Password</h3>
-
-            
+            <h3 class="card-title">Client Profile</h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-          <form method="post">
-
-              <!-- /.col -->
-              <div class="row" style="justify-content:center;">
+          <form action="action.php" method="post">
+          <?php
+         
+                    $sql=mysqli_query($conn,"select * from client where Client_Code='".$_SESSION['id']."'");
+                 
+                  while ($row=mysqli_fetch_array($sql)){ 
+          ?>
+            <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label>Old Password</label>
-                  <input type="password" class="form-control" name="oldpassword" id="oldpassword" placeholder="Old Password" required>
+                  <label>Firm Name</label>
+                  <input type="text" value="<?php echo $row['Firm_Name']; ?>" class="form-control" name="Fname" id="name" placeholder="Firm Name" readonly>
                 </div>
-                </div>
-                </div>
-
                 <!-- /.form-group -->
-                <div class="row"style="justify-content:center;">
-                <div class="col-md-6">
                 <div class="form-group">
-                  <label>New Password</label>
-                  <input type="password" class="form-control" name="newpassword" id="newpassword" placeholder="New Password" required>
+                <label>Mobile Number</label>
+                  <input type="text" minlength="10" maxlength="10" value="<?php echo $row['Mobile_Number']; ?>" class="form-control" name="number" id="number" placeholder="Mobile Number" readonly>
                 </div>
-                </div>
-                </div>
-
-                <div class="row"style="justify-content:center;">
-                <div class="col-md-6">
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
                 <div class="form-group">
-                  <label>Confirm Password</label>
-                  <input type="password" class="form-control" name="confirmpassword" id="password" placeholder="Confirm Password" required>
+                  <label>Authorized Name</label>
+                  <input type="text" value="<?php echo $row['Authorized_Name']; ?>" class="form-control" name="Aname" id="Aname" placeholder="Authorized Name" readonly>
                 </div>
+                <!-- /.form-group -->
+                <div class="form-group">
+                  <label>Email</label>
+                  <input type="email" value="<?php echo $row['Email']; ?>"  class="form-control" name="email" id="email" placeholder="Email" readonly>
                 </div>
-                </div>
-                
-                <button type="submit" name="submit" class="btn btn-primary float-right my-3 " id="submit" style="margin-right:50%;">Submit</button>
-</form>
                 <!-- /.form-group -->
               </div>
               <!-- /.col -->
@@ -114,25 +117,35 @@ include("include/sidebar.php");
             <div class="row">
               <div class="col-12 col-sm-6">
                 <div class="form-group">
+                <label>Category</label>
+                <input type="text" value="<?php echo $row['Category']; ?>" class="form-control" name="category" id="category" placeholder="category" readonly>
                 </div>
+                
                 <!-- /.form-group -->
               </div>
               <!-- /.col -->
-             
+              
               <!-- /.col -->
             </div>
             <!-- /.row -->
           </div>
-         </form>
+          <?php } ?>
+          </form>
+          <!-- /.card-body -->
          
         </div>
+        <!-- /.card -->
+
+        
+       
       <!-- /.container-fluid -->
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <?php include"include/footer.php";?>
-
+  <?php
+  include("include/footer.php");
+  ?>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -170,7 +183,6 @@ include("include/sidebar.php");
 <!-- AdminLTE for demo purposes -->
 <!-- Page specific script -->
 <script>
-
   $(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
@@ -304,33 +316,6 @@ include("include/sidebar.php");
   }
   // DropzoneJS Demo Code End
 </script>
-    
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
-<?php
-include("config.php");
-$d=$_SESSION['aid'];
-if(isset($_POST["submit"])){
-	$Old_password=$_POST["oldpassword"];
-	$New_password=$_POST["newpassword"];
-    $Confirm_password=$_POST["confirmpassword"];
-
-	$sql = mysqli_query($conn,"SELECT * FROM login WHERE Id='$d'") ;
-		$row=mysqli_fetch_assoc($sql); 
-		$verify=password_verify($Old_password,$row['Password']);
-	
-	$hashpassword=password_hash($New_password,PASSWORD_BCRYPT);
-
-		if($verify==1){
-			$query=mysqli_query($conn,"UPDATE `login` SET `password`='$hashpassword' WHERE Id='$d'");
-      if($query){
-        session_destroy();   // function that Destroys Session 
-        echo "<script>alert('Password Changed Successfully'),window.location='adminlogin.php';</script>";
-      }
-		}
-		else{
-			echo"<script>alert('Invalid Password');</script>";
-		}
-	
-	}
-?>
 </html>
