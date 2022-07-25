@@ -1,25 +1,41 @@
+
 <?php
-include("./config.php");
+include("../config.php");
 ?>
-
-
-
-
+<?php 
+                  $query=mysqli_query($conn,"select * from client");
+                
+                  ?>
 <?php
-//leads post
-if(isset($_POST['submitt'])){
-    $Firm_Name=$_POST['Fname'];
-    $Client_Name=$_POST['Cname'];
-    $Mobile_Number=$_POST['number'];
-    $Requirement=$_POST['requirement'];
-   
-    $sql=mysqli_query($conn,"INSERT INTO `lead`(`Firm_Name`,`Client_Name`, `Mobile_Number`,`Requirement`) VALUES ('$Firm_Name','$Client_Name','$Mobile_Number','$Requirement')");
 
-    if($sql==1){
-        echo '<script>alert("Saved!", "data successfully submitted", "success");</script>';
-        header("location:./lead.php");
-    }else {
-        echo '<script>alert("oops...somthing went wrong");</script>';
-    }
+if(isset($_POST['dnkk'])){
+    $id=$_POST['dnkk'];
+    
+	
+	echo '  <div class="form-group">
+    <input type="hidden" value='.$id.' name="id">
+    <label>Firm Name</label>
+    
+    <select class="form-control select2" name="Fname" style="width: 100%;" required>
+    <option selected="selected" disabled>Select</option>
+    </select>
+</div>
+
+<div class="form-group">
+<label>Client Name</label>
+      <input type="text" class="form-control" name="Cname" id="client name" placeholder="Client Name">
+</div>
+
+<div class="form-group">
+<label>Client Mobile Number</label>
+      <input type="text" class="form-control" name="number" id="Client Mobile Number" placeholder="Client Mobile Number">
+</div>
+
+<div class="form-group">
+<label>Requirement</label>
+      <input type="text" class="form-control" name="requirement" id="Requirement" placeholder="Requirement">
+</div>
+
+</div> ';
 }
 ?>
