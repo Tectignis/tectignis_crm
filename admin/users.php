@@ -135,11 +135,11 @@ include("config.php");
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <a href="" target="_blank">
+                                    <a href="user-details.php" target="_blank">
                                         <img alt="user-image" class="img-fluid rounded-circle card-avatar"
                                             src="dist/img/AdminLTELogo.png" style="height:100px;width:100px;">
                                     </a>
-                                    <h4 class="mt-2"><a href="">Sarvesh</a></h4>
+                                    <h4 class="mt-2"><a href="user-details.php">Sarvesh</a></h4>
                                     <h6 class="">user@example.com</h6>
 
                                 </div>

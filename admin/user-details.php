@@ -104,7 +104,7 @@ include("config.php");
                             <h1 class="m-0">Manage Users</h1>
                             <ol class="breadcrumb float-sm-left">
                                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                                <li class="breadcrumb-item"><a href="index.php">Users</a></li>
+                                <li class="breadcrumb-item"><a href="users.php">Users</a></li>
                                 <li class="breadcrumb-item active">User Details</li>
                             </ol>
                         </div><!-- /.col -->
@@ -213,7 +213,7 @@ include("config.php");
                             <!-- /.card-body -->
                           </div>
                         </div>
-    
+
                     <!-- /.row (main row) -->
                 </div><!-- /.container-fluid -->
             </section>
