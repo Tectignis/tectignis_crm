@@ -111,12 +111,17 @@ include("config.php");
                 <div class="container-fluid">
 
                     <div class="row">
+                    <?php
+                    $sql=mysqli_query($conn,"select * from client");
+                    $count=1;
+                  while ($row=mysqli_fetch_array($sql)){ 
+          ?>
                         <div class="col-md-3 col-sm-6">
                             <div class="card  text-center">
                                 <div class="card-header border-0 pb-0">
                                     <div class="d-flex align-items-center">
                                         <div class="d-grid">
-                                            <div class="badge bg-primary p-2 px-3 rounded">Employee
+                                            <div class="badge bg-primary p-2 px-3 rounded"><?php echo $row['Category']; ?>
                                             </div>
                                         </div>
                                     </div>
@@ -146,12 +151,13 @@ include("config.php");
                                         <img alt="user-image" class="img-fluid rounded-circle card-avatar"
                                             src="dist/img/AdminLTELogo.png" style="height:100px;width:100px;">
                                     </a>
-                                    <h4 class="mt-2"><a href="">Aniket</a></h4>
-                                    <h6 class="">user@example.com</h6>
+                                    <h4 class="mt-2"><a href=""><?php echo $row['Authorized_Name']; ?></a></h4>
+                                    <h6 class=""><?php echo $row['Email']; ?></h6>
 
                                 </div>
                             </div>
                         </div>
+                        <?php } ?>
                         <div class="col-md-3 col-sm-6 text-center">
                             <a href="#" class="btn-addnew-project" data-bs-toggle="tooltip" data-bs-placement="top"
                                 title="" data-ajax-popup="true" data-size="lg" data-title="Create User" data-url=""
@@ -273,7 +279,7 @@ include("config.php");
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post">
+                    <form method="post" action="action_clients.php">
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
@@ -311,12 +317,13 @@ include("config.php");
                                 </div>
                             </div>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
+                        <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" name="submit" class="btn btn-primary">Create</button>
                 </div>
+                    </form>
+                </div>
+               
             </div>
         </div>
     </div>
