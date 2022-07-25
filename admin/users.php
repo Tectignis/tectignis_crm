@@ -215,7 +215,7 @@ include("config.php");
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="inputRole">Job Title</label>
+                                    <label for="inputRole">Role</label>
                                     <select class="form-control" id="inputRole">
                                         <option selected disabled>Select Role</option>
                                         <option>Employee</option>
