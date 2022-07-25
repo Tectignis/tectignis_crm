@@ -93,8 +93,9 @@ if(isset($_POST['ticket'])){
     $ticket_no=$_POST['ticket_no'];
     $subject=$_POST['subject'];
     $description=$_POST['description'];
+    $status='Open';
 
-    $sql=mysqli_query($conn,"INSERT INTO `ticket`(`ticket_no`, `Subject`, `Description`,`Client_Code`) VALUES ('$ticket_no','$subject','$description' ,'$id')");
+    $sql=mysqli_query($conn,"INSERT INTO `ticket`(`ticket_no`, `Subject`, `Description`,`Client_Code`,`status`) VALUES ('$ticket_no','$subject','$description' ,'$id','$status')");
      if($sql==1){
         echo"<script>alert('new record has been added succesfully!');window.location='tickettable.php'</script>";
      }
