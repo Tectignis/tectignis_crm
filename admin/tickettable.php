@@ -132,7 +132,7 @@ include("include/sidebar.php");
       <div class="modal-body">
       <form>
         <div class="form-group">
-                <label>Dropdown</label>
+                <label>Status</label>
                   <select class="form-control select2" name="category" style="width: 100%;">
                     <option selected="selected">Select</option>
                     <option>Open</option>
