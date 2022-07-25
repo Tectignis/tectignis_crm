@@ -1,29 +1,7 @@
 
-
-
-
-
-
-
 <?php
-//client status
-if(isset($_GET['statusyes'])){
-    $staid=$_GET['statusyes'];
-        $query=mysqli_query($conn,"UPDATE `client` SET `Status`='Deactivated' where Client_Code='$staid'");
-    if($query==1){
-        header("location:client.php");
-    }
-}
-
-if(isset($_GET['statusno'])){
-    $staid=$_GET['statusno'];
-        $query=mysqli_query($conn,"UPDATE `client` SET `Status`='Activated' where Client_Code='$staid'");
-    if($query==1){
-        header("location:client.php");
-    }
-}
+include("../config.php");
 ?>
-
 <?php
 //ticket comment
 if(isset($_POST['dnkk'])){
