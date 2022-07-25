@@ -1,6 +1,6 @@
 <?php
 include("config.php");
-include("./api_crm/addleadform_action.php");
+
 
 ?>
 
@@ -95,7 +95,7 @@ include("include/sidebar.php");
                      ?>
 
 
-                        ?>
+                        
 
                         <option value="<?php echo $sql['Client_Code']; ?>"> <?php echo $sql['Firm_Name']; ?></option>
                         <?php } ?>
