@@ -160,6 +160,7 @@ if(isset($_GET['statusno'])){
     }
 }
 ?>
+
 <?php
 //ticket comment
 if(isset($_POST['dnkk'])){
