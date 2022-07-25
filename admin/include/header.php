@@ -3,8 +3,8 @@ session_start();
 if(!isset($_SESSION['aid'])){
   header("location:adminlogin.php");
 }
-
-?><nav class="main-header navbar navbar-expand navbar-white navbar-light">
+?>
+<nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -12,6 +12,7 @@ if(!isset($_SESSION['aid'])){
       </li>
     </ul>
 
+    
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Navbar Search -->
