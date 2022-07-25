@@ -1,20 +1,3 @@
-<?php
-include("config.php");
-if(isset($_POST['submit'])){
-$Email=$_POST['email'];
-
-$sql=mysqli_query($conn,"select * from login where Email='$Email'");
-$row=mysqli_fetch_array($sql);
-
-if($row>0){
-    $Email=$row['Email'];
-        header("location:password.php?email=$Email");
-    }else{
-        echo "<script>alert('Invalid Email Id');</script>";
-    }
-}
-
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -76,7 +59,7 @@ border-bottom-right-radius: .3rem;
                     <h2>CRM</h2>
                 </div><br>
 
-                <form method="post">
+                <form method="post" action="action_pwd.php">
 
                   <div class="form-outline mb-4">
                     <input type="email" id="email" class="form-control"
