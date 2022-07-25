@@ -9,7 +9,7 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
       <span class="brand-text font-weight-light">Admin</span>
     </a>
 </div>
-
+ 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
@@ -32,6 +32,46 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
               </p>
             </a>
           
+            <li class="nav-item">
+            <a href="#" class="nav-link <?= $page == 'index.php' ? :'' ?>">
+              <i class="nav-icon fas fa-user-friends"></i>
+              <p>
+                Users
+              </p>
+            </a>
+
+            <li class="nav-item">
+            <a href="clients.php" class="nav-link <?= $page == 'index.php' ? :'' ?>">
+              <i class="nav-icon fas fa-user-alt"></i>
+              <p>
+                Clients
+              </p>
+            </a>
+
+            <li class="nav-item">
+            <a href="#" class="nav-link <?= $page == 'index.php' ? :'' ?>">
+              <i class="nav-icon fas fa-user-times"></i>
+              <p>
+                Roles
+              </p>
+            </a>
+
+            <li class="nav-item">
+            <a href="#" class="nav-link <?= $page == 'index.php' ? :'' ?>">
+              <i class="nav-icon fas fa-dash-mtext"></i>
+              <p>
+                Leads
+              </p>
+            </a>
+
+            <li class="nav-item">
+            <a href="#" class="nav-link <?= $page == 'index.php' ? :'' ?>">
+              <i class="nav-icon fas fa-settings-outline"></i>
+              <p>
+                System Setting
+              </p>
+            </a>
+
           <li class="nav-item">
             <a href="client.php" class="nav-link <?= $page == 'client.php' || $page == 'addclient.php' ? 'active':'' ?>">
             <i class="nav-icon fa fa-fw fa-user-plus"></i>
