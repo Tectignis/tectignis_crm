@@ -141,11 +141,11 @@ include("config.php");
                                 </div>
                                 <div class="card-body">
                                 
-                                    <a href="" target="_blank">
+                                    <a href="user_details.php" target="_blank">
                                         <img alt="user-image" class="img-fluid rounded-circle card-avatar"
                                             src="dist/img/AdminLTELogo.png" style="height:100px;width:100px;">
                                     </a>
-                                    <h4 class="mt-2"><a href=""><?php echo $row['name']; ?></a></h4>
+                                    <h4 class="mt-2"><a href="user_details.php"><?php echo $row['name']; ?></a></h4>
                                     <h6 class=""><?php echo $row['email']; ?></h6>
                               
                                 </div>
