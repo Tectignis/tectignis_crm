@@ -109,12 +109,17 @@ include("config.php");
                 <div class="container-fluid">
 
                     <div class="row">
+                    <?php
+                    $sql=mysqli_query($conn,"select * from users");
+                    $count=1;
+                  while ($row=mysqli_fetch_array($sql)){ 
+          ?>
                         <div class="col-md-3 col-sm-6">
                             <div class="card  text-center">
                                 <div class="card-header border-0 pb-0">
                                     <div class="d-flex align-items-center">
                                         <div class="d-grid">
-                                            <div class="badge bg-primary p-2 px-3 rounded">Employee
+                                            <div class="badge bg-primary p-2 px-3 rounded"><?php echo $row['job_role']; ?>
                                             </div>
                                         </div>
                                     </div>
@@ -135,16 +140,19 @@ include("config.php");
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <a href="" target="_blank">
+                                
+                                    <a href="user_details.php" target="_blank">
                                         <img alt="user-image" class="img-fluid rounded-circle card-avatar"
                                             src="dist/img/AdminLTELogo.png" style="height:100px;width:100px;">
                                     </a>
-                                    <h4 class="mt-2"><a href="">Sarvesh</a></h4>
-                                    <h6 class="">user@example.com</h6>
-
+                                    <h4 class="mt-2"><a href="user_details.php"><?php echo $row['name']; ?></a></h4>
+                                    <h6 class=""><?php echo $row['email']; ?></h6>
+                              
                                 </div>
                             </div>
+                           
                         </div>
+                        <?php } ?>
                         <div class="col-md-3 col-sm-6 text-center">
                             <a href="#" class="btn-addnew-project" data-bs-toggle="tooltip" data-bs-placement="top"
                                 title="" data-ajax-popup="true" data-size="lg" data-title="Create User" data-url=""
