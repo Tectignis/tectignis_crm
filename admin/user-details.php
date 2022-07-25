@@ -180,7 +180,6 @@ include("config.php");
                         </div>
                     </div>
                     <!-- Main row -->
-                    <div class="row">
                         <div class="col-12">
                         <div class="card row">
                             <div class="card-header">
@@ -201,12 +200,12 @@ include("config.php");
                                   <tr>
                                     <td>1.</td>
                                     <td>Update software</td>
-                                    <td>
-                                      <div class="progress">
-                                        <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                                      </div>
-                                    </td>
-                                    <td><span class="badge bg-danger">55%</span></td>
+                                    <td>ssss</td>
+                                    <td><div class="btn-group" role="group" aria-label="Basic outlined example">
+                                        <button type="button" class="btn btn-sm btn-warning m-1"><i class="fa fa-eye"></i></button>
+                                        <button type="button" class="btn btn-sm btn-info m-1"><i class="fa fa-pen"></i></button>
+                                        <button type="button" class="btn btn-sm btn-danger m-1"><i class="fa fa-trash"></i></button>
+                                      </div></td>
                                   </tr>
                                 </tbody>
                               </table>
@@ -214,8 +213,7 @@ include("config.php");
                             <!-- /.card-body -->
                           </div>
                         </div>
-                    </div>
-
+    
                     <!-- /.row (main row) -->
                 </div><!-- /.container-fluid -->
             </section>
