@@ -67,7 +67,7 @@ include("include/sidebar.php");
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
               <li class="breadcrumb-item active">Ticket</li>
             </ol>
           </div>
@@ -98,7 +98,7 @@ include("include/sidebar.php");
                     <th>Sr no.</th>
                     <th>Ticket No.</th>
                     <th>Description</th>
-                    <th>Comment</th>
+                    <th>Subject</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -111,7 +111,7 @@ include("include/sidebar.php");
                 <td><?php echo $count;?></td>
                 <td><?php echo $row['ticket_no']; ?></td>
                 <td><?php echo $row['Description']; ?></td>
-                <td><?php echo $row['Comment']; ?></td>
+                <td><?php echo $row['Subject']; ?></td>
 
                   </tr>
                   <?php $count++; } ?>
