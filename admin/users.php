@@ -123,9 +123,11 @@ include("config.php");
                                                 <i class="fa fa-ellipsis-v"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                <button class="dropdown-item" type="button">Action</button>
-                                                <button class="dropdown-item" type="button">Another action</button>
-                                                <button class="dropdown-item" type="button">Something else here</button>
+                                                <button class="dropdown-item" type="button"><i class="fa fa-eye"></i> View</button>
+                                                <button class="dropdown-item" type="button" data-toggle="modal" data-target="#editUser"><i class="far fa-edit"></i> Edit</button>
+                                                <button class="dropdown-item" type="button"><i class="fa fa-trash-alt"></i> Delete</button>
+                                                <button class="dropdown-item" type="button" data-toggle="modal" data-target="#resetUserPass"><i class="fa fa-key"></i> Reset Password</button>
+
                                             </div>
                                         </div>
                                     </div>
@@ -174,9 +176,44 @@ include("config.php");
 
     <!-- Button trigger modal -->
 
-
     <!-- Modal -->
-    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="resetUserPass" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Reset Password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form >
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="inputPass">Password</label>
+                                    <input type="password" name="resetPass"  class="form-control" id="inputPass" placeholder="Enter Password">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="inputConfirmPass">Confirm Password</label>
+                                    <input type="password" name="confirmResetPass"  class="form-control" id="inputConfirmPass" placeholder="Re-enter Password">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" name="update" class="btn btn-primary">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="editUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -192,31 +229,25 @@ include("config.php");
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="inputName">Name</label>
-                                    <input type="text" class="form-control" id="inputName" placeholder="Enter Name">
+                                    <input type="text" name="updateName"  class="form-control" id="inputName" placeholder="Enter Name">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="inputEmail">Email</label>
-                                    <input type="email" class="form-control" id="inputEmail" placeholder="Enter Email">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="inputPass">Password</label>
-                                    <input type="password" class="form-control" id="inputPass" placeholder="Password">
+                                    <input type="email" name="updateEmail"  class="form-control" id="inputEmail" placeholder="Enter Email">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="inputTitle">Job Title</label>
-                                    <input type="text" class="form-control" id="inputTitle" placeholder="Enter Job Title">
+                                    <input type="text" name="updateTitle"  class="form-control" id="inputTitle" placeholder="Enter Job Title">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="inputRole">Role</label>
-                                    <select class="form-control" id="inputRole">
+                                    <select class="form-control"  name="updateRole"  id="inputRole">
                                         <option selected disabled>Select Role</option>
                                         <option>Employee</option>
                                         <option>Intern</option>
@@ -228,11 +259,11 @@ include("config.php");
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Create</button>
+                    <button type="submit" name="update" class="btn btn-primary">Update</button>
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -245,7 +276,7 @@ include("config.php");
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form method="post" action="action_users.php">
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
@@ -286,7 +317,7 @@ include("config.php");
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Create</button>
+                    <button type="submit" name="submit" class="btn btn-primary">Create</button>
                 </div>
             </div>
         </div>
