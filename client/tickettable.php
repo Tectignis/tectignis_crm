@@ -99,6 +99,7 @@ include("include/sidebar.php");
                     <th>Ticket No.</th>
                     <th>Description</th>
                     <th>Subject</th>
+                    <th>Status</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -112,6 +113,22 @@ include("include/sidebar.php");
                 <td><?php echo $row['ticket_no']; ?></td>
                 <td><?php echo $row['Description']; ?></td>
                 <td><?php echo $row['Subject']; ?></td>
+                <td><?php
+                                                $status=$row['status'];
+                                                if($status=='0'){
+                                                    echo '<span class="badge badge-success">Open</span>';
+                                                }
+                                                else if($status=='Open'){
+                                                    echo '<span class="badge badge-success">Open</span>';
+                                                }
+                                                else if($status=='Inprocess'){
+                                                    echo '<span class="badge badge-danger">In Proccess</span>';
+                                                }else if($status=='Hold'){
+                                                   echo '<span class="badge badge-warning">Hold On</span>';
+                                                }else if($status=='Closed'){
+                                                    echo '<span class="badge badge-secondary">Closed</span>';
+                                                }
+                                                ?></td>
 
                   </tr>
                   <?php $count++; } ?>

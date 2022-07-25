@@ -97,14 +97,14 @@ include("include/sidebar.php");
                                             <label for="exampleprop" style="font-size: 1.3em;" class="col-sm-2 col-form-label">Subject</label>
                                             <div class="col-sm-12">
                                               <input type="hidden" value="<?php echo $number; ?>" name="ticket_no">
-                                                <input type="text" class="form-control" placeholder="Subject" name="description" id="description" required>
+                                                <input type="text" class="form-control" placeholder="Subject" name="subject" id="description" required>
                                                     
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleprop" style="font-size: 1.3em;"  class="col-sm-2 col-form-label">Description</label>
                                             <div class="col-sm-12">
-                                                <textarea name="comment" class="form-control" id="comment" placeholder="Description" required></textarea>
+                                                <textarea name="description" class="form-control" id="comment" placeholder="Description" required></textarea>
                                             </div>
                                         </div>
 
