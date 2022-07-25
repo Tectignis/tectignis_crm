@@ -123,9 +123,11 @@ include("config.php");
                                                 <i class="fa fa-ellipsis-v"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                <button class="dropdown-item" type="button">Action</button>
-                                                <button class="dropdown-item" type="button">Another action</button>
-                                                <button class="dropdown-item" type="button">Something else here</button>
+                                                <button class="dropdown-item" type="button"><i class="fa fa-eye"></i> View</button>
+                                                <button class="dropdown-item" type="button"><i class="far fa-edit"></i> Edit</button>
+                                                <button class="dropdown-item" type="button"><i class="fa fa-trash-alt"></i> Delete</button>
+                                                <button class="dropdown-item" type="button">Reset Password</button>
+
                                             </div>
                                         </div>
                                     </div>
@@ -286,7 +288,7 @@ include("config.php");
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Create</button>
+                    <button type="submit" name="submit" class="btn btn-primary">Create</button>
                 </div>
             </div>
         </div>
