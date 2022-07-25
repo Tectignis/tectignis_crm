@@ -110,7 +110,7 @@ include("config.php");
             <section class="content">
                 <div class="container-fluid">
 
-                    <div class="row">
+                    <div class="row">ghtyhtgyht
                     <?php
                     $sql=mysqli_query($conn,"select * from client");
                     $count=1;
