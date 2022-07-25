@@ -7,6 +7,17 @@ if(isset($_GET['delid'])){
       header("location:tickettable.php");
   }
   }
+
+  if(isset($_POST['compsubmit'])){
+    $compid=$_POST['id'];
+    $status=$_POST['category'];
+    $descr=$_POST['comment'];
+    $sql=mysqli_query($conn,"UPDATE `ticket` SET `status`='".$status."',`Comment`='".$descr."' WHERE id='".$compid."'");
+    if($sql==1){
+    }else{
+      echo "Something went wrong";
+    }
+  }
 ?>
 
 <!DOCTYPE html>
@@ -108,12 +119,27 @@ include("include/sidebar.php");
                 
                 <td><?php echo $row['ticket_no']; ?></td>
                 <td><?php echo $row['Firm_Name']; ?></td>
-                <td><?php echo $row['Comment']; ?></td> 
+                <td><?php echo $row['Subject']; ?></td> 
                 <td><?php echo $row['Description']; ?></td>
-                <td><?php echo $row['Status']; ?></td>
+                <td><?php
+                                                $status=$row['status'];
+                                                if($status=='0'){
+                                                    echo '<span class="badge badge-success">Open</span>';
+                                                }
+                                                else if($status=='Open'){
+                                                    echo '<span class="badge badge-success">Open</span>';
+                                                }
+                                                else if($status=='Inprocess'){
+                                                    echo '<span class="badge badge-danger">In Proccess</span>';
+                                                }else if($status=='Hold'){
+                                                   echo '<span class="badge badge-warning">Hold On</span>';
+                                                }else if($status=='Closed'){
+                                                    echo '<span class="badge badge-secondary">Closed</span>';
+                                                }
+                                                ?></td>
 
                     <td style="text-align:center">
-                   <button type="button" class="btn btn-primary btn-rounded btn-icon setting" data-toggle="modal" data-id='<?php echo $row['id']; ?>'> <i class="fas fa-wrench"></i></button>
+                   <button class="btn btn-primary btn-rounded btn-icon setting dnkediti" data-id='<?php echo $row['id']; ?>'><i class="fas fa-wrench"></i></button>
                      <a href="tickettable.php?delid=<?php echo $row['id']; ?>"><button type="button" class="btn btn-danger btn-rounded btn-icon"> <i class="fas fa-trash"></i> </button></a> </td>
                   </tr>
                   <?php $count++; } ?>
@@ -125,32 +151,18 @@ include("include/sidebar.php");
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="close" class="close" data-dismiss="modal" aria-label="close">
-         <span aria-hidden="true">&times;</span> 
-        </button>
+        
       </div>
       <div class="modal-body">
-      <form>
-        <div class="form-group">
-                <label>Dropdown</label>
-                  <select class="form-control select2" name="category" style="width: 100%;">
-                    <option selected="selected">Select</option>
-                    <option>Open</option>
-                    <option>Hold</option>
-                    <option>Inprocess</option>
-                    <option>Closed</option>
-                  </select>
-        </div>
-        <div class="form-group">
-        <label>Comment</label>
-                  <textarea class="form-control" name="comment" id="comment" placeholder="Comment"></textarea>
-         </div>
-  </form>
-  </div>
+      <form method="post">
+        <div class="body5">
+                  </div>
+        
   <div class="modal-footer">
     <button type="close" class="btn btn-default" data-dismiss="modal" name="close" id="close">Close</button>  
-    <button type="submit" class="btn btn-primary" name="submit" id="submit"> Submit</button>
+    <button type="submit" class="btn btn-primary" name="compsubmit" id="submit"> Submit</button>
     </div>
+    </form>
     </div>
     </div>
     </div>
@@ -209,7 +221,7 @@ include("include/sidebar.php");
             let dnkk = $(this).data('id');
 
             $.ajax({
-            url: 'check.php',
+            url: 'action.php',
             type: 'post',
             data: {dnkk: dnkk},
             success: function(response5){ 
