@@ -75,7 +75,7 @@ include("include/sidebar.php");
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-          <form action="action.php" method="post">
+          <form action="api_crm/addclient.php" method="post">
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
