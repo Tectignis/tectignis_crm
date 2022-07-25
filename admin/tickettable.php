@@ -221,7 +221,7 @@ include("include/sidebar.php");
             let dnkk = $(this).data('id');
 
             $.ajax({
-            url: 'action.php',
+            url: 'api_crm/tickitmodal.php',
             type: 'post',
             data: {dnkk: dnkk},
             success: function(response5){ 
