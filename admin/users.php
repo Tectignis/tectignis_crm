@@ -1,7 +1,5 @@
 <?php
 include("config.php");
-
-
 ?>
 
 <!DOCTYPE html>
@@ -280,7 +278,7 @@ include("config.php");
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="action_users.php">
+                    <form  action="action_users.php" method="post">
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
@@ -317,12 +315,13 @@ include("config.php");
                                 </div>
                             </div>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
+                        <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" name="submit" class="btn btn-primary">Create</button>
                 </div>
+                    </form>
+                </div>
+               
             </div>
         </div>
     </div>

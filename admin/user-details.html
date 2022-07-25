@@ -63,6 +63,18 @@ include("config.php");
         .btn {
             border-radius: 10px !important;
         }
+
+        .comp-card i {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            text-align: center;
+            padding: 17px 0;
+            font-size: 18px;
+        }
+        .comp-card {
+    height: 137px;
+}
     </style>
 </head>
 
@@ -92,13 +104,8 @@ include("config.php");
                             <h1 class="m-0">Manage Users</h1>
                             <ol class="breadcrumb float-sm-left">
                                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                                <li class="breadcrumb-item active">Users</li>
-                            </ol>
-                        </div><!-- /.col -->
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >    <i class="fa fa-plus"></i></button></li>
-                               
+                                <li class="breadcrumb-item"><a href="index.php">Users</a></li>
+                                <li class="breadcrumb-item active">User Details</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -112,54 +119,102 @@ include("config.php");
 
                     <div class="row">
                         <div class="col-md-3 col-sm-6">
-                            <div class="card  text-center">
-                                <div class="card-header border-0 pb-0">
-                                    <div class="d-flex align-items-center">
-                                        <div class="d-grid">
-                                            <div class="badge bg-primary p-2 px-3 rounded">Employee
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-header-right">
-                                        <div class="dropdown">
-                                            <button class="btn" type="button" id="dropdownMenu2" data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false">
-                                                <i class="fa fa-ellipsis-v"></i>
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                <button class="dropdown-item" type="button"><i class="fa fa-eye"></i> View</button>
-                                                <button class="dropdown-item" type="button" data-toggle="modal" data-target="#editUser"><i class="far fa-edit"></i> Edit</button>
-                                                <button class="dropdown-item" type="button" onClick="deleteBtn()"><i class="fa fa-trash-alt"></i> Delete</button>
-                                                <button class="dropdown-item" type="button" data-toggle="modal" data-target="#resetUserPass"><i class="fa fa-key"></i> Reset Password</button>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="card comp-card">
                                 <div class="card-body">
-                                    <a href="" target="_blank">
-                                        <img alt="user-image" class="img-fluid rounded-circle card-avatar"
-                                            src="dist/img/AdminLTELogo.png" style="height:100px;width:100px;">
-                                    </a>
-                                    <h4 class="mt-2"><a href="">Sarvesh</a></h4>
-                                    <h6 class="">user@example.com</h6>
-
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <h6 class="m-b-20">Total Leads</h6>
+                                            <h4 class="text-primary">$80,000.00 / 3</h4>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-rocket bg-success text-white"></i>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-6 text-center">
-                            <a href="#" class="btn-addnew-project" data-bs-toggle="tooltip" data-bs-placement="top"
-                                title="" data-ajax-popup="true" data-size="lg" data-title="Create User" data-url=""
-                                data-toggle="modal" data-target="#exampleModal" data-bs-original-title="Create User">
-                                <button class="btn btn-primary">
-                                    <i class="fa fa-plus"></i>
-                                </button>
-                                <h6 class="mt-4 mb-2">New User</h6>
-                                <p class="text-muted text-center">Click here to add New User</p>
-                            </a>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="card comp-card">
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <h6 class="m-b-20">This Month Total Leads</h6>
+                                            <h4 class="text-info">$0.00 / $0.00</h4>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-rocket bg-info text-white"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="card comp-card">
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <h6 class="m-b-20">This Week Total Leads</h6>
+                                            <h4 class="text-warning">0 / 0</h4>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-rocket bg-warning text-white"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="card comp-card">
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <h6 class="m-b-20">Last 30 Days Total Leads</h6>
+                                            <h4 class="text-danger">0 / 0</h4>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-rocket bg-danger text-white"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <!-- Main row -->
+                    <div class="row">
+                        <div class="col-12">
+                        <div class="card row">
+                            <div class="card-header">
+                              <h3 class="card-title">Leads</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                              <table class="table table-striped">
+                                <thead>
+                                  <tr>
+                                    <th>#</th>
+                                    <th>Firm Name</th>
+                                    <th>Client Name</th>
+                                    <th>Action</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>1.</td>
+                                    <td>Update software</td>
+                                    <td>
+                                      <div class="progress">
+                                        <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                                      </div>
+                                    </td>
+                                    <td><span class="badge bg-danger">55%</span></td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                            <!-- /.card-body -->
+                          </div>
+                        </div>
+                    </div>
 
                     <!-- /.row (main row) -->
                 </div><!-- /.container-fluid -->
@@ -214,26 +269,26 @@ include("config.php");
     <!-- AdminLTE for demo purposes -->
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="dist/js/pages/dashboard.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script>
         function deleteBtn() {
-            
-         swal({
-  title: "Are You Sure...?",
-  text: "This action can not be undone. Do you want to continue?",
-  icon: "warning",
-  buttons: ["No", "Yes"],
-});
-   
-      mobile_err=true;
-            
-             mobile_check();
-			   
-			   if(mobile_err=true){
-			      return true;
-			   }
-			   else{return false;}
+
+            swal({
+                title: "Are You Sure...?",
+                text: "This action can not be undone. Do you want to continue?",
+                icon: "warning",
+                buttons: ["No", "Yes"],
+            });
+
+            mobile_err = true;
+
+            mobile_check();
+
+            if (mobile_err = true) {
+                return true;
+            }
+            else { return false; }
         }
     </script>
 </body>
