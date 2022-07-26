@@ -1,7 +1,5 @@
 <?php
 include("config.php");
-
-
 ?>
 
 <!DOCTYPE html>
@@ -279,7 +277,7 @@ include("config.php");
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="action_clients.php">
+                    <form method="post" action="../action_clients.php">
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">

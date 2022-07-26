@@ -70,7 +70,7 @@ include("include/sidebar.php");
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-          <form method="post" action="action_pwd.php">
+          <form method="post" action="../action_pwd.php">
 
               <!-- /.col -->
               <div class="row" style="justify-content:center;">

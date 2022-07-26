@@ -286,7 +286,7 @@ include("config.php");
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form  action="action_users.php" method="post">
+                    <form  action="../action_users.php" method="post">
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">

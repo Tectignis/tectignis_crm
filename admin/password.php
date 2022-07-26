@@ -60,7 +60,7 @@ border-bottom-right-radius: .3rem;
                     <h2>CRM</h2>
                 </div><br>
 
-                <form method="post" action="action_pwd.php">
+                <form method="post" action="../action_pwd.php">
 
                   <div class="form-outline mb-4">
                     <input type="password" id="newpassword" class="form-control"
