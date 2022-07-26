@@ -150,7 +150,7 @@ include("config.php");
                                 <a href="clinet_details.php" target="_blank">
                                     <?php
                                     if($row['image']==""){
-echo '<img src="dist/img/avatar.jpeg" alt="User Image" class="img-fluid rounded-circle card-avatar" style="width:100px;height:100px;">';
+echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded-circle card-avatar" style="width:100px;height:100px;">';
                                     }else{
 
                                         ?>
