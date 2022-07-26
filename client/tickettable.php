@@ -27,23 +27,18 @@ if(!isset($_SESSION['id']))
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  
    <style>
-    .card-header{
-      padding:0px;
-      
-    }
-    .card-title{
-float:left;
-padding:20px;
-
-    }
-  a{
-    color: #007bff;
-    text-decoration: none;
-    background-color: transparent;
-  }
-
+   
+  .toast-header strong{
+margin-right:40px !important;
+}
+.toast-body{
+  cursor:pointer;
+}
+.toast{
+  width: 250px;
+}
     </style>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -159,6 +154,7 @@ include("include/sidebar.php");
 <script src="plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
 <!-- DataTables  & Plugins -->
 <script src="plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>

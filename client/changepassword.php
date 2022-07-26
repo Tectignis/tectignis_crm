@@ -57,6 +57,14 @@ if(isset($_POST["submitt"])){
   <link rel="stylesheet" href="plugins/dropzone/min/dropzone.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <style>
+    .toast-header strong{
+margin-right:40px !important;
+}
+.toast-body{
+  cursor:pointer;
+}
+  </style>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">

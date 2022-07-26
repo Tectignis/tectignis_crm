@@ -45,7 +45,14 @@ if(isset($_GET['delid'])){
 float:left;
 padding:25px;
     }
+    .toast-header strong{
+margin-right:40px !important;
+}
+.toast-body{
+  cursor:pointer;
+}
     </style>
+    
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">

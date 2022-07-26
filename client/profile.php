@@ -87,26 +87,22 @@ include("include/sidebar.php");
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label>Firm Name</label>
-                  <input type="text" value="<?php echo $row['Firm_Name']; ?>" class="form-control" name="Fname" id="name" placeholder="Firm Name" readonly>
+                 <label for="inputName">Name</label>
+                 <input type="text" name="name" value="<?php echo $row['Authorized_Name']; ?>" class="form-control" id="inputName" placeholder="Enter Name" readonly>
                 </div>
                 <!-- /.form-group -->
                 <div class="form-group">
-                <label>Mobile Number</label>
-                  <input type="text" minlength="10" maxlength="10" value="<?php echo $row['Mobile_Number']; ?>" class="form-control" name="number" id="number" placeholder="Mobile Number" readonly>
+                <label>Email</label>
+                  <input type="email" value="<?php echo $row['Email']; ?>"  class="form-control" name="email" id="email" placeholder="Email" readonly>
                 </div>
                 <!-- /.form-group -->
               </div>
               <!-- /.col -->
               <div class="col-md-6">
                 <div class="form-group">
-                  <label>Authorized Name</label>
-                  <input type="text" value="<?php echo $row['Authorized_Name']; ?>" class="form-control" name="Aname" id="Aname" placeholder="Authorized Name" readonly>
-                </div>
-                <!-- /.form-group -->
-                <div class="form-group">
-                  <label>Email</label>
-                  <input type="email" value="<?php echo $row['Email']; ?>"  class="form-control" name="email" id="email" placeholder="Email" readonly>
+                <img alt="user-image" class="img-fluid rounded-circle card-avatar"
+                                            src="dist/img/<?php echo $row['image'] ?>" style="height:100px;width:100px;">
+                
                 </div>
                 <!-- /.form-group -->
               </div>
