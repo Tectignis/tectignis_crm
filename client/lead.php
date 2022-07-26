@@ -1,12 +1,21 @@
 <?php
 session_start();
 include("config.php");
-include("api/addlead_action.php");
+
 $id=$_SESSION['id'];
+$uid = $_SESSION['aname'];
 if(!isset($_SESSION['id']))
 {
   header("location:clientlogin.php");
 }
+//lead delete
+if(isset($_GET['delid'])){
+    $id=mysqli_real_escape_string($conn,$_GET['delid']);
+    $sql=mysqli_query($conn,"delete from lead where id='$id'");
+    if($sql=1){
+        header("location:lead.php");
+    }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -114,7 +123,7 @@ include("include/sidebar.php");
                 <td><?php echo $row['Created_On']; ?></td>
                 <td><?php echo $row['added_by']; ?></td>
                     <td style="text-align:center">
-                     <a href="api/addlead_action.php?delid=<?php echo $row['Id']; ?>"><button type="button"  onclick="return confirm('Are you sure you want to delete this item')" class="btn btn-danger btn-rounded btn-icon"  style="color: aliceblue"> <i class="fas fa-trash"></i> </button></a> </td>
+                     <a href="lead.php?delid=<?php echo $row['id']; ?>"><button type="button"  onclick="return confirm('Are you sure you want to delete this item')" class="btn btn-danger btn-rounded btn-icon"  style="color: aliceblue"> <i class="fas fa-trash"></i> </button></a> </td>
                   </tr>
                   <?php $count++; } ?>
                  
@@ -134,16 +143,16 @@ include("include/sidebar.php");
     <!-- /.content -->
   </div>
 
-  <div class="modal fade"  id="exampleModal">
-      <div class="modal-dialog">
-        <div class="modal-content ">
-        <div class="modal-header">
+  <div class="modal fade"  id="exampleModal" >
+      <div class="modal-dialog" >
+        <div class="modal-content "style="border-radius:35px;">
+        <div class="modal-header" >
              ADD LEADS
              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                <span aria-hidden="true">&times;</span>
              </button>
            </div>
-     <form method="post">
+     <form action="api/addlead_action.php" method="post">
            <div class="modal-body body1">
            
                 <div class="row">   
@@ -159,7 +168,7 @@ include("include/sidebar.php");
                 <b>Client Name :</b><br>
                 </div>
                 <div class="col-8">
-                <p> <input type="text" class="form-control"  name="Client_name" ></p>
+                <p> <input type="text" class="form-control"  name="Client_Name" ></p>
                 </div>
                 </div>
 
@@ -177,7 +186,9 @@ include("include/sidebar.php");
                <b> Requirement :</b><br>
                </div>
                <div class="col-8">
-               <p> <input type="text" name="Requirement" class="form-control"></p>
+               <p> <input type="text" name="Requirement" class="form-control">
+               <input type="hidden" name="sid" value="<?php echo $id ?>" class="form-control">
+               <input type="hidden" name="uid" value="<?php echo $uid ?>" class="form-control"></p>
                </div>
                </div>
 
@@ -188,7 +199,7 @@ include("include/sidebar.php");
            </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary" name="submitt" >Submit</button>
+              <button type="submit" class="btn btn-primary" name="leadsubmitt" >Submit</button>
             </div></form>
 
         </div>
@@ -197,7 +208,7 @@ include("include/sidebar.php");
       <!-- /.modal-dialog -->
     </div>
   <!-- /.content-wrapper -->
-  <?php include"include/footer.php";?>
+  <?php include("include/footer.php");?>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
