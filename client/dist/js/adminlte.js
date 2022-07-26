@@ -2673,7 +2673,10 @@
 
       if (this._config.body != null) {
         toast.append($__default["default"]('<div class="toast-body" />').html(this._config.body));
+
       }
+     
+     
 
       $__default["default"](this._getContainerId()).prepend(toast);
       var $body = $__default["default"]('body');

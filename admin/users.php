@@ -132,7 +132,13 @@ include("config.php");
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                                 <a class="dropdown-item" type="button" href="user-details.php"><i class="fa fa-eye"></i> View</a>
                                                 <button class="dropdown-item" type="button" data-toggle="modal" data-target="#editUser"><i class="far fa-edit"></i> Edit</button>
+
+
+
                                                 <button class="dropdown-item" type="button" onClick="deleteBtn()"><i class="fa fa-trash-alt"></i> Delete</button>
+
+
+                                                
                                                 <button class="dropdown-item" type="button" data-toggle="modal" data-target="#resetUserPass"><i class="fa fa-key"></i> Reset Password</button>
 
                                             </div>
