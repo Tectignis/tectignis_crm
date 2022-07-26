@@ -108,8 +108,10 @@ if(isset($_POST['submitt'])){
     $Client_Name=$_POST['Cname'];
     $Mobile_Number=$_POST['number'];
     $Requirement=$_POST['requirement'];
+    date_default_timezone_set('Asia/Kolkata');
+    $Date = date("Y-m-d H:i:s");
    
-    $sql=mysqli_query($conn,"INSERT INTO `lead`(`Firm_Name`,`Client_Name`, `Mobile_Number`,`Requirement`) VALUES ('$Firm_Name','$Client_Name','$Mobile_Number','$Requirement')");
+    $sql=mysqli_query($conn,"INSERT INTO `lead`(`Firm_Name`,`Client_Name`, `Mobile_Number`,`Requirement`,`Created_On`) VALUES ('$Firm_Name','$Client_Name','$Mobile_Number','$Requirement','$Date')");
 
     if($sql==1){
         echo '<script>alert("Saved!", "data successfully submitted", "success");</script>';

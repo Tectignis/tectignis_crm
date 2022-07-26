@@ -6,6 +6,8 @@ if(!isset($_SESSION['id']))
 {
   header("location:clientlogin.php");
 }
+$uid=$_SESSION['id'];
+mysqli_query($conn,"update lead set status=1 where Firm_Name=$uid");
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +37,14 @@ if(!isset($_SESSION['id']))
 float:left;
 padding:25px;
     }
+    .toast-header strong{
+margin-right:40px !important;
+}
+.toast-body{
+  cursor:pointer;
+}
     </style>
+    
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
