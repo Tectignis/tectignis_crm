@@ -1,18 +1,17 @@
 <?php
-session_start();
 include("config.php");
-if(!isset($_SESSION['id']))
-{
-  header("location:clientlogin.php");
-}
+include("../api/addlead_action.php");
+
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Add Ticket | CRM</title>
+  <title>Admin CRM | Add leads</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -40,24 +39,26 @@ if(!isset($_SESSION['id']))
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
-  <!-- Navbar -->
-  <?php
+<?php
 include("include/header.php");
 include("include/sidebar.php");
 ?>
-  <!-- Content Wrapper. Contains page content -->
+
+<!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Client Details</h1>
+            <h1>Leads</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-              <li class="breadcrumb-item active">Ticket</li>
+              <li class="breadcrumb-item active">Leads</li>
+              <li class="breadcrumb-item active">Add Leads</li>
+              
             </ol>
           </div>
         </div>
@@ -70,62 +71,75 @@ include("include/sidebar.php");
         <!-- SELECT2 EXAMPLE -->
         <div class="card card-default">
           <div class="card-header">
-            <h3 class="card-title">Client Form</h3>
+            <h3 class="card-title">Add Leads</h3>
+
+            
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-          <form action="./api/ticketform_action.php" method="post">
-          <?php $sql=mysqli_query($conn,"select * from ticket where Client_Code='".$_SESSION['id']."' order by id desc");
-                     
-                      $arr=mysqli_fetch_array($sql);
-                      $dnk=$arr['id'];
-                      $lastid=$dnk+1;
-                     
-                      if(empty($lastid)){
-						           $number="0000";
-					           }else{
-						          $id=str_pad($lastid + 0, 4,0, STR_PAD_LEFT);
-					        	  $number="$id";
-					            }	
-                    
-                      
-                      					  ?>
-                                    <div class="card-body">
-
-
-                                        <div class="form-group">
-                                            <label for="exampleprop" style="font-size: 1.3em;" class="col-sm-2 col-form-label">Subject</label>
-                                            <div class="col-sm-12">
-                                              <input type="hidden" value="<?php echo $number; ?>" name="ticket_no">
-                                                <input type="text" class="form-control" placeholder="Subject" name="subject" id="description" required>
-                                                    
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleprop" style="font-size: 1.3em;"  class="col-sm-2 col-form-label">Description</label>
-                                            <div class="col-sm-12">
-                                                <textarea name="description" class="form-control" id="comment" placeholder="Description" required></textarea>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                        </div>
-                                        <button type="submit" name="ticket" id="sub" class="btn btn-primary float-right my-3 " style="margin-right: 5px;">
+          <form method="post" action="addlead_action.php">
+            <div class="row">
+              <div class="col-md-6">
+               
+                <!-- /.form-group -->
+                <div class="form-group">
+                  <label>Client Name</label>
+                  <input type="text" class="form-control" name="Client_Name" id="cname" placeholder="Client Name" required>
+                  <span id="cnamespan" class="mb-4"></span>
+                </div>
+                <!-- /.form-group -->
+                <div class="form-group">
+                  <label>Requirement</label>
+                  <input type="text" class="form-control" name="Requirement" id="Rname" placeholder="Requirement" required>
+                </div>
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                
+                <div class="form-group">
+                <label>Client Mobile Number</label>
+                  <input type="tel" minlength="10" maxlength="10" onkeypress="return onlyNumberKey(event)" class="form-control" name="Mobile_Number" id="number" placeholder="Mobile Number" required>
+                  <span id="numberspan" class="mb-4"></span>
+                    </div>
+                <!-- /.form-group -->
+              
+                <button type="submit" name="submitt" class="btn btn-primary float-right my-3 " id="sub" style="margin-right: 5px;">
                     Submit
-                                    </form>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
+            <div class="row">
+              <div class="col-12 col-sm-6">
+                <div class="form-group">
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+             
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+          </div>
+         </form>
+          </div>
+          
           <!-- /.card-body -->
-         
+          
         </div>
         <!-- /.card -->
 
-        
-       
+          
       <!-- /.container-fluid -->
     </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <?php include"include/footer.php";?>
+  <?php
+  include("include/footer.php");
+  ?>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -163,6 +177,7 @@ include("include/sidebar.php");
 <!-- AdminLTE for demo purposes -->
 <!-- Page specific script -->
 <script>
+
   $(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
@@ -297,6 +312,96 @@ include("include/sidebar.php");
   // DropzoneJS Demo Code End
 </script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+   let  validenqName;
 
+    $(document).ready(function(){
+ $("#cnamespan").hide();
+	    $("#cname").keyup(function(){
+	     txt_check();
+	   });
+	   function txt_check(){
+      validenqName="no";
+		   let txt=$("#cname").val();
+		   let vali =/^[A-Za-z ]+$/;
+		   if(!vali.test(txt)){
+			  $("#cnamespan").show().html("Enter Alphabets only").css("color","red").focus();
+			  txt_err=false;
+			  return false;
+		   }
+		   else{
+        validenqName="yes";
+		       $("#cnamespan").hide();
+		       
+		   }
+	   }
+     $("#sub").click(function(){
+       txt_err = true;
+       
+             txt_check();
+             
+			   
+			   if(txt_err==true){
+			      return true;
+			   }
+			   else{return false;}
+		  });
+    });
+    </script>
+<script>
+  let  validenqtMobile;
+
+$(document).ready(function(){
+     $("#numberspan").hide();
+	    $("#number").keyup(function(){
+	     mobile_check();
+	   });
+	   function mobile_check(){
+      validenqtMobile="no";
+		   let mobileno=$("#number").val();
+		   let vali =/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/; 
+		   if(!vali.test(mobileno)){
+       
+			    $("#numberspan").show().html("*Invalid Mobile No").css("color","red").focus();
+				mobile_err=false;
+			 return false;
+		   }
+		   else{
+        validenqtMobile="yes";
+		       $("#numberspan").hide(); 
+		   }
+	   }
+ 
+     
+	   $("#sub").click(function(){
+      if(validenqName =="no" || validenqtMobile =="no"){
+         swal({
+  title: "Oops...!",
+  text: "Please fill all the fields!",
+  icon: "error",
+});
+     }
+         else{
+          swal({
+  title: "Saved!",
+  text: "data successfully submitted",
+  icon: "success",
+}).then(function(){window.location="lead.php"; });
+         }
+      mobile_err=true;
+            
+             mobile_check();
+			   
+			   if(mobile_err=true){
+			      return true;
+			   }
+			   else{return false;}
+		  });
+    });
+    </script>
+    <script>
+        
+   
+  </script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <?php
 session_start();
 include("config.php");
+include("api/addlead_action.php");
 $id=$_SESSION['id'];
 if(!isset($_SESSION['id']))
 {
@@ -75,8 +76,13 @@ include("include/sidebar.php");
 
             <div class="card">
                 <div class="card-header">
+                   
+                  <div class="card-header">
                   <h5 class="card-title">List of Leads</h5>    
-
+                      <button type="button" class="btn btn-primary float-right my-3" data-toggle="modal" data-target="#exampleModal" style="margin-right: 5px;">
+                    + Add Lead
+                  </button>
+                </div>
                 </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -84,11 +90,12 @@ include("include/sidebar.php");
                   <thead>
                   <tr>
                     <th>Sr no.</th>
-                    <th>Firm Name</th>
+                    
                     <th>Client Name</th>
                     <th>Client Mobile Number</th>
                     <th>Requirement</th>
                     <th>Created On</th>
+                    <th>Added By</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -100,13 +107,14 @@ include("include/sidebar.php");
           ?>
             <tr>
                 <td><?php echo $count;?></td>
-                <td><?php echo $row['Firm_Name']; ?></td>
+               
                 <td><?php echo $row['Client_Name']; ?></td>
                 <td><?php echo $row['Mobile_Number']; ?></td>
                 <td><?php echo $row['Requirement']; ?></td>
                 <td><?php echo $row['Created_On']; ?></td>
+                <td><?php echo $row['added_by']; ?></td>
                     <td style="text-align:center">
-                     <a href="action.php?delid=<?php echo $row['Id']; ?>"><button type="button"  onclick="return confirm('Are you sure you want to delete this item')" class="btn btn-danger btn-rounded btn-icon"  style="color: aliceblue"> <i class="fas fa-trash"></i> </button></a> </td>
+                     <a href="api/addlead_action.php?delid=<?php echo $row['Id']; ?>"><button type="button"  onclick="return confirm('Are you sure you want to delete this item')" class="btn btn-danger btn-rounded btn-icon"  style="color: aliceblue"> <i class="fas fa-trash"></i> </button></a> </td>
                   </tr>
                   <?php $count++; } ?>
                  
@@ -125,6 +133,69 @@ include("include/sidebar.php");
     </section>
     <!-- /.content -->
   </div>
+
+  <div class="modal fade"  id="exampleModal">
+      <div class="modal-dialog">
+        <div class="modal-content ">
+        <div class="modal-header">
+             ADD LEADS
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+             </button>
+           </div>
+     <form method="post">
+           <div class="modal-body body1">
+           
+                <div class="row">   
+                
+                
+                <div class="col-8">
+                <p>  </p>
+                </div>
+                </div>
+
+                <div class="row">   
+                 <div class="col-4">
+                <b>Client Name :</b><br>
+                </div>
+                <div class="col-8">
+                <p> <input type="text" class="form-control"  name="Client_name" ></p>
+                </div>
+                </div>
+
+                <div class="row">   
+                 <div class="col-4">
+                <b> Client Mobile Number :</b><br>
+                </div>
+                <div class="col-8">
+                <p> <input type="tel" name="Mobile_Number"  class="form-control"></p>
+                </div>
+                </div>
+
+                <div class="row">   
+                <div class="col-4">
+               <b> Requirement :</b><br>
+               </div>
+               <div class="col-8">
+               <p> <input type="text" name="Requirement" class="form-control"></p>
+               </div>
+               </div>
+
+
+         
+
+              
+           </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary" name="submitt" >Submit</button>
+            </div></form>
+
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
   <!-- /.content-wrapper -->
   <?php include"include/footer.php";?>
 
@@ -174,6 +245,7 @@ include("include/sidebar.php");
     });
   });
 </script>
+
 
 </body>
 </html>
