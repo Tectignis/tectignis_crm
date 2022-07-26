@@ -5,6 +5,9 @@
 
   <script src="plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
+
+<link rel="stylesheet" href="plugins/toastr/toastr.min.css">
+<script src="plugins/toastr/toastr.min.js"></script>
 <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 <script src="dist/js/adminlte.js"></script>
   <?php
@@ -16,23 +19,19 @@ $unread_count=mysqli_num_rows($res_message);
 if($unread_count>0){
 ?>
 <script>
-	$(document).ready(function(){
-    $(document).Toasts('create', {
-        class: 'bg-warning',
-        title: '<?php echo $fname; ?>',
-        subtitle: '',
-        body: 'You have <?php echo $unread_count; ?> new lead',
-      })
-	});
-  $(document).ready(function() {
-    window.setTimeout(function() {
+	// $(document).ready(function(){
+  //   $(document).Toasts('create', {
+  //       class: 'bg-warning',
+  //       title: '<?php echo $fname; ?>',
+  //       subtitle: '',
+  //       body: 'You have <?php echo $unread_count; ?> new lead',
+  //     }, 15000);
+      
+	// });
+  $(function() {
 
-location.href = "index.php";
-
-}, 15000);
-    $(".toast").animate(1900); 
-      // toastr.warning('You have <?php //echo $unread_count; ?> new lead')
-    });
+    toastr.warning('You have <?php echo $unread_count; ?> new lead')
+  });
 </script>
 <?php } ?>
 <script>
