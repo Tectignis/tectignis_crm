@@ -123,7 +123,7 @@ include("include/sidebar.php");
                 <td><?php echo $row['Requirement']; ?></td>
                 <td><?php echo $row['Created_On']; ?></td>
                     <td style="text-align:center">
-                     <a href="api_crm/leaddelete.php?delid=<?php echo $row['Id']; ?>"><button type="button"  onclick="return confirm('Are you sure you want to delete this item')" class="btn btn-danger btn-rounded btn-icon"  style="color: aliceblue"> <i class="fas fa-trash"></i> </button></a> </td>
+                      <a href="api_crm/leaddelete.php?delid=<?php echo $row['id']; ?>"><button type="button"  onclick="return confirm('Are you sure you want to delete this item')" class="btn btn-danger btn-rounded btn-icon"  style="color: aliceblue"> <i class="fas fa-trash"></i> </button></a> </td>
                   </tr>
                   <?php $count++; } ?>
                  
@@ -187,15 +187,17 @@ include("include/sidebar.php");
                   <input type="text" class="form-control" name="requirement" id="Rname" placeholder="Requirement" required>
                 </div>
                 
-                    <div class="modal-footer">
-    <button type="close" class="btn btn-default" data-dismiss="modal" name="close" id="close">Close</button>  
-    <button type="submit" name="submitt" class="btn btn-primary float-right my-3 " id="sub" style="margin-right: 5px;">
-                    Submit </button>    </div>
+                    
                 <!-- /.form-group -->
               </div>
+              
               <!-- /.col -->
             </div>
             <!-- /.row -->
+            <div class="modal-footer">
+    <button type="close" class="btn btn-default" data-dismiss="modal" name="close" id="close">Close</button>  
+    <button type="submit" name="submitt" class="btn btn-primary float-right my-3 " id="sub" style="margin-right: 5px;">
+                    Submit </button>    </div>
 
             <div class="row">
               <div class="col-12 col-sm-6">
