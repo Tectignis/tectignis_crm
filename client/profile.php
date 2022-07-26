@@ -80,50 +80,51 @@ include("include/sidebar.php");
           <form action="action.php" method="post">
           <?php
          
-                    $sql=mysqli_query($conn,"select * from client where Client_Code='".$_SESSION['id']."'");
+            $sql=mysqli_query($conn,"select * from client where Client_Code='".$_SESSION['id']."'");
                  
-                  while ($row=mysqli_fetch_array($sql)){ 
-          ?>
-            <div class="row">
-              <div class="col-md-6">
+              while ($row=mysqli_fetch_array($sql)){ 
+              ?>
+             <div class="row">
+               <div class="col-md-2">
+              
+                <div class="form-group">
+                <a href="clinet_details.php" target="_blank">
+               <?php
+                  if($row['image']==""){
+                 echo '<img src="../admin/dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded-circle  card-avatar" style="width:100px;height:100px;">';
+                 }else{
+
+                ?>
+                <img alt="user-image" class="img-fluid rounded-circle card-avatar" src="../admin/dist/img/<?php echo $row['image'] ?>" style="height:100px;width:100px;">
+                <?php } ?>
+                </a>
+                
+                </div>
+                <!-- /.form-group -->
+               </div>
+               <div class="col-md-6">
                 <div class="form-group">
                  <label for="inputName">Name</label>
                  <input type="text" name="name" value="<?php echo $row['Authorized_Name']; ?>" class="form-control" id="inputName" placeholder="Enter Name" readonly>
                 </div>
                 <!-- /.form-group -->
                 <div class="form-group">
-                <label>Email</label>
+                 <label>Email</label>
                   <input type="email" value="<?php echo $row['Email']; ?>"  class="form-control" name="email" id="email" placeholder="Email" readonly>
                 </div>
                 <!-- /.form-group -->
-              </div>
-              <!-- /.col -->
-              <div class="col-md-6">
-                <div class="form-group">
-                <img alt="user-image" class="img-fluid rounded-circle card-avatar"
-                                            src="dist/img/<?php echo $row['image'] ?>" style="height:100px;width:100px;">
                 
+                <div class="form-group">
+                 <label>Category</label>
+                 <input type="text" value="<?php echo $row['Category']; ?>" class="form-control" name="category" id="category" placeholder="category" readonly>
                 </div>
+               
                 <!-- /.form-group -->
               </div>
               <!-- /.col -->
+             
             </div>
-            <!-- /.row -->
-
-            <div class="row">
-              <div class="col-12 col-sm-6">
-                <div class="form-group">
-                <label>Category</label>
-                <input type="text" value="<?php echo $row['Category']; ?>" class="form-control" name="category" id="category" placeholder="category" readonly>
-                </div>
-                
-                <!-- /.form-group -->
-              </div>
-              <!-- /.col -->
-              
-              <!-- /.col -->
-            </div>
-            <!-- /.row -->
+           
           </div>
           <?php } ?>
           </form>
