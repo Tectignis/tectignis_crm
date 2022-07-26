@@ -39,14 +39,7 @@ if(!isset($_SESSION['id']))
   <link rel="stylesheet" href="plugins/dropzone/min/dropzone.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
-  <style>
-    .toast-header strong{
-margin-right:40px !important;
-}
-.toast-body{
-  cursor:pointer;
-}
-  </style>
+  
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -107,8 +100,9 @@ include("include/sidebar.php");
               <!-- /.col -->
               <div class="col-md-6">
                 <div class="form-group">
-                <label for="inputPass">Image</label>
-                <input type="file" name="image" value="<?php echo $row['image']; ?>" class="form-control" id="inputimg" placeholder="image" readonly>
+                <img alt="user-image" class="img-fluid rounded-circle card-avatar"
+                                            src="dist/img/<?php echo $row['image'] ?>" style="height:100px;width:100px;">
+                
                 </div>
                 <!-- /.form-group -->
               </div>
