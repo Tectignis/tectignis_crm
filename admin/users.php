@@ -141,9 +141,9 @@ include("config.php");
                                 </div>
                                 <div class="card-body">
                                 
-                                    <a href="user_details.php" target="_blank">
+                                <a href="user_details.php" target="_blank">
                                         <img alt="user-image" class="img-fluid rounded-circle card-avatar"
-                                            src="dist/img/AdminLTELogo.png" style="height:100px;width:100px;">
+                                            src="dist/img/<?php echo $row['image'] ?>" style="height:100px;width:100px;">
                                     </a>
                                     <h4 class="mt-2"><a href="user_details.php"><?php echo $row['name']; ?></a></h4>
                                     <h6 class=""><?php echo $row['email']; ?></h6>
@@ -264,6 +264,7 @@ include("config.php");
                                     </select>
                                 </div>
                             </div>
+                           
                         </div>
                     </form>
                 </div>
@@ -286,7 +287,7 @@ include("config.php");
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form  action="action_users.php" method="post">
+                    <form  action="action_users.php" method="post" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
@@ -320,6 +321,13 @@ include("config.php");
                                         <option>Employee</option>
                                         <option>Intern</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="inputPass">Image</label>
+                                    <input type="file" name="image" class="form-control" id="inputimg"
+                                        placeholder="image">
                                 </div>
                             </div>
                         </div>
