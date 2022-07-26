@@ -24,4 +24,13 @@ if(isset($_POST['submit'])){
         echo '<script>alert("oops...somthing went wrong");</script>';
     }
 }
+
+if(isset($_GET['delid'])){
+  $delid = $_GET['delid'];
+  $sql = mysqli_query($conn,"DELETE FROM users WHERE id = '$delid'");
+  if($sql){
+    header ("location:users.php"); 
+  }
+  else{ echo "<script>alert('Failed to Delete')</script>"; }
+}
 ?>

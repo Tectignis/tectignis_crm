@@ -148,8 +148,16 @@ include("config.php");
                                 </div>
                                 <div class="card-body">
                                 <a href="clinet_details.php" target="_blank">
+                                    <?php
+                                    if($row['image']==""){
+echo '<img src="dist/img/avatar.jpeg" alt="User Image" class="img-fluid rounded-circle card-avatar" style="width:100px;height:100px;">';
+                                    }else{
+
+                                        ?>
+                                   
                                         <img alt="user-image" class="img-fluid rounded-circle card-avatar"
                                             src="dist/img/<?php echo $row['image'] ?>" style="height:100px;width:100px;">
+<?php } ?>
                                     </a>
                                     <h4 class="mt-2"><a href=""><?php echo $row['Authorized_Name']; ?></a></h4>
                                     <h6 class=""><?php echo $row['Email']; ?></h6>
