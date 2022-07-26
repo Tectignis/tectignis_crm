@@ -108,12 +108,9 @@ include("include/sidebar.php");
                 <td><?php echo $row['ticket_no']; ?></td>
                 <td><?php echo $row['Description']; ?></td>
                 <td><?php echo $row['Subject']; ?></td>
-                <td><?php
+                <td style="text-align:center"><?php
                                                 $status=$row['status'];
-                                                if($status=='0'){
-                                                    echo '<span class="badge badge-success">Open</span>';
-                                                }
-                                                else if($status=='Open'){
+                                             if($status=='Open'){
                                                     echo '<span class="badge badge-success">Open</span>';
                                                 }
                                                 else if($status=='Inprocess'){

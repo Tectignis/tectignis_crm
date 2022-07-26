@@ -25,24 +25,6 @@ if(isset($_POST['submit'])){
 ?>
 
 
-<?php
-//leads post
-if(isset($_POST['submitt'])){
-    $Firm_Name=$_POST['Fname'];
-    $Client_Name=$_POST['Cname'];
-    $Mobile_Number=$_POST['number'];
-    $Requirement=$_POST['requirement'];
-   
-    $sql=mysqli_query($conn,"INSERT INTO `lead`(`Firm_Name`,`Client_Name`, `Mobile_Number`,`Requirement`) VALUES ('$Firm_Name','$Client_Name','$Mobile_Number','$Requirement')");
-
-    if($sql==1){
-        echo '<script>alert("Saved!", "data successfully submitted", "success");</script>';
-        header("location:lead.php");
-    }else {
-        echo '<script>alert("oops...somthing went wrong");</script>';
-    }
-}
-?>
 
 <?php
 //client delete
@@ -55,16 +37,7 @@ if(isset($_GET['delidd'])){
     }
 ?>
 
-<?php
-//lead delete
-if(isset($_GET['delid'])){
-    $id=mysqli_real_escape_string($conn,$_GET['delid']);
-    $sql=mysqli_query($conn,"delete from lead where id='$id'");
-    if($sql=1){
-        header("location:lead.php");
-    }
-    }
-?>
+
 
 <?php
 //client status
@@ -93,8 +66,9 @@ if(isset($_POST['ticket'])){
     $ticket_no=$_POST['ticket_no'];
     $subject=$_POST['subject'];
     $description=$_POST['description'];
+    $status='Open';
 
-    $sql=mysqli_query($conn,"INSERT INTO `ticket`(`ticket_no`, `Subject`, `Description`,`Client_Code`) VALUES ('$ticket_no','$subject','$description' ,'$id')");
+    $sql=mysqli_query($conn,"INSERT INTO `ticket`(`ticket_no`, `Subject`, `Description`,`Client_Code`,`status`) VALUES ('$ticket_no','$subject','$description' ,'$id','$status')");
      if($sql==1){
         echo"<script>alert('new record has been added succesfully!');window.location='tickettable.php'</script>";
      }

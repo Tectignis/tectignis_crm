@@ -1,26 +1,4 @@
-<?php
-include("config.php");
-if(isset($_POST['submit'])){
-$New_password=$_POST['newpassword'];
-$Confirm_password=$_POST['confirmpassword'];
-$Email=$_GET['email'];
 
-if   ($New_password==$Confirm_password){
-  $hasPassword=password_hash($New_password,PASSWORD_BCRYPT);
-  $sql=mysqli_query($conn,"UPDATE `login` SET `Password`='$hasPassword' WHERE Email='$Email'");
-   if($sql==1){
-        header("location:adminlogin.php");
-    }else{
-        echo "<script>alert('Password is incorrect');</script>";
-    }
-  }
-else{
-  echo'<script>alert("password does not match");</script>';
-}
-}
-
-
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -82,7 +60,7 @@ border-bottom-right-radius: .3rem;
                     <h2>CRM</h2>
                 </div><br>
 
-                <form method="post">
+                <form method="post" action="../action_pwd.php">
 
                   <div class="form-outline mb-4">
                     <input type="password" id="newpassword" class="form-control"

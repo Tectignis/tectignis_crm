@@ -1,6 +1,7 @@
 <?php
-include("config.php");
+include("../config.php");
 ?>
+
 
 <?php
 //clients Password
@@ -83,7 +84,7 @@ if( mail($sendTo,$subject,$emailText, "From:" .$from)){
 
     if($sql==1){
         echo '<script>alert("data successfully submitted");</script>';
-        header("location:client.php");
+        header("location:../client.php");
     }else {
         echo '<script>alert("oops...somthing went wrong");</script>';
     }

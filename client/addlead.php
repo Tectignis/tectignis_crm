@@ -1,8 +1,10 @@
 <?php
 include("config.php");
-include("action.php");
+include("../api/addlead_action.php");
 
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -75,52 +77,32 @@ include("include/sidebar.php");
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-          <form method="post">
+          <form method="post" action="addlead_action.php">
             <div class="row">
               <div class="col-md-6">
-                <div class="form-group">
-                  <label>Firm Name</label>
-                  <?php 
-                  $query=mysqli_query($conn,"select * from client");
-                
-                  ?>
-
-
-                      <select class="form-control select2" name="Fname" style="width: 100%;" required>
-
-                        <option selected="selected" disabled>Select</option>
-                        <?php
-                   while($sql=mysqli_fetch_array($query))
-                   {
-                     ?>
-
-
-                        ?>
-
-                        <option value="<?php echo $sql['Client_Code']; ?>"> <?php echo $sql['Firm_Name']; ?></option>
-                        <?php } ?>
-                      </select>
-                </div>
+               
                 <!-- /.form-group -->
-                <div class="form-group">
-                <label>Client Mobile Number</label>
-                  <input type="tel" minlength="10" maxlength="10" onkeypress="return onlyNumberKey(event)" class="form-control" name="number" id="number" placeholder="Mobile Number" required>
-                  <span id="numberspan" class="mb-4"></span>
-                    </div>
-                <!-- /.form-group -->
-              </div>
-              <!-- /.col -->
-              <div class="col-md-6">
                 <div class="form-group">
                   <label>Client Name</label>
-                  <input type="text" class="form-control" name="Cname" id="cname" placeholder="Client Name" required>
+                  <input type="text" class="form-control" name="Client_Name" id="cname" placeholder="Client Name" required>
                   <span id="cnamespan" class="mb-4"></span>
                 </div>
                 <!-- /.form-group -->
                 <div class="form-group">
                   <label>Requirement</label>
-                  <input type="text" class="form-control" name="requirement" id="Rname" placeholder="Requirement" required>
+                  <input type="text" class="form-control" name="Requirement" id="Rname" placeholder="Requirement" required>
                 </div>
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                
+                <div class="form-group">
+                <label>Client Mobile Number</label>
+                  <input type="tel" minlength="10" maxlength="10" onkeypress="return onlyNumberKey(event)" class="form-control" name="Mobile_Number" id="number" placeholder="Mobile Number" required>
+                  <span id="numberspan" class="mb-4"></span>
+                    </div>
+                <!-- /.form-group -->
+              
                 <button type="submit" name="submitt" class="btn btn-primary float-right my-3 " id="sub" style="margin-right: 5px;">
                     Submit
                 <!-- /.form-group -->

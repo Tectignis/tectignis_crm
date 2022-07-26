@@ -111,13 +111,13 @@ include("include/sidebar.php");
                 <td><?php echo $row['Email']; ?></td>
                 <td><?php echo $row['Category']; ?></td>
                 <td><?php if($row['Status']=='Activated'){
-                      echo "<a href='action.php?statusyes=".$row['Client_Code']."' class='badge badge-success'>Activated</a>";
+                      echo "<a href='api_crm/clientdelete.php?statusyes=".$row['Client_Code']."' class='badge badge-success'>Activated</a>";
                     } else if($row['Status']=='Deactivated'){
-                      echo "<a href='action.php?statusno=".$row['Client_Code']."' class='badge badge-danger'>Deactivated</a>";
+                      echo "<a href='api_crm/clientdelete.php?statusno=".$row['Client_Code']."' class='badge badge-danger'>Deactivated</a>";
                     }?></td>
 
                     <td style="text-align:center">
-                     <a href="action.php?delidd=<?php echo $row['Client_Code']; ?>"><button  onclick="return confirm('Are you sure you want to delete this item')" type="button" class="btn btn-danger btn-rounded btn-icon"> <i class="fas fa-trash"></i> </button></a> </td>
+                     <a href="api_crm/clientdelete.php?delidd=<?php echo $row['Client_Code']; ?>"><button  onclick="return confirm('Are you sure you want to delete this item')" type="button" class="btn btn-danger btn-rounded btn-icon"> <i class="fas fa-trash"></i> </button></a> </td>
                   </tr>
                   <?php $count++; } ?>
                   

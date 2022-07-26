@@ -82,7 +82,7 @@ include("include/sidebar.php");
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-          <form action="action.php" method="post">
+          <form action="./api/ticketform_action.php" method="post">
           <?php $sql=mysqli_query($conn,"select * from ticket where Client_Code='".$_SESSION['id']."' order by id desc");
                      
                       $arr=mysqli_fetch_array($sql);
