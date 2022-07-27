@@ -9,8 +9,18 @@ if(isset($_GET['declient'])){
     $id=$_GET['declient'];
     $sql=mysqli_query($conn,"update client set Status='Activated' where Client_Code='$id'");
 };
+if(isset ($_POST['update'])){
+    $name=$_POST['updateName'];
+    $email=$_POST['updateEmail'];
+    $category=$_POST['category'];
+    $image=$_POST['image'];
+
+    $sql=mysqli_query($conn,"UPDATE `client` SET `Authorized_Name`='$name',`Email`='$email',`Category`='$category',`image`='$image'");
+    
+}
 ?>
 
+ 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -110,12 +120,16 @@ if(isset($_GET['declient'])){
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Clients</h1>
+                            <h1 class="m-0">Manage Clients</h1>
+                            <ol class="breadcrumb float-sm-left">
+                                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                                <li class="breadcrumb-item active">Clients</li>
+                            </ol>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                                <li class="breadcrumb-item active">Clients</li>
+                                <li class="breadcrumb-item"><button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >    <i class="fa fa-plus"></i></button></li>
+                               
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -134,7 +148,7 @@ if(isset($_GET['declient'])){
                   while ($row=mysqli_fetch_array($sql)){ 
           ?>
                         <div class="col-md-3 col-sm-6">
-                            <div class="card  text-center"  <?php if($row['Status']=='Deactivated'){ ?>style="background:red"<?php } ?>>
+                            <div class="card  text-center"  <?php if($row['Status']=='Deactivated'){ ?>style="background:#B2BEB5"<?php } ?>>
                                 <div class="card-header border-0 pb-0">
                                     <div class="d-flex align-items-center">
                                         <div class="d-grid">
@@ -151,8 +165,7 @@ if(isset($_GET['declient'])){
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                                 <a href="view_clients.php"> <button class="dropdown-item"
                                                         type="button"><i class="fa fa-eye"></i> View</button></a>
-                                                <button class="dropdown-item" type="button" data-toggle="modal"
-                                                    data-target="#editUser"><i class="far fa-edit"></i> Edit</button>
+                                                <button class="dropdown-item usereditid" type="button"  data-id="<?php echo $row['Client_Code'] ?>"><i class="far fa-edit"></i> Edit</button>
                                                 <button class="dropdown-item" type="button" onClick="deleteBtn()"><i
                                                         class="fa fa-trash-alt"></i> Delete</button>
                                                 <button class="dropdown-item" type="button" data-toggle="modal"
@@ -262,7 +275,7 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
         </div>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="editUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="dnkModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -272,68 +285,17 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" body1>
-                    <form method="post">
-                    <?php
-         $sql=mysqli_query($conn,"select * from client where Client_Code='".$_SESSION['aid']."'");
-              
-           while ($row=mysqli_fetch_array($sql)){ 
-           ?>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="inputName">Name</label>
-                                    <input type="text" name="updateName" value="<?php echo $row['Authorized_Name']; ?>" class="form-control" id="inputName"
-                                        placeholder="Enter Name">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="inputEmail">Email</label>
-                                    <input type="email" name="updateEmail"  value="<?php echo $row['Email']; ?>" class="form-control" id="inputEmail"
-                                        placeholder="Enter Email">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                <label>Category</label>
-                                    <select class="select2" name="category" style="width: 100%;">
-                                        <option selected="selected"><?php echo $row['Category']; ?></option>
-                                        <option>Hotel</option>
-                                        <option>Real Estate</option>
-                                        <option>Doctor</option>
-                                        <option>Delaware</option>
-                                        <option>Tennessee</option>
-                                        <option>Texas</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6" style="display: flex;">
-                            <a href="clinet_details.php" target="_blank">
-               <?php
-                  if($row['image']==""){
-                 echo '<img src="../admin/dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded-circle  card-avatar" style="width:100px;height:100px;">';
-                 }else{
-
-                ?>
-                <img alt="user-image" class="img-fluid rounded-circle card-avatar" src="../admin/dist/img/<?php echo $row['image'] ?>" style="height:100px;width:100px;">
-                <?php } ?>
-                </a>
-                             <div class="form-group">
-                                    <label for="inputPass">Image</label>
-                                    <input type="file" name="image" class="form-control" id="inputimg"
-                                        placeholder="image">
-                                </div>
-                            </div>
-                        
-                        </div>
-                        <?php } ?>
-                    </form>
+                <form method="post">
+                <div class="modal-body body1" >
+                    
+                  
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" name="update" class="btn btn-primary">Update</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
@@ -360,7 +322,8 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="inputEmail">Email</label>
+                      
+                                <label for="inputEmail">Email</label>
                                     <input type="email" name="email" class="form-control" id="inputEmail"
                                         placeholder="Enter Email">
                                 </div>
@@ -489,7 +452,7 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
             let dnk = $(this).data('id');
 
             $.ajax({
-            url: 'check.php',
+            url: 'action_clients.php',
             type: 'post',
             data: {dnk: dnk},
             success: function(response1){ 
