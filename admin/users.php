@@ -517,7 +517,8 @@ if(isset($_GET['declient'])){
                     let del_id = $(this).data('id');
                     swal({
                         title: "Are you sure?",
-                        text: "Once deleted, you will not be able to recover this imaginary file!",
+                        text: "Once 
+                        d, you will not be able to recover this imaginary file!",
                         icon: "warning",
                         buttons: true,
                         dangerMode: true,
