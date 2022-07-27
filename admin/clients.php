@@ -1,5 +1,14 @@
 <?php
 include("config.php");
+
+if(isset($_GET['client'])){
+    $id=$_GET['client'];
+    $sql=mysqli_query($conn,"update client set Status='Deactivated' where Client_Code='$id'");
+}
+if(isset($_GET['declient'])){
+    $id=$_GET['declient'];
+    $sql=mysqli_query($conn,"update client set Status='Activated' where Client_Code='$id'");
+};
 ?>
 
 <!DOCTYPE html>
@@ -125,7 +134,7 @@ include("config.php");
                   while ($row=mysqli_fetch_array($sql)){ 
           ?>
                         <div class="col-md-3 col-sm-6">
-                            <div class="card  text-center">
+                            <div class="card  text-center"  <?php if($row['Status']=='Deactivated'){ ?>style="background:red"<?php } ?>>
                                 <div class="card-header border-0 pb-0">
                                     <div class="d-flex align-items-center">
                                         <div class="d-grid">
@@ -149,8 +158,13 @@ include("config.php");
                                                 <button class="dropdown-item" type="button" data-toggle="modal"
                                                     data-target="#resetUserPass"><i class="fa fa-key"></i> Reset
                                                     Password</button>
-                                                    <button class="dropdown-item" type="button" data-toggle="modal"
-                                                    data-target="#"><i class="fas fa-toggle-off"></i> Dectivated</button>  
+                                                    <?php
+                                                    if($row['Status']=='Activated'){ ?>
+                                                        <a href="clients.php?client=<?php echo $row['Client_Code'] ?>" class="dropdown-item" type="button" data-id=""><i class="fas fa-toggle-off"></i> Deactivated</a>
+                                                   <?php } else{
+                                                    ?>
+                                                    <a href="clients.php?declient=<?php echo $row['Client_Code'] ?>" class="dropdown-item" type="button" data-id=""><i class="fas fa-toggle-on"></i> Activated</a>  
+                                                    <?php } ?>
 
                                             </div>
                                         </div>
@@ -259,19 +273,24 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
                     </button>
                 </div>
                 <div class="modal-body" body1>
-                    <form>
+                    <form method="post">
+                    <?php
+         $sql=mysqli_query($conn,"select * from client where Client_Code='".$_SESSION['aid']."'");
+              
+           while ($row=mysqli_fetch_array($sql)){ 
+           ?>
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="inputName">Name</label>
-                                    <input type="text" name="updateName" class="form-control" id="inputName"
+                                    <input type="text" name="updateName" value="<?php echo $row['Authorized_Name']; ?>" class="form-control" id="inputName"
                                         placeholder="Enter Name">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="inputEmail">Email</label>
-                                    <input type="email" name="updateEmail" class="form-control" id="inputEmail"
+                                    <input type="email" name="updateEmail"  value="<?php echo $row['Email']; ?>" class="form-control" id="inputEmail"
                                         placeholder="Enter Email">
                                 </div>
                             </div>
@@ -279,7 +298,7 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
                                 <div class="form-group">
                                 <label>Category</label>
                                     <select class="select2" name="category" style="width: 100%;">
-                                        <option selected="selected">Select</option>
+                                        <option selected="selected"><?php echo $row['Category']; ?></option>
                                         <option>Hotel</option>
                                         <option>Real Estate</option>
                                         <option>Doctor</option>
@@ -289,14 +308,26 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-6">
-                                <div class="form-group">
+                            <div class="col-6" style="display: flex;">
+                            <a href="clinet_details.php" target="_blank">
+               <?php
+                  if($row['image']==""){
+                 echo '<img src="../admin/dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded-circle  card-avatar" style="width:100px;height:100px;">';
+                 }else{
+
+                ?>
+                <img alt="user-image" class="img-fluid rounded-circle card-avatar" src="../admin/dist/img/<?php echo $row['image'] ?>" style="height:100px;width:100px;">
+                <?php } ?>
+                </a>
+                             <div class="form-group">
                                     <label for="inputPass">Image</label>
                                     <input type="file" name="image" class="form-control" id="inputimg"
                                         placeholder="image">
                                 </div>
                             </div>
+                        
                         </div>
+                        <?php } ?>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -468,9 +499,9 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
           });
           });
 
-
           });
           </script>
+
 </body>
 
 </html>
