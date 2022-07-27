@@ -11,7 +11,24 @@ if(isset($_GET['declient'])){
     $id=$_GET['declient'];
     $sql=mysqli_query($conn,"update users set Status='Activated' where id='$id'");
 };
-?>
+
+if(isset($_POST['update'])){
+$updateName = $_POST['updateName'];
+    $updateEmail = $_POST['updateEmail'];
+    $updateTitle = $_POST['updateTitle'];
+    $updateRole = $_POST['updateRole'];
+    $image=$_POST['image'];
+    $id=$_POST['id'];
+
+   
+    $sql="UPDATE `users` SET `name`='$updateName',`email`='$updateEmail',`job_title`='$updateTitle',`job_role`='$updateRole',`image`='$image' WHERE id='$id
+    .'";
+    if (mysqli_query($conn, $sql)){
+      header("location:users.php");
+   } else {
+      echo "<script> alert ('connection failed !');window.location.href='manual-Attendance.php'</script>";
+   }
+  }
 
 ?>
 <!DOCTYPE html>
@@ -145,7 +162,7 @@ if(isset($_GET['declient'])){
                                                 <a class="dropdown-item" type="button" href="user-details.php"><i class="fa fa-eye"></i> View</a>
 
                                                 
-                                                <button class="dropdown-item usereditid" type="button" data-toggle="modal" data-target="#editUser"><i class="far fa-edit"></i> Edit</button></a>
+                                                <button class="dropdown-item usereditid" type="button" data-toggle="modal" data-id="<?php echo $row['id']; ?>" data-target="#editUser"><i class="far fa-edit"></i> Edit</button></a>
 
 
 
@@ -302,7 +319,7 @@ if(isset($_GET['declient'])){
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Create Clients</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Create Users</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -447,26 +464,7 @@ if(isset($_GET['declient'])){
     </script>
 
     
-<!-- 
-<script>
-          $(document).ready(function(){
-          $('.usereditid').click(function(){
-            let dnk = $(this).data('id');
 
-            $.ajax({
-            url: 'action_users.php',
-            type: 'post',
-            data: {dnk: dnk},
-            success: function(response1){ 
-              $('.body1').html(response1);
-              $('#dnkModal').modal('show'); 
-            }
-          });
-          });
-
-
-          });
-          </script> -->
 
           <script>
             $(document).ready(function(){
@@ -501,7 +499,7 @@ if(isset($_GET['declient'])){
             let dnk = $(this).data('id');
 
             $.ajax({
-            url: 'action_clients.php',
+            url: 'action_users.php',
             type: 'post',
             data: {dnk: dnk},
             success: function(response1){ 
