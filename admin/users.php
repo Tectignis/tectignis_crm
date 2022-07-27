@@ -473,8 +473,7 @@ $updateName = $_POST['updateName'];
                     let del_id = $(this).data('id');
                     swal({
                         title: "Are you sure?",
-                        text: "Once 
-                        d, you will not be able to recover this imaginary file!",
+                        text: "Once deleted, you will not be able to recover this imaginary file!",
                         icon: "warning",
                         buttons: true,
                         dangerMode: true,
