@@ -47,7 +47,6 @@ if($unread_count>0){
               return false;
           });
           $(document).click(function () {
-           
           });
       });
    </script>
