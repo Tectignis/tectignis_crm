@@ -2,7 +2,8 @@
     <strong>&copy; 2022 <a href="https://tectignis.in">Tectignis IT Solutions</a>.</strong>
     All rights reserved.
   </footer>
-
+<style>
+</style>
   <script src="plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 
@@ -29,8 +30,7 @@ if($unread_count>0){
       
 	// });
   $(function() {
-
-    toastr.warning('You have <?php echo $unread_count; ?> new lead')
+    toastr.info('You have <?php echo $unread_count; ?> new lead')
   });
 </script>
 <?php } ?>
@@ -47,7 +47,6 @@ if($unread_count>0){
               return false;
           });
           $(document).click(function () {
-           
           });
       });
    </script>
