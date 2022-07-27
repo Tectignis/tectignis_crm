@@ -1,5 +1,6 @@
 <?php
 include("config.php");
+// $id=$_GET['id'];
 ?>
 
 <!DOCTYPE html>
@@ -131,7 +132,9 @@ include("config.php");
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                                 <a class="dropdown-item" type="button" href="user-details.php"><i class="fa fa-eye"></i> View</a>
-                                                <button class="dropdown-item" type="button" data-toggle="modal" data-target="#editUser"><i class="far fa-edit"></i> Edit</button>
+
+                                                
+                                                <button class="dropdown-item" type="button" data-toggle="modal" data-target="#editUser"><i class="far fa-edit"></i> Edit</button></a>
 
 
 
@@ -204,6 +207,7 @@ include("config.php");
                     </button>
                 </div>
                 <div class="modal-body">
+
                     <form >
                         <div class="row">
                             <div class="col-12">
@@ -240,38 +244,45 @@ include("config.php");
                     </button>
                 </div>
                 <div class="modal-body">
+               
                     <form>
+                    <?php
+                    $sql=mysqli_query($conn,"select * from users where id='$id'");
+                    
+                  while ($row=mysqli_fetch_array($sql)){ 
+          ?>
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="inputName">Name</label>
-                                    <input type="text" name="updateName"  class="form-control" id="inputName" placeholder="Enter Name">
+                                    <input type="text" name="updateName"  value="'.$row['name'].'" class="form-control" id="inputName" placeholder="Enter Name">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="inputEmail">Email</label>
-                                    <input type="email" name="updateEmail"  class="form-control" id="inputEmail" placeholder="Enter Email">
+                                    <input type="email" name="updateEmail"  value="'.$row['email'].'" class="form-control" id="inputEmail" placeholder="Enter Email">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="inputTitle">Job Title</label>
-                                    <input type="text" name="updateTitle"  class="form-control" id="inputTitle" placeholder="Enter Job Title">
+                                    <input type="text" name="updateTitle"  value="'.$row['job_title'].'" class="form-control" id="inputTitle" placeholder="Enter Job Title">
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <!-- <div class="col-6">
                                 <div class="form-group">
                                     <label for="inputRole">Role</label>
-                                    <select class="form-control"  name="updateRole"  id="inputRole">
+                                    <select class="form-control"  name="updateRole"  value="<?php echo $row['Client_Code']; ?>" id="inputRole">
                                         <option selected disabled>Select Role</option>
                                         <option>Employee</option>
                                         <option>Intern</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> -->
                            
                         </div>
+                        <?php  } ?>
                     </form>
                 </div>
                 <div class="modal-footer">
