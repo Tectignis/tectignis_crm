@@ -1,43 +1,27 @@
 <?php
 session_start();
 include("config.php");
-if(isset($_SESSION['id']))
-{
-    header("Location:index.php");
-}
-
 if(isset($_POST['login'])){
-$email=$_POST['email'];
-$password=$_POST['password'];
+$Email=$_POST['email'];
+$Password1=$_POST['password'];
 
-$sql="select * from users where email='$email' and password='$password'";
-$result=mysqli_query($conn,$sql);
+$sql=mysqli_query($conn,"select * from users where Email='$Email'");
+if(mysqli_num_rows($sql)>0){
+  $row=mysqli_fetch_assoc($sql); 
+  $verify=password_verify($Password1,$row['Password']);
 
-  $row=mysqli_fetch_array($result); 
- $count=mysqli_num_rows($result);
-
-if($count==1){
+ if($verify==1){
     $_SESSION['id']=$row['id'];
-    $_SESSION['name']=$row['name'];
-
-    echo "<SCRIPT>
-    alert('login sucessfully')
-    window.location.replace('index.php');
-    </SCRIPT>";
+   
+    header("location:index.php");
+    }else{
+        echo "<script>alert('Password is incorrect');</script>";
+    }
 }
 else{
-    echo "<SCRIPT>
-    alert('login failed')
-    window.location.replace('user_login.php');
-    </SCRIPT>";
+    echo "<script>alert('Invalid Email Id');</script>";
 }
-  
-  
- 
-
-        
 }
-
 
 
 ?>
@@ -46,7 +30,7 @@ else{
     <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>User Login | CRM</title>
+    <title>Admin CRM | Login</title>
         <!-- Font Awesome -->
 <link
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -99,7 +83,7 @@ border-bottom-right-radius: .3rem;
               <div class="card-body p-md-5 mx-md-5">
 
                 <div class="text-center">
-                    <h2>User Login</h2>
+                    <h2>CRM</h2>
                 </div><br>
 
                 <form method="post">
@@ -120,7 +104,8 @@ border-bottom-right-radius: .3rem;
 
                   <div class="text-center pt-1 mb-5 pb-1">
                     <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="login" name="login" id="login" value="login">Login</button>
-                    <a class="text-muted" href="user_forgotpass.php">Forgot password?</a>
+                    <a class="text-muted" href="forgotpassword.php">Forgot password?</a>
+
                   </div>
                 </form>
 
@@ -134,11 +119,11 @@ border-bottom-right-radius: .3rem;
   </div>
 </section>
 </body>
-
-
+<script>
+<!-- MDB -->
 <script
   type="text/javascript"
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.js"
 ></script>
-
+</script>
 </html>
