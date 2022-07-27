@@ -66,7 +66,15 @@ include("config.php");
             border-radius: 10px !important;
         }
       
-        
+        .select2-container--default .select2-selection--single {
+    background-color: #fff;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    padding-bottom: 27px !important;
+}
+.select2-container--default.select2-container--focus .select2-selection--multiple, .select2-container--default.select2-container--focus .select2-selection--single {
+    border-color: #d3d9df;
+}
     </style>
 </head>
 
@@ -265,6 +273,20 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
                                         placeholder="Enter Email">
                                 </div>
                             </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                <label>Category</label>
+                                    <select class="select2" name="category" style="width: 100%;">
+                                        <option selected="selected">Select</option>
+                                        <option>Hotel</option>
+                                        <option>Real Estate</option>
+                                        <option>Doctor</option>
+                                        <option>Delaware</option>
+                                        <option>Tennessee</option>
+                                        <option>Texas</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -313,7 +335,7 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Category</label>
-                                    <select class="form-control select2" name="category" style="width: 100%;">
+                                    <select class="select2" name="category" style="width: 100%;">
                                         <option selected="selected">Select</option>
                                         <option>Hotel</option>
                                         <option>Real Estate</option>
