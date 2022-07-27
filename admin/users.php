@@ -2,7 +2,18 @@
 include("config.php");
 // $id=$_GET['id'];
 ?>
+<?php
+if(isset($_GET['client'])){
+    $id=$_GET['client'];
+    $sql=mysqli_query($conn,"update users set Status='Deactivated' where id='$id'");
+}
+if(isset($_GET['declient'])){
+    $id=$_GET['declient'];
+    $sql=mysqli_query($conn,"update users set Status='Activated' where id='$id'");
+};
+?>
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -112,11 +123,11 @@ include("config.php");
                     <div class="row">
                     <?php
                     $sql=mysqli_query($conn,"select * from users");
-                    $count=1;
+                   
                   while ($row=mysqli_fetch_array($sql)){ 
           ?>
                         <div class="col-md-3 col-sm-6">
-                            <div class="card  text-center">
+                            <div class="card  text-center" <?php if($row['status']=='Deactivated'){ ?>style="background:#B2BEB5"<?php } ?>>
                                 <div class="card-header border-0 pb-0">
                                     <div class="d-flex align-items-center">
                                         <div class="d-grid">
@@ -134,15 +145,25 @@ include("config.php");
                                                 <a class="dropdown-item" type="button" href="user-details.php"><i class="fa fa-eye"></i> View</a>
 
                                                 
-                                                <button class="dropdown-item" type="button" data-toggle="modal" data-target="#editUser"><i class="far fa-edit"></i> Edit</button></a>
+                                                <button class="dropdown-item usereditid" type="button" data-toggle="modal" data-target="#editUser"><i class="far fa-edit"></i> Edit</button></a>
 
 
 
-                                                <button class="dropdown-item" type="button" onClick="deleteBtn()"><i class="fa fa-trash-alt"></i> Delete</button>
+                                               <button class="dropdown-item delbtn" type="button" onclick="deleteBtn()" data-id="=<?php echo $row['id']; ?>"><i class="fa fa-trash-alt"></i> Delete</button>
+
+                                                <button class="dropdown-item" type="button" data-toggle="modal"
+                                                    data-target="#resetUserPass"><i class="fa fa-key"></i> Reset
+                                                    Password</button>
 
 
-                                                
-                                                <button class="dropdown-item" type="button" data-toggle="modal" data-target="#resetUserPass"><i class="fa fa-key"></i> Reset Password</button>
+                                                <?php
+                                                    if($row['status']=='Activated'){ ?>
+                                                        <a href="users.php?client=<?php echo $row['id'] ?>" class="dropdown-item" type="button" data-id=""><i class="fas fa-toggle-off"></i> Deactivated</a>
+                                                   <?php } else{
+                                                    ?>
+                                                    <a href="users.php?declient=<?php echo $row['id'] ?>" class="dropdown-item" type="button" data-id=""><i class="fas fa-toggle-on"></i> Activated</a>  
+                                                    <?php } ?>
+                                            
 
                                             </div>
                                         </div>
@@ -150,9 +171,16 @@ include("config.php");
                                 </div>
                                 <div class="card-body">
                                 
-                                <a href="user_details.php" target="_blank">
+                                <a href="clinet_details.php" target="_blank">
+                                    <?php
+                                    if($row['image']==""){
+                                    echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded-circle card-avatar" style="width:100px;height:100px;">';
+                                    }else{
+
+                                        ?>
                                         <img alt="user-image" class="img-fluid rounded-circle card-avatar"
                                             src="dist/img/<?php echo $row['image'] ?>" style="height:100px;width:100px;">
+                                            <?php } ?>
                                     </a>
                                     <h4 class="mt-2"><a href="user_details.php"><?php echo $row['name']; ?></a></h4>
                                     <h6 class=""><?php echo $row['email']; ?></h6>
@@ -175,7 +203,6 @@ include("config.php");
                         </div>
                     </div>
                     <!-- Main row -->
-
                     <!-- /.row (main row) -->
                 </div><!-- /.container-fluid -->
             </section>
@@ -208,7 +235,7 @@ include("config.php");
                 </div>
                 <div class="modal-body">
 
-                    <form >
+                    <form>
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
@@ -220,6 +247,43 @@ include("config.php");
                                 <div class="form-group">
                                     <label for="inputConfirmPass">Confirm Password</label>
                                     <input type="password" name="confirmResetPass"  class="form-control" id="inputConfirmPass" placeholder="Re-enter Password">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" name="update" class="btn btn-primary">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+      <div class="modal fade" id="resetUserPass" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Reset Password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="inputPass">Password</label>
+                                    <input type="password" name="resetPass" class="form-control" id="inputPass"
+                                        placeholder="Enter Password">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="inputConfirmPass">Confirm Password</label>
+                                    <input type="password" name="confirmResetPass" class="form-control"
+                                        id="inputConfirmPass" placeholder="Re-enter Password">
                                 </div>
                             </div>
                         </div>
@@ -247,7 +311,7 @@ include("config.php");
                
                     <form>
                     <?php
-                    $sql=mysqli_query($conn,"select * from users where id='$id'");
+                    $sql=mysqli_query($conn,"select * from users");
                     
                   while ($row=mysqli_fetch_array($sql)){ 
           ?>
@@ -255,32 +319,39 @@ include("config.php");
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="inputName">Name</label>
-                                    <input type="text" name="updateName"  value="'.$row['name'].'" class="form-control" id="inputName" placeholder="Enter Name">
+                                    <input type="text" name="updateName"  value="<?php echo $row['name']; ?>" class="form-control" id="inputName" placeholder="Enter Name">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="inputEmail">Email</label>
-                                    <input type="email" name="updateEmail"  value="'.$row['email'].'" class="form-control" id="inputEmail" placeholder="Enter Email">
+                                    <input type="email" name="updateEmail"  value="<?php echo $row['email']; ?>" class="form-control" id="inputEmail" placeholder="Enter Email">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="inputTitle">Job Title</label>
-                                    <input type="text" name="updateTitle"  value="'.$row['job_title'].'" class="form-control" id="inputTitle" placeholder="Enter Job Title">
+                                    <input type="text" name="updateTitle"  value="<?php echo $row['job_title']; ?>" class="form-control" id="inputTitle" placeholder="Enter Job Title">
                                 </div>
                             </div>
-                            <!-- <div class="col-6">
+                            <div class="col-6">
                                 <div class="form-group">
                                     <label for="inputRole">Role</label>
-                                    <select class="form-control"  name="updateRole"  value="<?php echo $row['Client_Code']; ?>" id="inputRole">
+                                    <select class="form-control"  name="updateRole"  value="<?php echo $row['job_role']; ?>" id="inputRole">
                                         <option selected disabled>Select Role</option>
                                         <option>Employee</option>
                                         <option>Intern</option>
                                     </select>
                                 </div>
-                            </div> -->
-                           
+                            </div>
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="inputPass">Image</label>
+                                    <input type="file" name="image" value="<?php echo $row['image']; ?>" class="form-control" id="inputimg"
+                                        placeholder="image">                                       
+                                </div>
+                            </div>
                         </div>
                         <?php  } ?>
                     </form>
@@ -395,14 +466,16 @@ include("config.php");
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script>
-        function deleteBtn() {
+//         function deleteBtn() {
             
-         swal({
-  title: "Are You Sure...?",
-  text: "This action can not be undone. Do you want to continue?",
-  icon: "warning",
-  buttons: ["No", "Yes"],
-});
+//          swal({
+//   title: "Are You Sure...?",
+//   text: "This action can not be undone. Do you want to continue?",
+//   icon: "warning",
+//   buttons: ["No", "Yes"],
+
+
+// });
    
       mobile_err=true;
             
@@ -412,8 +485,56 @@ include("config.php");
 			      return true;
 			   }
 			   else{return false;}
-        }
+        
     </script>
-</body>
+
+    
+<!-- 
+<script>
+          $(document).ready(function(){
+          $('.usereditid').click(function(){
+            let dnk = $(this).data('id');
+
+            $.ajax({
+            url: 'action_users.php',
+            type: 'post',
+            data: {dnk: dnk},
+            success: function(response1){ 
+              $('.body1').html(response1);
+              $('#dnkModal').modal('show'); 
+            }
+          });
+          });
+
+
+          });
+          </script> -->
+
+          <script>
+            $(document).ready(function(){
+                $('.delbtn').click(function(e){
+                    e.preventDefault();
+                    let del_id = $(this).data('id');
+                    swal({
+                        title: "Are you sure?",
+                        text: "Once deleted, you will not be able to recover this imaginary file!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            swal("Poof! Your imaginary file has been deleted!", {
+                                icon: "success",
+                            });
+                            window.location.href = "action_users.php?del_id"+del_id;
+                        } else {
+                            swal("Your imaginary file is safe!");
+                        }
+                    });
+                    })
+                });
+                </script>
+                </body>
 
 </html>

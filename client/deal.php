@@ -109,7 +109,8 @@ include("include/sidebar.php");
                     <th>Client Mobile Number</th>
                     <th>Requirement</th>
                     <th>Created On</th>
-                    <th>Added By</th>
+                    
+                    <th>Status</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -126,10 +127,31 @@ include("include/sidebar.php");
                 <td><?php echo $arr['Mobile_Number']; ?></td>
                 <td><?php echo $arr['Requirement']; ?></td>
                 <td><?php echo $arr['Created_On']; ?></td>
-                <td><?php echo $arr['added_by']; ?></td>
+                
+                <td><?php 
+                
+                $status_deal=$arr['status_deal']; 
+               if($status_deal=='Open'){
+                echo '<span class="badge badge-success">Open</span>';
+            }
+            else if($status_deal=='In Process'){
+                echo '<span class="badge badge-primary">In Process</span>';
+            }
+            else if($status_deal=='On Hold'){
+                echo '<span class="badge badge-warning">On Hold</span>';
+            }
+            else if($status_deal=='Closed Deal'){
+                echo '<span class="badge badge-danger">Closed Deal</span>';
+            }
+                
+                ?>
+                
+            </td>
                     <td style="text-align:center">
-                     <a href="deal.php?delid=<?php echo $arr['id']; ?>"><button type="button"  onclick="return confirm('Are you sure you want to delete this item')" class="btn btn-danger btn-rounded btn-icon"  style="color: aliceblue"> <i class="fas fa-trash"></i> </button></a>
+                     
                      <button class="btn btn-sm btn-primary dnkediti" data-id='<?php echo $arr['id']; ?>'><i class="fas fa-eye"></i></button>
+                     <button class="btn btn-sm btn-primary dnkediti1" data-id='<?php echo $arr['id']; ?>'><i class="fas fa-circle"></i></button>
+                     <a href="deal.php?delid=<?php echo $arr['id']; ?>"><button type="button"  onclick="return confirm('Are you sure you want to delete this item')" class="btn btn-danger btn-rounded btn-icon"  style="color: aliceblue"> <i class="fas fa-trash"></i> </button></a>
                      </td>
                   </tr>
                   <?php $count++; } ?>
@@ -149,9 +171,27 @@ include("include/sidebar.php");
     </section>
     <!-- /.content -->
   </div>
-
  
-  <!-- /.content-wrapper -->
+  <div class="modal fade" id="dnkModal1">
+      <div class="modal-dialog">
+        <div class="modal-content body1">
+
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+ 
+  <div class="modal fade" id="dnkModal2">
+      <div class="modal-dialog">
+        <div class="modal-content body2">
+
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+     <!-- /.content-wrapper -->
   <?php include("include/footer.php");?>
 
   <!-- Control Sidebar -->
@@ -200,7 +240,39 @@ include("include/sidebar.php");
     });
   });
 </script>
+<script>
+$(document).ready(function(){
+$('.dnkediti').click(function(){
+  let dnkidno = $(this).data('id');
 
+  $.ajax({
+   url: 'dealmodal.php',
+   type: 'post',
+   data: {dnkidno: dnkidno},
+   success: function(response1){ 
+     $('.body1').html(response1);
+     $('#dnkModal1').modal('show'); 
+   }
+ });
+});
+});
+</script>
+<script>
+$(document).ready(function(){
+$('.dnkediti1').click(function(){
+  let dnkidno1 = $(this).data('id');
 
+  $.ajax({
+   url: 'dealmodal.php',
+   type: 'post',
+   data: {dnkidno1: dnkidno1},
+   success: function(response1){ 
+     $('.body2').html(response1);
+     $('#dnkModal2').modal('show'); 
+   }
+ });
+});
+});
+</script>
 </body>
 </html>
