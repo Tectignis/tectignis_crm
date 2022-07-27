@@ -164,15 +164,19 @@ if(isset ($_POST['update'])){
                                                 aria-haspopup="true" aria-expanded="false">
                                                 <i class="fa fa-ellipsis-v"></i>
                                             </button>
+
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                                 <a href="view_clients.php"> <button class="dropdown-item"
                                                         type="button"><i class="fa fa-eye"></i> View</button></a>
                                                 <button class="dropdown-item usereditid" type="button"  data-id="<?php echo $row['Client_Code'] ?>"><i class="far fa-edit"></i> Edit</button>
-                                                <button class="dropdown-item" type="button" onClick="deleteBtn()"><i
-                                                        class="fa fa-trash-alt"></i> Delete</button>
+
+                                                <button class="dropdown-item delbtn" type="button" onclick="deleteBtn()" data-id="=<?php echo $row['id']; ?>"><i class="fa fa-trash-alt"></i> Delete</button>
+
+
                                                 <button class="dropdown-item" type="button" data-toggle="modal"
                                                     data-target="#resetUserPass"><i class="fa fa-key"></i> Reset
                                                     Password</button>
+
                                                     <?php
                                                     if($row['Status']=='Activated'){ ?>
                                                         <a href="clients.php?client=<?php echo $row['Client_Code'] ?>" class="dropdown-item" type="button" data-id=""><i class="fas fa-toggle-off"></i> Deactivated</a>

@@ -37,6 +37,7 @@ if(isset($_GET['delidd'])){
     if($sql=1){
         header("location:client.php");
     }
+    else{ echo "<script>alert('Failed to Delete')</script>"; }
     }
 ?>
 
@@ -60,6 +61,7 @@ if(isset($_GET['statusno'])){
 ?>
 
 <?php
+//client edit fetch
   if(isset($_POST['dnk'])){
     $id=$_POST['dnk'];
          $sql=mysqli_query($conn,"select * from client where Client_Code='".$id."'");
