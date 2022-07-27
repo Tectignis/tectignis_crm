@@ -7,10 +7,10 @@ if(isset($_SESSION['id']))
 }
 
 if(isset($_POST['login'])){
-$Email=$_POST['Email'];
-$Password1=$_POST['Password'];
+$email=$_POST['email'];
+$password=$_POST['password'];
 
-$sql="select * from user_login where Email='$Email' and Password='$Password'";
+$sql="select * from users where email='$email' and password='$password'";
 $result=mysqli_query($conn,$sql);
 
   $row=mysqli_fetch_array($result); 
@@ -120,7 +120,7 @@ border-bottom-right-radius: .3rem;
 
                   <div class="text-center pt-1 mb-5 pb-1">
                     <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="login" name="login" id="login" value="login">Login</button>
-                    <!-- <a class="text-muted" href="forgotpassword.php">Forgot password?</a> -->
+                    <a class="text-muted" href="user_forgotpass.php">Forgot password?</a>
                   </div>
                 </form>
 
