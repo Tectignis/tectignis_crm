@@ -14,8 +14,10 @@ if(isset ($_POST['update'])){
     $email=$_POST['updateEmail'];
     $category=$_POST['category'];
     $image=$_POST['image'];
+    $id=$_POST['id'];
 
-    $sql=mysqli_query($conn,"UPDATE `client` SET `Authorized_Name`='$name',`Email`='$email',`Category`='$category',`image`='$image'");
+
+    $sql=mysqli_query($conn,"UPDATE `client` SET `Authorized_Name`='$name',`Email`='$email',`Category`='$category',`image`='$image' where Client_Code='$id'"); 
     
 }
 ?>
