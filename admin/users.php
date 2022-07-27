@@ -149,9 +149,11 @@ if(isset($_GET['declient'])){
 
 
 
-                                                <a href="action_users.php?del_id=<?php echo $row['id']; ?>"><button class="dropdown-item delbtn" type="button" onclick="deleteBtn()"><i class="fa fa-trash-alt"></i> Delete</button>
+                                               <button class="dropdown-item delbtn" type="button" onclick="deleteBtn()" data-id="=<?php echo $row['id']; ?>"><i class="fa fa-trash-alt"></i> Delete</button>
 
-                                                <button class="dropdown-item" type="button" data-toggle="modal" data-target="#resetUserPass"><i class="fa fa-key"></i> Reset Password</button>
+                                                <button class="dropdown-item" type="button" data-toggle="modal"
+                                                    data-target="#resetUserPass"><i class="fa fa-key"></i> Reset
+                                                    Password</button>
 
 
                                                 <?php
@@ -245,6 +247,43 @@ if(isset($_GET['declient'])){
                                 <div class="form-group">
                                     <label for="inputConfirmPass">Confirm Password</label>
                                     <input type="password" name="confirmResetPass"  class="form-control" id="inputConfirmPass" placeholder="Re-enter Password">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" name="update" class="btn btn-primary">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+      <div class="modal fade" id="resetUserPass" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Reset Password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="inputPass">Password</label>
+                                    <input type="password" name="resetPass" class="form-control" id="inputPass"
+                                        placeholder="Enter Password">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="inputConfirmPass">Confirm Password</label>
+                                    <input type="password" name="confirmResetPass" class="form-control"
+                                        id="inputConfirmPass" placeholder="Re-enter Password">
                                 </div>
                             </div>
                         </div>
@@ -475,7 +514,7 @@ if(isset($_GET['declient'])){
             $(document).ready(function(){
                 $('.delbtn').click(function(e){
                     e.preventDefault();
-                    let del_id = $(this).val('');
+                    let del_id = $(this).data('id');
                     swal({
                         title: "Are you sure?",
                         text: "Once deleted, you will not be able to recover this imaginary file!",
@@ -488,12 +527,14 @@ if(isset($_GET['declient'])){
                             swal("Poof! Your imaginary file has been deleted!", {
                                 icon: "success",
                             });
-                            window.location.href = "action_users.php?del_id="+del_id;
+                            window.location.href = "action_users.php?del_id"+del_id;
                         } else {
                             swal("Your imaginary file is safe!");
                         }
                     });
                     })
                 });
+                </script>
+                </body>
 
 </html>

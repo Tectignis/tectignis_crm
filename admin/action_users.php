@@ -27,10 +27,11 @@ if(isset($_POST['submit'])){
 }
 
 if(isset($_GET['del_id'])){
-  $del_id = $_GET['del_id'];
-  $sql = mysqli_query($conn,"DELETE FROM users WHERE id = '$del_id'");
+  $delid = $_GET['del_id'];
+  $sql = mysqli_query($conn,"DELETE FROM users WHERE id = '$delid'");
   if($sql){
     header ("location:users.php"); 
+   
   }
   else{ echo "<script>alert('Failed to Delete')</script>"; }
 }
@@ -61,29 +62,3 @@ if(isset($_POST['update'])){
 
 
 <!-- reset password -->
-<?php
-$d=$_SESSION['id'];
-if(isset($_POST["reset"])){
-	$Old_password=$_POST["oldpassword"];
-	$New_password=$_POST["newpassword"];
-    $Confirm_password=$_POST["confirmpassword"];
-
-	$sql = mysqli_query($conn,"SELECT * FROM users WHERE id='$d'") ;
-		$row=mysqli_fetch_assoc($sql); 
-		$verify=password_verify($Old_password,$row['Password']);
-	
-	$hashpassword=password_hash($New_password,PASSWORD_BCRYPT);
-
-		if($verify==1){
-			$query=mysqli_query($conn,"UPDATE `users` SET `password`='$hashpassword' WHERE id='$d'");
-      if($query){
-        session_destroy();   // function that Destroys Session 
-        echo "<script>alert('Password Changed Successfully'),window.location='users.php';</script>";
-      }
-		}
-		else{
-			echo"<script>alert('Invalid Password');</script>";
-		}
-	
-	}
-  ?>
