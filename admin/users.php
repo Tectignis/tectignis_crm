@@ -2,7 +2,18 @@
 include("config.php");
 // $id=$_GET['id'];
 ?>
+<?php
+if(isset($_GET['client'])){
+    $id=$_GET['client'];
+    $sql=mysqli_query($conn,"update users set Status='Deactivated' where id='$id'");
+}
+if(isset($_GET['declient'])){
+    $id=$_GET['declient'];
+    $sql=mysqli_query($conn,"update users set Status='Activated' where id='$id'");
+};
+?>
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -116,7 +127,7 @@ include("config.php");
                   while ($row=mysqli_fetch_array($sql)){ 
           ?>
                         <div class="col-md-3 col-sm-6">
-                            <div class="card  text-center">
+                            <div class="card  text-center" <?php if($row['status']=='Deactivated'){ ?>style="background:#B2BEB5"<?php } ?>>
                                 <div class="card-header border-0 pb-0">
                                     <div class="d-flex align-items-center">
                                         <div class="d-grid">
@@ -143,8 +154,13 @@ include("config.php");
                                                 <button class="dropdown-item" type="button" data-toggle="modal" data-target="#resetUserPass"><i class="fa fa-key"></i> Reset Password</button>
 
 
-                                                <button class="dropdown-item" type="button" data-toggle="modal" data-target="#changeUserRole"><i class="fa fa-toggle-on"></i> Activated</button>
-
+                                                <?php
+                                                    if($row['status']=='Activated'){ ?>
+                                                        <a href="users.php?client=<?php echo $row['id'] ?>" class="dropdown-item" type="button" data-id=""><i class="fas fa-toggle-off"></i> Deactivated</a>
+                                                   <?php } else{
+                                                    ?>
+                                                    <a href="users.php?declient=<?php echo $row['id'] ?>" class="dropdown-item" type="button" data-id=""><i class="fas fa-toggle-on"></i> Activated</a>  
+                                                    <?php } ?>
                                             
 
                                             </div>
