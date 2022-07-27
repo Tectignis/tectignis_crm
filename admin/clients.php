@@ -166,11 +166,13 @@ if(isset ($_POST['update'])){
                                             </button>
 
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                <a href="view_clients.php"> <button class="dropdown-item"
-                                                        type="button"><i class="fa fa-eye"></i> View</button></a>
+                                                
+                                            
+                                            <a href="view_clients.php"> <button class="dropdown-item"
+                                                type="button"><i class="fa fa-eye"></i> View</button></a>
                                                 <button class="dropdown-item usereditid" type="button"  data-id="<?php echo $row['Client_Code'] ?>"><i class="far fa-edit"></i> Edit</button>
 
-                                                <button class="dropdown-item delbtn" type="button" onclick="deleteBtn()" data-id="=<?php echo $row['id']; ?>"><i class="fa fa-trash-alt"></i> Delete</button>
+                                                <button class="dropdown-item delbtn" type="button" onclick="deleteBtn()" data-id="=<?php echo $row['Client_Code']; ?>"><i class="fa fa-trash-alt"></i> Delete</button>
 
 
                                                 <button class="dropdown-item" type="button" data-toggle="modal"
@@ -470,6 +472,32 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
 
           });
           </script>
+
+<script>
+            $(document).ready(function(){
+                $('.delbtn').click(function(e){
+                    e.preventDefault();
+                    let del_id = $(this).data('id');
+                    swal({
+                        title: "Are you sure?",
+                        text: "Once deleted, you will not be able to recover this imaginary file!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            swal("Poof! Your imaginary file has been deleted!", {
+                                icon: "success",
+                            });
+                            window.location.href = "action_clients.php?del_id"+del_id;
+                        } else {
+                            swal("Your imaginary file is safe!");
+                        }
+                    });
+                    })
+                });
+                </script>
 
 </body>
 
