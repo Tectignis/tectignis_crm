@@ -297,69 +297,27 @@ if(isset($_GET['declient'])){
         </div>
     </div>
     <!-- Edit Users Modal -->
-    <div class="modal fade" id="editUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="dnkModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Create Users</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Create Clients</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-               
-                    <form>
-                    <?php
-                    $sql=mysqli_query($conn,"select * from users");
+                <form method="post">
+                <div class="modal-body body1" >
                     
-                  while ($row=mysqli_fetch_array($sql)){ 
-          ?>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="inputName">Name</label>
-                                    <input type="text" name="updateName"  value="<?php echo $row['name']; ?>" class="form-control" id="inputName" placeholder="Enter Name">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="inputEmail">Email</label>
-                                    <input type="email" name="updateEmail"  value="<?php echo $row['email']; ?>" class="form-control" id="inputEmail" placeholder="Enter Email">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="inputTitle">Job Title</label>
-                                    <input type="text" name="updateTitle"  value="<?php echo $row['job_title']; ?>" class="form-control" id="inputTitle" placeholder="Enter Job Title">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="inputRole">Role</label>
-                                    <select class="form-control"  name="updateRole"  value="<?php echo $row['job_role']; ?>" id="inputRole">
-                                        <option selected disabled>Select Role</option>
-                                        <option>Employee</option>
-                                        <option>Intern</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="inputPass">Image</label>
-                                    <input type="file" name="image" value="<?php echo $row['image']; ?>" class="form-control" id="inputimg"
-                                        placeholder="image">                                       
-                                </div>
-                            </div>
-                        </div>
-                        <?php  } ?>
-                    </form>
+                  
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" name="update" class="btn btn-primary">Update</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
@@ -535,6 +493,25 @@ if(isset($_GET['declient'])){
                     })
                 });
                 </script>
+
+<script>
+          $(document).ready(function(){
+          $('.usereditid').click(function(){
+            let dnk = $(this).data('id');
+
+            $.ajax({
+            url: 'action_clients.php',
+            type: 'post',
+            data: {dnk: dnk},
+            success: function(response1){ 
+              $('.body1').html(response1);
+              $('#dnkModal').modal('show'); 
+            }
+          });
+          });
+
+          });
+          </script>
                 </body>
 
 </html>

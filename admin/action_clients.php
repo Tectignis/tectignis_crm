@@ -70,6 +70,7 @@ if(isset($_GET['statusno'])){
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="inputName">Name</label>
+                                    <input type="hidden" name="id" value="<?php echo $id ?>">
                                     <input type="text" name="updateName" value="<?php echo $row['Authorized_Name']; ?>" class="form-control" id="inputName"
                                         placeholder="Enter Name">
                                 </div>
