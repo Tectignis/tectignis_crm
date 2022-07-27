@@ -149,6 +149,8 @@ include("config.php");
                                                 <button class="dropdown-item" type="button" data-toggle="modal"
                                                     data-target="#resetUserPass"><i class="fa fa-key"></i> Reset
                                                     Password</button>
+                                                    <button class="dropdown-item" type="button" data-toggle="modal"
+                                                    data-target="#"><i class="fas fa-toggle-off"></i> Dectivated</button>  
 
                                             </div>
                                         </div>
@@ -285,6 +287,13 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
                                         <option>Tennessee</option>
                                         <option>Texas</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="inputPass">Image</label>
+                                    <input type="file" name="image" class="form-control" id="inputimg"
+                                        placeholder="image">
                                 </div>
                             </div>
                         </div>

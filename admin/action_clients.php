@@ -7,6 +7,7 @@ if(isset($_POST['submit'])){
     $email=$_POST['email'];
     $password=$_POST['password'];
     $category=$_POST['category'];
+    $status=$_POST['Activited'];
     $image=$_FILES['image']['name'];
     $image_tmp=$_FILES['image']['tmp_name'];
     $loc="dist/img/".$image;
