@@ -31,6 +31,7 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
                 Dashboard
               </p>
             </a>
+          </li>
           
             <li class="nav-item">
             <a href="users.php" class="nav-link <?= $page == 'users.php' ? 'active':'' ?>">
@@ -39,6 +40,7 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
                 Users
               </p>
             </a>
+          </li>
 
             <li class="nav-item">
             <a href="clients.php" class="nav-link <?= $page == 'index.php' ? :'' ?>">
@@ -47,6 +49,7 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
                 Clients
               </p>
             </a>
+          </li>
 
             <li class="nav-item">
             <a href="#" class="nav-link <?= $page == 'index.php' ? :'' ?>">
@@ -55,6 +58,7 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
                 Roles
               </p>
             </a>
+          </li>
 
             <li class="nav-item">
             <a href="#" class="nav-link <?= $page == 'index.php' ? :'' ?>">
@@ -63,6 +67,7 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
                 Leads
               </p>
             </a>
+            </li>
 
             <li class="nav-item">
             <a href="#" class="nav-link <?= $page == 'index.php' ? :'' ?>">
@@ -71,14 +76,16 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
                 System Setting
               </p>
             </a>
+          </li>
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="client.php" class="nav-link <?= $page == 'client.php' || $page == 'addclient.php' ? 'active':'' ?>">
             <i class="nav-icon fa fa-fw fa-user-plus"></i>
               <p>
                 Add Client
               </p>
             </a>
+            </li>
            
           <li class="nav-item">
             <a href="lead.php" class="nav-link <?= $page == 'lead.php'|| $page == 'addlead.php' ? 'active':'' ?>">
@@ -87,6 +94,7 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
                 Add Leads
               </p>
             </a>
+            </li> -->
 
             <li class="nav-item">
             <a href="tickettable.php" class="nav-link <?= $page == 'tickettable.php' ? 'active':'' ?>">
@@ -104,6 +112,8 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
                 Change Password
               </p>
             </a>
+            </li>
+            </ul>
   
       <!-- /.sidebar-menu -->
     </div>
