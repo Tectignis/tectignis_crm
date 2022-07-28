@@ -1,7 +1,28 @@
 <?php
 include("config.php");
+
+if(isset($_GET['client'])){
+    $id=$_GET['client'];
+    $sql=mysqli_query($conn,"update client set Status='Deactivated' where Client_Code='$id'");
+}
+if(isset($_GET['declient'])){
+    $id=$_GET['declient'];
+    $sql=mysqli_query($conn,"update client set Status='Activated' where Client_Code='$id'");
+};
+if(isset ($_POST['update'])){
+    $name=$_POST['updateName'];
+    $email=$_POST['updateEmail'];
+    $category=$_POST['category'];
+    $image=$_POST['image'];
+    $id=$_POST['id'];
+
+
+    $sql=mysqli_query($conn,"UPDATE `client` SET `Authorized_Name`='$name',`Email`='$email',`Category`='$category',`image`='$image' where Client_Code='$id'"); 
+    
+}
 ?>
 
+ 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -65,6 +86,16 @@ include("config.php");
         .btn {
             border-radius: 10px !important;
         }
+      
+        .select2-container--default .select2-selection--single {
+    background-color: #fff;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    padding-bottom: 27px !important;
+}
+.select2-container--default.select2-container--focus .select2-selection--multiple, .select2-container--default.select2-container--focus .select2-selection--single {
+    border-color: #d3d9df;
+}
     </style>
 </head>
 
@@ -91,12 +122,16 @@ include("config.php");
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Clients</h1>
+                            <h1 class="m-0">Manage Clients</h1>
+                            <ol class="breadcrumb float-sm-left">
+                                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                                <li class="breadcrumb-item active">Clients</li>
+                            </ol>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                                <li class="breadcrumb-item active">Clients</li>
+                                <li class="breadcrumb-item"><button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >    <i class="fa fa-plus"></i></button></li>
+                               
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -115,7 +150,7 @@ include("config.php");
                   while ($row=mysqli_fetch_array($sql)){ 
           ?>
                         <div class="col-md-3 col-sm-6">
-                            <div class="card  text-center">
+                            <div class="card  text-center"  <?php if($row['Status']=='Deactivated'){ ?>style="background:#B2BEB5"<?php } ?>>
                                 <div class="card-header border-0 pb-0">
                                     <div class="d-flex align-items-center">
                                         <div class="d-grid">
@@ -129,25 +164,45 @@ include("config.php");
                                                 aria-haspopup="true" aria-expanded="false">
                                                 <i class="fa fa-ellipsis-v"></i>
                                             </button>
+
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                <a href="view_clients.php"> <button class="dropdown-item"
-                                                        type="button"><i class="fa fa-eye"></i> View</button></a>
-                                                <button class="dropdown-item" type="button" data-toggle="modal"
-                                                    data-target="#editUser"><i class="far fa-edit"></i> Edit</button>
-                                                <button class="dropdown-item" type="button" onClick="deleteBtn()"><i
-                                                        class="fa fa-trash-alt"></i> Delete</button>
+                                                
+                                            
+                                            <a href="view_clients.php"> <button class="dropdown-item"
+                                                type="button"><i class="fa fa-eye"></i> View</button></a>
+                                                <button class="dropdown-item usereditid" type="button"  data-id="<?php echo $row['Client_Code'] ?>"><i class="far fa-edit"></i> Edit</button>
+
+                                                <button class="dropdown-item delbtn" type="button" onclick="deleteBtn()" data-id="=<?php echo $row['Client_Code']; ?>"><i class="fa fa-trash-alt"></i> Delete</button>
+
+
                                                 <button class="dropdown-item" type="button" data-toggle="modal"
                                                     data-target="#resetUserPass"><i class="fa fa-key"></i> Reset
                                                     Password</button>
+
+                                                    <?php
+                                                    if($row['Status']=='Activated'){ ?>
+                                                        <a href="clients.php?client=<?php echo $row['Client_Code'] ?>" class="dropdown-item" type="button" data-id=""><i class="fas fa-toggle-off"></i> Deactivated</a>
+                                                   <?php } else{
+                                                    ?>
+                                                    <a href="clients.php?declient=<?php echo $row['Client_Code'] ?>" class="dropdown-item" type="button" data-id=""><i class="fas fa-toggle-on"></i> Activated</a>  
+                                                    <?php } ?>
 
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <a href="" target="_blank">
+                                <a href="clinet_details.php" target="_blank">
+                                    <?php
+                                    if($row['image']==""){
+echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded-circle card-avatar" style="width:100px;height:100px;">';
+                                    }else{
+
+                                        ?>
+                                   
                                         <img alt="user-image" class="img-fluid rounded-circle card-avatar"
-                                            src="dist/img/AdminLTELogo.png" style="height:100px;width:100px;">
+                                            src="dist/img/<?php echo $row['image'] ?>" style="height:100px;width:100px;">
+<?php } ?>
                                     </a>
                                     <h4 class="mt-2"><a href=""><?php echo $row['Authorized_Name']; ?></a></h4>
                                     <h6 class=""><?php echo $row['Email']; ?></h6>
@@ -228,7 +283,7 @@ include("config.php");
         </div>
     </div>
     <!-- Modal -->
-    <div class="modal fade" id="editUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="dnkModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -238,30 +293,17 @@ include("config.php");
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="inputName">Name</label>
-                                    <input type="text" name="updateName" class="form-control" id="inputName"
-                                        placeholder="Enter Name">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="inputEmail">Email</label>
-                                    <input type="email" name="updateEmail" class="form-control" id="inputEmail"
-                                        placeholder="Enter Email">
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                <form method="post">
+                <div class="modal-body body1" >
+                    
+                  
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" name="update" class="btn btn-primary">Update</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
@@ -277,7 +319,7 @@ include("config.php");
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="../action_clients.php">
+                    <form method="post" action="action_clients.php" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
@@ -288,7 +330,8 @@ include("config.php");
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="inputEmail">Email</label>
+                      
+                                <label for="inputEmail">Email</label>
                                     <input type="email" name="email" class="form-control" id="inputEmail"
                                         placeholder="Enter Email">
                                 </div>
@@ -303,7 +346,7 @@ include("config.php");
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Category</label>
-                                    <select class="form-control select2" name="category" style="width: 100%;">
+                                    <select class="select2" name="category" style="width: 100%;">
                                         <option selected="selected">Select</option>
                                         <option>Hotel</option>
                                         <option>Real Estate</option>
@@ -312,6 +355,15 @@ include("config.php");
                                         <option>Tennessee</option>
                                         <option>Texas</option>
                                     </select>
+                                </div>
+
+                                
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="inputPass">Image</label>
+                                    <input type="file" name="image" class="form-control" id="inputimg"
+                                        placeholder="image">
                                 </div>
                             </div>
                         </div>
@@ -325,7 +377,7 @@ include("config.php");
             </div>
         </div>
     </div>
-
+    
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
@@ -356,6 +408,8 @@ include("config.php");
     <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
     <script src="dist/js/adminlte.js"></script>
+    <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+   <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 
     <!-- AdminLTE for demo purposes -->
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
@@ -399,6 +453,52 @@ include("config.php");
             })
         })
     </script>
+    
+    <script>
+          $(document).ready(function(){
+          $('.usereditid').click(function(){
+            let dnk = $(this).data('id');
+
+            $.ajax({
+            url: 'action_clients.php',
+            type: 'post',
+            data: {dnk: dnk},
+            success: function(response1){ 
+              $('.body1').html(response1);
+              $('#dnkModal').modal('show'); 
+            }
+          });
+          });
+
+          });
+          </script>
+
+<script>
+            $(document).ready(function(){
+                $('.delbtn').click(function(e){
+                    e.preventDefault();
+                    let del_id = $(this).data('id');
+                    swal({
+                        title: "Are you sure?",
+                        text: "Once deleted, you will not be able to recover this imaginary file!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            swal("Poof! Your imaginary file has been deleted!", {
+                                icon: "success",
+                            });
+                            window.location.href = "action_clients.php?del_id"+del_id;
+                        } else {
+                            swal("Your imaginary file is safe!");
+                        }
+                    });
+                    })
+                });
+                </script>
+
 </body>
 
 </html>

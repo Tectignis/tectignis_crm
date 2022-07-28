@@ -2,8 +2,10 @@
 
 <?php
         $fname=$_SESSION["firm"];
+        $client_id=$_SESSION['id'];
 
         ?>
+        
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
@@ -18,7 +20,8 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Navbar Search -->
-  
+  <!-- Notifications Dropdown Menu -->
+ 
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>
@@ -29,3 +32,5 @@
       </li>
     </ul>
   </nav>
+
+  

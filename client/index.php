@@ -37,8 +37,18 @@ if(!isset($_SESSION['id']))
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+  <style>
+    .toast-header strong{
+margin-right:40px !important;
+}
+.toast-body{
+  cursor:pointer;
+  display: inline-block;
+}
+  </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
+  
 <div class="wrapper">
 
   <!-- Preloader -->
@@ -154,8 +164,8 @@ if(!isset($_SESSION['id']))
 <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.js"></script>
-<!-- AdminLTE for demo purposes -->
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="dist/js/pages/dashboard.js"></script>
+
 </body>
 </html>
