@@ -2,19 +2,6 @@
 include("config.php");
 
 
-if(isset($_POST['update'])){
-    $updateRoles = $_POST['updateRoles'];
-    $id=$_POST['id'];
-    
-       
-        $sql="UPDATE `users` SET `name`='$updateName',`email`='$updateEmail',`job_title`='$updateTitle',`job_role`='$updateRole',`image`='$image' WHERE id='$id
-        .'";
-        if (mysqli_query($conn, $sql)){
-          header("location:users.php");
-       } else {
-          echo "<script> alert ('connection failed !');window.location.href='manual-Attendance.php'</script>";
-       }
-      }
 ?>
 
 <!DOCTYPE html>
@@ -119,15 +106,15 @@ if(isset($_POST['update'])){
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Manage Roles</h1>
+                            <h1 class="m-0">Manage Category</h1>
                             <ol class="breadcrumb float-sm-left">
                                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                                <li class="breadcrumb-item active">Roles</li>
+                                <li class="breadcrumb-item active">Category</li>
                             </ol>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addRoles" >    <i class="fa fa-plus"></i></button></li>
+                                <li class="breadcrumb-item"><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addRoles" ><i class="fa fa-plus"></i></button></li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -142,35 +129,33 @@ if(isset($_POST['update'])){
                     <div class="row card">
 
                             <div class="card-header">
-                                <h3 class="card-title">Roles Table</h3>
+                                <h3 class="card-title">Category Table</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Role</th>
-                                            <th>Permission</th>
+                                            <th>Sr.no</th>
+                                            <th>Category</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <?php
-                    $sql=mysqli_query($conn,"select * from roles");
-                 
+                    $sql=mysqli_query($conn,"select * from category");
+                    $count=1;
                   while ($row=mysqli_fetch_array($sql)){ 
           ?>
                                         <tr>
-                                            <td><?php echo $row['roles']; ?></td>
-                                            <td></td>
+                                            <td><?php echo $count;?></td>
+                                            <td><?php echo $row['category']; ?></td>
                                             <td><div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                <button type="button" class="btn btn-sm btn-info m-1" data-toggle="modal" data-target="#editUser" data-id="=<?php echo $row['id']; ?>"><i class="fa fa-pen"></i></button>
-
+                                                <button type="button" class="btn btn-sm btn-info m-1" data-toggle="modal" data-target="#editUser"><i class="fa fa-pen"></i></button>
                                                 <button class="btn btn-sm btn-danger m-1 delbtn" type="button" onclick="deleteBtn()" data-id="=<?php echo $row['id']; ?>"><i class="fa fa-trash"></i></button>
-
                                               </div></td>
                                         </tr>
-                                        <?php  } ?>
+                                        <?php $count++; } ?>
                                 </table>
                             </div>
                             <!-- /.card-body -->
@@ -202,18 +187,18 @@ if(isset($_POST['update'])){
        <div class="modal-dialog modal-lg" role="document">
            <div class="modal-content">
                <div class="modal-header">
-                   <h5 class="modal-title" id="exampleModalLabel">Create Roles</h5>
+                   <h5 class="modal-title" id="exampleModalLabel">Create Category</h5>
                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                        <span aria-hidden="true">&times;</span>
                    </button>
                </div>
                <div class="modal-body">
-                   <form method="post" action="action_roles.php">
+                   <form method="post" action="action_category.php">
                        <div class="row">
                            <div class="col-12">
                                <div class="form-group">
-                                   <label for="inputName">Role</label>
-                                   <input type="text" name="roles" class="form-control" id="inputroles" placeholder="Enter Role">        
+                                   <label for="inputName">Category</label>
+                                   <input type="text" name="category" class="form-control" id="inputcategory" placeholder="Enter Category">        
                                </div>
                            </div>
                        </div>
@@ -228,30 +213,61 @@ if(isset($_POST['update'])){
        </div>
    </div>
     <!-- Edit Users Modal -->
-    <div class="modal fade" id="dnkModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="editUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Update UseRolesrs</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Create Users</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="post">
-                <div class="modal-body body1" >
-                    
-                  
-                    
+                <div class="modal-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="inputName">Name</label>
+                                    <input type="text" name="updateName" class="form-control" id="inputName"
+                                        placeholder="Enter Name">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="inputEmail">Email</label>
+                                    <input type="email" name="updateEmail" class="form-control" id="inputEmail"
+                                        placeholder="Enter Email">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="inputTitle">Job Title</label>
+                                    <input type="text" name="updateTitle" class="form-control" id="inputTitle"
+                                        placeholder="Enter Job Title">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="inputRole">Role</label>
+                                    <select class="form-control" name="updateRole" id="inputRole">
+                                        <option selected disabled>Select Role</option>
+                                        <option>Employee</option>
+                                        <option>Intern</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" name="update" class="btn btn-primary">Update</button>
                 </div>
-                </form>
             </div>
         </div>
     </div>
+
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
@@ -336,8 +352,7 @@ if(isset($_POST['update'])){
             else { return false; }
         }
     </script>
-
-<script>
+    <script>
             $(document).ready(function(){
                 $('.delbtn').click(function(e){
                     e.preventDefault();
@@ -354,7 +369,7 @@ if(isset($_POST['update'])){
                             swal("Poof! Your imaginary file has been deleted!", {
                                 icon: "success",
                             });
-                            window.location.href = "action_roles.php?del_id"+del_id;
+                            window.location.href = "action_category.php?del_id"+del_id;
                         } else {
                             swal("Your imaginary file is safe!");
                         }

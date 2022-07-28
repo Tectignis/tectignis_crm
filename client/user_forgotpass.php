@@ -67,7 +67,7 @@ foreach($_POST as $key => $value){
 }
 if( mail($sendTo,$subject,$emailText, "From:" .$from)){
 
-    $sql=mysqli_query($conn,"UPDATE `users` SET `Password`='$hasPassword' WHERE Email='$Email'");
+    $sql=mysqli_query($conn,"UPDATE `client` SET `Password`='$hasPassword' WHERE Email='$Email'");
 
     if($sql==1){
         echo '<script>alert("data successfully submitted");</script>';

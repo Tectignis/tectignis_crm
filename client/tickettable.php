@@ -39,6 +39,9 @@ margin-right:40px !important;
 .toast{
   width: 250px;
 }
+a{
+  text-decoration:none;
+}
     </style>
 </head>
 <body class="hold-transition sidebar-mini">

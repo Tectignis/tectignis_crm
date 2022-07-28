@@ -31,7 +31,7 @@ else{
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin CRM | Login</title>
-        <!-- Font Awesome -->
+
 <link
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
   rel="stylesheet"
@@ -105,7 +105,10 @@ border-bottom-right-radius: .3rem;
                   <div class="text-center pt-1 mb-5 pb-1">
                     <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="login" name="login" id="login" value="login">Login</button>
                     <a class="text-muted" href="forgotpassword.php">Forgot password?</a>
+<<<<<<< HEAD
+=======
 
+>>>>>>> 1ae808876ea53a2f27854f358a90c62b6895a466
                   </div>
                 </form>
 

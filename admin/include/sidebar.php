@@ -52,7 +52,7 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
           </li>
 
             <li class="nav-item">
-            <a href="#" class="nav-link <?= $page == 'index.php' ? :'' ?>">
+            <a href="roles.php" class="nav-link <?= $page == 'index.php' ? :'' ?>">
               <i class="nav-icon fas fa-user-times"></i>
               <p>
                 Roles
@@ -61,8 +61,9 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
           </li>
 
             <li class="nav-item">
-            <a href="#" class="nav-link <?= $page == 'index.php' ? :'' ?>">
-              <i class="nav-icon fas fa-dash-mtext"></i>
+            <a href="lead.php" class="nav-link <?= $page == 'index.php' ? :'' ?>">
+            
+              <i class="nav-icon fas fa-chart-line"></i>
               <p>
                 Leads
               </p>

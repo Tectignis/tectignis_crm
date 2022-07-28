@@ -346,14 +346,18 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Category</label>
-                                    <select class="select2" name="category" style="width: 100%;">
-                                        <option selected="selected">Select</option>
-                                        <option>Hotel</option>
-                                        <option>Real Estate</option>
-                                        <option>Doctor</option>
-                                        <option>Delaware</option>
-                                        <option>Tennessee</option>
-                                        <option>Texas</option>
+                                    <?php 
+                   $query=mysqli_query($conn,"select * from category");
+                   ?>
+                                    <select class="form-control"  name="category" id="inputcategory">
+                                        <option selected disabled>Select category</option>
+                                        <?php
+                    while($sql=mysqli_fetch_array($query))
+                    {
+                      ?>
+
+                         <option value="<?php echo $sql['category']; ?>"> <?php echo $sql['category']; ?></option>
+                         <?php } ?>
                                     </select>
                                 </div>
 

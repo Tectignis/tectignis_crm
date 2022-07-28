@@ -379,10 +379,18 @@ $updateName = $_POST['updateName'];
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="inputRole">Role</label>
+                                    <?php 
+                   $query=mysqli_query($conn,"select * from roles");
+                   ?>
                                     <select class="form-control"  name="role" id="inputRole">
                                         <option selected disabled>Select Role</option>
-                                        <option>Employee</option>
-                                        <option>Intern</option>
+                                        <?php
+                    while($sql=mysqli_fetch_array($query))
+                    {
+                      ?>
+
+                         <option value="<?php echo $sql['roles']; ?>"> <?php echo $sql['roles']; ?></option>
+                         <?php } ?>
                                     </select>
                                 </div>
                             </div>
