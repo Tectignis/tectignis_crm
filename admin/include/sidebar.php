@@ -70,8 +70,8 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
             </li>
 
             <li class="nav-item">
-            <a href="#" class="nav-link <?= $page == 'index.php' ? :'' ?>">
-              <i class="nav-icon fas fa-settings-outline"></i>
+            <a href="system_setting.php" class="nav-link <?= $page == 'system_setting.php' ? 'active' :'' ?>">
+              <i class="nav-icon fa fa-cog"></i>
               <p>
                 System Setting
               </p>
