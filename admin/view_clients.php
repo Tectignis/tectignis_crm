@@ -191,23 +191,32 @@ include("config.php");
                               <table class="table table-striped">
                                 <thead>
                                   <tr>
-                                    <th>#</th>
-                                    <th>First Name</th>
+                                    <th>Sr No.</th>
                                     <th>Client Name</th>
+                                    <th>Client Mobile No.</th>
+                                    <th>Requirment</th>
+                                    <th>Created On</th>
                                     <th>Action</th>
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <tr>
-                                    <td>1.</td>
-                                    <td>Update software</td>
-                                    <td>aaaa</td>
+                                <?php
+                    $sql=mysqli_query($conn,"select *, lead.Mobile_Number as mob from lead inner join client on lead.Firm_Name=client.Client_Code");
+                    $count=1;
+                  while ($row=mysqli_fetch_array($sql)){ 
+
+          ?>
+            <tr>
+                <td><?php echo $count;?></td>
+                <td><?php echo $row['Client_Name']; ?></td>
+                <td><?php echo $row['mob']; ?></td>
+                <td><?php echo $row['Requirement']; ?></td>
+                <td><?php echo $row['Created_On']; ?></td>  
                                     <td><div class="btn-group" role="group" aria-label="Basic outlined example">
-                                        <button type="button" class="btn btn-sm btn-warning m-1"><i class="fa fa-eye"></i></button>
-                                        <button type="button" class="btn btn-sm btn-info m-1"><i class="fa fa-pen"></i></button>
                                         <button type="button" class="btn btn-sm btn-danger m-1"><i class="fa fa-trash"></i></button>
                                       </div></td>
                                   </tr>
+                                  <?php $count++; } ?>
                                 </tbody>
                               </table>
                             </div>
