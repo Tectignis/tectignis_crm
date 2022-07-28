@@ -214,10 +214,8 @@ include("include/sidebar.php");
          </form>
                    </div>
   
-    </div>
-    </div>
-    </div>
-</div>
+                   </div>
+
             <!-- /.card -->
           </div>
           <!-- /.col -->
