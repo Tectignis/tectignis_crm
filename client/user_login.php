@@ -1,43 +1,34 @@
 <?php
 session_start();
 include("config.php");
-if(isset($_SESSION['id']))
-{
-    header("Location:index.php");
-}
-
 if(isset($_POST['login'])){
-$email=$_POST['email'];
-$password=$_POST['password'];
+$Email=$_POST['email'];
+$Password1=$_POST['password'];
 
-$sql="select * from users where email='$email' and password='$password'";
-$result=mysqli_query($conn,$sql);
+$sql=mysqli_query($conn,"select * from client where Email='$Email' AND Status='Activated'");
 
-  $row=mysqli_fetch_array($result); 
- $count=mysqli_num_rows($result);
+if(mysqli_num_rows($sql)>0){
+  $row=mysqli_fetch_assoc($sql); 
+  $verify=password_verify($Password1,$row['Password']);
 
-if($count==1){
-    $_SESSION['id']=$row['id'];
-    $_SESSION['name']=$row['name'];
+ if($verify==1){
+  // $_SESSION['aemail']=$row['email'];
+   $_SESSION['aname']=$row['Authorized_Name'];
+   $_SESSION['firm']=$row['Firm_Name'];
+     $_SESSION['id']=$row['Client_Code'];
+  //   $_SESSION['aaddress']=$row['office_address'];
+  //   $_SESSION['admin']=$row['is_admin'];
+  //   $d=$_SESSION['aid'];
 
-    echo "<SCRIPT>
-    alert('login sucessfully')
-    window.location.replace('index.php');
-    </SCRIPT>";
+        header("location:index.php");
+    }else{
+        echo "<script>alert('Password is incorrect');</script>";
+    }
 }
 else{
-    echo "<SCRIPT>
-    alert('login failed')
-    window.location.replace('user_login.php');
-    </SCRIPT>";
+    echo "<script>alert('Invalid Email Id');</script>";
 }
-  
-  
- 
-
-        
 }
-
 
 
 ?>
@@ -46,7 +37,7 @@ else{
     <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>User Login | CRM</title>
+    <title>Login | CRM</title>
         <!-- Font Awesome -->
 <link
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -99,7 +90,7 @@ border-bottom-right-radius: .3rem;
               <div class="card-body p-md-5 mx-md-5">
 
                 <div class="text-center">
-                    <h2>User Login</h2>
+                    <h2>CRM</h2>
                 </div><br>
 
                 <form method="post">
@@ -120,7 +111,7 @@ border-bottom-right-radius: .3rem;
 
                   <div class="text-center pt-1 mb-5 pb-1">
                     <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="login" name="login" id="login" value="login">Login</button>
-                    <a class="text-muted" href="user_forgotpass.php">Forgot password?</a>
+                    <a class="text-muted" href="forgotpassword.php">Forgot password?</a>
                   </div>
                 </form>
 
