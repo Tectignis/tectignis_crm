@@ -139,7 +139,9 @@ include("include/sidebar.php");
                 <td><?php echo $row['social_media']; ?></td>
                     <td style="text-align:center">
 
-                    <button type="button" class="btn btn-primary btn-rounded btn-icon usereditid"  style="color: aliceblue"><i class="fas fa-pen"></i> </button>
+                    <button  type="button" class="btn btn-primary btn-rounded btn-icon usereditid" data-toggle="modal" data-id='<?php echo $row['id']; ?>'
+                                style="color: aliceblue"> <i class="fas fa-pen"></i>
+                                      </button>
 
                      <a href="lead.php?delid=<?php echo $row['id']; ?>"><button type="button"  onclick="return confirm('Are you sure you want to delete this item')" class="btn btn-danger btn-rounded btn-icon"  style="color: aliceblue"><i class="fas fa-trash"></i> </button></a>
                      <a href="lead.php?gen=<?php echo $row['id'];?>">
@@ -181,7 +183,7 @@ include("include/sidebar.php");
              </button>
            </div>
      <form action="api/addlead_action.php" method="post">
-           <div class="modal-body body1">
+           <div class="modal-body">
            
                 <div class="row">   
                 
@@ -231,15 +233,6 @@ include("include/sidebar.php");
             </div></form>
 
         </div>
-
-        </div>
-
-
-
-
-
-
-
         <div class="modal fade" id="dnkModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -251,7 +244,7 @@ include("include/sidebar.php");
                     </button>
                 </div>
                 <form method="post" action="action_leads.php">
-                <div class="modal-body body1" >
+                <div class="modal-body body2" >
                     
                   
                     
@@ -264,6 +257,16 @@ include("include/sidebar.php");
             </div>
         </div>
   
+
+        </div>
+
+
+
+
+
+
+
+       
 
 
         <!-- /.modal-content -->
@@ -322,23 +325,24 @@ include("include/sidebar.php");
 
 
 <script>
-          $(document).ready(function(){
-          $('.usereditid').click(function(){
-            let dnk = $(this).data('id');
+$(document).ready(function(){
+$('.usereditid').click(function(){
+  let dnk = $(this).data('id');
 
-            $.ajax({
-            url: 'action_leads.php',
-            type: 'post',
-            data: {dnk: dnk},
-            success: function(response1){ 
-              $('.body1').html(response1);
-              $('#dnkModal').modal('show'); 
-            }
-          });
-          });
+  $.ajax({
+   url: 'action_leads.php',
+   type: 'post',
+   data: {dnk: dnk},
+   success: function(response1){ 
+     $('.body2').html(response1);
+     $('#dnkModal').modal('show'); 
+   }
+ });
+});
 
-          });
-          </script>
+
+});
+</script>
 
 
 </body>

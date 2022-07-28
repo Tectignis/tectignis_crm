@@ -18,16 +18,20 @@
                                 <div class="form-group">
                                     <label for="inputEmail">Mobile Number</label>
                                     <input type="tel" name="updateno"  value="<?php echo $row['Mobile_Number']; ?>" class="form-control" id="inputno"
-                                        placeholder="Enter Email">
+                                        placeholder="Enter Mobile Number">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                <label>Category</label>
-                                    <select class="form-control" name="updateRole" style="width: 100%;">
-                                        <option selected="selected"><?php echo $row['job_role']; ?></option>
-                                        <option>Employee</option>
-                                        <option>Intern</option>
+                                <label>Source</label>
+                                    <select class="form-control" name="updateSource" style="width: 100%;">
+                                        <option selected="selected"><?php echo $row['social_media']; ?></option>
+                                        
+                    <option>Facebook</option>
+                    <option>Instagram</option>
+                    <option>Twitter</option>
+                    <option>Linkdin</option>
+                    <option>Youtube</option>
                                     </select>
                                 </div>
                             </div>
@@ -38,12 +42,8 @@
                                         placeholder="Enter Requirement">
                                 </div>
                             </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="inputEmail">Company</label>
-                                    <input type="text" name="updateCompany"  value="<?php echo $row['company']; ?>" class="form-control" id="inputCompany"
-                                        placeholder="Enter Company">
-                                </div>
+                            
+                          
                         
                         </div>
                         <?php } } ?>
