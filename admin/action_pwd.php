@@ -1,6 +1,7 @@
 <?php
 include("config.php");
 ?>
+
 <?php
 $d=$_SESSION['aid'];
 if(isset($_POST["submit"])){
