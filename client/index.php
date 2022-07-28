@@ -88,11 +88,10 @@ margin-right:40px !important;
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-         
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
+         <!-- ./col -->
+         <div class="col-lg-4 col-6">
             <!-- small box -->
-            <div class="small-box bg-success">
+            <div class="small-box bg-primary">
               <div class="inner">
               <?php
               $query=mysqli_query($conn,"select * from lead where Firm_Name='$id'");
@@ -109,14 +108,57 @@ margin-right:40px !important;
             </div>
           </div>
           <!-- ./col -->
-          
+          <!-- ./col -->
+          <div class="col-lg-4 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+              <?php
+              $query=mysqli_query($conn,"select * from lead where status_deal='Open'");
+               $count1=mysqli_num_rows($query);
+                ?>
+               <h3><?php echo $count1; ?></h3>
+
+                <p>New Leads</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
           <!-- ./col -->
           
+          <!-- ./col -->
+          <div class="col-lg-4 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+              <?php
+              $query=mysqli_query($conn,"select * from lead where status_deal='Closed'");
+               $count1=mysqli_num_rows($query);
+                ?>
+               <h3><?php echo $count1; ?></h3>
+
+                <p>Closed Leads</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
           <!-- ./col -->
         </div>
         <!-- /.row -->
         <!-- Main row -->
       
+        <section>
+        <div>
+          <canvas id="myChart"></canvas>
+        </div>
+        </section>
+
         <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->
     </section>
@@ -167,5 +209,27 @@ margin-right:40px !important;
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="dist/js/pages/dashboard.js"></script>
 
+<script>
+  //piechart
+  var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+  type: 'pie',
+  data: {
+    labels: ["M", "T", "W", "T", "F", "S", "S"],
+    datasets: [{
+      backgroundColor: [
+        "#2ecc71",
+        "#3498db",
+        "#95a5a6",
+        "#9b59b6",
+        "#f1c40f",
+        "#e74c3c",
+        "#34495e"
+      ],
+      data: [12, 19, 3, 17, 28, 24, 7]
+    }]
+  }
+});
+</script>
 </body>
 </html>

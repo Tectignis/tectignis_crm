@@ -233,7 +233,15 @@ include("include/sidebar.php");
             </div></form>
 
         </div>
-        <div class="modal fade" id="dnkModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+       
+
+
+        <!-- /.modal-content -->
+      </div>
+      
+      <!-- /.modal-dialog -->
+    </div>
+    <div class="modal fade" id="dnkModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -245,9 +253,7 @@ include("include/sidebar.php");
                 </div>
                 <form method="post" action="action_leads.php">
                 <div class="modal-body body2" >
-                    
-                  
-                    
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -256,23 +262,8 @@ include("include/sidebar.php");
                 </form>
             </div>
         </div>
-  
-
         </div>
 
-
-
-
-
-
-
-       
-
-
-        <!-- /.modal-content -->
-      </div>
-      <!-- /.modal-dialog -->
-    </div>
   <!-- /.content-wrapper -->
   <?php include("include/footer.php");?>
 

@@ -1,4 +1,6 @@
 <?php
+session_start();
+include("config.php");
   if(isset($_POST['dnk'])){
     $id=$_POST['dnk'];
          $sql=mysqli_query($conn,"select * from lead where id='".$id."'");
