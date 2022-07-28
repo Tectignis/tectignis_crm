@@ -166,11 +166,13 @@ if(isset ($_POST['update'])){
                                             </button>
 
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                <a href="view_clients.php"> <button class="dropdown-item"
-                                                        type="button"><i class="fa fa-eye"></i> View</button></a>
+                                                
+                                            
+                                            <a href="view_clients.php"> <button class="dropdown-item"
+                                                type="button"><i class="fa fa-eye"></i> View</button></a>
                                                 <button class="dropdown-item usereditid" type="button"  data-id="<?php echo $row['Client_Code'] ?>"><i class="far fa-edit"></i> Edit</button>
 
-                                                <button class="dropdown-item delbtn" type="button" onclick="deleteBtn()" data-id="=<?php echo $row['id']; ?>"><i class="fa fa-trash-alt"></i> Delete</button>
+                                                <button class="dropdown-item delbtn" type="button" onclick="deleteBtn()" data-id="=<?php echo $row['Client_Code']; ?>"><i class="fa fa-trash-alt"></i> Delete</button>
 
 
                                                 <button class="dropdown-item" type="button" data-toggle="modal"
@@ -344,14 +346,18 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Category</label>
-                                    <select class="select2" name="category" style="width: 100%;">
-                                        <option selected="selected">Select</option>
-                                        <option>Hotel</option>
-                                        <option>Real Estate</option>
-                                        <option>Doctor</option>
-                                        <option>Delaware</option>
-                                        <option>Tennessee</option>
-                                        <option>Texas</option>
+                                    <?php 
+                   $query=mysqli_query($conn,"select * from category");
+                   ?>
+                                    <select class="form-control"  name="category" id="inputcategory">
+                                        <option selected disabled>Select category</option>
+                                        <?php
+                    while($sql=mysqli_fetch_array($query))
+                    {
+                      ?>
+
+                         <option value="<?php echo $sql['category']; ?>"> <?php echo $sql['category']; ?></option>
+                         <?php } ?>
                                     </select>
                                 </div>
 
@@ -470,6 +476,32 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
 
           });
           </script>
+
+<script>
+            $(document).ready(function(){
+                $('.delbtn').click(function(e){
+                    e.preventDefault();
+                    let del_id = $(this).data('id');
+                    swal({
+                        title: "Are you sure?",
+                        text: "Once deleted, you will not be able to recover this imaginary file!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            swal("Poof! Your imaginary file has been deleted!", {
+                                icon: "success",
+                            });
+                            window.location.href = "action_clients.php?del_id"+del_id;
+                        } else {
+                            swal("Your imaginary file is safe!");
+                        }
+                    });
+                    })
+                });
+                </script>
 
 </body>
 

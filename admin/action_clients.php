@@ -31,33 +31,15 @@ if(isset($_POST['submit'])){
 
 <?php
 //client delete
-if(isset($_GET['delidd'])){
-    $id=mysqli_real_escape_string($conn,$_GET['delidd']);
-    $sql=mysqli_query($conn,"delete from client where Client_code='$id'");
-    if($sql=1){
-        header("location:client.php");
-    }
-    else{ echo "<script>alert('Failed to Delete')</script>"; }
-    }
-?>
-
-<?php
-//client status
-if(isset($_GET['statusyes'])){
-    $staid=$_GET['statusyes'];
-        $query=mysqli_query($conn,"UPDATE `client` SET `Status`='Deactivated' where Client_Code='$staid'");
-    if($query==1){
-        header("location:clients.php");
-    }
-}
-
-if(isset($_GET['statusno'])){
-    $staid=$_GET['statusno'];
-        $query=mysqli_query($conn,"UPDATE `client` SET `Status`='Activated' where Client_Code='$staid'");
-    if($query==1){
-        header("location:clients.php");
-    }
-}
+    if(isset($_GET['del_id'])){
+        $delid = $_GET['del_id'];
+        $sql = mysqli_query($conn,"DELETE FROM client WHERE Client_Code = '$delid'");
+        if($sql){
+          header ("location:clients.php"); 
+         
+        }
+        else{ echo "<script>alert('Failed to Delete')</script>"; }
+      }
 ?>
 
 <?php

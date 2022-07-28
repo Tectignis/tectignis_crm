@@ -5,22 +5,15 @@ if(isset($_POST['login'])){
 $Email=$_POST['email'];
 $Password1=$_POST['password'];
 
-$sql=mysqli_query($conn,"select * from client where Email='$Email' AND Status='Activated'");
-
+$sql=mysqli_query($conn,"select * from users where Email='$Email'");
 if(mysqli_num_rows($sql)>0){
   $row=mysqli_fetch_assoc($sql); 
   $verify=password_verify($Password1,$row['Password']);
 
  if($verify==1){
-  // $_SESSION['aemail']=$row['email'];
-   $_SESSION['aname']=$row['Authorized_Name'];
-   $_SESSION['firm']=$row['Firm_Name'];
-     $_SESSION['id']=$row['Client_Code'];
-  //   $_SESSION['aaddress']=$row['office_address'];
-  //   $_SESSION['admin']=$row['is_admin'];
-  //   $d=$_SESSION['aid'];
-
-        header("location:index.php");
+    $_SESSION['id']=$row['id'];
+   
+    header("location:index.php");
     }else{
         echo "<script>alert('Password is incorrect');</script>";
     }
@@ -37,7 +30,7 @@ else{
     <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login | CRM</title>
+    <title>Admin CRM | Login</title>
         <!-- Font Awesome -->
 <link
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -112,6 +105,10 @@ border-bottom-right-radius: .3rem;
                   <div class="text-center pt-1 mb-5 pb-1">
                     <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="login" name="login" id="login" value="login">Login</button>
                     <a class="text-muted" href="forgotpassword.php">Forgot password?</a>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1ae808876ea53a2f27854f358a90c62b6895a466
                   </div>
                 </form>
 
@@ -125,11 +122,11 @@ border-bottom-right-radius: .3rem;
   </div>
 </section>
 </body>
-
-
+<script>
+<!-- MDB -->
 <script
   type="text/javascript"
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.js"
 ></script>
-
+</script>
 </html>

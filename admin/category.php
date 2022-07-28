@@ -106,15 +106,15 @@ include("config.php");
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Manage Roles</h1>
+                            <h1 class="m-0">Manage Category</h1>
                             <ol class="breadcrumb float-sm-left">
                                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                                <li class="breadcrumb-item active">Roles</li>
+                                <li class="breadcrumb-item active">Category</li>
                             </ol>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addRoles" >    <i class="fa fa-plus"></i></button></li>
+                                <li class="breadcrumb-item"><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addRoles" ><i class="fa fa-plus"></i></button></li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -129,33 +129,33 @@ include("config.php");
                     <div class="row card">
 
                             <div class="card-header">
-                                <h3 class="card-title">Roles Table</h3>
+                                <h3 class="card-title">Category Table</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Role</th>
-                                            <th>Permission</th>
+                                            <th>Sr.no</th>
+                                            <th>Category</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <?php
-                    $sql=mysqli_query($conn,"select * from roles");
-                 
+                    $sql=mysqli_query($conn,"select * from category");
+                    $count=1;
                   while ($row=mysqli_fetch_array($sql)){ 
           ?>
                                         <tr>
-                                            <td><?php echo $row['roles']; ?></td>
-                                            <td></td>
+                                            <td><?php echo $count;?></td>
+                                            <td><?php echo $row['category']; ?></td>
                                             <td><div class="btn-group" role="group" aria-label="Basic outlined example">
                                                 <button type="button" class="btn btn-sm btn-info m-1" data-toggle="modal" data-target="#editUser"><i class="fa fa-pen"></i></button>
                                                 <button type="button" class="btn btn-sm btn-danger m-1" onClick="deleteBtn()"><i class="fa fa-trash"></i></button>
                                               </div></td>
                                         </tr>
-                                        <?php  } ?>
+                                        <?php $count++; } ?>
                                 </table>
                             </div>
                             <!-- /.card-body -->
@@ -187,18 +187,18 @@ include("config.php");
        <div class="modal-dialog modal-lg" role="document">
            <div class="modal-content">
                <div class="modal-header">
-                   <h5 class="modal-title" id="exampleModalLabel">Create Roles</h5>
+                   <h5 class="modal-title" id="exampleModalLabel">Create Category</h5>
                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                        <span aria-hidden="true">&times;</span>
                    </button>
                </div>
                <div class="modal-body">
-                   <form method="post" action="action_roles.php">
+                   <form method="post" action="action_category.php">
                        <div class="row">
                            <div class="col-12">
                                <div class="form-group">
-                                   <label for="inputName">Role</label>
-                                   <input type="text" name="roles" class="form-control" id="inputroles" placeholder="Enter Role">        
+                                   <label for="inputName">Category</label>
+                                   <input type="text" name="category" class="form-control" id="inputcategory" placeholder="Enter Category">        
                                </div>
                            </div>
                        </div>
@@ -247,8 +247,6 @@ include("config.php");
                                         placeholder="Enter Job Title">
                                 </div>
                             </div>
-
-                            
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="inputRole">Role</label>
