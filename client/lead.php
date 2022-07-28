@@ -24,6 +24,28 @@ if(isset($_GET['delid'])){
        header("location:deal.php");
       }
     }
+
+
+    // if(isset($_POST['update'])){
+    //   $updateName = $_POST['updateName'];
+    //       $updateEmail = $_POST['updateEmail'];
+    //       $updateTitle = $_POST['updateTitle'];
+    //       $updateRole = $_POST['updateRole'];
+    //       $image=$_POST['image'];
+    //       $id=$_POST['id'];
+      
+         
+    //       $sql="UPDATE `users` SET `name`='$updateName',`email`='$updateEmail',`job_title`='$updateTitle',`job_role`='$updateRole',`image`='$image' WHERE id='$id
+    //       .'";
+    //       if (mysqli_query($conn, $sql)){
+    //         header("location:users.php");
+    //      } else {
+    //         echo "<script> alert ('connection failed !');window.location.href='manual-Attendance.php'</script>";
+    //      }
+    //     }
+
+        
+
 ?>
 
 <!DOCTYPE html>
@@ -125,7 +147,7 @@ include("include/sidebar.php");
                   </thead>
                   <tbody>
                   <?php
-                    $sql=mysqli_query($conn,"select lead.*, client.* from lead inner join client on client.Client_Code=lead.Firm_Name where lead.deal=0 and Client_Code='$id'");
+                    $sql=mysqli_query($conn,"select lead.*, client.*, lead.Mobile_Number from lead inner join client on client.Client_Code=lead.Firm_Name where lead.deal=0 and Client_Code='$id'");
                     $count=1;
                   while ($row=mysqli_fetch_array($sql)){ 
           ?>
