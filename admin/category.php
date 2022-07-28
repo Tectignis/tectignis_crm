@@ -152,7 +152,7 @@ include("config.php");
                                             <td><?php echo $row['category']; ?></td>
                                             <td><div class="btn-group" role="group" aria-label="Basic outlined example">
                                                 <button type="button" class="btn btn-sm btn-info m-1" data-toggle="modal" data-target="#editUser"><i class="fa fa-pen"></i></button>
-                                                <button type="button" class="btn btn-sm btn-danger m-1" onClick="deleteBtn()"><i class="fa fa-trash"></i></button>
+                                                <button class="btn btn-sm btn-danger m-1 delbtn" type="button" onclick="deleteBtn()" data-id="=<?php echo $row['id']; ?>"><i class="fa fa-trash"></i></button>
                                               </div></td>
                                         </tr>
                                         <?php $count++; } ?>
@@ -352,6 +352,31 @@ include("config.php");
             else { return false; }
         }
     </script>
+    <script>
+            $(document).ready(function(){
+                $('.delbtn').click(function(e){
+                    e.preventDefault();
+                    let del_id = $(this).data('id');
+                    swal({
+                        title: "Are you sure?",
+                        text: "Once deleted, you will not be able to recover this imaginary file!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            swal("Poof! Your imaginary file has been deleted!", {
+                                icon: "success",
+                            });
+                            window.location.href = "action_category.php?del_id"+del_id;
+                        } else {
+                            swal("Your imaginary file is safe!");
+                        }
+                    });
+                    })
+                });
+                </script>
 </body>
 
 </html>
