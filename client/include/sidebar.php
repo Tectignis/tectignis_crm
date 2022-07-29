@@ -64,6 +64,14 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
             </a>
           </li>
           <li class="nav-item">
+            <a href="deal.php" class="nav-link <?= $page == 'deal.php' ? 'active':'' ?>">
+            <i class="nav-icon fas fa-address-card"></i>
+              <p>
+                Deals
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="project.php" class="nav-link <?= $page == 'project.php' ? 'active':'' ?>">
             <i class="nav-icon fas fa-address-card"></i>
               <p>
