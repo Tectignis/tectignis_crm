@@ -81,6 +81,7 @@ margin-right:40px !important;
 .toast-body{
   cursor:pointer;
 }
+
     </style>
     
 </head>
@@ -142,6 +143,7 @@ include("include/sidebar.php");
                     <th>Requirement</th>
                     <th>Created On</th>
                     <th>Source</th>
+                    <th>Nature</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -159,6 +161,7 @@ include("include/sidebar.php");
                 <td><?php echo $row['Requirement']; ?></td>
                 <td><?php echo $row['Created_On']; ?></td>
                 <td><?php echo $row['social_media']; ?></td>
+                <td><?php echo $row['nature']; ?></td>
                     <td style="text-align:center">
 
                     <button  type="button" class="btn btn-primary btn-rounded btn-icon usereditid" data-toggle="modal" data-id='<?php echo $row['id']; ?>'
@@ -266,7 +269,7 @@ include("include/sidebar.php");
     </div>
     <div class="modal fade" id="dnkModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Update Leads</h5>
@@ -357,7 +360,29 @@ $('.usereditid').click(function(){
 
 });
 </script>
+<script>
+function myFunction() {
+  var checkBox = document.getElementById("myCheck");
+  var text = document.getElementById("text");
+  if (checkBox.checked == true){
+    text.style.display = "block";
+  } else {
+     text.style.display = "none";
+  }
+}
+  </script>
 
+<script>
+function drop() {
+  var select = document.getElementById("dropdown");
+  var text = document.getElementById("textt");
+  if (select.selected == true){
+    text.style.display = "block";
+  } else {
+     text.style.display = "none";
+  }
+}
+  </script>
 
 </body>
 </html>
