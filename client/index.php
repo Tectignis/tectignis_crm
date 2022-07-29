@@ -52,6 +52,10 @@ $leadnature=mysqli_query($conn,"select Created_On from lead where nature='Site V
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+  <!-- calendar -->
+  <link rel="stylesheet" href="cal/dist/simple-calendar.css">
+  <link rel="stylesheet" href="cal/assets/demo.css">
+  
 
   <style>
     .toast-header strong{
@@ -61,72 +65,7 @@ margin-right:40px !important;
   cursor:pointer;
   display: inline-block;
 }
-#calendar{
-  margin-left: auto;
-  margin-right: auto;
-  width: 320px;
-  font-family: 'Lato', sans-serif;
-}
-#calendar_weekdays div{
-  display:inline-block;
-  vertical-align:top;
-}
-#calendar_content, #calendar_weekdays, #calendar_header{
-  position: relative;
-  width: 320px;
-  overflow: hidden;
-  float: left;
-  z-index: 10;
-}
-#calendar_weekdays div, #calendar_content div{
-  width:40px;
-  height: 40px;
-  overflow: hidden;
-  text-align: center;
-  background-color: #FFFFFF;
-  color: #787878;
-}
-#calendar_content{
-  -webkit-border-radius: 0px 0px 12px 12px;
-  -moz-border-radius: 0px 0px 12px 12px; 
-  border-radius: 0px 0px 12px 12px;
-}
-#calendar_content div{
-  float: left;
-}
-#calendar_content div:hover{
-  background-color: #F8F8F8;
-}
-#calendar_header, #calendar_content div.today{
-  zoom: 1;
-  filter: alpha(opacity=70);
-  opacity: 0.7;
-}
-#calendar_content div.today{
-  color: #FFFFFF;
-}
-#calendar_header{
-  width: 100%;
-  height: 37px;
-  text-align: center;
-  background-color: #FF6860;
-  padding: 18px 0;
-  -webkit-border-radius: 12px 12px 0px 0px;
-  -moz-border-radius: 12px 12px 0px 0px; 
-  border-radius: 12px 12px 0px 0px;
-}
-#calendar_header h1{
-  font-size: 1.5em;
-  color: #FFFFFF;
-  float:left;
-  width:70%;
-}
-i[class^=icon-chevron]{
-  color: #FFFFFF;
-  float: left;
-  width:15%;
-  border-radius: 50%;
-}
+
   </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -151,18 +90,27 @@ i[class^=icon-chevron]{
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-2">
+          <div class="col-sm-4">
             <h1 class="m-0">Dashboard</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-2">
-            <form>
-            <select id="demo_overview_minimal_multiselect" class="dropbtn form-control" style="background-color:#fff;" onChange="getdata(this.value)">
+            <form onclick="getdata(this.value)">
+            <input type="hidden" id="leadid" value="<?php echo $id;?>">
+            <select id="demo_overview_minimal_multiselect " class="dropbtn form-control" style="background-color:#fff;" >
+            <option>select</option>
             <option>Today</option>
             <option>Last Week</option>
             <option>Monthly</option>
             <option>3 Month</option>
             </select>
             </form>
+          </div><!-- /.col -->
+          <?php
+          $leadreminder=mysqli_query($conn,"select * from lead where Firm_Name='$id'");
+          $leadreminderfetch=mysqli_fetch_array($leadreminder);
+          ?>
+          <div class="col-sm-2">
+            <div class="card">
+              <div class="card-header"></div>
+            </div>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -179,7 +127,7 @@ i[class^=icon-chevron]{
     <section class="content">
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
-        <div class="row">
+        <div class="row" id="leads">
          <!-- ./col -->
          <div class="col-lg-3 col-6">
             <!-- small box -->
@@ -206,7 +154,7 @@ i[class^=icon-chevron]{
             <div class="small-box bg-warning">
               <div class="inner">
               <?php
-              $query=mysqli_query($conn,"select * from lead where status_deal='Open'");
+              $query=mysqli_query($conn,"select * from lead where status_deal='Open' and Firm_Name='$id'");
                $count1=mysqli_num_rows($query);
                 ?>
                <h3><?php echo $count1; ?></h3>
@@ -227,7 +175,7 @@ i[class^=icon-chevron]{
             <div class="small-box bg-info">
               <div class="inner">
               <?php
-              $query=mysqli_query($conn,"select * from lead where status_deal='Closed'");
+              $query=mysqli_query($conn,"select * from lead where status_deal='Closed' and Firm_Name='$id'");
                $count1=mysqli_num_rows($query);
                 ?>
                <h3><?php echo $count1; ?></h3>
@@ -370,11 +318,7 @@ i[class^=icon-chevron]{
                 </div>
                 </div>
 
-                <div id="calendar">
-    <div id="calendar_header"><i class="icon-chevron-left"></i>          <h1></h1><i class="icon-chevron-right"></i>         </div>
-    <div id="calendar_weekdays"></div>
-    <div id="calendar_content"></div>
-  </div>          
+                <div id="container" class="calendar-container"></div>    
               </div>
           </div>
         </section>
@@ -492,20 +436,53 @@ let bookedChart = new Chart(chartx, {
 
 
     //calendar
-    $(function(){function c(){p();var e=h();var r=0;var u=false;l.empty();while(!u){if(s[r]==e[0].weekday){u=true}else{l.append('<div class="blank"></div>');r++}}for(var c=0;c<42-r;c++){if(c>=e.length){l.append('<div class="blank"></div>')}else{var v=e[c].day;var m=g(new Date(t,n-1,v))?'<div class="today">':"<div>";l.append(m+""+v+"</div>")}}var y=o[n-1];a.css("background-color",y).find("h1").text(i[n-1]+" "+t);f.find("div").css("color",y);l.find(".today").css("background-color",y);d()}function h(){var e=[];for(var r=1;r<v(t,n)+1;r++){e.push({day:r,weekday:s[m(t,n,r)]})}return e}function p(){f.empty();for(var e=0;e<7;e++){f.append("<div>"+s[e].substring(0,3)+"</div>")}}function d(){var t;var n=$("#calendar").css("width",e+"px");n.find(t="#calendar_weekdays, #calendar_content").css("width",e+"px").find("div").css({width:e/7+"px",height:e/7+"px","line-height":e/7+"px"});n.find("#calendar_header").css({height:e*(1/7)+"px"}).find('i[class^="icon-chevron"]').css("line-height",e*(1/7)+"px")}function v(e,t){return(new Date(e,t,0)).getDate()}function m(e,t,n){return(new Date(e,t-1,n)).getDay()}function g(e){return y(new Date)==y(e)}function y(e){return e.getFullYear()+"/"+(e.getMonth()+1)+"/"+e.getDate()}function b(){var e=new Date;t=e.getFullYear();n=e.getMonth()+1}var e=480;var t=2013;var n=9;var r=[];var i=["JANUARY","FEBRUARY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"];var s=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];var o=["#16a085","#1abc9c","#c0392b","#27ae60","#FF6860","#f39c12","#f1c40f","#e67e22","#2ecc71","#e74c3c","#d35400","#2c3e50"];var u=$("#calendar");var a=u.find("#calendar_header");var f=u.find("#calendar_weekdays");var l=u.find("#calendar_content");b();c();a.find('i[class^="icon-chevron"]').on("click",function(){var e=$(this);var r=function(e){n=e=="next"?n+1:n-1;if(n<1){n=12;t--}else if(n>12){n=1;t++}c()};if(e.attr("class").indexOf("left")!=-1){r("previous")}else{r("next")}})})
+    var $calendar;
+  $(document).ready(function () {
+    let container = $("#container").simpleCalendar({
+      fixedStartDay: 0, // begin weeks by sunday
+      disableEmptyDetails: true,
+      events: [
+        // generate new event after tomorrow for one hour
+      
+        {
+          startDate: new Date(new Date().setHours(new Date().getHours() + 11)).toDateString(),
+          endDate: new Date(new Date().setHours(new Date().getHours() +12)).toISOString(),
+          summary: 'Visit of the Eiffel Tower'
+        },
+        // // generate new event for yesterday at noon
+        // {
+        //   startDate: new Date(new Date().setHours(new Date().getHours() - new Date().getHours() - 12, 0)).toISOString(),
+        //   endDate: new Date(new Date().setHours(new Date().getHours() - new Date().getHours() - 11)).getTime(),
+        //   summary: 'Restaurant'
+        // },
+        // // generate new event for the last two days
+        // {
+        //   startDate: new Date(new Date().setHours(new Date().getHours() - 48)).toISOString(),
+        //   endDate: new Date(new Date().setHours(new Date().getHours() - 24)).getTime(),
+        //   summary: 'Visit of the Louvre'
+        // }
+      ],
+
+    });
+    $calendar = container.data('plugin_simpleCalendar')
+  });
 </script>
 <script>
   function getdata(val){
-    let fetch=val;
+    let fetch=$(".dropbtn").val();
+    let leadid=$("#leadid").val();
     $.ajax({
       url:"action_leads.php",
       method:"POST",
-      data:{fetch:fetch},
+      data:{fetch:fetch,
+        leadid:leadid},
       success:function(data){
         $('#leads').html(data);
       }
     });
   }
 </script>
+
 </body>
+<script src="cal/dist/jquery.simple-calendar.js"></script>
 </html>
