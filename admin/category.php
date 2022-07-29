@@ -1,7 +1,14 @@
 <?php
 include("config.php");
 
-
+//category delete
+if(isset($_GET['delid'])){
+    $id=mysqli_real_escape_string($conn,$_GET['delid']);
+    $sql=mysqli_query($conn,"delete from category where id='$id'");
+    if($sql=1){
+        header("location:category.php");
+    }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -152,7 +159,10 @@ include("config.php");
                                             <td><?php echo $row['category']; ?></td>
                                             <td><div class="btn-group" role="group" aria-label="Basic outlined example">
                                                 <button type="button" class="btn btn-sm btn-info m-1" data-toggle="modal" data-target="#editUser"><i class="fa fa-pen"></i></button>
-                                                <button type="button" class="btn btn-sm btn-danger m-1" onClick="deleteBtn()"><i class="fa fa-trash"></i></button>
+
+                                               
+                                                <a href="category.php?delid=<?php echo $row['id']; ?>"><button type="button"  onclick="return confirm('Are you sure you want to delete this item')" class="btn btn-sm btn-danger m-1"  style="color: aliceblue"> <i class="fas fa-trash"></i> </button></a>
+
                                               </div></td>
                                         </tr>
                                         <?php $count++; } ?>
@@ -218,52 +228,38 @@ include("config.php");
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Create Users</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Update Category</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form  method="post" action="action_category.php">
                         <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="inputName">Name</label>
-                                    <input type="text" name="updateName" class="form-control" id="inputName"
-                                        placeholder="Enter Name">
-                                </div>
+
+                            <div class="col-4">
+                                
+                                    <label for="inputName">Category :</label>
                             </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="inputEmail">Email</label>
-                                    <input type="email" name="updateEmail" class="form-control" id="inputEmail"
-                                        placeholder="Enter Email">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="inputTitle">Job Title</label>
-                                    <input type="text" name="updateTitle" class="form-control" id="inputTitle"
-                                        placeholder="Enter Job Title">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="inputRole">Role</label>
-                                    <select class="form-control" name="updateRole" id="inputRole">
-                                        <option selected disabled>Select Role</option>
-                                        <option>Employee</option>
-                                        <option>Intern</option>
-                                    </select>
-                                </div>
-                            </div>
+                            <?php  
+                        $sql=mysqli_query($conn,"select * from  category");   
+                        while($arr=mysqli_fetch_array($sql)){
+                      ?>
+                            <div class="col-8">
+                                
+                                    <input type="text"  name="category" class="form-control" id="category"
+                                    value="<?php echo $arr['category'];?>">
+                           
+                  </div>
+                  <?php }  ?>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
+                        <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" name="update" class="btn btn-primary">Update</button>
                 </div>
+                    </form>
+                </div>
+              
             </div>
         </div>
     </div>
