@@ -137,16 +137,8 @@ include("include/sidebar.php");
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label>Project</label>
-                                    <select class="select2" name="pname" style="width: 100%;">
-                                        <option selected="selected">Select</option>
-                                        <option>Hotel</option>
-                                        <option>Real Estate</option>
-                                        <option>Doctor</option>
-                                        <option>Delaware</option>
-                                        <option>Tennessee</option>
-                                        <option>Texas</option>
-                                    </select>
+                                    <label>Project Name</label>
+                                    <input type="text" class="form-control"  name="pname" id=pname >
                                 </div>
                                </div>
                              <div class="modal-footer">
