@@ -9,10 +9,11 @@ if(isset($_POST['submitt'])){
     $Client_Name=$_POST['Cname'];
     $Mobile_Number=$_POST['number'];
     $Requirement=$_POST['requirement'];
+    $status="Open";
     date_default_timezone_set('Asia/Kolkata');
     $Date = date("Y-m-d H:i:s");
    
-    $sql=mysqli_query($conn,"INSERT INTO `lead`(`Firm_Name`,`Client_Name`, `Mobile_Number`,`Requirement`,`Created_On`) VALUES ('$Firm_Name','$Client_Name','$Mobile_Number','$Requirement','$Date')");
+    $sql=mysqli_query($conn,"INSERT INTO `lead`(`Firm_Name`,`Client_Name`, `Mobile_Number`,`Requirement`,`Created_On`,`status_deal`) VALUES ('$Firm_Name','$Client_Name','$Mobile_Number','$Requirement','$Date','$status')");
 
     if($sql==1){
         echo '<script>alert("Saved!", "data successfully submitted", "success");</script>';
@@ -149,8 +150,6 @@ include("include/sidebar.php");
                   $query=mysqli_query($conn,"select * from client");
                 
                   ?>
-
-
                       <select class="form-control select2" name="Fname" style="width: 100%;" required>
 
                         <option selected="selected" disabled>Select</option>
@@ -158,10 +157,6 @@ include("include/sidebar.php");
                    while($sql=mysqli_fetch_array($query))
                    {
                      ?>
-
-
-                        
-
                         <option value="<?php echo $sql['Client_Code']; ?>"> <?php echo $sql['Firm_Name']; ?></option>
                         <?php } ?>
                       </select>
@@ -174,6 +169,7 @@ include("include/sidebar.php");
                     </div>
                 <!-- /.form-group -->
               </div>
+              
               <!-- /.col -->
               <div class="col-md-6">
                 <div class="form-group">
@@ -191,9 +187,62 @@ include("include/sidebar.php");
                 <!-- /.form-group -->
               </div>
               
+
+                <!-- /.form-group -->
+              </div>
+            
+             
+
+              <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Project</label>
+                  <?php 
+                  $query=mysqli_query($conn,"select * from project");
+                
+                  ?>
+                      <select class="form-control select2" name="project" style="width: 100%;" required>
+
+                        <option selected="selected" disabled>Select</option>
+                        <?php
+                   while($sql=mysqli_fetch_array($query))
+                   {
+                     ?>
+                        <option value="<?php echo $sql['project_name']; ?>"> <?php echo $sql['project_name']; ?></option>
+                        <?php } ?>
+                      </select>
+                </div>
+                
+              </div>
+              
               <!-- /.col -->
-            </div>
-            <!-- /.row -->
+              <div class="col-md-6">
+                <div class="form-group">
+                <label>Social Media</label>
+                  <select class="form-control select2" name="social_media" style="width: 100%;">
+                    <option selected="selected" disabled>Select</option>
+                    <option>Facebook</option>
+                    <option>Instagram</option>
+                    <option>Twitter</option>
+                    <option>Linkdin</option>
+                    <option>Youtube</option>
+                  </select>
+                </div>
+                <!-- /.form-group -->
+               
+                
+                    
+                <!-- /.form-group -->
+              </div>
+              
+
+                <!-- /.form-group -->
+              </div>
+
+
+
+
+
             <div class="modal-footer">
     <button type="close" class="btn btn-default" data-dismiss="modal" name="close" id="close">Close</button>  
     <button type="submit" name="submitt" class="btn btn-primary float-right my-3 " id="sub" style="margin-right: 5px;">

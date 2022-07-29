@@ -14,7 +14,7 @@ if(!isset($_SESSION['id']))
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ticket | CRM</title>
+  <title>project | CRM</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -39,8 +39,15 @@ margin-right:40px !important;
 .toast{
   width: 250px;
 }
-a{
-  text-decoration:none;
+   
+.select2-container--default .select2-selection--single {
+    background-color: #fff;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    padding-bottom: 27px !important;
+}
+.select2-container--default.select2-container--focus .select2-selection--multiple, .select2-container--default.select2-container--focus .select2-selection--single {
+    border-color: #d3d9df;
 }
     </style>
 </head>
@@ -61,12 +68,12 @@ include("include/sidebar.php");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Ticket</h1>
+            <h1>Project</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-              <li class="breadcrumb-item active">Ticket</li>
+              <li class="breadcrumb-item active">project</li>
             </ol>
           </div>
         </div>
@@ -77,65 +84,73 @@ include("include/sidebar.php");
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-12">
-         
+          <div class="col-12">        
             <!-- /.card -->
-
-            <div class="card">
+              <div class="card">
                 <div class="card-header">
-                  <h5 class="card-title">List of Client</h5>
-                  <a href="ticketform.php" button type="button" class="btn btn-primary float-right my-3 " style="margin-right: 5px;">
-                    + Add Ticket
+                  <h5 class="card-title">List of Project</h5>
+                  <button type="button" class="btn btn-primary float-right my-3" data-toggle="modal" data-target="#exampleModal" style="margin-right: 5px;">
+                    + Add Project
                   </a>
                 </div>
               <!-- /.card-header -->
-              <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                  <tr>
-                    <th>Sr no.</th>
-                    <th>Ticket No.</th>
-                    <th>Description</th>
-                    <th>Subject</th>
-                    <th>Status</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                    $sql=mysqli_query($conn,"select * from ticket where Client_Code='$id'");
-                    $count=1;
-                  while ($row=mysqli_fetch_array($sql)){ 
-          ?>
-            <tr>
-                <td><?php echo $count;?></td>
-                <td><?php echo $row['ticket_no']; ?></td>
-                <td><?php echo $row['Description']; ?></td>
-                <td><?php echo $row['Subject']; ?></td>
-                <td style="text-align:center"><?php
-                                                $status=$row['status'];
-                                             if($status=='Open'){
-                                                    echo '<span class="badge badge-success">Open</span>';
-                                                }
-                                                else if($status=='Inprocess'){
-                                                    echo '<span class="badge badge-danger">In Proccess</span>';
-                                                }else if($status=='Hold'){
-                                                   echo '<span class="badge badge-warning">Hold On</span>';
-                                                }else if($status=='Closed'){
-                                                    echo '<span class="badge badge-secondary">Closed</span>';
-                                                }
-                                                ?></td>
-
-                  </tr>
-                  <?php $count++; } ?>
+               <div class="card-body">
+                   <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                           <tr>
+                           <th>Sr no.</th>
+                           <th>Project Name</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        $sql=mysqli_query($conn,"select * from project where client_id='$id'");
+                        $count=1;
+                       while ($row=mysqli_fetch_array($sql)){ 
+                        ?>
+                       <tr>
+                        <td><?php echo $count;?></td>
+                      <td><?php echo $row['project_name']; ?></td>
+                      </tr>
+                        <?php $count++; } ?>
                   
-                </table>
-              </div>
+                    </table>
+                </div>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
           </div>
           <!-- /.col -->
         </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Project</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="api\project_action.php" method="post" >
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Project Name</label>
+                                    <input type="text" class="form-control"  name="pname" id=pname >
+                                </div>
+                               </div>
+                             <div class="modal-footer">
+                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                             <button type="submit" name="submi" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+               
+            </div>
+        </div>
+    </div>
         <!-- /.row -->
       </div>
       <!-- /.container-fluid -->
@@ -184,6 +199,8 @@ include("include/sidebar.php");
    
   });
 </script>
+
+
 
 </body>
 </html>

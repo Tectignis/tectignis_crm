@@ -2,6 +2,19 @@
 include("config.php");
 
 
+if(isset($_POST['update'])){
+    $updateRoles = $_POST['updateRoles'];
+    $id=$_POST['id'];
+    
+       
+        $sql="UPDATE `users` SET `name`='$updateName',`email`='$updateEmail',`job_title`='$updateTitle',`job_role`='$updateRole',`image`='$image' WHERE id='$id
+        .'";
+        if (mysqli_query($conn, $sql)){
+          header("location:users.php");
+       } else {
+          echo "<script> alert ('connection failed !');window.location.href='manual-Attendance.php'</script>";
+       }
+      }
 ?>
 
 <!DOCTYPE html>
@@ -151,8 +164,10 @@ include("config.php");
                                             <td><?php echo $row['roles']; ?></td>
                                             <td></td>
                                             <td><div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                <button type="button" class="btn btn-sm btn-info m-1" data-toggle="modal" data-target="#editUser"><i class="fa fa-pen"></i></button>
-                                                <button type="button" class="btn btn-sm btn-danger m-1" onClick="deleteBtn()"><i class="fa fa-trash"></i></button>
+                                                <button type="button" class="btn btn-sm btn-info m-1" data-toggle="modal" data-target="#editUser" data-id="=<?php echo $row['id']; ?>"><i class="fa fa-pen"></i></button>
+
+                                                <button class="btn btn-sm btn-danger m-1 delbtn" type="button" onclick="deleteBtn()" data-id="=<?php echo $row['id']; ?>"><i class="fa fa-trash"></i></button>
+
                                               </div></td>
                                         </tr>
                                         <?php  } ?>
@@ -213,63 +228,30 @@ include("config.php");
        </div>
    </div>
     <!-- Edit Users Modal -->
-    <div class="modal fade" id="editUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="dnkModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Create Users</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Update UseRolesrs</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="inputName">Name</label>
-                                    <input type="text" name="updateName" class="form-control" id="inputName"
-                                        placeholder="Enter Name">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="inputEmail">Email</label>
-                                    <input type="email" name="updateEmail" class="form-control" id="inputEmail"
-                                        placeholder="Enter Email">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="inputTitle">Job Title</label>
-                                    <input type="text" name="updateTitle" class="form-control" id="inputTitle"
-                                        placeholder="Enter Job Title">
-                                </div>
-                            </div>
-
-                            
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="inputRole">Role</label>
-                                    <select class="form-control" name="updateRole" id="inputRole">
-                                        <option selected disabled>Select Role</option>
-                                        <option>Employee</option>
-                                        <option>Intern</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                <form method="post">
+                <div class="modal-body body1" >
+                    
+                  
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" name="update" class="btn btn-primary">Update</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
-
     <!-- jQuery -->
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
@@ -354,6 +336,32 @@ include("config.php");
             else { return false; }
         }
     </script>
+
+<script>
+            $(document).ready(function(){
+                $('.delbtn').click(function(e){
+                    e.preventDefault();
+                    let del_id = $(this).data('id');
+                    swal({
+                        title: "Are you sure?",
+                        text: "Once deleted, you will not be able to recover this imaginary file!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            swal("Poof! Your imaginary file has been deleted!", {
+                                icon: "success",
+                            });
+                            window.location.href = "action_roles.php?del_id"+del_id;
+                        } else {
+                            swal("Your imaginary file is safe!");
+                        }
+                    });
+                    })
+                });
+                </script>
 </body>
 
 </html>

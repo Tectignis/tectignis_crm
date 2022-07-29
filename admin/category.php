@@ -348,6 +348,31 @@ if(isset($_GET['delid'])){
             else { return false; }
         }
     </script>
+    <script>
+            $(document).ready(function(){
+                $('.delbtn').click(function(e){
+                    e.preventDefault();
+                    let del_id = $(this).data('id');
+                    swal({
+                        title: "Are you sure?",
+                        text: "Once deleted, you will not be able to recover this imaginary file!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            swal("Poof! Your imaginary file has been deleted!", {
+                                icon: "success",
+                            });
+                            window.location.href = "action_category.php?del_id"+del_id;
+                        } else {
+                            swal("Your imaginary file is safe!");
+                        }
+                    });
+                    })
+                });
+                </script>
 </body>
 
 </html>
