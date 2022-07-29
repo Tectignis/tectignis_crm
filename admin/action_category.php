@@ -19,6 +19,18 @@ if(isset($_POST['submitt'])){
    
 }
 
+if(isset($_POST['update']))
+{
+    $category=$_POST['category'];
+   
+    $sql="UPDATE category SET category='$category'";
+    header("location:category.php");
+    if (mysqli_query($conn, $sql)){
+      echo "<script> alert ('New category has been updeted successfully !');</script>";
+   } else {
+      echo "<script> alert (' failed !');</script>";
+   }
+}
 if(isset($_GET['del_id'])){
     $delid = $_GET['del_id'];
     $sql = mysqli_query($conn,"DELETE FROM category WHERE id = '$delid'");
