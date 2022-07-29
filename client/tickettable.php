@@ -30,6 +30,16 @@ if(!isset($_SESSION['id']))
   
    <style>
    
+   .card-header{
+      padding:0px;
+      background-color: rgba(0,0,0,.03);
+      
+    }
+    .card-title{
+float:left;
+padding:20px;
+    }
+  
   .toast-header strong{
 margin-right:40px !important;
 }
