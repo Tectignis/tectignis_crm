@@ -256,12 +256,12 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form method="post" action="clients.php">
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="inputPass">Password</label>
-                                    <input type="password" name="resetPass" class="form-control" id="inputPass"
+                                    <input type="password" name="resetPass" class="form-control" id="resetPass"
                                         placeholder="Enter Password">
                                 </div>
                             </div>
@@ -269,16 +269,17 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
                                 <div class="form-group">
                                     <label for="inputConfirmPass">Confirm Password</label>
                                     <input type="password" name="confirmResetPass" class="form-control"
-                                        id="inputConfirmPass" placeholder="Re-enter Password">
+                                        id="confirmResetPass" placeholder="Re-enter Password">
                                 </div>
                             </div>
                         </div>
-                    </form>
+                 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" name="update" class="btn btn-primary">Update</button>
+                    <button type="submit" name="submi" id="submi" class="btn btn-primary">Update</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
@@ -288,7 +289,7 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Create Clients</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit Client Detail</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -356,7 +357,7 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
                     {
                       ?>
 
-                         <option value="<?php echo $sql['category']; ?>"> <?php echo $sql['category']; ?></option>
+                         <option value="<?php echo $sql['id']; ?>"> <?php echo $sql['category']; ?></option>
                          <?php } ?>
                                     </select>
                                 </div>
@@ -502,6 +503,19 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
                     })
                 });
                 </script>
+                <script type="text/javascript">
+    $(function () {
+        $("#submi").click(function () {
+            var password = $("#resetPass").val();
+            var confirmPassword = $("#confirmResetPass").val();
+            if (password != confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+            return true;
+        });
+    });
+</script>
 
 </body>
 

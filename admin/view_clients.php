@@ -1,6 +1,15 @@
 <?php
 include("config.php");
 
+if(isset($_GET['del_id'])){
+    $delid = $_GET['del_id'];
+    $sql = mysqli_query($conn,"DELETE FROM lead WHERE id = '$delid'");
+    if($sql){
+      header ("location:view_clients.php"); 
+     
+    }
+    else{ echo "<script>alert('Failed to Delete')</script>"; }
+  }
 
 ?>
 
@@ -213,7 +222,7 @@ include("config.php");
                 <td><?php echo $row['Requirement']; ?></td>
                 <td><?php echo $row['Created_On']; ?></td>  
                                     <td><div class="btn-group" role="group" aria-label="Basic outlined example">
-                                        <button type="button" class="btn btn-sm btn-danger m-1"><i class="fa fa-trash"></i></button>
+                                        <button type="button" onclick="deleteBtn()" class="btn btn-sm btn-danger m-1 delbtn" data-id="=<?php echo $row['id']; ?>"><i class="fa fa-trash"></i></button> 
                                       </div></td>
                                   </tr>
                                   <?php $count++; } ?>
@@ -279,6 +288,7 @@ include("config.php");
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="dist/js/pages/dashboard.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
 
     <script>
         function deleteBtn() {
@@ -300,6 +310,31 @@ include("config.php");
             else { return false; }
         }
     </script>
+    <script>
+            $(document).ready(function(){
+                $('.delbtn').click(function(e){
+                    e.preventDefault();
+                    let del_id = $(this).data('id');
+                    swal({
+                        title: "Are you sure?",
+                        text: "Once deleted, you will not be able to recover this imaginary file!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            swal("Poof! Your imaginary file has been deleted!", {
+                                icon: "success",
+                            });
+                            window.location.href = "view_clients.php?del_id"+del_id;
+                        } else {
+                            swal("Your imaginary file is safe!");
+                        }
+                    });
+                    })
+                });
+ </script>
 </body>
 
 </html>

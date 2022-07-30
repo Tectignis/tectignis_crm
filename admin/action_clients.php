@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("config.php");
 ?>
 <?php
@@ -46,9 +47,9 @@ if(isset($_POST['submit'])){
 //client edit fetch
   if(isset($_POST['dnk'])){
     $id=$_POST['dnk'];
-         $sql=mysqli_query($conn,"select * from client where Client_Code='".$id."'");
+         $sql=mysqli_query($conn,"select category.*,client.* from category inner join client on category.id=client.category where Client_Code='".$id."'");
               
-           while ($row=mysqli_fetch_array($sql)){ 
+           $row=mysqli_fetch_array($sql)
            ?>
                         <div class="row">
                             <div class="col-6">
@@ -69,14 +70,17 @@ if(isset($_POST['submit'])){
                             <div class="col-6">
                                 <div class="form-group">
                                 <label>Category</label>
-                                    <select class="form-control" name="category" style="width: 100%;">
-                                        <option selected="selected"><?php echo $row['Category']; ?></option>
-                                        <option>Hotel</option>
-                                        <option>Real Estate</option>
-                                        <option>Doctor</option>
-                                        <option>Delaware</option>
-                                        <option>Tennessee</option>
-                                        <option>Texas</option>
+                                    <select class="form-control" value="<?php echo $row['category']; ?>" name="category" id="inputcategory">
+                                        <option selected value="<?php echo $row['category']; ?>"><?php echo $row['category']; ?></option>
+    
+                                        <?php 
+                   $query=mysqli_query($conn,"select * from category");
+                    while($sql=mysqli_fetch_array($query))
+                    {
+                      ?>
+
+                         <option value="<?php echo $sql['id']; ?>"> <?php echo $sql['category']; ?></option>
+                         <?php } ?>
                                     </select>
                                 </div>
                             </div>
@@ -99,4 +103,30 @@ if(isset($_POST['submit'])){
                             </div>
                         
                         </div>
-                        <?php } } ?>
+                        <?php  } ?>
+
+<?php
+$d=$_SESSION['aid'];
+if(isset($_POST["submi"])){
+	$password=$_POST["resetPass"];
+    $Confirm_password=$_POST["confirmResetPass"];
+
+	$sql = mysqli_query($conn,"SELECT * FROM client WHERE Client_Code='$d'");
+		$row=mysqli_fetch_assoc($sql); 
+
+	
+	$hashpassword=password_hash($password,PASSWORD_BCRYPT);
+
+		if($verify==1){
+			$query=mysqli_query($conn,"UPDATE `client` SET `password`='$hashpassword' WHERE Client_Code='$d'");
+      if($query){
+        session_destroy();   // function that Destroys Session 
+        echo "<script>alert('Password Changed Successfully')</script>";
+      }
+		}
+		else{
+			echo"<script>alert('Invalid Password');</script>";
+		}
+	
+	}
+?>                        
