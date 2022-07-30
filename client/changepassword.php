@@ -137,10 +137,9 @@ include("include/sidebar.php");
                 </div>
                 </div>
                 </div>
-                <div style="width:100%;">
+                
                 <button type="submit" name="submitt" class="btn btn-primary float-right my-3 " id="submit" >Submit</button>
-                </div>
-</form>
+                </form>
                 <!-- /.form-group -->
               </div>
               <!-- /.col -->
