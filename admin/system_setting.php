@@ -126,29 +126,34 @@ if(isset($_POST['favicon']))
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0">System Setting</h1>
-                            <ol class="breadcrumb float-sm-left">
-                                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                                <li class="breadcrumb-item active">Setting</li>
-                            </ol>
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.container-fluid -->
-            </div>
+            <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>System Setting</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+              <li class="breadcrumb-item active"> setting</li>
+              
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
             <!-- /.content-header -->
 
             <!-- Main content -->
             
            <!-- home -->
+           <div class="row">
+           <div class="col-lg-6">
       <section class="content ">
         <div class="container-fluid">
           <section class="content">
             <div class="row">
-              <div class="col-md-8">
+              <div class="col-md-12">
                 <div class="card card-primary">
                   <div class="card-header">
                     <h3 class="card-title">Logo</h3>
@@ -200,11 +205,13 @@ if(isset($_POST['favicon']))
             </div>
         </div>
       </section>
+                        </div>
+                        <div class="col-lg-6">
       <section class="content ">
         <div class="container-fluid">
           <section class="content">
             <div class="row">
-              <div class="col-md-8">
+              <div class="col-md-12">
                 <div class="card card-primary">
                   <div class="card-header">
                     <h3 class="card-title">Favicon</h3>
@@ -256,6 +263,8 @@ if(isset($_POST['favicon']))
             </div>
         </div>
       </section>
+                        </div>
+                        </div>
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
