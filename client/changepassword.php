@@ -1,20 +1,20 @@
 <?php
 session_start();
 include("config.php");
-$d=$_SESSION['id'];
+$id=$_SESSION['id'];
 if(isset($_POST["submitt"])){
 	$Old_password=$_POST["oldpassword"];
 	$New_password=$_POST["newpassword"];
     $Confirm_password=$_POST["confirmpassword"];
 
-	$sql = mysqli_query($conn,"SELECT * FROM client WHERE Client_Code='$d'");
+	$sql = mysqli_query($conn,"SELECT * FROM client WHERE Client_Code='$id'");
 		$row=mysqli_fetch_assoc($sql); 
 		$verify=password_verify($Old_password,$row['Password']);
 	
 	$hashpassword=password_hash($New_password,PASSWORD_BCRYPT);
 
 		if($verify==1){
-			$query=mysqli_query($conn,"UPDATE `client` SET `password`='$hashpassword' WHERE Client_Code='$d'");
+			$query=mysqli_query($conn,"UPDATE `client` SET `password`='$hashpassword' WHERE Client_Code='$id'");
       if($query){
         session_destroy();   // function that Destroys Session 
         echo "<script>alert('Password Changed Successfully'),window.location='clientlogin.php';</script>";
