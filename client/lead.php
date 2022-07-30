@@ -24,7 +24,7 @@ if(isset($_GET['delid'])){
        header("location:deal.php");
       }
     }
-
+    
 
     // if(isset($_POST['update'])){
     //   $updateName = $_POST['updateName'];
@@ -65,6 +65,7 @@ if(isset($_GET['delid'])){
   <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
+  <link href='//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css' rel='stylesheet' type='text/css'>
  <style>
     .card-header{
       padding:0px;
@@ -153,15 +154,15 @@ include("include/sidebar.php");
                     $count=1;
                   while ($row=mysqli_fetch_array($sql)){ 
           ?>
-            <tr>
-                <td><?php echo $count;?></td>
-               
-                <td><?php echo $row['Client_Name']; ?></td>
-                <td><?php echo $row['Mobile_Number']; ?></td>
-                <td><?php echo $row['Requirement']; ?></td>
-                <td><?php echo $row['Created_On']; ?></td>
-                <td><?php echo $row['social_media']; ?></td>
-                <td><?php echo $row['nature']; ?></td>
+          <tbody>
+                  <tr>
+                    <td><?php echo $count;?></td>
+                    <td><?php echo $row['Client_Name']; ?></td>
+                    <td><?php echo $row['Mobile_Number']; ?></td>
+                    <td><?php echo $row['Requirement']; ?></td>
+                    <td><?php echo $row['Created_On']; ?></td>
+                    <td><?php echo $row['social_media']; ?></td>
+                    <td><?php echo $row['nature']; ?></td>
                     <td style="text-align:center">
 
                     <button  type="button" class="btn btn-primary btn-rounded btn-icon usereditid" data-toggle="modal" data-id='<?php echo $row['id']; ?>'
@@ -172,15 +173,10 @@ include("include/sidebar.php");
                      <a href="lead.php?gen=<?php echo $row['id'];?>">
                                                 <button class="btn btn-warning" name="submit" >Deals</button>
                          </a>         
-
-                      
-
-                       
-                        
-                        
                         </td>
                   </tr>
                   <?php $count++; } ?>
+                  </tbody>
                  
                 </table>
               </div>
@@ -246,21 +242,13 @@ include("include/sidebar.php");
                <input type="hidden" name="uid" value="<?php echo $uid ?>" class="form-control"></p>
                </div>
                </div>
-
-
-         
-
-              
            </div>
             <div class="modal-footer justify-content-between">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-primary" name="leadsubmitt" >Submit</button>
             </div>
           </form>
-
         </div>
-       
-
 
         <!-- /.modal-content -->
       </div>
@@ -326,17 +314,19 @@ include("include/sidebar.php");
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+      'ajax': {
+          'url':'actionTableLead.php'
+      },
+      'columns': [
+         { data: 'emp_name' },
+         { data: 'email' },
+         { data: 'gender' },
+         { data: 'salary' },
+         { data: 'city' },
+      ]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
+    
   });
 </script>
 
