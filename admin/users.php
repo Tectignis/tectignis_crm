@@ -26,7 +26,7 @@ $updateName = $_POST['updateName'];
     if (mysqli_query($conn, $sql)){
       header("location:users.php");
    } else {
-      echo "<script> alert ('connection failed !');window.location.href='manual-Attendance.php'</script>";
+      echo "<script> alert ('connection failed !');window.location.href='users.php'</script>";
    }
   }
 

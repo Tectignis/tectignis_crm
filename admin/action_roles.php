@@ -20,6 +20,7 @@ if(isset($_POST['submitt'])){
 }
 
 
+
 if(isset($_GET['del_id'])){
     $delid = $_GET['del_id'];
     $sql = mysqli_query($conn,"DELETE FROM roles WHERE id = '$delid'");
@@ -48,5 +49,29 @@ if(isset($_GET['del_id'])){
                                 </div>
                             </div>
                            
+                        </div>
+                        <?php } } ?>
+
+
+                        
+<?php
+  if(isset($_POST['dnk2'])){
+    $id=$_POST['dnk2'];
+         $sql=mysqli_query($conn,"select * from roles where id='".$id."'");
+              
+           while ($row=mysqli_fetch_array($sql)){ 
+           ?>
+                        <div class="row">
+                            <div class="col-4">
+                            <label for="inputName">Name :</label>
+                             </div>
+                             <div class="col-8">
+                                    <input type="hidden" name="id" value="<?php echo $id ?>">
+                                    <input type="text" name="updaterole" value="<?php echo $row['roles']; ?>" class="form-control" id="inputName"
+                                        placeholder="Enter roles">
+                               
+                            </div>
+                       
+                        
                         </div>
                         <?php } } ?>
