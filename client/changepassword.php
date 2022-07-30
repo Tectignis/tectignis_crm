@@ -110,35 +110,36 @@ include("include/sidebar.php");
           <form method="post">
 
               <!-- /.col -->
-              <div class="row" style="justify-content:center;">
+              <div class="row" style="justify-content:left;">
               <div class="col-md-6">
-                <div class="form-group">
-                  <label>Old Password</label>
-                  <input type="password" class="form-control" name="oldpassword" id="oldpassword" placeholder="Old Password" required>
+                <div class="form-group d-flex">
+                  <label style="width:25%;">Old Password</label>
+                  <input type="password" class="form-control" name="oldpassword" id="oldpassword" placeholder="Old Password" width="80%"required>
                 </div>
                 </div>
                 </div>
 
                 <!-- /.form-group -->
-                <div class="row"style="justify-content:center;">
+                <div class="row"style="justify-content:left;">
                 <div class="col-md-6">
-                <div class="form-group">
-                  <label>New Password</label>
-                  <input type="password" class="form-control" name="newpassword" id="newpassword" placeholder="New Password" required>
+                <div class="form-group d-flex">
+                  <label style="width:25%;">New Password</label>
+                  <input type="password" class="form-control" name="newpassword" id="newpassword" placeholder="New Password" widht="80%" required>
                 </div>
                 </div>
                 </div>
 
-                <div class="row"style="justify-content:center;">
+                <div class="row"style="justify-content:left;">
                 <div class="col-md-6">
-                <div class="form-group">
-                  <label>Confirm Password</label>
-                  <input type="password" class="form-control" name="confirmpassword" id="password" placeholder="Confirm Password" required>
+                <div class="form-group d-flex">
+                  <label style="width:25%;">Confirm Password</label>
+                  <input type="password" class="form-control" name="confirmpassword" id="password" placeholder="Confirm Password" width="80%" required>
                 </div>
                 </div>
                 </div>
-                
-                <button type="submit" name="submitt" class="btn btn-primary float-right my-3 " id="submit" style="margin-right:50%;">Submit</button>
+                <div style="width:100%;">
+                <button type="submit" name="submitt" class="btn btn-primary float-right my-3 " id="submit" >Submit</button>
+                </div>
 </form>
                 <!-- /.form-group -->
               </div>
