@@ -58,6 +58,16 @@ if(isset($_POST["submitt"])){
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <style>
+     .card-header{
+      padding:0px;
+     
+      
+    }
+    .card-title{
+float:left;
+padding:20px;
+    }
+
     .toast-header strong{
 margin-right:40px !important;
 }
@@ -133,12 +143,12 @@ include("include/sidebar.php");
                 <div class="col-md-6">
                 <div class="form-group d-flex">
                   <label style="width:25%;">Confirm Password</label>
-                  <input type="password" class="form-control" name="confirmpassword" id="password" placeholder="Confirm Password" width="80%" required>
+                  <input type="password" class="form-control" name="confirmpassword" id="confirmpassword" placeholder="Confirm Password" width="80%" required>
                 </div>
                 </div>
                 </div>
                 
-                <button type="submit" name="submitt" class="btn btn-primary float-right my-3 " id="submit" >Submit</button>
+                <button type="submit" name="submitt" class="btn btn-primary float-right my-3 " id="submitt" >Submit</button>
                 </form>
                 <!-- /.form-group -->
               </div>
@@ -337,6 +347,20 @@ include("include/sidebar.php");
     myDropzone.removeAllFiles(true)
   }
   // DropzoneJS Demo Code End
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#submitt").click(function () {
+            var password = $("#newpassword").val();
+            var confirmPassword = $("#confirmpassword").val();
+            if (password != confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+            return true;
+        });
+    });
 </script>
     
 </body>
