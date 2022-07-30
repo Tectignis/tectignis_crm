@@ -10,6 +10,22 @@ if(isset($_GET['delid'])){
     }
     }
 ?>
+<?php
+if(isset($_POST['update'])){
+$category = $_POST['updateCategory'];
+$id=$_POST['id'];
+
+   
+    $sql="UPDATE `category` SET `category`='$category' WHERE id='$id'";
+    
+    if (mysqli_query($conn, $sql)){
+      header("location:category.php");
+   } else {
+      echo "<script> alert ('connection failed !');window.location.href='category.php'</script>";
+   }
+  }
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -158,9 +174,10 @@ if(isset($_GET['delid'])){
                                             <td><?php echo $count;?></td>
                                             <td><?php echo $row['category']; ?></td>
                                             <td><div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                <button type="button" class="btn btn-sm btn-info m-1" data-toggle="modal" data-target="#editUser"><i class="fa fa-pen"></i></button>
+                                                <button type="button" class="btn btn-sm btn-info m-1 useredit " data-id='<?php echo $row['id']; ?>'><i class="fa fa-pen"></i></button>
 
-                                               
+                                                
+
                                                 <a href="category.php?delid=<?php echo $row['id']; ?>"><button type="button"  onclick="return confirm('Are you sure you want to delete this item')" class="btn btn-sm btn-danger m-1"  style="color: aliceblue"> <i class="fas fa-trash"></i> </button></a>
 
                                               </div></td>
@@ -223,43 +240,27 @@ if(isset($_GET['delid'])){
        </div>
    </div>
     <!-- Edit Users Modal -->
-    <div class="modal fade" id="editUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="dnkModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Update Category</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Create Users</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form  method="post" action="action_category.php">
-                        <div class="row">
-
-                            <div class="col-4">
-                                
-                                    <label for="inputName">Category :</label>
-                            </div>
-                            <?php  
-                        $sql=mysqli_query($conn,"select * from  category");   
-                        while($arr=mysqli_fetch_array($sql)){
-                      ?>
-                            <div class="col-8">
-                                
-                                    <input type="text"  name="category" class="form-control" id="category"
-                                    value="<?php echo $arr['category'];?>">
-                           
-                  </div>
-                  <?php }  ?>
-                        </div>
-                        <div class="modal-footer">
+                <form method="post">
+                <div class="modal-body body1" >
+                    
+                  
+                    
+                </div>
+                <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" name="update" class="btn btn-primary">Update</button>
                 </div>
-                    </form>
-                </div>
-              
+                </form>
             </div>
         </div>
     </div>
@@ -373,6 +374,25 @@ if(isset($_GET['delid'])){
                     })
                 });
                 </script>
+               
+               <script>
+          $(document).ready(function(){
+          $('.useredit').click(function(){
+            let dnk = $(this).data('id');
+
+            $.ajax({
+            url: 'category_modal.php',
+            type: 'post',
+            data: {dnk: dnk},
+            success: function(response1){ 
+              $('.body1').html(response1);
+              $('#dnkModal').modal('show'); 
+            }
+          });
+          });
+
+          });
+          </script>
 </body>
 
 </html>

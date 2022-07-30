@@ -239,13 +239,9 @@ include("include/sidebar.php");
                 <!-- /.form-group -->
               </div>
 
-
-
-
-
             <div class="modal-footer">
     <button type="close" class="btn btn-default" data-dismiss="modal" name="close" id="close">Close</button>  
-    <button type="submit" name="submitt" class="btn btn-primary float-right my-3 " id="sub" style="margin-right: 5px;">
+    <button type="submit" name="submitt" class="btn btn-primary float-right my-3 " id="sub" style="margin-right: 5px;" >
                     Submit </button>    </div>
 
             <div class="row">

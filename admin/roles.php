@@ -1,22 +1,22 @@
 <?php
 include("config.php");
-
-
-if(isset($_POST['update'])){
-    $updateRoles = $_POST['updateRoles'];
-    $id=$_POST['id'];
-    
-       
-        $sql="UPDATE `users` SET `name`='$updateName',`email`='$updateEmail',`job_title`='$updateTitle',`job_role`='$updateRole',`image`='$image' WHERE id='$id
-        .'";
-        if (mysqli_query($conn, $sql)){
-          header("location:users.php");
-       } else {
-          echo "<script> alert ('connection failed !');window.location.href='manual-Attendance.php'</script>";
-       }
-      }
 ?>
+<?php
+if(isset($_POST['update'])){
+$roles = $_POST['updaterole'];
+$id=$_POST['id'];
 
+   
+    $sql="UPDATE `roles` SET `roles`='$roles' WHERE id='$id'";
+    
+    if (mysqli_query($conn, $sql)){
+      header("location:roles.php");
+   } else {
+      echo "<script> alert ('connection failed !');window.location.href='roles.php'</script>";
+   }
+  }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -164,7 +164,7 @@ if(isset($_POST['update'])){
                                             <td><?php echo $row['roles']; ?></td>
                                             <td></td>
                                             <td><div class="btn-group" role="group" aria-label="Basic outlined example">
-                                                <button type="button" class="btn btn-sm btn-info m-1" data-toggle="modal" data-target="#editUser" data-id="=<?php echo $row['id']; ?>"><i class="fa fa-pen"></i></button>
+                                                <button type="button" class="btn btn-sm btn-info m-1 useredit" data-toggle="modal" data-target="#editUser" data-id="<?php echo $row['id']; ?>"><i class="fa fa-pen"></i></button>
 
                                                 <button class="btn btn-sm btn-danger m-1 delbtn" type="button" onclick="deleteBtn()" data-id="=<?php echo $row['id']; ?>"><i class="fa fa-trash"></i></button>
 
@@ -233,7 +233,7 @@ if(isset($_POST['update'])){
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Update UseRolesrs</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Create Users</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -362,6 +362,25 @@ if(isset($_POST['update'])){
                     })
                 });
                 </script>
+
+<script>
+          $(document).ready(function(){
+          $('.useredit').click(function(){
+            let dnk = $(this).data('id');
+
+            $.ajax({
+            url: 'role_modal.php',
+            type: 'post',
+            data: {dnk: dnk},
+            success: function(response1){ 
+              $('.body1').html(response1);
+              $('#dnkModal').modal('show'); 
+            }
+          });
+          });
+
+          });
+          </script>
 </body>
 
 </html>

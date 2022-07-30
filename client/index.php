@@ -23,6 +23,7 @@ $leadDate=mysqli_query($conn,'SELECT Created_On, (DATE_FORMAT(Created_On,"%M")) 
 $leadDate1=mysqli_query($conn,'SELECT Created_On, (DATE_FORMAT(Created_On,"%M")) AS "Month", COUNT(*) AS Number_of_registered_users FROM lead WHERE year(Created_On)= year(Created_On) and Firm_Name='.$id.' GROUP BY (DATE_FORMAT(Created_On,"%M")) ORDER BY "Month" ASC');
 $ticketDate2=mysqli_query($conn,'SELECT date, (DATE_FORMAT(date,"%M")) AS "Month", COUNT(*) AS Number_of_registered_users FROM ticket WHERE year(date)= year(date) and Client_Code='.$id.' GROUP BY (DATE_FORMAT(date,"%M")) ORDER BY "Month" ASC');
 $leadnature=mysqli_query($conn,"select Created_On from lead where nature='Site View' and Firm_Name='$id'");
+$leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
 ?>
 
 <!DOCTYPE html>
@@ -53,9 +54,9 @@ $leadnature=mysqli_query($conn,"select Created_On from lead where nature='Site V
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
   <!-- calendar -->
-  <link rel="stylesheet" href="cal/dist/simple-calendar.css">
-  <link rel="stylesheet" href="cal/assets/demo.css">
-  
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+    <link rel="stylesheet" href="cal/css/demo.css"/>
+    <link rel="stylesheet" href="cal/css/theme1.css"/>
 
   <style>
     .toast-header strong{
@@ -64,6 +65,12 @@ margin-right:40px !important;
 .toast-body{
   cursor:pointer;
   display: inline-block;
+}
+.cld-main {
+    width: 100%;
+}
+.cld-number {
+    padding: 0;
 }
 
   </style>
@@ -90,11 +97,11 @@ margin-right:40px !important;
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
-          <div class="col-sm-4">
+          <div class="col-sm-6">
             <h1 class="m-0">Dashboard</h1>
-            <form onclick="getdata(this.value)">
+            <form onclick="getdata(this.value)"  style="width: fit-content;float:left">
             <input type="hidden" id="leadid" value="<?php echo $id;?>">
-            <select id="demo_overview_minimal_multiselect " class="dropbtn form-control" style="background-color:#fff;" >
+            <select id="demo_overview_minimal_multiselect " class="dropbtn form-control" style="background-color:#fff;">
             <option>select</option>
             <option>Today</option>
             <option>Last Week</option>
@@ -102,16 +109,11 @@ margin-right:40px !important;
             <option>3 Month</option>
             </select>
             </form>
+
+            
+
           </div><!-- /.col -->
-          <?php
-          $leadreminder=mysqli_query($conn,"select * from lead where Firm_Name='$id'");
-          $leadreminderfetch=mysqli_fetch_array($leadreminder);
-          ?>
-          <div class="col-sm-2">
-            <div class="card">
-              <div class="card-header"></div>
-            </div>
-          </div>
+
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="index.php">Home</a></li>
@@ -312,13 +314,27 @@ margin-right:40px !important;
     }
      </script> 
             <div class="col-md-6">
-              <div class="card bg-gradient-primary d-none">
-                <div class="card-footer bg-transparent">
               
+            <div class="card card-success">
+                <div class="card-header">
+                <h3 class="card-title">Calendar</h3>
+                <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+                </button>
+                </div>
+                </div>
+                <div class="card-body">
+                <div class="chart">
+                <div id="caleandar"></div> 
                 </div>
                 </div>
 
-                <div id="container" class="calendar-container"></div>    
+              </div>
+                  
               </div>
           </div>
         </section>
@@ -436,43 +452,14 @@ let bookedChart = new Chart(chartx, {
 
 
     //calendar
-    var $calendar;
-  $(document).ready(function () {
-    let container = $("#container").simpleCalendar({
-      fixedStartDay: 0, // begin weeks by sunday
-      disableEmptyDetails: true,
-      events: [
-        // generate new event after tomorrow for one hour
-      
-        {
-          startDate: new Date(new Date().setHours(new Date().getHours() + 11)).toDateString(),
-          endDate: new Date(new Date().setHours(new Date().getHours() +12)).toISOString(),
-          summary: 'Visit of the Eiffel Tower'
-        },
-        // // generate new event for yesterday at noon
-        // {
-        //   startDate: new Date(new Date().setHours(new Date().getHours() - new Date().getHours() - 12, 0)).toISOString(),
-        //   endDate: new Date(new Date().setHours(new Date().getHours() - new Date().getHours() - 11)).getTime(),
-        //   summary: 'Restaurant'
-        // },
-        // // generate new event for the last two days
-        // {
-        //   startDate: new Date(new Date().setHours(new Date().getHours() - 48)).toISOString(),
-        //   endDate: new Date(new Date().setHours(new Date().getHours() - 24)).getTime(),
-        //   summary: 'Visit of the Louvre'
-        // }
-      ],
-
-    });
-    $calendar = container.data('plugin_simpleCalendar')
-  });
+  
 </script>
 <script>
   function getdata(val){
     let fetch=$(".dropbtn").val();
     let leadid=$("#leadid").val();
     $.ajax({
-      url:"action_leads.php",
+      url:"action_index.php",
       method:"POST",
       data:{fetch:fetch,
         leadid:leadid},
@@ -482,7 +469,21 @@ let bookedChart = new Chart(chartx, {
     });
   }
 </script>
-
+<script type="text/javascript" src="cal/js/caleandar.js"></script>
+    <script>
+      let events = [
+        <?php while($leadCalendarFetch=mysqli_fetch_array($leadCalendar)){ 
+          $year= date('Y', strtotime($leadCalendarFetch['sitevisit_date']));
+          $month= date('m', strtotime($leadCalendarFetch['sitevisit_date']));
+          $month1=$month-1;
+          $date= date('d', strtotime($leadCalendarFetch['sitevisit_date']));
+          ?>
+  {'Date': new Date(<?php echo $year. "," .$month1. "," .$date ?>), 'Title': '<?php echo $leadCalendarFetch['Requirement'] ?>'},
+  <?php } ?>
+];
+let settings = {};
+let element = document.getElementById('caleandar');
+caleandar(element, events, settings);
+    </script>
 </body>
-<script src="cal/dist/jquery.simple-calendar.js"></script>
 </html>
