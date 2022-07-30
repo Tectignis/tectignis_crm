@@ -205,7 +205,7 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
 <?php } ?>
                                     </a>
                                     <h4 class="mt-2"><a href=""><?php echo $row['Authorized_Name']; ?></a></h4>
-                                    <h6 class=""><?php echo $row['Email']; ?></h6>
+                                    <h6 class=""><?php echo $row['Email']; ?></h6><h6 class="">
 
                                 </div>
                             </div>
@@ -339,9 +339,8 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label for="inputPass">Password</label>
-                                    <input type="password" name="password" class="form-control" id="inputPass"
-                                        placeholder="Password">
+                                    <label for="inputPass">Mobile Number</label>
+                                    <input type="text" minlength="10" maxlength="10" class="form-control" name="number" id="number" placeholder="Mobile Number" required>
                                 </div>
                             </div>
                             <div class="col-6">
