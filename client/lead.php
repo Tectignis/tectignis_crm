@@ -24,7 +24,8 @@ if(isset($_GET['delid'])){
        header("location:deal.php");
       }
     }
-    
+    $uid=$_SESSION['id'];
+    mysqli_query($conn,"update lead set status=1 where Firm_Name=$uid");
 
     // if(isset($_POST['update'])){
     //   $updateName = $_POST['updateName'];
@@ -194,67 +195,6 @@ include("include/sidebar.php");
     <!-- /.content -->
   </div>
 
-  <div class="modal fade"  id="exampleModal" >
-      <div class="modal-dialog" >
-        <div class="modal-content "style="border-radius:35px;">
-        <div class="modal-header" >
-             ADD LEADS
-             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-               <span aria-hidden="true">&times;</span>
-             </button>
-           </div>
-     <form action="api/addlead_action.php" method="post">
-           <div class="modal-body">
-           
-                <div class="row">   
-                
-                
-                <div class="col-8">
-                <p>  </p>
-                </div>
-                </div>
-
-                <div class="row">   
-                 <div class="col-4">
-                <b>Client Name :</b><br>
-                </div>
-                <div class="col-8">
-                <p> <input type="text" class="form-control"  name="Client_Name" ></p>
-                </div>
-                </div>
-
-                <div class="row">   
-                 <div class="col-4">
-                <b> Client Mobile Number :</b><br>
-                </div>
-                <div class="col-8">
-                <p> <input type="tel" name="Mobile_Number"  class="form-control"></p>
-                </div>
-                </div>
-
-                <div class="row">   
-                <div class="col-4">
-               <b> Requirement :</b><br>
-               </div>
-               <div class="col-8">
-               <p> <input type="text" name="Requirement" class="form-control">
-               <input type="hidden" name="sid" value="<?php echo $id ?>" class="form-control">
-               <input type="hidden" name="uid" value="<?php echo $uid ?>" class="form-control"></p>
-               </div>
-               </div>
-           </div>
-            <div class="modal-footer justify-content-between">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary" name="leadsubmitt" >Submit</button>
-            </div>
-          </form>
-        </div>
-
-        <!-- /.modal-content -->
-      </div>
-      
-      <!-- /.modal-dialog -->
-    </div>
     <div class="modal fade" id="dnkModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document">
