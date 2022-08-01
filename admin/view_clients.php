@@ -1,12 +1,12 @@
 <?php
 include("config.php");
-$client_code=$_SESSION['Client_Code'];
 $id=$_GET['view'];
 if(isset($_GET['del_id'])){
     $delid = $_GET['del_id'];
     $sql = mysqli_query($conn,"DELETE FROM lead WHERE id = '$delid'");
     if($sql){
-      header ("location:view_clients.php?view=$id"); 
+      header ("location:clients.php"); 
+     
     }
     else{ echo "<script>alert('Failed to Delete')</script>"; }
   }
