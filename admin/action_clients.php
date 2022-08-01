@@ -111,7 +111,7 @@ if(isset($_POST["submi"])){
 ?>     
 
 <?php
-//clients Password
+//clients POST & Email->Password
 
 if(isset($_POST['submit'])){
     $name=$_POST['name'];
@@ -119,7 +119,7 @@ if(isset($_POST['submit'])){
     $Mobile_Number=$_POST['number'];
     $Category=$_POST['category'];
 date_default_timezone_set('Asia/Kolkata');
-$Date = date('d-m-y h:i:s');
+$Date = date('y-m-d h:i:s');
 $Password= rand(100000, 999999);
 $hashPassword=password_hash($Password,PASSWORD_BCRYPT);
 
