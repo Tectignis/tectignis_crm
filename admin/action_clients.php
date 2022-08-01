@@ -85,30 +85,31 @@ include("config.php");
                         <?php  } ?>
 
 <?php
-$d=$_SESSION['aid'];
-if(isset($_POST["submi"])){
-	$password=$_POST["resetPass"];
-    $Confirm_password=$_POST["confirmResetPass"];
-
-	$sql = mysqli_query($conn,"SELECT * FROM client WHERE Client_Code='$d'");
-		$row=mysqli_fetch_assoc($sql); 
-
-	
-	$hashpassword=password_hash($password,PASSWORD_BCRYPT);
-
-		if($verify==1){
-			$query=mysqli_query($conn,"UPDATE `client` SET `password`='$hashpassword' WHERE Client_Code='$d'");
-      if($query){
-        session_destroy();   // function that Destroys Session 
-        echo "<script>alert('Password Changed Successfully')</script>";
-      }
-		}
-		else{
-			echo"<script>alert('Invalid Password');</script>";
-		}
+if(isset($_POST["resetpass"])){
+  $id=$_POST["resetpass"];
+	echo '
+  <div class="row">
+                            <div class="col-12">
+                            <input type="hidden" name="id" value="'.$id.'">
+                                <div class="form-group">
+                                    <label for="inputPass">Password</label>
+                                    <input type="password" name="resetPass" class="form-control" id="resetPass"
+                                        placeholder="Enter Password">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="inputConfirmPass">Confirm Password</label>
+                                    <input type="password" name="confirmResetPass" class="form-control"
+                                        id="confirmResetPass" placeholder="Re-enter Password">
+                                </div>
+                            </div>
+                        </div>
+  ';
 	
 	}
 ?>     
+
 
 <?php
 //clients POST & Email->Password

@@ -18,6 +18,27 @@ if(isset ($_POST['update'])){
 
     $sql=mysqli_query($conn,"UPDATE `client` SET `Authorized_Name`='$name',`Email`='$email',`Category`='$category',`image`='$image' where Client_Code='$id'"); 
 }
+
+if(isset($_POST["submi"])){
+    $d=$_POST['id'];
+	$password=$_POST["resetPass"];
+    $Confirm_password=$_POST["confirmResetPass"];
+	$sql = mysqli_query($conn,"SELECT * FROM client WHERE Client_Code='$d'");
+		$row=mysqli_fetch_assoc($sql); 
+	$hashpassword=password_hash($password,PASSWORD_BCRYPT);
+		if($verify==1){
+			$query=mysqli_query($conn,"UPDATE `client` SET `password`='$hashpassword' WHERE Client_Code='$id'");
+      if($query){
+        session_destroy();   // function that Destroys Session 
+        echo "<script>alert('Password Changed Successfully')</script>";
+      }
+		}
+		else{
+			echo"<script>alert('Invalid Password');</script>";
+		}
+	
+	}
+
 ?>
 
  
@@ -173,8 +194,8 @@ if(isset ($_POST['update'])){
                                                 <button class="dropdown-item delbtn" type="button" onclick="deleteBtn()" data-id="=<?php echo $row['Client_Code']; ?>"><i class="fa fa-trash-alt"></i> Delete</button>
 
 
-                                                <button class="dropdown-item" type="button" data-toggle="modal"
-                                                    data-target="#resetUserPass"><i class="fa fa-key"></i> Reset
+                                                <button class="dropdown-item rpassword" type="button" data-toggle="modal"
+                                                data-id="=<?php echo $row['Client_Code']; ?>" ><i class="fa fa-key"></i> Reset
                                                     Password</button>
 
                                                     <?php
@@ -253,24 +274,9 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form method="post" action="action_clients.php">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="inputPass">Password</label>
-                                    <input type="password" name="resetPass" class="form-control" id="resetPass"
-                                        placeholder="Enter Password">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="inputConfirmPass">Confirm Password</label>
-                                    <input type="password" name="confirmResetPass" class="form-control"
-                                        id="confirmResetPass" placeholder="Re-enter Password">
-                                </div>
-                            </div>
-                        </div>
+                <form method="post" action="action_clients.php">
+                <div class="modal-body body2">
+                   
                  
                 </div>
                 <div class="modal-footer">
@@ -468,6 +474,20 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
             success: function(response1){ 
               $('.body1').html(response1);
               $('#dnkModal').modal('show'); 
+            }
+          });
+          });
+
+          $('.rpassword').click(function(){
+            let resetpass = $(this).data('id');
+
+            $.ajax({
+            url: 'action_clients.php',
+            type: 'post',
+            data: {resetpass: resetpass},
+            success: function(response1){ 
+              $('.body2').html(response1);
+              $('#resetUserPass').modal('show'); 
             }
           });
           });
