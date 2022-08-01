@@ -3,31 +3,31 @@ session_start();
 include("config.php");
 ?>
 <?php
-if(isset($_POST['submit'])){
-    $name=$_POST['name'];
-    $email=$_POST['email'];
-    $number=$_POST['number'];
-    $category=$_POST['category'];
-    $status=$_POST['Activited'];
-    $image=$_FILES['image']['name'];
-    $image_tmp=$_FILES['image']['tmp_name'];
-    $loc="dist/img/".$image;
-    move_uploaded_file($image_tmp,$loc);
+// if(isset($_POST['submit'])){
+//     $name=$_POST['name'];
+//     $email=$_POST['email'];
+//     $number=$_POST['number'];
+//     $category=$_POST['category'];
+//     $status=$_POST['Activited'];
+//     $image=$_FILES['image']['name'];
+//     $image_tmp=$_FILES['image']['tmp_name'];
+//     $loc="dist/img/".$image;
+//     move_uploaded_file($image_tmp,$loc);
 
     
    
 
-    $sql=mysqli_query($conn,"INSERT INTO `client`(`Authorized_Name`, `Email`, `Mobile_Number`, `Category`,`image`) 
-    VALUES ('$name','$email','$number','$category','$image')");
+//     $sql=mysqli_query($conn,"INSERT INTO `client`(`Authorized_Name`, `Email`, `Mobile_Number`, `Category`,`image`) 
+//     VALUES ('$name','$email','$number','$category','$image')");
     
 
-    if($sql==1){
-        echo "Saved!", "data successfully submitted", "success";
-        header("location:clients.php");
-    }else {
-        echo '<script>alert("oops...somthing went wrong");</script>';
-    }
-}
+//     if($sql==1){
+//         echo "Saved!", "data successfully submitted", "success";
+//         header("location:clients.php");
+//     }else {
+//         echo '<script>alert("oops...somthing went wrong");</script>';
+//     }
+// }
 ?>
 
 <?php
@@ -148,7 +148,7 @@ if(isset($_POST['submit'])){
 date_default_timezone_set('Asia/Kolkata');
 $Date = date('d-m-y h:i:s');
 $Password= rand(100000, 999999);
-$hasPassword=password_hash($Password,PASSWORD_BCRYPT);
+$hashPassword=password_hash($Password,PASSWORD_BCRYPT);
 
 $from = 'Enquiry <naiduvedant@gmail.com>' . "\r\n";
 $sendTo = 'Enquiry <'.$Email.'>';
@@ -211,7 +211,7 @@ foreach($_POST as $key => $value){
 }
 if( mail($sendTo,$subject,$emailText, "From:" .$from)){
 
-    $sql=mysqli_query($conn,"INSERT INTO `client`( `Authorized_Name`, `Email`, `Mobile_Number`, `Category`,  `Date`, `Password`) VALUES ('$name','$Email','$Mobile_Number','$Category','$Date','$hasPassword')");
+    $sql=mysqli_query($conn,"INSERT INTO `client`( `Authorized_Name`, `Email`, `Mobile_Number`, `Category`, `Password`,  `Date`) VALUES ('$name','$Email','$Mobile_Number','$Category','$hashPassword','$Date')");
 
     if($sql==1){
         echo '<script>alert("data successfully submitted");</script>';

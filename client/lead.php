@@ -331,6 +331,7 @@ include("include/sidebar.php");
  </div>
 </div>
 </div>
+</div>
     <!-- /.content-wrapper -->
     <?php include("include/footer.php");?>
 

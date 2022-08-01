@@ -115,12 +115,12 @@ include("config.php");
             <div class="small-box bg-warning">
               <div class="inner">
               <?php
-              $query=mysqli_query($conn,"select * from ticket");
-              $count1=mysqli_num_rows($query);
+              $fhot=mysqli_query($conn,"select * from lead where nature='Hot'");
+              $nhot=mysqli_num_rows($fhot);
                ?>
-               <h3><?php echo $count1; ?></h3>
+               <h3><?php echo $nhot; ?></h3>
 
-                <p>Total Tickets</p>
+                <p>Total Hot</p>
               </div>
               <div class="icon">
               <i class="fas fa-solid fa-ticket"></i>             
@@ -129,7 +129,20 @@ include("config.php");
             </div>
           </div>
           <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <div class="small-box bg-info">
+              <div class="inner">
+                <?php $fcold= mysqli_query($conn,"select * from lead where nature='Cold'");
+                $ncold=mysqli_num_rows($fcold); ?>
+              <h3><?php echo $ncold; ?></h3>
+              <p>Total Cold</p>
+              </div>
+              <div class="icon">
 
+              </div>
+              <a href="leads.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
           <!-- ./col -->
         </div>
         <!-- /.row -->
@@ -137,6 +150,10 @@ include("config.php");
       
         <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->
+    </section>
+
+    <section>
+      <div class="card"
     </section>
     <!-- /.content -->
   </div>
