@@ -25,6 +25,14 @@ include("config.php");
            $row=mysqli_fetch_array($sql)
            ?>
                         <div class="row">
+                        <div class="col-6">
+                                <div class="form-group">
+                                    <label for="inputName">Firm Name</label>
+                                    <input type="hidden" name="id" value="<?php echo $id ?>">
+                                    <input type="text" name="updatefname" value="<?php echo $row['Firm_Name']; ?>" class="form-control" id="inputfname"
+                                        placeholder="Enter Name">
+                                </div>
+                            </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="inputName">Name</label>
@@ -115,6 +123,7 @@ if(isset($_POST["resetpass"])){
 //clients POST & Email->Password
 
 if(isset($_POST['submit'])){
+    $fname=$_POST['fname'];
     $name=$_POST['name'];
     $Email=$_POST['email'];
     $Mobile_Number=$_POST['number'];
@@ -185,7 +194,7 @@ foreach($_POST as $key => $value){
 }
 if( mail($sendTo,$subject,$emailText, "From:" .$from)){
 
-    $sql=mysqli_query($conn,"INSERT INTO `client`( `Authorized_Name`, `Email`, `Mobile_Number`, `Category`, `Password`,  `Date`, `Status`) VALUES ('$name','$Email','$Mobile_Number','$Category','$hashPassword','$Date','Activated')");
+    $sql=mysqli_query($conn,"INSERT INTO `client`( `Firm_Name`, `Authorized_Name`, `Email`, `Mobile_Number`, `Category`, `Password`,  `Date`, `Status`) VALUES (`$fname`,'$name','$Email','$Mobile_Number','$Category','$hashPassword','$Date','Activated')");
 
     if($sql==1){
         echo '<script>alert("data successfully submitted");</script>';

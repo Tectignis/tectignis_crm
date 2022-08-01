@@ -322,6 +322,13 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
                 <div class="modal-body">
                     <form method="post" action="action_clients.php" enctype="multipart/form-data">
                         <div class="row">
+                        <div class="col-6">
+                                <div class="form-group">
+                                    <label for="inputName">Firm Name</label>
+                                    <input type="text" name="fname" class="form-control" id="inputName"
+                                        placeholder="Enter Firm Name">
+                                </div>
+                            </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="inputName">Name</label>

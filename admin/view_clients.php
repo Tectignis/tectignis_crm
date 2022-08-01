@@ -250,6 +250,7 @@ if(isset($_GET['del_id'])){
 <thead>
   <tr>
     <th>Sr No.</th>
+    <th>Firm Name</th>
     <th>Client Name</th>
     <th>Client Mobile No.</th>
     <th>Requirment</th>
@@ -267,6 +268,7 @@ while ($row=mysqli_fetch_array($sql)){
 ?>
 <tr>
 <td><?php echo $count;?></td>
+<td><?php echo $row['Firm_Name']; ?></td>
 <td><?php echo $row['Client_Name']; ?></td>
 <td><?php echo $row['mob']; ?></td>
 <td><?php echo $row['Requirement']; ?></td>
