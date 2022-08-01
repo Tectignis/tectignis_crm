@@ -20,15 +20,14 @@ if(isset ($_POST['update'])){
 }
 
 if(isset($_POST["submi"])){
-    $d=$_POST['id'];
+    $id=$_POST['id'];
 	$password=$_POST["resetPass"];
     $Confirm_password=$_POST["confirmResetPass"];
-	$sql = mysqli_query($conn,"SELECT * FROM client WHERE Client_Code='$d'");
+	$sql = mysqli_query($conn,"SELECT * FROM client WHERE Client_Code='$id'");
 		$row=mysqli_fetch_assoc($sql); 
 	$hashpassword=password_hash($password,PASSWORD_BCRYPT);
-		if($verify==1){
 			$query=mysqli_query($conn,"UPDATE `client` SET `password`='$hashpassword' WHERE Client_Code='$id'");
-        session_destroy();   // function that Destroys Session 
+      if($query){
         echo "<script>alert('Password Changed Successfully')</script>";
       }
 		
