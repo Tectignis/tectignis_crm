@@ -153,7 +153,31 @@ include("config.php");
     </section>
 
     <section>
-      <div class="card"
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-3">
+          <div class="info-box">
+          <span class="info-box-icon bg-info elevation-1"><i class="fa fa-envelope-open-text"></i></span>
+          <div class="info-box-content">
+          <?php $qopen=mysqli_query($conn,"select * from ticket where status = 'Open'");
+               $nopen=mysqli_num_rows($qopen); ?>
+          <span class="info-box-text">Open Ticket</span>
+          <h3><?php echo $nopen; ?></h3>
+          </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-warning elevation-1"><i class="fa fa-envelope-open-text"></i></span>
+            <div class="info-box-content">
+              <span class="info-box-text">Closed Ticket</span>
+              <?php
+              $qclose=mysqli_query($conn,"select * from ticket where status = 'Close'");
+              $nclose=mysqli_num_rows($qclose); ?>
+              <h3></h3>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
     <!-- /.content -->
   </div>
