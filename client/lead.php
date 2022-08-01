@@ -25,27 +25,29 @@ if(isset($_GET['delid'])){
       }
     }
     $uid=$_SESSION['id'];
-    mysqli_query($conn,"update lead set status=1 where Firm_Name=$uid");
-
-    // if(isset($_POST['update'])){
-    //   $updateName = $_POST['updateName'];
-    //       $updateEmail = $_POST['updateEmail'];
-    //       $updateTitle = $_POST['updateTitle'];
-    //       $updateRole = $_POST['updateRole'];
-    //       $image=$_POST['image'];
-    //       $id=$_POST['id'];
-      
-         
-    //       $sql="UPDATE `users` SET `name`='$updateName',`email`='$updateEmail',`job_title`='$updateTitle',`job_role`='$updateRole',`image`='$image' WHERE id='$id
-    //       .'";
-    //       if (mysqli_query($conn, $sql)){
-    //         header("location:users.php");
-    //      } else {
-    //         echo "<script> alert ('connection failed !');window.location.href='manual-Attendance.php'</script>";
-    //      }
-    //     }
-
-        
+    mysqli_query($conn,"update lead set status=1 where Firm_Name=$uid");   
+    
+    if(isset($_POST['update'])){
+      $id=$_POST['dnk'];
+      $nature=$_POST['nature'];
+       $remark=$_POST['remark'];
+      $remainder_date=$_POST['remainder_date'];
+      $sitevisit_date=$_POST['sitevisit_date'];
+      $id=$_POST['id'];
+      // $remainder=$_POST['remainder'];
+     
+     
+  
+      $sql=mysqli_query($conn,"UPDATE `lead` SET `nature`='$nature',`remainder_date`='$remainder_date',`sitevisit_date`='$sitevisit_date' WHERE id='$id'");
+       $sql1=mysqli_query($conn,"INSERT INTO `remarks`(`remark`,`lead_id`) VALUES ('$remark','$id')");
+   
+      if($sql==1){
+          echo "Saved!", "data successfully submitted", "success";
+          header("location:lead.php");
+      }else {
+          echo '<script>alert("oops...somthing went wrong");</script>';
+      }
+  }
 
 ?>
 
@@ -86,6 +88,11 @@ if(isset($_GET['delid'])){
 
     .toast-body {
       cursor: pointer;
+    }
+    .vl{
+      border-left: 3px solid #f1f3f4;
+      height: 100%;
+      float:left;
     }
   </style>
 
@@ -150,15 +157,15 @@ include("include/sidebar.php");
                         <th>Action</th>
                       </tr>
                     </thead>
-                    <tbody>
+                   
+                    <tbody id="display">
                       <?php
                           $sql=mysqli_query($conn,"select lead.*, client.*, lead.Mobile_Number from lead inner join client on client.Client_Code=lead.Firm_Name where lead.deal=0 and Client_Code='$id'");
                           $count=1;
                         while ($row=mysqli_fetch_array($sql)){ 
-                                      ?>
+                                      ?>            
                       <tr>
                         <td><?php echo $count;?></td>
-
                         <td><?php echo $row['Client_Name']; ?></td>
                         <td><?php echo $row['Mobile_Number']; ?></td>
                         <td><?php echo $row['Requirement']; ?></td>
@@ -167,8 +174,7 @@ include("include/sidebar.php");
                         <td><?php echo $row['nature']; ?></td>
                         <td style="text-align:center">
 
-                          <button type="button" class="btn btn-primary btn-rounded btn-icon usereditid"
-                            data-toggle="modal" data-id='<?php echo $row['id']; ?>' style="color: aliceblue"> <i
+                          <a href="#d<?php echo $row['id'] ?>" class="btn btn-primary btn-rounded btn-icon usereditid"data-toggle="modal" data-id='<?php echo $row['id']; ?>' style="color: aliceblue"> <i
                               class="fas fa-pen"></i>
                           </button>
 
@@ -179,12 +185,6 @@ include("include/sidebar.php");
                           <a href="lead.php?gen=<?php echo $row['id'];?>">
                             <button class="btn btn-warning" name="submit">Deals</button>
                           </a>
-
-
-
-
-
-
                         </td>
                       </tr>
                       <?php $count++; } ?>
@@ -205,22 +205,19 @@ include("include/sidebar.php");
       <!-- /.content -->
     </div>
 
-    <div class="modal fade" id="exampleModal">
-      <div class="modal-dialog">
-        <div class="modal-content " style="border-radius:35px;">
-          <div class="modal-header">
-            ADD LEADS
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <form action="api/addlead_action.php" method="post">
-            <div class="modal-body">
 
-              <div class="row">
+ <!-- Modal -->
 
-
-    <div class="modal fade" id="dnkModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+ <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="modal-box">
+                <!-- Modal -->
+                <?php 
+                 $sql=mysqli_query($conn,"select lead.*, client.*, lead.Mobile_Number from lead inner join client on client.Client_Code=lead.Firm_Name where lead.deal=0 and Client_Code='$id'");
+                 while ($row=mysqli_fetch_array($sql)){ 
+                ?>
+    <div class="modal fade" id="d<?php echo $row['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
       aria-hidden="true">
       <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
@@ -230,10 +227,97 @@ include("include/sidebar.php");
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form method="post" action="ac.php">
+          <form method="post" action="">
             <div class="modal-body body2">
-
+            <div class="row">
+    <div class="col-8">
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="inputName">Client Name : </label>
+                    <?php echo $row['Client_Name']; ?>
+                    <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
+                </div>
             </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="inputEmail">Mobile Number : </label>
+                    <?php echo $row['Mobile_Number']; ?>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label>Source : </label>
+                    <?php echo $row['social_media']; ?>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="inputEmail">Requirement : </label>
+                    <?php echo $row['Requirement']; ?>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label>Nature</label>
+                    <select class="form-control" name="nature" style="width: 100%;" onclick="drop()">
+                        <option selected="selected" value="<?php echo $row['nature']; ?>"><?php echo $row['nature']; ?>
+                        </option>
+                        <option value="Hot">Hot</option>
+                        <option value="Cold">Cold</option>
+                        <option value="Warm">Warm</option>
+                        <option value="Deal Closed">Deal Closed</option>
+                        <option value="Booked">Booked</option>
+                        <option value="Site Visit" id="dropdown">Site Visit</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-3" id="textt" style="display:none">
+                <div class="form-group">
+                    <label>date : </label>
+                    <input class="form-control" type="datetime-local" name="sitevisit_date">
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="inputEmail">Remark : </label></br>
+                    <textarea name="remark" class="form-control" style="width: 100%;resize: none;"></textarea>
+                </div>
+            </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <input type="checkbox" id="myCheck" name="remainder_date[]" value="remainder"
+                            onclick="myFunction()">
+                        <label for="Remainder">Remainder </label>
+                        <div class="col-12" id="text" style="display:none">
+                            <div class="form-group">
+                                <label>date : </label>
+                                <input class="form-control" type="datetime-local" name="date_time">
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+<div class="vl"></div>
+<ul class="sessions"style="overflow:scroll;height:300px" >
+    <?php
+    $sql1=mysqli_query($conn,"select * from remarks where lead_id='$id' order by id desc; ");
+    while ($row=mysqli_fetch_array($sql1)){ 
+    
+    ?>
+
+  <li>
+    <div class="time"><?php echo $row['date_time']; ?></div>
+    <p><?php echo $row['remark']; ?></p>
+  </li>
+  <?php
+
+} ?>
+ </div>
+            </div>
+                 </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button type="submit" name="update" class="btn btn-primary">Update</button>
@@ -242,7 +326,11 @@ include("include/sidebar.php");
         </div>
       </div>
     </div>
+<?php } ?>
 
+ </div>
+</div>
+</div>
     <!-- /.content-wrapper -->
     <?php include("include/footer.php");?>
 
@@ -297,25 +385,25 @@ include("include/sidebar.php");
 
 
   <script>
-    $(document).ready(function () {
-      $('.usereditid').click(function () {
-        let dnk = $(this).data('id');
+    // $(document).ready(function () {
+    //   $('.usereditid').click(function () {
+    //     let dnk = $(this).data('id');
 
-        $.ajax({
-          url: 'ac.php',
-          type: 'post',
-          data: {
-            dnk: dnk
-          },
-          success: function (response1) {
-            $('.body2').html(response1);
-            $('#dnkModal').modal('show');
-          }
-        });
-      });
+    //     $.ajax({
+    //       url: 'ac.php',
+    //       type: 'post',
+    //       data: {
+    //         dnk: dnk
+    //       },
+    //       success: function (response1) {
+    //         $('.body2').html(response1);
+    //         $('#dnkModal').modal('show');
+    //       }
+    //     });
+    //   });
 
 
-    });
+    // });
   </script>
   <script>
     function myFunction() {
@@ -340,7 +428,22 @@ include("include/sidebar.php");
       }
     }
   </script>
-
+<script>
+  function get_fb(){
+    var feedback = $.ajax({
+        type: "POST",
+        url: "actionTableLead.php",
+        async: false,
+        success :function (feedback){
+        $('#display').html(feedback);
+        }
+    })
+}
+get_fb(); // This will run on page load
+setInterval(function(){
+  get_fb(); // this will run after every 5 seconds
+}, 10000);
+</script>
 </body>
 
 </html>

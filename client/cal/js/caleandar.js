@@ -209,7 +209,7 @@ function createCalendar(calendar, element, adjuster){
         var toDate = new Date(calendar.Selected.Year, calendar.Selected.Month, (i+1));
         if(evDate.getTime() == toDate.getTime()){
           number.className += " eventday";
-          var title = document.createElement('span');
+          var title = document.createElement('p');
           title.className += "cld-title";
           if(typeof calendar.Model[n].Link == 'function' || calendar.Options.EventClick){
             var a = document.createElement('a');

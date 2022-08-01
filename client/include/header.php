@@ -18,13 +18,12 @@
               <div class="card-header">
               <?php 
                 date_default_timezone_set('Asia/Kolkata');
-
+                $date='';
 $get_swor = mysqli_query($conn,"select * from lead where Firm_Name='$id' and date(remainder_date)=date(now())");
   if (mysqli_num_rows($get_swor) > 0) { 
      while ( $swork_info = mysqli_fetch_array($get_swor)) { 
       $date = $swork_info['remainder_date']; 
-	  }
-	}
+	
 $time=date("h:i", strtotime($date));
 $timestamp = strtotime($time);
 $timestamp_one_hour_later = $timestamp - 3600; // 3600 sec. = 1 hour
@@ -37,7 +36,8 @@ echo "<font size=\"4\" color=\"red\">";
 // echo strftime('%H:%M', $dd);
 echo "</font>1 hrs left for requirment" . $swork_info['Requirement'] ." </p>";
 }
-
+}
+}
 ?>
               </div>
             </div>
