@@ -173,7 +173,19 @@ include("config.php");
               <?php
               $qclose=mysqli_query($conn,"select * from ticket where status = 'Close'");
               $nclose=mysqli_num_rows($qclose); ?>
-              <h3></h3>
+              <h3><?php echo $nclose; ?></h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-primary elevation-1"><i class="fa fa-signout"></i></span>
+            <div class="info-box-content">
+              <span class="info-box-text">Hold Ticket</span>
+              <?php
+              $qhold=mysqli_query($conn,"select * from ticket where status = 'Hold'");
+              $nhold=mysqli_num_rows($qclose); ?>
+              <h3><?php echo $nhold; ?></h3>
             </div>
           </div>
         </div>

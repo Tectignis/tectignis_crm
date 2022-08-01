@@ -16,9 +16,7 @@ if(isset ($_POST['update'])){
     $image=$_POST['image'];
     $id=$_POST['id'];
 
-
     $sql=mysqli_query($conn,"UPDATE `client` SET `Authorized_Name`='$name',`Email`='$email',`Category`='$category',`image`='$image' where Client_Code='$id'"); 
-    
 }
 ?>
 
@@ -256,7 +254,7 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" action="clients.php">
+                    <form method="post" action="action_clients.php">
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
