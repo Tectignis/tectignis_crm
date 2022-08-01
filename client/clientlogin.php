@@ -2,7 +2,7 @@
 session_start();
 include("config.php");
 if(isset($_POST['login'])){
-$Email=$_POST['email'];
+$Email=$_POST['emailid'];
 $Password1=$_POST['password'];
 
 $sql=mysqli_query($conn,"select * from client where Email='$Email' AND Status='Activated'");
@@ -12,13 +12,8 @@ if(mysqli_num_rows($sql)>0){
   $verify=password_verify($Password1,$row['Password']);
 
  if($verify==1){
-  // $_SESSION['aemail']=$row['email'];
    $_SESSION['aname']=$row['Authorized_Name'];
      $_SESSION['id']=$row['Client_Code'];
-  //   $_SESSION['aaddress']=$row['office_address'];
-  //   $_SESSION['admin']=$row['is_admin'];
-  //   $d=$_SESSION['aid'];
-
         header("location:index.php");
     }else{
         echo "<script>alert('Password is incorrect');</script>";
@@ -96,7 +91,7 @@ border-bottom-right-radius: .3rem;
 
                 <div class="form-outline mb-4">
                     <input type="email" id="email" class="form-control active"
-                    name="email"
+                    name="emailid"
                     >
                     <label class="form-label" for="form3Example3" style="margin-left: 0px;">Email address</label>
                     <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 83.2px;"></div><div class="form-notch-trailing"></div></div>

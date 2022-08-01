@@ -184,7 +184,7 @@ foreach($_POST as $key => $value){
 }
 if( mail($sendTo,$subject,$emailText, "From:" .$from)){
 
-    $sql=mysqli_query($conn,"INSERT INTO `client`( `Authorized_Name`, `Email`, `Mobile_Number`, `Category`, `Password`,  `Date`) VALUES ('$name','$Email','$Mobile_Number','$Category','$hashPassword','$Date')");
+    $sql=mysqli_query($conn,"INSERT INTO `client`( `Authorized_Name`, `Email`, `Mobile_Number`, `Category`, `Password`,  `Date`, `Status`) VALUES ('$name','$Email','$Mobile_Number','$Category','$hashPassword','$Date','Activated')");
 
     if($sql==1){
         echo '<script>alert("data successfully submitted");</script>';
