@@ -1,7 +1,15 @@
 <?php
 include("config.php");
-
-
+$leadHot=mysqli_query($conn,"select * from lead where nature='Hot'");
+$leadHotFetch=mysqli_num_rows($leadHot);
+$leadCold=mysqli_query($conn,"select * from lead where nature='Cold' ");
+$leadColdFetch=mysqli_num_rows($leadCold);
+$leadWarm=mysqli_query($conn,"select * from lead where nature='Warm'");
+$leadWarmFetch=mysqli_num_rows($leadWarm);
+$qactivated=mysqli_query($conn,"select * from client where Status='Activated'");
+$nactivated=mysqli_num_rows($qactivated);
+$qdeactivated=mysqli_query($conn,"select * from client where Status='Deactivated'");
+$ndeactivated=mysqli_num_rows($qdeactivated);
 ?>
 
 <!DOCTYPE html>
@@ -152,7 +160,7 @@ include("config.php");
       </div><!-- /.container-fluid -->
     </section>
 
-    <section>
+    <section class="content">
       <div class="row">
         <div class="col-12 col-sm-6 col-md-3">
           <div class="info-box">
@@ -165,7 +173,7 @@ include("config.php");
           </div>
           </div>
         </div>
-        <div class="col-lg-3 col-sm-6 col-12">
+        <div class="col-md-3 col-sm-6 col-12">
           <div class="info-box">
             <span class="info-box-icon bg-warning elevation-1"><i class="fa fa-envelope-open-text"></i></span>
             <div class="info-box-content">
@@ -177,7 +185,7 @@ include("config.php");
             </div>
           </div>
         </div>
-        <div class="col-lg-3 col-sm-6 col-12">
+        <div class="col-md-3 col-sm-6 col-12">
           <div class="info-box">
             <span class="info-box-icon bg-primary elevation-1"><i class="fa fa-signout"></i></span>
             <div class="info-box-content">
@@ -189,20 +197,67 @@ include("config.php");
             </div>
           </div>
         </div>
-        <div class="col-lg-3 col-sm-6 col-12">
+        <div class="col-md-3 col-sm-6 col-12">
           <div class="info-box">
             <span class="info-box-icon bg-success elevation-1"><i class="fa fa-signout"></i></span>
             <div class="info-box-content">
-              <span class="info-box-text">Resolved Ticket</span>
+              <span class="info-box-text">In Process Ticket</span>
               <?php
-              $qresolve=mysqli_query($conn,"select * from ticket where status = 'Resolve'");
-              $nresolve=mysqli_num_rows($qresolve); ?>
-              <h3><?php echo $nresolve; ?></h3>
+              $qprocess=mysqli_query($conn,"select * from ticket where status = 'Inprocess'");
+              $nprocess=mysqli_num_rows($qprocess); ?>
+              <h3><?php echo $nprocess; ?></h3>
             </div>
           </div>
         </div>
       </div>
     </section>
+
+     <!-- Main row -->
+     <section class="content">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card card-warning">
+                <div class="card-header">
+                <h3 class="card-title">Pie Chart</h3>
+                <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+                </button>
+                </div>
+                </div>
+                <div class="card-body">
+                <div class="chart">
+                <canvas id="warmChart"></canvas>
+                </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card card-danger">
+                <div class="card-header">
+                <h3 class="card-title">Pie Chart</h3>
+                <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                <i class="fas fa-times"></i>
+                </button>
+                </div>
+                </div>
+                <div class="card-body">
+                <div class="chart">
+                <canvas id="bookedChart"></canvas>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
@@ -250,5 +305,40 @@ include("config.php");
 <!-- AdminLTE for demo purposes -->
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="dist/js/pages/dashboard.js"></script>
+<script>
+   //piechart
+   let ctx = document.getElementById("warmChart").getContext('2d');
+let warmChart = new Chart(ctx, {
+  type: 'pie',
+  data: {
+    labels: ["Warm", "Hot", "Cold"],
+    datasets: [{
+      backgroundColor: [
+        "#2ecc71",
+        "#3498db",
+        "#95a5a6",
+        
+      ],
+      data: [<?php echo $leadWarmFetch. ',' .$leadHotFetch. ',' .$leadColdFetch ?>]
+    }]
+  }
+});
+
+ //piechart
+ let chartx = document.getElementById("bookedChart").getContext('2d');
+let bookedChart = new Chart(chartx, {
+  type: 'pie',
+  data: {
+    labels: ["Activated", "Deactivated"],
+    datasets: [{
+      backgroundColor: [
+        "#9b59b6",
+        "#f1c40f",
+      ],
+      data: [<?php echo $nactivated. ',' .$ndeactivated ?>]
+    }]
+  }
+});
+</script>
 </body>
 </html>
