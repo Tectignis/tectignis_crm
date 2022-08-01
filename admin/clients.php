@@ -190,7 +190,7 @@ if(isset($_POST["submi"])){
 
 
                                                 <button class="dropdown-item rpassword" type="button" data-toggle="modal"
-                                                data-id="=<?php echo $row['Client_Code']; ?>" ><i class="fa fa-key"></i> Reset
+                                                data-id="<?php echo $row['Client_Code']; ?>" ><i class="fa fa-key"></i> Reset
                                                     Password</button>
 
                                                     <?php

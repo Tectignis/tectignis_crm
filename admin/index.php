@@ -190,7 +190,16 @@ include("config.php");
           </div>
         </div>
         <div class="col-lg-3 col-sm-6 col-12">
-          d
+          <div class="info-box">
+            <span class="info-box-icon bg-success elevation-1"><i class="fa fa-signout"></i></span>
+            <div class="info-box-content">
+              <span class="info-box-text">Resolved Ticket</span>
+              <?php
+              $qresolve=mysqli_query($conn,"select * from ticket where status = 'Resolve'");
+              $nresolve=mysqli_num_rows($qresolve); ?>
+              <h3><?php echo $nresolve; ?></h3>
+            </div>
+          </div>
         </div>
       </div>
     </section>
