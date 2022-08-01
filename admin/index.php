@@ -94,7 +94,7 @@ $ndeactivated=mysqli_num_rows($qdeactivated);
                 <p>Total Clients</p>
               </div>
               <div class="icon">
-                <i class="ion ion-bag"></i>
+                <i class="fa fa-users"></i>
               </div>
               <a href="client.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -102,7 +102,7 @@ $ndeactivated=mysqli_num_rows($qdeactivated);
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-success">
+            <div class="small-box bg-danger">
               <div class="inner">
               <?php
               $query=mysqli_query($conn,"select * from lead");
@@ -113,7 +113,7 @@ $ndeactivated=mysqli_num_rows($qdeactivated);
                 <p>Total Leads</p>
               </div>
               <div class="icon">
-                <i class="ion ion-stats-bars"></i>
+                <i class="fa fa-bullhorn"></i>
               </div>
               <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -131,7 +131,7 @@ $ndeactivated=mysqli_num_rows($qdeactivated);
                 <p>Total Hot</p>
               </div>
               <div class="icon">
-              <i class="fas fa-solid fa-ticket"></i>             
+              <i class="fas fa-mug-hot"></i>             
              </div>
               <a href="tickettable.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -146,7 +146,7 @@ $ndeactivated=mysqli_num_rows($qdeactivated);
               <p>Total Cold</p>
               </div>
               <div class="icon">
-
+              <i class="fa fa-snowflake"></i>
               </div>
               <a href="leads.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -164,7 +164,7 @@ $ndeactivated=mysqli_num_rows($qdeactivated);
       <div class="row">
         <div class="col-12 col-sm-6 col-md-3">
           <div class="info-box">
-          <span class="info-box-icon bg-info elevation-1"><i class="fa fa-envelope-open-text"></i></span>
+          <span class="info-box-icon bg-info elevation-1"><i class="fas fa-book-open"></i></span>
           <div class="info-box-content">
           <?php $qopen=mysqli_query($conn,"select * from ticket where status = 'Open'");
                $nopen=mysqli_num_rows($qopen); ?>
@@ -175,7 +175,7 @@ $ndeactivated=mysqli_num_rows($qdeactivated);
         </div>
         <div class="col-md-3 col-sm-6 col-12">
           <div class="info-box">
-            <span class="info-box-icon bg-warning elevation-1"><i class="fa fa-envelope-open-text"></i></span>
+            <span class="info-box-icon bg-warning elevation-1"><i class="fa fa-book"></i></span>
             <div class="info-box-content">
               <span class="info-box-text">Closed Ticket</span>
               <?php
@@ -187,7 +187,7 @@ $ndeactivated=mysqli_num_rows($qdeactivated);
         </div>
         <div class="col-md-3 col-sm-6 col-12">
           <div class="info-box">
-            <span class="info-box-icon bg-primary elevation-1"><i class="fa fa-signout"></i></span>
+            <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-book-medical"></i></span>
             <div class="info-box-content">
               <span class="info-box-text">Hold Ticket</span>
               <?php
@@ -199,7 +199,7 @@ $ndeactivated=mysqli_num_rows($qdeactivated);
         </div>
         <div class="col-md-3 col-sm-6 col-12">
           <div class="info-box">
-            <span class="info-box-icon bg-success elevation-1"><i class="fa fa-signout"></i></span>
+            <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-edit"></i></span>
             <div class="info-box-content">
               <span class="info-box-text">In Process Ticket</span>
               <?php
