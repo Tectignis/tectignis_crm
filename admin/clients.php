@@ -325,7 +325,7 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
                         <div class="col-6">
                                 <div class="form-group">
                                     <label for="inputName">Firm Name</label>
-                                    <input type="text" name="fname" class="form-control" id="inputName"
+                                    <input type="text" name="fname" class="form-control" id="inputfname"
                                         placeholder="Enter Firm Name">
                                 </div>
                             </div>
