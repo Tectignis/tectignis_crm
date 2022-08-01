@@ -219,8 +219,8 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
                                             src="dist/img/<?php echo $row['image'] ?>" style="height:100px;width:100px;">
 <?php } ?>
                                     </a>
-                                    <h4 class="mt-2"><a href=""><?php echo $row['Authorized_Name']; ?></a></h4>
-                                    <h6 class=""><?php echo $row['Email']; ?></h6><h6 class="">
+                                    <h4 class="mt-2"><a href=""><?php echo $row['Firm_Name']; ?></a></h4>
+                                    <h6 class=""><?php echo $row['Authorized_Name']; ?></h6> <h6 class=""><?php echo $row['Email']; ?></h6>
 
                                 </div>
                             </div>
@@ -322,6 +322,13 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
                 <div class="modal-body">
                     <form method="post" action="action_clients.php" enctype="multipart/form-data">
                         <div class="row">
+                        <div class="col-6">
+                                <div class="form-group">
+                                    <label for="inputName">Firm Name</label>
+                                    <input type="text" name="fname" class="form-control" id="inputfname"
+                                        placeholder="Enter Firm Name">
+                                </div>
+                            </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="inputName">Name</label>

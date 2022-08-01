@@ -9,11 +9,12 @@ if(isset($_POST['submitt'])){
     $Client_Name=$_POST['Cname'];
     $Mobile_Number=$_POST['number'];
     $Requirement=$_POST['requirement'];
+    $social_media=$_POST['social_media'];
     $status="Open";
     date_default_timezone_set('Asia/Kolkata');
     $Date = date("Y-m-d H:i:s");
    
-    $sql=mysqli_query($conn,"INSERT INTO `lead`(`Firm_Name`,`Client_Name`, `Mobile_Number`,`Requirement`,`Created_On`,`status_deal`) VALUES ('$Firm_Name','$Client_Name','$Mobile_Number','$Requirement','$Date','$status')");
+    $sql=mysqli_query($conn,"INSERT INTO `lead`(`Firm_Name`,`Client_Name`, `Mobile_Number`,`Requirement`,`social_media`,`Created_On`,`status_deal`) VALUES ('$Firm_Name','$Client_Name','$Mobile_Number','$Requirement','$social_media','$Date','$status')");
 
     if($sql==1){
         echo '<script>alert("Saved!", "data successfully submitted", "success");</script>';
@@ -122,6 +123,7 @@ include("include/sidebar.php");
                 <td><?php echo $row['Client_Name']; ?></td>
                 <td><?php echo $row['mob']; ?></td>
                 <td><?php echo $row['Requirement']; ?></td>
+                <td><?php echo $row['social_media']; ?></td>
                 <td><?php echo $row['Created_On']; ?></td>
                     <td style="text-align:center">
                       <a href="api_crm/leaddelete.php?delid=<?php echo $row['id']; ?>"><button type="button"  onclick="return confirm('Are you sure you want to delete this item')" class="btn btn-danger btn-rounded btn-icon"  style="color: aliceblue"> <i class="fas fa-trash"></i> </button></a> </td>
@@ -194,26 +196,7 @@ include("include/sidebar.php");
              
 
               <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Project</label>
-                  <?php 
-                  $query=mysqli_query($conn,"select * from project");
-                
-                  ?>
-                      <select class="form-control select2" name="project" style="width: 100%;" required>
-
-                        <option selected="selected" disabled>Select</option>
-                        <?php
-                   while($sql=mysqli_fetch_array($query))
-                   {
-                     ?>
-                        <option value="<?php echo $sql['project_name']; ?>"> <?php echo $sql['project_name']; ?></option>
-                        <?php } ?>
-                      </select>
-                </div>
-                
-              </div>
+        
               
               <!-- /.col -->
               <div class="col-md-6">

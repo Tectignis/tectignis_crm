@@ -14,6 +14,7 @@ if(mysqli_num_rows($sql)>0){
  if($verify==1){
    $_SESSION['aname']=$row['Authorized_Name'];
      $_SESSION['id']=$row['Client_Code'];
+     $_SESSION['fname']=$row['Firm_Name'];
         header("location:index.php");
     }else{
         echo "<script>alert('Password is incorrect');</script>";
