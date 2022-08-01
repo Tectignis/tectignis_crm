@@ -14,7 +14,6 @@ if(mysqli_num_rows($sql)>0){
  if($verify==1){
   // $_SESSION['aemail']=$row['email'];
    $_SESSION['aname']=$row['Authorized_Name'];
-   $_SESSION['firm']=$row['Firm_Name'];
      $_SESSION['id']=$row['Client_Code'];
   //   $_SESSION['aaddress']=$row['office_address'];
   //   $_SESSION['admin']=$row['is_admin'];
