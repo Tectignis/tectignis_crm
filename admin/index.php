@@ -175,13 +175,13 @@ $ndeactivated=mysqli_num_rows($qdeactivated);
         </div>
         <div class="col-md-3 col-sm-6 col-12">
           <div class="info-box">
-            <span class="info-box-icon bg-warning elevation-1"><i class="fa fa-book"></i></span>
+            <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-edit"></i></span>
             <div class="info-box-content">
-              <span class="info-box-text">Closed Ticket</span>
+              <span class="info-box-text">In Process Ticket</span>
               <?php
-              $qclose=mysqli_query($conn,"select * from ticket where status = 'Close'");
-              $nclose=mysqli_num_rows($qclose); ?>
-              <h3><?php echo $nclose; ?></h3>
+              $qprocess=mysqli_query($conn,"select * from ticket where status = 'Inprocess'");
+              $nprocess=mysqli_num_rows($qprocess); ?>
+              <h3><?php echo $nprocess; ?></h3>
             </div>
           </div>
         </div>
@@ -192,20 +192,20 @@ $ndeactivated=mysqli_num_rows($qdeactivated);
               <span class="info-box-text">Hold Ticket</span>
               <?php
               $qhold=mysqli_query($conn,"select * from ticket where status = 'Hold'");
-              $nhold=mysqli_num_rows($qclose); ?>
+              $nhold=mysqli_num_rows($qhold); ?>
               <h3><?php echo $nhold; ?></h3>
             </div>
           </div>
         </div>
         <div class="col-md-3 col-sm-6 col-12">
           <div class="info-box">
-            <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-edit"></i></span>
+            <span class="info-box-icon bg-warning elevation-1"><i class="fa fa-book"></i></span>
             <div class="info-box-content">
-              <span class="info-box-text">In Process Ticket</span>
+              <span class="info-box-text">Closed Ticket</span>
               <?php
-              $qprocess=mysqli_query($conn,"select * from ticket where status = 'Inprocess'");
-              $nprocess=mysqli_num_rows($qprocess); ?>
-              <h3><?php echo $nprocess; ?></h3>
+              $qclose=mysqli_query($conn,"select * from ticket where status = 'Close'");
+              $nclose=mysqli_num_rows($qclose); ?>
+              <h3><?php echo $nclose; ?></h3>
             </div>
           </div>
         </div>

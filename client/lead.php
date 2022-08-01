@@ -268,11 +268,11 @@ include("include/sidebar.php");
                         <option value="Warm">Warm</option>
                         <option value="Deal Closed">Deal Closed</option>
                         <option value="Booked">Booked</option>
-                        <option value="Site Visit" id="dropdown">Site Visit</option>
+                        <option value="Site Visit" id="dropdown<?php echo $row['id']; ?>">Site Visit</option>
                     </select>
                 </div>
             </div>
-            <div class="col-3" id="textt" style="display:none">
+            <div class="col-3 " id="textt<?php echo $row['id']; ?>" style="display:none">
                 <div class="form-group">
                     <label>date : </label>
                     <input class="form-control" type="datetime-local" name="sitevisit_date">
@@ -286,24 +286,48 @@ include("include/sidebar.php");
             </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <input type="checkbox" id="myCheck" name="remainder_date[]" value="remainder"
-                            onclick="myFunction()">
+                        <input type="checkbox" id="myCheck<?php echo $row['id'] ?>" name="remainder_date[]" value="remainder"
+                            onclick="myFunction<?php echo $row['id'] ?>()">
                         <label for="Remainder">Remainder </label>
-                        <div class="col-12" id="text" style="display:none">
+                        <div class="col-12 text" id="text<?php echo $row['id'] ?>" style="display:none">
                             <div class="form-group">
                                 <label>date : </label>
                                 <input class="form-control" type="datetime-local" name="date_time">
                             </div>
                         </div>
                     </div>
+                    <script>
+                      function drop() {
+                        var select = document.getElementById("dropdown<?php echo $row['id']; ?>");
+                        var text = document.getElementById("textt<?php echo $row['id']; ?>");
+                        if (select.selected == true) {
+                          text.style.display = "block";
+                        } else {
+                          text.style.display = "none";
+                        }
+                      }
+                    </script>
+                    <script>
+                      function myFunction<?php echo $row['id'] ?>() {
+                        let checkBox = document.getElementById("myCheck<?php echo $row['id'] ?>");
+                        let text = document.getElementById("text<?php echo $row['id'] ?>");
+                        if (checkBox.checked == true) {
+                          text.style.display = "block";
+                        } else {
+                          text.style.display = "none";
+                        }
+                      }
+                    </script>
             </div>
         </div>
     </div>
+   
     <div class="col-4">
 <div class="vl"></div>
 <ul class="sessions"style="overflow:scroll;height:300px" >
     <?php
-    $sql1=mysqli_query($conn,"select * from remarks where lead_id='$id' order by id desc; ");
+    $lead_id=$row['id'];
+    $sql1=mysqli_query($conn,"select * from remarks where lead_id='$lead_id' order by id desc; ");
     while ($row=mysqli_fetch_array($sql1)){ 
     
     ?>
@@ -326,6 +350,7 @@ include("include/sidebar.php");
         </div>
       </div>
     </div>
+   
 <?php } ?>
 
  </div>
@@ -406,29 +431,9 @@ include("include/sidebar.php");
 
     // });
   </script>
-  <script>
-    function myFunction() {
-      var checkBox = document.getElementById("myCheck");
-      var text = document.getElementById("text");
-      if (checkBox.checked == true) {
-        text.style.display = "block";
-      } else {
-        text.style.display = "none";
-      }
-    }
-  </script>
+  
 
-  <script>
-    function drop() {
-      var select = document.getElementById("dropdown");
-      var text = document.getElementById("textt");
-      if (select.selected == true) {
-        text.style.display = "block";
-      } else {
-        text.style.display = "none";
-      }
-    }
-  </script>
+  
 <script>
   function get_fb(){
     var feedback = $.ajax({
