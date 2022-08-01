@@ -91,8 +91,7 @@ border-bottom-right-radius: .3rem;
 
                 <div class="form-outline mb-4">
                     <input type="email" id="email" class="form-control active"
-                    name="emailid"
-                    >
+                    name="emailid" >
                     <label class="form-label" for="form3Example3" style="margin-left: 0px;">Email address</label>
                     <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 83.2px;"></div><div class="form-notch-trailing"></div></div>
                   </div>
