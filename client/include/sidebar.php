@@ -1,8 +1,7 @@
 <?php
 $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
 ?>
-
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+ <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <div class=" mt-3 pb-3 mb-3">
     <a href="#" style="text-decoration: none" class="brand-link">
@@ -18,18 +17,16 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
+     
 
       <!-- SidebarSearch Form -->
-      <div class="form-inline">
-       
-      </div>
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item">
+               <li class="nav-item">
             <a href="index.php" class="nav-link <?= $page == 'index.php' ? 'active':'' ?>">
             <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -87,9 +84,10 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
               </p>
             </a>
           </li>
-</ul>
-</nav>
+        </ul>
+      </nav>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
   </aside>
+
