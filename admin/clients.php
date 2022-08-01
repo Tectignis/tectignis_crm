@@ -28,14 +28,10 @@ if(isset($_POST["submi"])){
 	$hashpassword=password_hash($password,PASSWORD_BCRYPT);
 		if($verify==1){
 			$query=mysqli_query($conn,"UPDATE `client` SET `password`='$hashpassword' WHERE Client_Code='$id'");
-      if($query){
         session_destroy();   // function that Destroys Session 
         echo "<script>alert('Password Changed Successfully')</script>";
       }
-		}
-		else{
-			echo"<script>alert('Invalid Password');</script>";
-		}
+		
 	
 	}
 
@@ -274,7 +270,7 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="post" action="action_clients.php">
+                <form method="post" >
                 <div class="modal-body body2">
                    
                  
