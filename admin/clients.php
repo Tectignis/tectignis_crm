@@ -182,8 +182,9 @@ if(isset($_POST["submi"])){
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                                 
                                             
-                                            <a href="view_clients.php"> <button class="dropdown-item"
-                                                type="button"><i class="fa fa-eye"></i> View</button></a>
+                                            <a href="view_clients.php?view=<?php echo $row['Client_Code'] ?>"> <button class="dropdown-item"
+                                                type="button"  ><i class="fa fa-eye"></i> View</button></a>
+
                                                 <button class="dropdown-item usereditid" type="button"  data-id="<?php echo $row['Client_Code'] ?>"><i class="far fa-edit"></i> Edit</button>
 
                                                 <button class="dropdown-item delbtn" type="button" onclick="deleteBtn()" data-id="=<?php echo $row['Client_Code']; ?>"><i class="fa fa-trash-alt"></i> Delete</button>

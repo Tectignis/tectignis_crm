@@ -1,12 +1,12 @@
 <?php
 include("config.php");
-
+$client_code=$_SESSION['Client_Code'];
+$id=$_GET['view'];
 if(isset($_GET['del_id'])){
     $delid = $_GET['del_id'];
     $sql = mysqli_query($conn,"DELETE FROM lead WHERE id = '$delid'");
     if($sql){
-      header ("location:view_clients.php"); 
-     
+      header ("location:view_clients.php?view=$id"); 
     }
     else{ echo "<script>alert('Failed to Delete')</script>"; }
   }
@@ -42,7 +42,10 @@ if(isset($_GET['del_id'])){
     <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
-
+  <!-- DataTables -->
+  <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <style>
         .card-header-right {
             right: 10px;
@@ -125,15 +128,48 @@ if(isset($_GET['del_id'])){
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
+<div class="card" style="height:250px;">
+    <!-- <div class="card-header"> -->
+                                <!-- <div class="form-group" style="margin-left:85%; margin-top:10px;">
+                                    <label for="inputRole">Filter</label>
+                                    <select name="filter" calss="form-control" id="filter">
+                                    <option value="select" selected disabled>Select</option>
+                                    <option value="Last Week">Last Week</option>
 
-                    <div class="row">
+  <option value="Last Month">Last Month</option>
+  <option value="Last 3 Months">Last 3 Months</option>
+
+</select>
+                                </div> -->
+                                <!-- </div> -->
+
+           <form onclick="getdata(this.value)"  style="width: fit-content; margin-left:70%;">
+            <input type="hidden" id="leadid" value="<?php echo $id;?>">
+            <select id="demo_overview_minimal_multiselect " class="dropbtn form-control" style="background-color:#fff; margin-left:100px;">
+            <option disabled selected>select</option>
+           
+            <option>Last Week</option>
+            <option>Monthly</option>
+            <option>3 Month</option>
+            </select>
+            </form>
+                          
+
+
+                    <div class="row" style="margin:10px;">
                         <div class="col-md-3 col-sm-6">
                             <div class="card comp-card">
-                                <div class="card-body">
+                                <div class="card-body bg-success">
                                     <div class="row align-items-center">
                                         <div class="col">
-                                            <h6 class="m-b-20">Total Invoice</h6>
-                                            <h4 class="text-primary">$2,817.50 / 3</h4>
+                                            <h6 class="m-b-20">Total Laed</h6>  
+                                            <?php
+                                        
+              $query=mysqli_query($conn,"select * from lead where Firm_Name='$id'");
+              $count1=mysqli_num_rows($query);
+               ?>
+               <h3><?php echo $count1; ?></h3>
+
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-rocket bg-success text-white"></i>
@@ -144,26 +180,15 @@ if(isset($_GET['del_id'])){
                         </div>
                         <div class="col-md-3 col-sm-6">
                             <div class="card comp-card">
-                                <div class="card-body">
+                                <div class="card-body bg-warning">
                                     <div class="row align-items-center">
                                         <div class="col">
-                                            <h6 class="m-b-20">This Month Total Invoice</h6>
-                                            <h4 class="text-info">$0.00 / 0</h4>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-rocket bg-info text-white"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="card comp-card">
-                                <div class="card-body">
-                                    <div class="row align-items-center">
-                                        <div class="col">
-                                            <h6 class="m-b-20">This Week Total Invoice</h6>
-                                            <h4 class="text-warning">$0.00 / 0</h4>
+                                            <h6 class="m-b-20">Hot</h6>
+                                            <?php
+              $query=mysqli_query($conn,"select * from lead where nature='Hot'");
+              $count1=mysqli_num_rows($query);
+               ?>
+               <h3><?php echo $count1; ?></h3>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-rocket bg-warning text-white"></i>
@@ -174,11 +199,34 @@ if(isset($_GET['del_id'])){
                         </div>
                         <div class="col-md-3 col-sm-6">
                             <div class="card comp-card">
-                                <div class="card-body">
+                                <div class="card-body bg-info">
                                     <div class="row align-items-center">
                                         <div class="col">
-                                            <h6 class="m-b-20">Last 30 Days Total Invoice</h6>
-                                            <h4 class="text-danger">$0.00 / 0</h4>
+                                            <h6 class="m-b-20">Cold</h6>
+                                            <?php
+              $query=mysqli_query($conn,"select * from lead where nature='Cold'");
+              $count1=mysqli_num_rows($query);
+               ?>
+               <h3><?php echo $count1; ?></h3>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-rocket bg-info text-white"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="card comp-card">
+                                <div class="card-body bg-danger">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <h6 class="m-b-20">Warm</h6>
+                                            <?php
+              $query=mysqli_query($conn,"select * from lead where nature='Warm'");
+              $count1=mysqli_num_rows($query);
+               ?>
+               <h3><?php echo $count1; ?></h3>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-rocket bg-danger text-white"></i>
@@ -187,6 +235,7 @@ if(isset($_GET['del_id'])){
                                 </div>
                             </div>
                         </div>
+                    </div>
                     </div>
                     <!-- Main row -->
                     <!-- <div class="row"> -->
@@ -197,37 +246,38 @@ if(isset($_GET['del_id'])){
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                              <table class="table table-striped">
-                                <thead>
-                                  <tr>
-                                    <th>Sr No.</th>
-                                    <th>Client Name</th>
-                                    <th>Client Mobile No.</th>
-                                    <th>Requirment</th>
-                                    <th>Created On</th>
-                                    <th>Action</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                <?php
-                    $sql=mysqli_query($conn,"select *, lead.Mobile_Number as mob from lead inner join client on lead.Firm_Name=client.Client_Code");
-                    $count=1;
-                  while ($row=mysqli_fetch_array($sql)){ 
+                            <table id="example1" class="table table-bordered table-striped">
+<thead>
+  <tr>
+    <th>Sr No.</th>
+    <th>Client Name</th>
+    <th>Client Mobile No.</th>
+    <th>Requirment</th>
+    <th>Created On</th>
+    <th>Action</th>
+  </tr>
+</thead>
+<tbody id="leads">
+<?php
+$id=$_GET['view'];
+$sql=mysqli_query($conn,"select *, lead.Mobile_Number as mob from lead inner join client on lead.Firm_Name=client.Client_Code where Client_Code='$id'");
+$count=1;
+while ($row=mysqli_fetch_array($sql)){ 
 
-          ?>
-            <tr>
-                <td><?php echo $count;?></td>
-                <td><?php echo $row['Client_Name']; ?></td>
-                <td><?php echo $row['mob']; ?></td>
-                <td><?php echo $row['Requirement']; ?></td>
-                <td><?php echo $row['Created_On']; ?></td>  
-                                    <td><div class="btn-group" role="group" aria-label="Basic outlined example">
-                                        <button type="button" onclick="deleteBtn()" class="btn btn-sm btn-danger m-1 delbtn" data-id="=<?php echo $row['id']; ?>"><i class="fa fa-trash"></i></button> 
-                                      </div></td>
-                                  </tr>
-                                  <?php $count++; } ?>
-                                </tbody>
-                              </table>
+?>
+<tr>
+<td><?php echo $count;?></td>
+<td><?php echo $row['Client_Name']; ?></td>
+<td><?php echo $row['mob']; ?></td>
+<td><?php echo $row['Requirement']; ?></td>
+<td><?php echo $row['Created_On']; ?></td>  
+    <td><div class="btn-group" role="group" aria-label="Basic outlined example">
+        <button type="button" onclick="deleteBtn()" class="btn btn-sm btn-danger m-1 delbtn" data-id="=<?php echo $row['id']; ?>"><i class="fa fa-trash"></i></button> 
+      </div></td>
+  </tr>
+  <?php $count++; } ?>
+</tbody>
+</table>
                             </div>
                             <!-- /.card-body -->
                           </div>
@@ -284,11 +334,32 @@ if(isset($_GET['del_id'])){
     <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
     <script src="dist/js/adminlte.js"></script>
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="plugins/jszip/jszip.min.js"></script>
+<script src="plugins/pdfmake/pdfmake.min.js"></script>
+<script src="plugins/pdfmake/vfs_fonts.js"></script>
+<script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="dist/js/pages/dashboard.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     
+    <script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+   
+  });
+</script>
 
     <script>
         function deleteBtn() {
@@ -335,6 +406,21 @@ if(isset($_GET['del_id'])){
                     })
                 });
  </script>
+ <script>
+  function getdata(val){
+    let fetch=$(".dropbtn").val();
+    let leadid=$("#leadid").val();
+    $.ajax({
+      url:"api_crm/action_client.php",
+      method:"POST",
+      data:{fetch:fetch,
+        leadid:leadid},
+      success:function(data){
+        $('#leads').html(data);
+      }
+    });
+  }
+</script>
 </body>
 
 </html>
