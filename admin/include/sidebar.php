@@ -52,7 +52,7 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
           </li>
 
             <li class="nav-item">
-            <a href="roles.php" class="nav-link <?= $page == 'index.php' ? :'' ?>">
+            <a href="roles.php" class="nav-link disabled <?= $page == 'index.php' ? :'' ?>">
               <i class="nav-icon fas fa-user-times"></i>
               <p>
                 Roles
