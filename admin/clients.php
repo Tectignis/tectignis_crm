@@ -219,8 +219,8 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
                                             src="dist/img/<?php echo $row['image'] ?>" style="height:100px;width:100px;">
 <?php } ?>
                                     </a>
-                                    <h4 class="mt-2"><a href=""><?php echo $row['Authorized_Name']; ?></a></h4>
-                                    <h6 class=""><?php echo $row['Email']; ?></h6><h6 class="">
+                                    <h4 class="mt-2"><a href=""><?php echo $row['Firm_Name']; ?></a></h4>
+                                    <h6 class=""><?php echo $row['Authorized_Name']; ?></h6> <h6 class=""><?php echo $row['Email']; ?></h6>
 
                                 </div>
                             </div>
