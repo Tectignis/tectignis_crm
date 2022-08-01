@@ -16,27 +16,40 @@
 <div class="card ml-2" style="width: fit-content;">
               <div class="card-header">
               <?php 
-                date_default_timezone_set('Asia/Kolkata');
-                $date='';
-$get_swor = mysqli_query($conn,"select * from lead where Firm_Name='$id' and date(remainder_date)=date(now())");
-  if (mysqli_num_rows($get_swor) > 0) { 
-     while ( $swork_info = mysqli_fetch_array($get_swor)) { 
-      $date = $swork_info['remainder_date']; 
+//                 date_default_timezone_set('Asia/Kolkata');
+//                 $date='';
+// $get_swor = mysqli_query($conn,"select * from lead where Firm_Name='$id' and date(remainder_date)=date(now())");
+//   if (mysqli_num_rows($get_swor) > 0) { 
+//      while ( $swork_info = mysqli_fetch_array($get_swor)) { 
+//       $date = $swork_info['remainder_date']; 
 	
+// $time=date("h:i", strtotime($date));
+// $timestamp = strtotime($time);
+// $current_time=date("h:i");
+// // echo $current_time;
+// $current_time_timestamp = strtotime($current_time);
+// $dd=$current_time_timestamp-$timestamp;
+// if ($current_time == $time) {
+// echo "<font size=\"4\" color=\"red\">";
+// // echo strftime('%H:%M', $dd);
+// echo "</font>1 hrs left for requirment" . $swork_info['Requirement'] ." </p>";
+// }
+// }
+// }
+?>
+<?php
+$date='2002-08-01 14:58';
 $time=date("h:i", strtotime($date));
 $timestamp = strtotime($time);
-$timestamp_one_hour_later = $timestamp - 3600; // 3600 sec. = 1 hour
 $current_time=date("h:i");
-echo $current_time;
 $current_time_timestamp = strtotime($current_time);
-$dd=$current_time_timestamp-$timestamp;
-if ($current_time_timestamp == $timestamp_one_hour_later) {
+$dd=$current_time_timestamp-3600;
+if ($current_time == $dd) {
 echo "<font size=\"4\" color=\"red\">";
 // echo strftime('%H:%M', $dd);
-echo "</font>1 hrs left for requirment" . $swork_info['Requirement'] ." </p>";
+echo "</font>1 hrs left for requirment" . " </p>";
 }
-}
-}
+
 ?>
               </div>
             </div>

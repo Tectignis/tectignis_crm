@@ -33,8 +33,8 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
             </a>
           </li>
           
-            <li class="nav-item">
-            <a href="users.php" class="nav-link <?= $page == 'users.php' ? 'active':'' ?>">
+            <li class="nav-item disabled">
+            <a href="users.php" class="nav-link disabled <?= $page == 'users.php' ? 'active':'' ?>">
               <i class="nav-icon fas fa-user-friends"></i>
               <p>
                 Users
