@@ -18,7 +18,7 @@ echo '
                         <td>'.  $row['nature'] .'</td>
                         <td style="text-align:center">
 
-                          <a href="#d'. $row['id'].'" type="button" class="btn btn-primary btn-rounded btn-icon usereditid"
+                          <a href="#m'. $row['id'].'" type="button" class="btn btn-primary btn-rounded btn-icon usereditid"
                             data-toggle="modal" data-id='. $row['id'].' style="color: aliceblue"> <i
                               class="fas fa-pen"></i>
                           </a>

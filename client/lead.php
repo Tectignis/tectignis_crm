@@ -174,7 +174,7 @@ include("include/sidebar.php");
                         <td><?php echo $row['nature']; ?></td>
                         <td style="text-align:center">
 
-                          <a href="#d<?php echo $row['id'] ?>" class="btn btn-primary btn-rounded btn-icon usereditid"data-toggle="modal" data-id='<?php echo $row['id']; ?>' style="color: aliceblue"> <i
+                          <a href="#m<?php echo $row['id'] ?>" class="btn btn-primary btn-rounded btn-icon usereditid"data-toggle="modal" data-id='<?php echo $row['id']; ?>' style="color: aliceblue"> <i
                               class="fas fa-pen"></i>
                           </button>
 
@@ -217,7 +217,7 @@ include("include/sidebar.php");
                  $sql=mysqli_query($conn,"select lead.*, client.*, lead.Mobile_Number from lead inner join client on client.Client_Code=lead.Firm_Name where lead.deal=0 and Client_Code='$id'");
                  while ($row=mysqli_fetch_array($sql)){ 
                 ?>
-    <div class="modal fade" id="d<?php echo $row['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="m<?php echo $row['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
       aria-hidden="true">
       <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
