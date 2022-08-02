@@ -36,3 +36,8 @@ if($unread_count>0){
           });
       });
    </script>
+    <script>
+  $("#sideCollapse").click(function(){
+    $(".sidebar-mini").toggleClass("sidebar-collapse");
+  });
+</script>

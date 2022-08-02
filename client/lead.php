@@ -260,7 +260,7 @@ include("include/sidebar.php");
             <div class="col-6">
                 <div class="form-group">
                     <label>Nature</label>
-                    <select class="form-control" name="nature" style="width: 100%;" onclick="drop()">
+                    <select class="form-control" name="nature" style="width: 100%;" onclick="drop<?php echo $row['id']; ?>()">
                         <option selected="selected" value="<?php echo $row['nature']; ?>"><?php echo $row['nature']; ?>
                         </option>
                         <option value="Hot">Hot</option>
@@ -297,7 +297,7 @@ include("include/sidebar.php");
                         </div>
                     </div>
                     <script>
-                      function drop() {
+                      function drop<?php echo $row['id']; ?>() {
                         var select = document.getElementById("dropdown<?php echo $row['id']; ?>");
                         var text = document.getElementById("textt<?php echo $row['id']; ?>");
                         if (select.selected == true) {

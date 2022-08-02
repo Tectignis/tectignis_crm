@@ -14,6 +14,7 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
       </span>
     </a>
 </div>
+
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
@@ -68,14 +69,7 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="project.php" class="nav-link <?= $page == 'project.php' ? 'active':'' ?>">
-            <i class="nav-icon fa fa-file-pdf"></i>
-              <p>
-                Project
-              </p>
-            </a>
-          </li>
+          
           <li class="nav-item">
             <a href="changepassword.php" class="nav-link <?= $page == 'changepassword.php' ? 'active':'' ?>">
               <i class="nav-icon fas fa-solid fa-key"></i>

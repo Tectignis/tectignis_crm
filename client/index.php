@@ -398,9 +398,9 @@ let warmChart = new Chart(ctx, {
     labels: ["Warm", "Hot", "Cold"],
     datasets: [{
       backgroundColor: [
-        "#2ecc71",
-        "#3498db",
-        "#95a5a6",
+        "#0099ff",
+        "#3366ff",
+        "#9966ff",
         
       ],
       data: [<?php echo $leadWarmFetch. ',' .$leadHotFetch. ',' .$leadColdFetch ?>]
@@ -416,9 +416,9 @@ let bookedChart = new Chart(chartx, {
     labels: ["Booked", "Lead closed", "Site View"],
     datasets: [{
       backgroundColor: [
-        "#9b59b6",
-        "#f1c40f",
-        "#e74c3c"
+        "#ff9900",
+        "#cc6600",
+        "#993300"
       ],
       data: [<?php echo $leadBookedFetch. ',' .$leadLeadClosedFetch. ',' .$leadSiteViewFetch ?>]
     }]
