@@ -19,7 +19,7 @@ $name=$_SESSION['fname'];
 <li>
 <div class="card ml-2" style="width: fit-content;">
               <div class="card-title">
-<div id="timer"></div>
+                <div id="output"></div>
               </div>
             </div>
 </li> 
@@ -52,15 +52,6 @@ while($unread_time=mysqli_fetch_assoc($res_message)){
 </p>
 <?php } ?>
 <div class="dropdown-divider"></div>
-<!-- <a href="#" class="dropdown-item">
-<i class="fas fa-users mr-2"></i> 8 friend requests
-<span class="float-right text-muted text-sm">12 hours</span>
-</a>
-<div class="dropdown-divider"></div>
-<a href="#" class="dropdown-item">
-<i class="fas fa-file mr-2"></i> 3 new reports
-<span class="float-right text-muted text-sm">2 days</span>
-</a> -->
 <div class="dropdown-divider"></div>
 <a href="lead.php" class="dropdown-item dropdown-footer">See All Lead</a>
 </div>

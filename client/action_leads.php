@@ -11,7 +11,6 @@ if(isset($_POST['update'])){
     $remainder_date=$_POST['remainder_date'];
     $sitevisit_date=$_POST['sitevisit_date'];
     $id=$_POST['id'];
-    // $remainder=$_POST['remainder'];
    
    
 

@@ -25,8 +25,6 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
                <li class="nav-item">
             <a href="index.php" class="nav-link <?= $page == 'index.php' ? 'active':'' ?>">
             <i class="nav-icon fas fa-tachometer-alt"></i>

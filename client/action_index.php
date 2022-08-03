@@ -1,5 +1,6 @@
 <?php
 session_start();
+$id=$_SESSION['id'];
 include("config.php");
 if(isset($_POST['fetch'])){
     $fetch=$_POST['fetch'];
@@ -310,3 +311,34 @@ else if($fetch == '3 Month'){
 }
 }
 ?>
+
+<?php
+date_default_timezone_set('Asia/Kolkata');
+$qleadTimer=mysqli_query($conn,"select Requirement , (DATE_FORMAT(remainder_date,'%H')) AS 'hour', (DATE_FORMAT(remainder_date,'%i')) AS 'min',(date(remainder_date)) AS 'date' from lead where Firm_Name='$id'");
+$freminder=mysqli_fetch_array($qleadTimer);
+$leadhour=$freminder['hour'];
+$leadmin=$freminder['min'];
+$leaddate=$freminder['date'];
+$Requirement=$freminder['Requirement'];
+
+$time=date("$leaddate $leadhour:$leadmin");
+$timestamp = strtotime($time);
+$timestamp_one_hour_later = $timestamp - 3600; // 3600 sec. = 1 hour
+$cur=date("Y-m-d H:i");
+$timestamp1 = strtotime($cur);
+// echo $timestamp1."<br>";
+// echo date("m/d/Y h:i:s A T",$timestamp1)."<br>";
+// echo date("m/d/Y h:i:s A T",$timestamp)."<br>";
+// echo date("m/d/Y h:i:s A T",$timestamp_one_hour_later)."<br>";
+// echo $timestamp_one_hour_later;
+//echo $z;
+if ($timestamp1 == $timestamp_one_hour_later) {
+    echo "1 hour later for ".$Requirement;
+} else {
+    echo "false";
+}
+?>
+
+<script>
+  
+</script>
