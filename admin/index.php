@@ -83,7 +83,7 @@ $ndeactivated=mysqli_num_rows($qdeactivated);
         <div class="row">
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box" style="background:#4d757c;color:white">
+            <div class="small-box" style="background:#ffad08;color:white">
               <div class="inner">
               <?php
               $query=mysqli_query($conn,"select * from client");
@@ -102,7 +102,7 @@ $ndeactivated=mysqli_num_rows($qdeactivated);
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box" style="background:#853139;color:white">
+            <div class="small-box" style="background:#984c89;color:white">
               <div class="inner">
               <?php
               $query=mysqli_query($conn,"select * from lead");
@@ -120,7 +120,7 @@ $ndeactivated=mysqli_num_rows($qdeactivated);
           </div>
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box" style="background:#c8a12c;color:white">
+            <div class="small-box" style="background:#e02b2b;color:white">
               <div class="inner">
               <?php
               $fhot=mysqli_query($conn,"select * from lead where nature='Hot'");
@@ -217,7 +217,7 @@ $ndeactivated=mysqli_num_rows($qdeactivated);
           <div class="row">
             <div class="col-md-6">
               <div class="card card-warning">
-                <div class="card-header" style="background:#71633b;color:white">
+                <div class="card-header" style="background:#e32a59;color:white">
                 <h3 class="card-title">Pie Chart</h3>
                 <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -238,7 +238,7 @@ $ndeactivated=mysqli_num_rows($qdeactivated);
 
             <div class="col-md-6">
               <div class="card card-danger">
-                <div class="card-header" style="background:#5b151c;color:white">
+                <div class="card-header" style="background:#0c8db4;color:white">
                 <h3 class="card-title">Pie Chart</h3>
                 <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">

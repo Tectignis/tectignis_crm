@@ -133,7 +133,7 @@ margin-right:40px !important;
            <!-- ./col -->
            <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box" style="background:#ceb054;color:white">
+            <div class="small-box" style="background:#ffad08;color:white">
               <div class="inner">
               <?php
               $query=mysqli_query($conn,"select * from lead where status_deal='Open' and Firm_Name='$id'");
@@ -154,7 +154,7 @@ margin-right:40px !important;
          <!-- ./col -->
          <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box" style="background:#4d6b8a;color:white">
+            <div class="small-box" style="background:#984c89;color:white">
               <div class="inner">
               <?php
               $query=mysqli_query($conn,"select * from lead where Firm_Name='$id'");
@@ -175,7 +175,7 @@ margin-right:40px !important;
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-info">
+            <div class="small-box " style="background:#e02b2b;color:white">
               <div class="inner">
               <?php
               $query=mysqli_query($conn,"select * from lead where status_deal='Closed' and Firm_Name='$id'");
@@ -196,7 +196,7 @@ margin-right:40px !important;
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box" style="background:#925258;color:white">
+            <div class="small-box" style="background:#6f58ce;color:white">
               <div class="inner">
               <?php
               $query=mysqli_query($conn,"select * from ticket where client_code='$id'");
