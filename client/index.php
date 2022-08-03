@@ -130,30 +130,10 @@ margin-right:40px !important;
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row" id="leads">
-         <!-- ./col -->
-         <div class="col-lg-3 col-6">
+           <!-- ./col -->
+           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-primary">
-              <div class="inner">
-              <?php
-              $query=mysqli_query($conn,"select * from lead where Firm_Name='$id'");
-               $count1=mysqli_num_rows($query);
-                ?>
-               <h3><?php echo $count1; ?></h3>
-
-                <p>Total Leads</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-              </div>
-              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
+            <div class="small-box" style="background:#ceb054;color:white">
               <div class="inner">
               <?php
               $query=mysqli_query($conn,"select * from lead where status_deal='Open' and Firm_Name='$id'");
@@ -171,6 +151,27 @@ margin-right:40px !important;
           </div>
           <!-- ./col -->
           
+         <!-- ./col -->
+         <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box" style="background:#4d6b8a;color:white">
+              <div class="inner">
+              <?php
+              $query=mysqli_query($conn,"select * from lead where Firm_Name='$id'");
+               $count1=mysqli_num_rows($query);
+                ?>
+               <h3><?php echo $count1; ?></h3>
+
+                <p>Total Leads</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+         
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
@@ -195,7 +196,7 @@ margin-right:40px !important;
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-danger">
+            <div class="small-box" style="background:#925258;color:white">
               <div class="inner">
               <?php
               $query=mysqli_query($conn,"select * from ticket where client_code='$id'");
@@ -219,7 +220,7 @@ margin-right:40px !important;
           <div class="row">
             <div class="col-md-6">
               <div class="card card-warning">
-                <div class="card-header">
+                <div class="card-header" style="background:#e6e1eb;color:white">
                 <h3 class="card-title">Pie Chart</h3>
                 <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -240,7 +241,7 @@ margin-right:40px !important;
 
             <div class="col-md-6">
               <div class="card card-danger">
-                <div class="card-header">
+                <div class="card-header" style="background:#d5d598;color:white">
                 <h3 class="card-title">Pie Chart</h3>
                 <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -265,7 +266,7 @@ margin-right:40px !important;
           <div class="row">
             <div class="col-md-6">
               <div class="card card-success">
-                <div class="card-header">
+                <div class="card-header" style="background:#deacce;color:white">
                 <h3 class="card-title">Bar Chart</h3>
                 <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -316,7 +317,7 @@ margin-right:40px !important;
             <div class="col-md-6">
               
             <div class="card card-success">
-                <div class="card-header">
+                <div class="card-header" style="background:#90888b">
                 <h3 class="card-title">Calendar</h3>
                 <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
