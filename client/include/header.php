@@ -16,9 +16,9 @@ $name=$_SESSION['fname'];
         
       <h3><a href="#"><?php echo $name ?></a></h3>
 </li>
-<li>
+<li style="margin-top: 6px;color: slategray;margin-left: 14px;">
 <div class=" ml-2" style="width: fit-content;">
-                <div id="output"></div>
+                <div id="output" style=""></div>
             </div>
 </li> 
 
