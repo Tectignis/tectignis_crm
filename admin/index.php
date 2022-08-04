@@ -314,9 +314,9 @@ let warmChart = new Chart(ctx, {
     labels: ["Warm", "Hot", "Cold"],
     datasets: [{
       backgroundColor: [
-        "#399eaf",
+        "#FB9D06",
+        "#FB2606",
         "#3498db",
-        "#95a5a6",
         
       ],
       data: [<?php echo $leadWarmFetch. ',' .$leadHotFetch. ',' .$leadColdFetch ?>]
@@ -332,8 +332,8 @@ let bookedChart = new Chart(chartx, {
     labels: ["Activated", "Deactivated"],
     datasets: [{
       backgroundColor: [
-        "#666699",
         "#333399",
+        "#666699",
       ],
       data: [<?php echo $nactivated. ',' .$ndeactivated ?>]
     }]
