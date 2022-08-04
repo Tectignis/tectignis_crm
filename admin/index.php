@@ -314,7 +314,7 @@ let warmChart = new Chart(ctx, {
     labels: ["Warm", "Hot", "Cold"],
     datasets: [{
       backgroundColor: [
-        "#51A3D1",
+        "#73B4D9",
         "#2081B7",
         "#065987",
         
