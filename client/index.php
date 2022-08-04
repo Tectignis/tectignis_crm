@@ -128,6 +128,7 @@ margin-right:40px !important;
     <!-- Main content -->
     <section class="content">
       <div class="card">
+        <div class="card-body">
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row" id="leads">
@@ -217,7 +218,8 @@ margin-right:40px !important;
         </div>
         <!-- /.row -->
         <!-- Main row -->
-</div>
+        </div>
+        </div>
         <section>
           <div class="row">
             <div class="col-md-6">
