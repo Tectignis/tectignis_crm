@@ -322,7 +322,6 @@ $minusleadhour=$leadhour-1;
 $leadmin=$freminder['min'];
 $leaddate=$freminder['date'];
 $Requirement=$freminder['Requirement'];
-// if($nreminder > 0){
     if($leaddate == date('Y-m-d')){
         if($minusleadhour == date('H') && $leadmin == date('i')){
           $time=date("$leaddate $leadhour:$leadmin");
@@ -343,7 +342,6 @@ $Requirement=$freminder['Requirement'];
           }
         }
     }
-// }
 }
 
 ?>
