@@ -7,27 +7,10 @@ if(isset($_POST['fetch'])){
     $id=$_POST['leadid'];
     if($fetch == 'Today'){
     echo '
-         <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box"  style="background:#ffad08;color:white">
-              <div class="inner"> ';
-              $query=mysqli_query($conn,"select * from lead where Firm_Name='$id' and  date(Created_On)=date(now())");
-               $count1=mysqli_num_rows($query);
-              echo ' <h3>'.$count1.'</h3>
-
-                <p>Total Leads</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-              </div>
-              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <!-- ./col -->
+     <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box"  style="background:#984c89;color:white">
+            <div class="small-box"  style="background:#ffad08;color:white">
               <div class="inner">';
               $query=mysqli_query($conn,"select * from lead where status_deal='Open' and  date(Created_On)=date(now()) and Firm_Name='$id'");
                $count1=mysqli_num_rows($query);
@@ -42,6 +25,24 @@ if(isset($_POST['fetch'])){
             </div>
           </div>
           <!-- ./col -->
+         <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box"  style="background:#984c89;color:white">
+              <div class="inner"> ';
+              $query=mysqli_query($conn,"select * from lead where Firm_Name='$id' and  date(Created_On)=date(now())");
+               $count1=mysqli_num_rows($query);
+              echo ' <h3>'.$count1.'</h3>
+
+                <p>Total Leads</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+         
           
           <!-- ./col -->
           <div class="col-lg-3 col-6">
@@ -83,27 +84,10 @@ if(isset($_POST['fetch'])){
 }
 else if($fetch == 'Last Week'){
     echo '
-         <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box "  style="background:#ffad08;color:white">
-              <div class="inner"> ';
-              $query=mysqli_query($conn,"select * from lead where Firm_Name='$id' and  YEARWEEK(Created_On) = YEARWEEK(NOW() - INTERVAL 1 WEEK)");
-               $count1=mysqli_num_rows($query);
-              echo ' <h3>'.$count1.'</h3>
-
-                <p>Total Leads</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-              </div>
-              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <!-- ./col -->
+     <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box"  style="background:#984c89;color:white">
+            <div class="small-box"  style="background:#ffad08;color:white">
               <div class="inner">';
               $query=mysqli_query($conn,"select * from lead where status_deal='Open' and  YEARWEEK(Created_On) = YEARWEEK(NOW() - INTERVAL 1 WEEK) and Firm_Name='$id'");
                $count1=mysqli_num_rows($query);
@@ -118,6 +102,24 @@ else if($fetch == 'Last Week'){
             </div>
           </div>
           <!-- ./col -->
+         <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box "  style="background:#984c89;color:white">
+              <div class="inner"> ';
+              $query=mysqli_query($conn,"select * from lead where Firm_Name='$id' and  YEARWEEK(Created_On) = YEARWEEK(NOW() - INTERVAL 1 WEEK)");
+               $count1=mysqli_num_rows($query);
+              echo ' <h3>'.$count1.'</h3>
+
+                <p>Total Leads</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+         
           
           <!-- ./col -->
           <div class="col-lg-3 col-6">
@@ -159,27 +161,10 @@ else if($fetch == 'Last Week'){
 }
 else if($fetch == 'Monthly'){
     echo '
-         <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box"  style="background:#ffad08;color:white">
-              <div class="inner"> ';
-              $query=mysqli_query($conn,"select * from lead where Firm_Name='$id' and  Created_On > DATE_SUB(NOW(), INTERVAL 1 MONTH)");
-               $count1=mysqli_num_rows($query);
-              echo ' <h3>'.$count1.'</h3>
-
-                <p>Total Leads</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-              </div>
-              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <!-- ./col -->
+    <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box"  style="background:#984c89;color:white">
+            <div class="small-box"  style="background:#ffad08;color:white">
               <div class="inner">';
               $query=mysqli_query($conn,"select * from lead where status_deal='Open' and Created_On > DATE_SUB(NOW(), INTERVAL 1 MONTH) and Firm_Name='$id'");
                $count1=mysqli_num_rows($query);
@@ -194,6 +179,24 @@ else if($fetch == 'Monthly'){
             </div>
           </div>
           <!-- ./col -->
+         <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box"  style="background:#984c89;color:white">
+              <div class="inner"> ';
+              $query=mysqli_query($conn,"select * from lead where Firm_Name='$id' and  Created_On > DATE_SUB(NOW(), INTERVAL 1 MONTH)");
+               $count1=mysqli_num_rows($query);
+              echo ' <h3>'.$count1.'</h3>
+
+                <p>Total Leads</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          
           
           <!-- ./col -->
           <div class="col-lg-3 col-6">
@@ -235,27 +238,10 @@ else if($fetch == 'Monthly'){
 }
 else if($fetch == '3 Month'){
     echo '
-         <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box"  style="background:#ffad08;color:white">
-              <div class="inner"> ';
-              $query=mysqli_query($conn,"select * from lead where Firm_Name='$id' and  Created_On >= DATE(NOW()) - INTERVAL 3 MONTH");
-               $count1=mysqli_num_rows($query);
-              echo ' <h3>'.$count1.'</h3>
-
-                <p>Total Leads</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-              </div>
-              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <!-- ./col -->
+        <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box"  style="background:#984c89;color:white">
+            <div class="small-box"  style="background:#ffad08;color:white">
               <div class="inner">';
               $query=mysqli_query($conn,"select * from lead where status_deal='Open' and Created_On >= DATE(NOW()) - INTERVAL 3 MONTH and Firm_Name='$id'");
                $count1=mysqli_num_rows($query);
@@ -270,6 +256,24 @@ else if($fetch == '3 Month'){
             </div>
           </div>
           <!-- ./col -->
+         <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box"  style="background:#984c89;color:white">
+              <div class="inner"> ';
+              $query=mysqli_query($conn,"select * from lead where Firm_Name='$id' and  Created_On >= DATE(NOW()) - INTERVAL 3 MONTH");
+               $count1=mysqli_num_rows($query);
+              echo ' <h3>'.$count1.'</h3>
+
+                <p>Total Leads</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+      
           
           <!-- ./col -->
           <div class="col-lg-3 col-6">

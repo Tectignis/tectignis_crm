@@ -99,6 +99,7 @@ margin-right:40px !important;
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0">Dashboard</h1>
+           
           </div><!-- /.col -->
 
           <div class="col-sm-6">
@@ -114,10 +115,10 @@ margin-right:40px !important;
 
     <!-- Main content -->
     <section class="content">
-      <div class="card">
-        <div class="card-body">
-          <div style=" display: inline-block;">
-          <form onclick="getdata(this.value)"  style="width: fit-content;float:left">
+        <div class="card">
+        <div class="card-body" style="padding: 0.9rem;">
+             <div style=" display: inline-block;">
+            <form onclick="getdata(this.value)"  style="width: fit-content;float:left">
             <input type="hidden" id="leadid" value="<?php echo $id;?>">
             <select id="demo_overview_minimal_multiselect " class="dropbtn form-control" style="background-color:#fff;">
             <option>select</option>
@@ -127,8 +128,7 @@ margin-right:40px !important;
             <option>3 Month</option>
             </select>
             </form>
-
-          </div>
+</div>
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row" id="leads">
@@ -216,11 +216,11 @@ margin-right:40px !important;
           </div>
           <!-- ./col -->
         </div>
+        </div>
+        </div>
+        </div>
         <!-- /.row -->
         <!-- Main row -->
-        </div>
-        </div>
-        </div
         <section>
           <div class="row">
             <div class="col-md-6">
