@@ -17,10 +17,8 @@ $name=$_SESSION['fname'];
       <h3><a href="#"><?php echo $name ?></a></h3>
 </li>
 <li>
-<div class="card ml-2" style="width: fit-content;">
-              <div class="card-title">
+<div class=" ml-2" style="width: fit-content;">
                 <div id="output"></div>
-              </div>
             </div>
 </li> 
 
