@@ -69,6 +69,7 @@ if(isset($_POST['dnkidno'])){
         <option value="Open">Open</option>
         <option value="In Process">In Process</option>
         <option value="On Hold">On Hold</option>
+        <option value="Booked">Booked</option>
         <option value="Closed Deal">Closed Deal</option>
         
        

@@ -36,8 +36,6 @@ if(isset($_GET['delid'])){
       $id=$_POST['id'];
     date_default_timezone_set('Asia/Kolkata');
     $date=date("Y-m-d h:i:s");
-     
-     
   
       $sql=mysqli_query($conn,"UPDATE `lead` SET `nature`='$nature',`remainder_date`='$remainder_date',`sitevisit_date`='$sitevisit_date' WHERE id='$id'");
       $qcheckremark=mysqli_query($conn,"select * from remarks where lead_id='$id'");
@@ -53,7 +51,6 @@ if(isset($_GET['delid'])){
           echo '<script>alert("oops...somthing went wrong");</script>';
       }
   }
-
 ?>
 
 <!DOCTYPE html>
@@ -272,7 +269,6 @@ include("include/sidebar.php");
                         <option value="Cold">Cold</option>
                         <option value="Warm">Warm</option>
                         <option value="Deal Closed">Deal Closed</option>
-                        <option value="Booked">Booked</option>
                         <option value="Site Visit" id="dropdown<?php echo $row['id']; ?>">Site Visit</option>
                     </select>
                 </div>
@@ -459,8 +455,6 @@ include("include/sidebar.php");
 
     // });
   </script>
-  
-
   
 <script>
   function get_fb(){

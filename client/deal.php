@@ -140,6 +140,9 @@ include("include/sidebar.php");
             else if($status_deal=='On Hold'){
                 echo '<span class="badge badge-warning">On Hold</span>';
             }
+            else if($status_deal=='Booked'){
+              echo '<span class="badge badge-info">Booked</span>';
+          }
             else if($status_deal=='Closed Deal'){
                 echo '<span class="badge badge-danger">Closed Deal</span>';
             }

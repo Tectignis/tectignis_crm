@@ -13,7 +13,7 @@ $leadCold=mysqli_query($conn,"select * from lead where nature='Cold' and Firm_Na
 $leadColdFetch=mysqli_num_rows($leadCold);
 $leadWarm=mysqli_query($conn,"select * from lead where nature='Warm' and Firm_Name='$id'");
 $leadWarmFetch=mysqli_num_rows($leadWarm);
-$leadBooked=mysqli_query($conn,"select * from lead where nature='Booked' and Firm_Name='$id'");
+$leadBooked=mysqli_query($conn,"select * from lead where status_deal='Booked' and Firm_Name='$id'");
 $leadBookedFetch=mysqli_num_rows($leadBooked);
 $leadLeadClosed=mysqli_query($conn,"select * from lead where nature='Deal Closed' and Firm_Name='$id'");
 $leadLeadClosedFetch=mysqli_num_rows($leadLeadClosed);
@@ -200,13 +200,10 @@ margin-right:40px !important;
             <!-- small box -->
             <div class="small-box" style="background:#6f58ce;color:white">
               <div class="inner">
-              <?php
-              $query=mysqli_query($conn,"select * from ticket where client_code='$id'");
-               $count1=mysqli_num_rows($query);
-                ?>
-               <h3><?php echo $count1; ?></h3>
+             
+               <h3><?php echo $leadBookedFetch; ?></h3>
 
-                <p>Total No of Ticket</p>
+                <p>Total Booked</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
