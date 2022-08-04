@@ -220,6 +220,7 @@ margin-right:40px !important;
         <!-- Main row -->
         </div>
         </div>
+</div>
         <section>
           <div class="row">
             <div class="col-md-6">
