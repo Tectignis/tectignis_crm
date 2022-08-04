@@ -15,9 +15,9 @@ $leadWarm=mysqli_query($conn,"select * from lead where nature='Warm' and Firm_Na
 $leadWarmFetch=mysqli_num_rows($leadWarm);
 $leadBooked=mysqli_query($conn,"select * from lead where nature='Booked' and Firm_Name='$id'");
 $leadBookedFetch=mysqli_num_rows($leadBooked);
-$leadLeadClosed=mysqli_query($conn,"select * from lead where nature='Lead Closed' and Firm_Name='$id'");
+$leadLeadClosed=mysqli_query($conn,"select * from lead where nature='Deal Closed' and Firm_Name='$id'");
 $leadLeadClosedFetch=mysqli_num_rows($leadLeadClosed);
-$leadSiteView=mysqli_query($conn,"select * from lead where nature='Site View' and Firm_Name='$id'");
+$leadSiteView=mysqli_query($conn,"select * from lead where nature='Site Visit' and Firm_Name='$id'");
 $leadSiteViewFetch=mysqli_num_rows($leadSiteView);
 $leadDate=mysqli_query($conn,'SELECT Created_On, (DATE_FORMAT(Created_On,"%M")) AS "Month", COUNT(*) AS Number_of_registered_users FROM lead WHERE year(Created_On)= year(Created_On) and Firm_Name='.$id.' GROUP BY (DATE_FORMAT(Created_On,"%M")) ORDER BY "Month" ASC');
 $leadDate1=mysqli_query($conn,'SELECT Created_On, (DATE_FORMAT(Created_On,"%M")) AS "Month", COUNT(*) AS Number_of_registered_users FROM lead WHERE year(Created_On)= year(Created_On) and Firm_Name='.$id.' GROUP BY (DATE_FORMAT(Created_On,"%M")) ORDER BY "Month" ASC');
