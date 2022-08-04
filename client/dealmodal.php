@@ -65,7 +65,7 @@ if(isset($_POST['dnkidno'])){
         </div>
         <div class="col-8">
         <p> <select required class="form-control" name="status_deal" id="servicesid">
-        <option value="" disabled selected hidden>select</option>
+        <option value=" '.$arr['status_deal'].'"selected> '.$arr['status_deal'].'</option>
         <option value="Open">Open</option>
         <option value="In Process">In Process</option>
         <option value="On Hold">On Hold</option>

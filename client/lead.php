@@ -34,13 +34,18 @@ if(isset($_GET['delid'])){
       $remainder_date=$_POST['remainder_date'];
       $sitevisit_date=$_POST['sitevisit_date'];
       $id=$_POST['id'];
-      // $remainder=$_POST['remainder'];
+    date_default_timezone_set('Asia/Kolkata');
+    $date=date("Y-m-d h:i:s");
      
      
   
       $sql=mysqli_query($conn,"UPDATE `lead` SET `nature`='$nature',`remainder_date`='$remainder_date',`sitevisit_date`='$sitevisit_date' WHERE id='$id'");
-       $sql1=mysqli_query($conn,"INSERT INTO `remarks`(`remark`,`lead_id`) VALUES ('$remark','$id')");
-   
+      $qcheckremark=mysqli_query($conn,"select * from remarks where lead_id='$id'");
+      if(mysqli_num_rows($qcheckremark)>0){
+          $sql1=mysqli_query($conn,"update remarks set remark='$remark' , date_time='$date' where lead_id='$id'");
+      }else{
+       $sql1=mysqli_query($conn,"INSERT INTO `remarks`(`remark`,`lead_id`,`date_time`) VALUES ('$remark','$id','$date')");
+      }
       if($sql==1){
           echo "Saved!", "data successfully submitted", "success";
           header("location:lead.php");
@@ -274,25 +279,48 @@ include("include/sidebar.php");
             </div>
             <div class="col-3 " id="textt<?php echo $row['id']; ?>" style="display:none">
                 <div class="form-group">
+                    <?php
+                    if($row['sitevisit_date']=='0000-00-00 00:00:00'){
+                    ?>
                     <label>date : </label>
                     <input class="form-control" type="datetime-local" name="sitevisit_date">
+                    <?php }else{ ?>
+                    <label>date : </label>
+                    <input class="form-control" type="text" value="<?php echo $row['sitevisit_date']; ?>" name="sitevisit_date" readonly>
+                    <?php } ?>
                 </div>
             </div>
+            <?php $leadId=$row['id'];
+            $qremark=mysqli_query($conn,"select * from remarks where lead_id='$leadId'");
+            $fremark=mysqli_fetch_array($qremark);
+            ?>
             <div class="col-6">
                 <div class="form-group">
                     <label for="inputEmail">Remark : </label></br>
-                    <textarea name="remark" class="form-control" style="width: 100%;resize: none;"></textarea>
+                    <?php  if(mysqli_num_rows($qremark)>0){ ?>
+                    <textarea name="remark" class="form-control" style="width: 100%;resize: none;"><?php echo $fremark['remark'];  ?></textarea>
+                    <?php }else{ ?>
+                     <textarea name="remark" class="form-control" style="width: 100%;resize: none;"></textarea>
+                     <?php } ?>
                 </div>
             </div>
                 <div class="col-6">
                     <div class="form-group">
-                        <input type="checkbox" id="myCheck<?php echo $row['id'] ?>" name="remainder_date[]" value="remainder"
+                        <input type="checkbox" id="myCheck<?php echo $row['id'] ?>" name="" value="remainder"
                             onclick="myFunction<?php echo $row['id'] ?>()">
                         <label for="Remainder">Remainder </label>
+                        
                         <div class="col-12 text" id="text<?php echo $row['id'] ?>" style="display:none">
                             <div class="form-group">
+                                <?php
+                    if($row['remainder_date']=='0000-00-00 00:00:00'){
+                    ?>
                                 <label>date : </label>
-                                <input class="form-control" type="datetime-local" name="date_time">
+                                <input class="form-control" type="datetime-local" name="remainder_date">
+                                <?php }else{ ?>
+                                <label>date : </label>
+                                <input class="form-control" type="text" value="<?php echo $row['remainder_date']; ?>" name="remainder_date">
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
