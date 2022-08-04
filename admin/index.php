@@ -314,9 +314,9 @@ let warmChart = new Chart(ctx, {
     labels: ["Warm", "Hot", "Cold"],
     datasets: [{
       backgroundColor: [
-        "#FB9D06",
-        "#FB2606",
-        "#3498db",
+        "#51A3D1",
+        "#2081B7",
+        "#065987",
         
       ],
       data: [<?php echo $leadWarmFetch. ',' .$leadHotFetch. ',' .$leadColdFetch ?>]
