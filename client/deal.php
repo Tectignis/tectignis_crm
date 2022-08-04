@@ -116,7 +116,7 @@ include("include/sidebar.php");
                   </thead>
                   <tbody>
                   <?php
-                     $sql=mysqli_query($conn,"select lead.*, client.* from lead inner join client on client.Client_Code=lead.Firm_Name where lead.deal='1'");
+                     $sql=mysqli_query($conn,"select lead.*, client.* from lead inner join client on client.Client_Code=lead.Firm_Name where lead.deal='1' and Client_Code='$id'");
                      $count=1;
                          while($arr=mysqli_fetch_array($sql)){
           ?>

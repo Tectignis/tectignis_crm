@@ -106,6 +106,7 @@ include("include/sidebar.php");
                     <th>Client Name</th>
                     <th>Client Mobile Number</th>
                     <th>Requirement</th>
+                    <th>Social Media</th>
                     <th>Created On</th>
                     <th>Action</th>
                   </tr>

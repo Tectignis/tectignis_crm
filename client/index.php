@@ -127,6 +127,7 @@ margin-right:40px !important;
 
     <!-- Main content -->
     <section class="content">
+      <div class="card">
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row" id="leads">
@@ -216,12 +217,13 @@ margin-right:40px !important;
         </div>
         <!-- /.row -->
         <!-- Main row -->
+</div>
         <section>
           <div class="row">
             <div class="col-md-6">
               <div class="card card-warning">
                 <div class="card-header" style="background:#e32a59;color:white">
-                <h3 class="card-title">Pie Chart</h3>
+                <h3 class="card-title">Lead Status</h3>
                 <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                 <i class="fas fa-minus"></i>
@@ -242,7 +244,7 @@ margin-right:40px !important;
             <div class="col-md-6">
               <div class="card card-danger">
                 <div class="card-header" style="background:#0c8db4;color:white">
-                <h3 class="card-title">Pie Chart</h3>
+                <h3 class="card-title">Lead Status</h3>
                 <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                 <i class="fas fa-minus"></i>
@@ -267,7 +269,7 @@ margin-right:40px !important;
             <div class="col-md-6">
               <div class="card card-success">
                 <div class="card-header" style="background:#e32a59;color:white">
-                <h3 class="card-title">Bar Chart</h3>
+                <h3 class="card-title">Monthly Lead and Ticket</h3>
                 <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                 <i class="fas fa-minus"></i>

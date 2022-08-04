@@ -9,7 +9,7 @@ if(isset($_POST['fetch'])){
     echo '
          <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-primary">
+            <div class="small-box"  style="background:#ffad08;color:white">
               <div class="inner"> ';
               $query=mysqli_query($conn,"select * from lead where Firm_Name='$id' and  date(Created_On)=date(now())");
                $count1=mysqli_num_rows($query);
@@ -27,7 +27,7 @@ if(isset($_POST['fetch'])){
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-warning">
+            <div class="small-box"  style="background:#984c89;color:white">
               <div class="inner">';
               $query=mysqli_query($conn,"select * from lead where status_deal='Open' and  date(Created_On)=date(now()) and Firm_Name='$id'");
                $count1=mysqli_num_rows($query);
@@ -46,7 +46,7 @@ if(isset($_POST['fetch'])){
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-info">
+            <div class="small-box"  style="background:#e02b2b;color:white">
               <div class="inner">';
               $query=mysqli_query($conn,"select * from lead where status_deal='Closed'  and  date(Created_On)=date(now()) and Firm_Name='$id'");
                $count1=mysqli_num_rows($query);
@@ -65,7 +65,7 @@ if(isset($_POST['fetch'])){
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-danger">
+            <div class="small-box"  style="background:#6f58ce;color:white">
               <div class="inner">';
               $query=mysqli_query($conn,"select * from ticket where client_code='$id' and  date(date)=date(now())");
                $count1=mysqli_num_rows($query);
@@ -85,7 +85,7 @@ else if($fetch == 'Last Week'){
     echo '
          <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-primary">
+            <div class="small-box "  style="background:#ffad08;color:white">
               <div class="inner"> ';
               $query=mysqli_query($conn,"select * from lead where Firm_Name='$id' and  YEARWEEK(Created_On) = YEARWEEK(NOW() - INTERVAL 1 WEEK)");
                $count1=mysqli_num_rows($query);
@@ -103,7 +103,7 @@ else if($fetch == 'Last Week'){
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-warning">
+            <div class="small-box"  style="background:#984c89;color:white">
               <div class="inner">';
               $query=mysqli_query($conn,"select * from lead where status_deal='Open' and  YEARWEEK(Created_On) = YEARWEEK(NOW() - INTERVAL 1 WEEK) and Firm_Name='$id'");
                $count1=mysqli_num_rows($query);
@@ -122,7 +122,7 @@ else if($fetch == 'Last Week'){
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-info">
+            <div class="small-box "  style="background:#e02b2b;color:white">
               <div class="inner">';
               $query=mysqli_query($conn,"select * from lead where status_deal='Closed'  and  YEARWEEK(Created_On) = YEARWEEK(NOW() - INTERVAL 1 WEEK) and Firm_Name='$id'");
                $count1=mysqli_num_rows($query);
@@ -141,7 +141,7 @@ else if($fetch == 'Last Week'){
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-danger">
+            <div class="small-box"  style="background:#6f58ce;color:white">
               <div class="inner">';
               $query=mysqli_query($conn,"select * from ticket where client_code='$id' and  YEARWEEK(date) = YEARWEEK(NOW() - INTERVAL 1 WEEK)");
                $count1=mysqli_num_rows($query);
@@ -161,7 +161,7 @@ else if($fetch == 'Monthly'){
     echo '
          <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-primary">
+            <div class="small-box"  style="background:#ffad08;color:white">
               <div class="inner"> ';
               $query=mysqli_query($conn,"select * from lead where Firm_Name='$id' and  Created_On > DATE_SUB(NOW(), INTERVAL 1 MONTH)");
                $count1=mysqli_num_rows($query);
@@ -179,7 +179,7 @@ else if($fetch == 'Monthly'){
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-warning">
+            <div class="small-box"  style="background:#984c89;color:white">
               <div class="inner">';
               $query=mysqli_query($conn,"select * from lead where status_deal='Open' and Created_On > DATE_SUB(NOW(), INTERVAL 1 MONTH) and Firm_Name='$id'");
                $count1=mysqli_num_rows($query);
@@ -198,7 +198,7 @@ else if($fetch == 'Monthly'){
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-info">
+            <div class="small-box"  style="background:#e02b2b;color:white">
               <div class="inner">';
               $query=mysqli_query($conn,"select * from lead where status_deal='Closed'  and Created_On > DATE_SUB(NOW(), INTERVAL 1 MONTH) and Firm_Name='$id'");
                $count1=mysqli_num_rows($query);
@@ -217,7 +217,7 @@ else if($fetch == 'Monthly'){
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-danger">
+            <div class="small-box"  style="background:#6f58ce;color:white">
               <div class="inner">';
               $query=mysqli_query($conn,"select * from ticket where client_code='$id' and date > DATE_SUB(NOW(), INTERVAL 1 MONTH)");
                $count1=mysqli_num_rows($query);
@@ -237,7 +237,7 @@ else if($fetch == '3 Month'){
     echo '
          <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-primary">
+            <div class="small-box"  style="background:#ffad08;color:white">
               <div class="inner"> ';
               $query=mysqli_query($conn,"select * from lead where Firm_Name='$id' and  Created_On >= DATE(NOW()) - INTERVAL 3 MONTH");
                $count1=mysqli_num_rows($query);
@@ -255,7 +255,7 @@ else if($fetch == '3 Month'){
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-warning">
+            <div class="small-box"  style="background:#984c89;color:white">
               <div class="inner">';
               $query=mysqli_query($conn,"select * from lead where status_deal='Open' and Created_On >= DATE(NOW()) - INTERVAL 3 MONTH and Firm_Name='$id'");
                $count1=mysqli_num_rows($query);
@@ -274,7 +274,7 @@ else if($fetch == '3 Month'){
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-info">
+            <div class="small-box"  style="background:#e02b2b;color:white">
               <div class="inner">';
               $query=mysqli_query($conn,"select * from lead where status_deal='Closed'  and Created_On >= DATE(NOW()) - INTERVAL 3 MONTH and Firm_Name='$id'");
                $count1=mysqli_num_rows($query);
@@ -293,7 +293,7 @@ else if($fetch == '3 Month'){
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-danger">
+            <div class="small-box"  style="background:#6f58ce;color:white">
               <div class="inner">';
               $query=mysqli_query($conn,"select * from ticket where client_code='$id' and date >= DATE(NOW()) - INTERVAL 3 MONTH");
                $count1=mysqli_num_rows($query);
