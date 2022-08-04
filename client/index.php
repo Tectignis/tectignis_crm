@@ -115,7 +115,7 @@ margin-right:40px !important;
     <!-- Main content -->
     <section class="content">
       <div class="card">
-        <div class="card-body" style="padding: 0.6rem;">
+        <div class="card-body">
           <div style=" display: inline-block;">
           <form onclick="getdata(this.value)"  style="width: fit-content;float:left">
             <input type="hidden" id="leadid" value="<?php echo $id;?>">
@@ -129,7 +129,7 @@ margin-right:40px !important;
             </form>
 
           </div>
-      <div class="">
+      <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row" id="leads">
            <!-- ./col -->
