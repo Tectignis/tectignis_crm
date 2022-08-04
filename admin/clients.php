@@ -159,7 +159,7 @@ if(isset($_POST["submi"])){
 
                     <div class="row">
                     <?php
-                    $sql=mysqli_query($conn,"select * from client");
+                    $sql=mysqli_query($conn,"SELECT * FROM client inner join category on client.Category=category.id;");
                     $count=1;
                   while ($row=mysqli_fetch_array($sql)){ 
           ?>
@@ -168,7 +168,7 @@ if(isset($_POST["submi"])){
                                 <div class="card-header border-0 pb-0">
                                     <div class="d-flex align-items-center">
                                         <div class="d-grid">
-                                            <div class="badge bg-primary p-2 px-3 rounded"><?php echo $row['Category']; ?>
+                                            <div class="badge bg-primary p-2 px-3 rounded"><?php echo $row['category']; ?>
                                             </div>
                                         </div>
                                     </div>

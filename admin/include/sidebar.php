@@ -43,7 +43,7 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
           </li>
 
             <li class="nav-item">
-            <a href="clients.php" class="nav-link <?= $page == 'index.php' ? :'' ?>">
+            <a href="clients.php" class="nav-link <?= $page == 'clients.php' ? 'active' :'' ?>">
               <i class="nav-icon fas fa-user-alt"></i>
               <p>
                 Clients
@@ -59,9 +59,17 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
               </p>
             </a>
           </li>
+ <li class="nav-item">
+            <a href="category.php" class="nav-link <?= $page == 'category.php' ? 'active' :'' ?>">
+              <i class="nav-icon fas fa-list-alt"></i>
+              <p>
+               Category
+              </p>
+            </a>
+          </li>
 
             <li class="nav-item">
-            <a href="lead.php" class="nav-link <?= $page == 'index.php' ? :'' ?>">
+            <a href="lead.php" class="nav-link <?= $page == 'lead.php' ? 'active' :'' ?>">
             
               <i class="nav-icon fas fa-chart-line"></i>
               <p>
