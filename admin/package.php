@@ -10,7 +10,7 @@ if(isset($_POST['submitt'])){
     date_default_timezone_set('Asia/Kolkata');
     $date=date('d-m-Y h:i:s a');
    
-    $sql=mysqli_query($conn,"INSERT INTO `Package`(`package_name`, `total_lead`, `total_amt`, `created_date`) VALUES ('$name','$Tlead','$tamt','$date')");
+    $sql=mysqli_query($conn,"INSERT INTO `package`(`package_name`, `total_lead`, `total_amt`, `created_date`) VALUES ('$name','$Tlead','$tamt','$date')");
 
     if($sql==1){
         echo '<script>alert("Saved!", "data successfully submitted", "success");</script>';
