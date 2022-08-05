@@ -60,23 +60,19 @@ include("include/sidebar.php");
     $qpackage=mysqli_query($conn,"select * from package");
     while($fpackage=mysqli_fetch_array($qpackage)){
     ?>
-<div class="col-sm-3">
-<div class="card card-secondary">
-<div class="card-header">
-<h3 class="card-title"><?php echo $fpackage['package_name']; ?></h3>
-</div>
-<div class="card-body">
-<?php echo $fpackage['total_lead']; ?>
-</div>
-<div class="card-footer">
-<?php echo $fpackage['total_amt']; ?>
-<div class="f-right" style="
-    float: right;
-">Assign</div>
-</div>
-</div>
-</div>
-</div>
+ <div class="col-md-3 col-sm-6">
+                            <div class="card  text-center">
+                                <div class="card-header border-0 pb-0">
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="mt-2"><a href=""><?php echo $row['name']; ?></a></h4>
+                                    <h6 class=""><?php echo $row['total_lead']; ?></h6> <h6 class=""><?php echo $row['assign']; ?></h6>
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-secondary"><?php echo $row['assign']; ?></button>
+                                </div>
+                            </div>
+                        </div>
 <?php } ?>
       </div>
 

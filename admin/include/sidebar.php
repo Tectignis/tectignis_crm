@@ -117,11 +117,18 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
             <a href="package.php" class="nav-link <?= $page == 'package.php' ? 'active':'' ?>">
             <i class="nav-icon fas fa-th"></i>
               <p>
-              package
+              Package
               </p>
             </a>
           </li>
-
+          <li class="nav-item">
+            <a href="package_card.php" class="nav-link <?= $page == 'package_card.php' ? 'active':'' ?>">
+            <i class="nav-icon fas fa-th"></i>
+              <p>
+              Package Card
+              </p>
+            </a>
+          </li>
             <li class="nav-item">
             <a href="changepassword.php" class="nav-link <?= $page == 'changepassword.php' ? 'active':'' ?>">
             <i class="nav-icon fas fa-solid fa-key"></i>

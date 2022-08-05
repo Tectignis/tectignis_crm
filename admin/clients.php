@@ -206,7 +206,7 @@ if(isset($_POST["submi"])){
                     </div>
                 </div>
             </div>
-        <div style="display:inline-block;margin-top: 10px;width: 100%;">
+        <div style="display:inline-block;width: 100%;">
         <h3 class="widget-user-username"><?php echo $row['Firm_Name']; ?></h3>
         <h5 class="widget-user-desc"><?php echo $row['Authorized_Name']; ?></h5>
         </div>
@@ -231,7 +231,7 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-circle elevat
         <div class="col-sm-4 border-right">
         <div class="description-block">
         <h5 class="description-header">3,200</h5>
-        <span class="description-text">SALES</span>
+        <span class="description-text">Total Packages</span>
         </div>
         
         </div>
@@ -239,7 +239,7 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-circle elevat
         <div class="col-sm-4 border-right">
         <div class="description-block">
         <h5 class="description-header">13,000</h5>
-        <span class="description-text">FOLLOWERS</span>
+        <span class="description-text">Total Leads</span>
         </div>
         
         </div>
@@ -258,7 +258,7 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-circle elevat
         </div>
                 </div>
                         <?php } ?>
-                        <div class="col-md-3 col-sm-6 text-center">
+                        <div class="col-md-4 col-sm-6 text-center">
                             <a href="#" class="btn-addnew-project" data-bs-toggle="tooltip" data-bs-placement="top"
                                 title="" data-ajax-popup="true" data-size="lg" data-title="Create User" data-url=""
                                 data-toggle="modal" data-target="#exampleModal" data-bs-original-title="Create User">
