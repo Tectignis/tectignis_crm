@@ -65,11 +65,11 @@ include("include/sidebar.php");
                                 <div class="card-header border-0 pb-0">
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="mt-2"><a href=""><?php echo $row['name']; ?></a></h4>
-                                    <h6 class=""><?php echo $row['total_lead']; ?></h6> <h6 class=""><?php echo $row['assign']; ?></h6>
+                                    <h4 class="mt-2"><a href=""><?php echo $fpackage['name']; ?></a></h4>
+                                    <h6 class=""><?php echo $fpackage['total_lead']; ?></h6> <h6 class=""><?php echo $fpackage['assign']; ?></h6>
                                 </div>
                                 <div class="card-footer">
-                                    <button class="btn btn-secondary"><?php echo $row['assign']; ?></button>
+                                    <button class="btn btn-secondary"><?php echo $fpackage['assign']; ?></button>
                                 </div>
                             </div>
                         </div>
