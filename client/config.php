@@ -1,3 +1,3 @@
 <?php
-$conn=mysqli_connect("localhost","u188140722_crm1","Admin@123","u188140722_crm1");
+$conn=mysqli_connect("151.106.124.51","u188140722_crm1","Admin@123","u188140722_crm1");
 ?>
