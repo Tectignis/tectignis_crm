@@ -1,20 +1,16 @@
 <?php
 include("config.php");
-
 ?>
 <?php
 //leads post
 if(isset($_POST['submitt'])){
-    $Firm_Name=$_POST['Fname'];
-    $Client_Name=$_POST['Cname'];
-    $Mobile_Number=$_POST['number'];
-    $Requirement=$_POST['requirement'];
-    $social_media=$_POST['social_media'];
-    $status="Open";
+    $name=$_POST['name'];
+    $Tlead=$_POST['Tlead'];
+    $tamt=$_POST['tamt'];
     date_default_timezone_set('Asia/Kolkata');
-    $Date = date("Y-m-d H:i:s");
+    $date=date('d-m-Y h:i:s a');
    
-    $sql=mysqli_query($conn,"INSERT INTO `lead`(`Firm_Name`,`Client_Name`, `Mobile_Number`,`Requirement`,`social_media`,`Created_On`,`status_deal`) VALUES ('$Firm_Name','$Client_Name','$Mobile_Number','$Requirement','$social_media','$Date','$status')");
+    $sql=mysqli_query($conn,"INSERT INTO `Package`(`package_name`, `total_lead`, `total_amt`, `created_date`, `update_date`) VALUES ('$name','$Tlead','$tamt','$date',)");
 
     if($sql==1){
         echo '<script>alert("Saved!", "data successfully submitted", "success");</script>';
@@ -69,12 +65,12 @@ include("include/sidebar.php");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Leads</h1>
+            <h1>Package</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-              <li class="breadcrumb-item active">Leads</li>
+              <li class="breadcrumb-item active">Package</li>
             </ol>
           </div>
         </div>
@@ -93,7 +89,7 @@ include("include/sidebar.php");
                 <div class="card-header">
                   <h5 class="card-title">List of Leads</h5>    
                       <button type="button" class="btn btn-primary float-right my-3 " data-toggle="modal" data-target="#exampleModal" style="margin-right: 5px;">
-                    + Add Lead
+                    + Add Package
                   </button>
                 </div>
               <!-- /.card-header -->
@@ -122,17 +118,20 @@ include("include/sidebar.php");
       <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add Packages</h5>
         
       </div>
       <div class="modal-body">
       <form method="post" action="">
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <div class="form-group">
                   <label>Package Name</label>
-                  <input type="tel" class="form-control" name="name" id="name" placeholder="Package Name" required>
+                  <input type="number" class="form-control" name="name" id="name" placeholder="Package Name" required>
+                  <span id="namespan" class="mb-4"></span>
                 </div>
+                </div>
+                <div class="col-md-6">
                 <!-- /.form-group -->
                 <div class="form-group">
                 <label>Total Leads</label>
@@ -149,10 +148,12 @@ include("include/sidebar.php");
                   <input type="text" class="form-control" name="Plead" id="Plead" placeholder="Per Leads Amt" required>
                   <span id="cnamespan" class="mb-4"></span>
                 </div>
+                </div>
+                <div class="col-md-12">
                 <!-- /.form-group -->
                 <div class="form-group">
                   <label>Total Amt</label>
-                  <input type="text" class="form-control" name="requirement" id="Tamt" readonly>
+                  <input type="text" class="form-control" name="tamt" id="Tamt" readonly>
                 </div>
               </div>
               </div>
@@ -233,22 +234,22 @@ include("include/sidebar.php");
    let  validenqName;
 
     $(document).ready(function(){
- $("#cnamespan").hide();
-	    $("#cname").keyup(function(){
+ $("#namespan").hide();
+	    $("#name").keyup(function(){
 	     txt_check();
 	   });
 	   function txt_check(){
       validenqName="no";
-		   let txt=$("#cname").val();
+		   let txt=$("#name").val();
 		   let vali =/^[A-Za-z ]+$/;
 		   if(!vali.test(txt)){
-			  $("#cnamespan").show().html("Enter Alphabets only").css("color","red").focus();
+			  $("#namespan").show().html("Enter Alphabets only").css("color","red").focus();
 			  txt_err=false;
 			  return false;
 		   }
 		   else{
         validenqName="yes";
-		       $("#cnamespan").hide();
+		       $("#namespan").hide();
 		       
 		   }
 	   }
@@ -266,32 +267,10 @@ include("include/sidebar.php");
     });
     </script>
 <script>
-  let  validenqtMobile;
 
 $(document).ready(function(){
-     $("#numberspan").hide();
-	    $("#number").keyup(function(){
-	     mobile_check();
-	   });
-	   function mobile_check(){
-      validenqtMobile="no";
-		   let mobileno=$("#number").val();
-		   let vali =/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/; 
-		   if(!vali.test(mobileno)){
-       
-			    $("#numberspan").show().html("*Invalid Mobile No").css("color","red").focus();
-				mobile_err=false;
-			 return false;
-		   }
-		   else{
-        validenqtMobile="yes";
-		       $("#numberspan").hide(); 
-		   }
-	   }
- 
-     
 	   $("#sub").click(function(){
-      if(validenqName =="no" || validenqtMobile =="no"){
+      if(validenqName =="no"){
          swal({
   title: "Oops...!",
   text: "Please fill all the fields!",
@@ -324,7 +303,6 @@ $(document).ready(function(){
                 let TAmt=Tlead*Plead;
                 $("#Tamt").val(TAmt);
             });
-
         });
     </script>
 </body>
