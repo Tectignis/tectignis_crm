@@ -165,7 +165,7 @@ if(isset($_POST["submi"])){
           ?>
                         <div class="col-md-4 col-sm-6">
                               <div class="card card-widget widget-user">
-        <div class="widget-user-header bg-info" <?php if($row['Status']=='Deactivated'){ ?>style="background:#B2BEB5;header:168px"<?php } ?> style="header:168px;">
+        <div class="widget-user-header bg-info" <?php if($row['Status']=='Deactivated'){ ?>style="background:#B2BEB5;header:168px"<?php } ?> style="height:168px;">
             <div class="widget-header border-0 pb-0">
                 <div class="d-flex align-items-center float-left">
                     <div class="d-grid">
