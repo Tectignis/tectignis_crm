@@ -58,7 +58,7 @@ include("config.php");
                                 <div class="form-group">
                                 <label>Category</label>
                                     <select class="form-control" value="<?php echo $row['category']; ?>" name="category" id="inputcategory">
-                                        <option selected value="<?php echo $row['category']; ?>"><?php echo $row['category']; ?></option>
+                                        <option selected value="<?php echo $row['id']; ?>"><?php echo $row['category']; ?></option>
     
                                         <?php 
                    $query=mysqli_query($conn,"select * from category");
