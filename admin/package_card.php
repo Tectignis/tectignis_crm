@@ -69,7 +69,7 @@ include("include/sidebar.php");
                                     <h6 class=""><?php echo $fpackage['total_lead']; ?></h6> <h6 class=""><?php echo $fpackage['assign']; ?></h6>
                                 </div>
                                 <div class="card-footer">
-                                    <button class="btn btn-secondary"><?php echo $fpackage['assign']; ?></button>
+                                    <button class="btn btn-secondary"><?php echo $fpackage['total_amt']; ?></button>
                                 </div>
                             </div>
                         </div>
