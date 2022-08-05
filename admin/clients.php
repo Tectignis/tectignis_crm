@@ -164,9 +164,7 @@ if(isset($_POST["submi"])){
                   while ($row=mysqli_fetch_array($sql)){ 
           ?>
                         <div class="col-md-3 col-sm-6">
-                            <div class="card  text-center"  <?php if($row['Status']=='Deactivated'){ ?>style="background:#B2BEB5"<?php } ?>>
-                                <div class="card-header border-0 pb-0">
-                                    <div class="d-fle    <div class="card card-widget widget-user">
+                              <div class="card card-widget widget-user">
         <div class="widget-user-header bg-info" <?php if($row['Status']=='Deactivated'){ ?>style="background:#B2BEB5"<?php } ?>>
             <div class="widget-header border-0 pb-0">
                 <div class="d-flex align-items-center">
