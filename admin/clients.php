@@ -256,6 +256,7 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-circle elevat
         
         </div>
         </div>
+                </div>
                         <?php } ?>
                         <div class="col-md-3 col-sm-6 text-center">
                             <a href="#" class="btn-addnew-project" data-bs-toggle="tooltip" data-bs-placement="top"
