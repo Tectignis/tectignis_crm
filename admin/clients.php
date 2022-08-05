@@ -165,16 +165,16 @@ if(isset($_POST["submi"])){
           ?>
                         <div class="col-md-4 col-sm-6">
                               <div class="card card-widget widget-user">
-        <div class="widget-user-header bg-info" <?php if($row['Status']=='Deactivated'){ ?>style="background:#B2BEB5"<?php } ?>>
+        <div class="widget-user-header bg-info" <?php if($row['Status']=='Deactivated'){ ?>style="background:#B2BEB5;header:168px"<?php } ?> style="header:168px;">
             <div class="widget-header border-0 pb-0">
-                <div class="d-flex align-items-center">
+                <div class="d-flex align-items-center float-left">
                     <div class="d-grid">
                         <div class="badge bg-primary p-2 px-3 rounded">
                             <?php echo $row['category']; ?>
                         </div>
                     </div>
                 </div>
-                <div class="widget-header-right f-right">
+                <div class="widget-header-right float-right">
                     <div class="dropdown">
                         <button class="btn" type="button" id="dropdownMenu2" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
@@ -189,7 +189,7 @@ if(isset($_POST["submi"])){
     
                             <button class="dropdown-item usereditid" type="button"  data-id="<?php echo $row['Client_Code'] ?>"><i class="far fa-edit"></i> Edit</button>
     
-                            <button class="dropdown-item delbtn" type="button" onclick="deleteBtn()" data-id="<?php echo $row['Client_Code']; ?>"><i class="fa fa-trash-alt"></i> Delete</button>
+                            <button class="dropdown-item delbtn" type="button" onclick="deleteBtn()" data-id="=<?php echo $row['Client_Code']; ?>"><i class="fa fa-trash-alt"></i> Delete</button>
     
     
                             <button class="dropdown-item rpassword" type="button" data-toggle="modal"
@@ -206,11 +206,13 @@ if(isset($_POST["submi"])){
                     </div>
                 </div>
             </div>
+        <div style="display:inline-block;margin-top: 10px;width: 100%;">
         <h3 class="widget-user-username"><?php echo $row['Firm_Name']; ?></h3>
         <h5 class="widget-user-desc"><?php echo $row['Authorized_Name']; ?></h5>
+        </div>
         
         </div>
-        <div class="widget-user-image">
+        <div class="widget-user-image" style="top:112px">
             <a href="clinet_details.php" target="_blank">
                 <?php
                 if($row['image']==""){
