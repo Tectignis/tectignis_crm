@@ -113,6 +113,14 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="package.php" class="nav-link <?= $page == 'package.php' ? 'active':'' ?>">
+            <i class="nav-icon fas fa-th"></i>
+              <p>
+              package
+              </p>
+            </a>
+          </li>
 
             <li class="nav-item">
             <a href="changepassword.php" class="nav-link <?= $page == 'changepassword.php' ? 'active':'' ?>">
