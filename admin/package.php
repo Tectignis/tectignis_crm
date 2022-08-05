@@ -136,7 +136,8 @@ include("include/sidebar.php");
                 <!-- /.form-group -->
                 <div class="form-group">
                 <label>Total Leads</label>
-                  <input type="number" onkeypress="return onlyNumberKey(event)" class="form-control" name="Tlead" id="Tlead" placeholder="Total Leads" required>
+                <!--onkeypress="return onlyNumberKey(event)"-->
+                  <input type="number"  class="form-control" name="Tlead" id="Tlead" placeholder="Total Leads" required>
                   <span id="numberspan" class="mb-4"></span>
                     </div>
                 <!-- /.form-group -->
@@ -317,7 +318,7 @@ $(document).ready(function(){
     </script>
     <script>
         $(document).ready(function(){
-            $("#Tlead,#Plead").onkeyup(function(){
+            $("#Tlead,#Plead").keyup(function(){
                 let Tlead=$("#Tlead").val();
                 let Plead=$("#Plead").val();
                 let TAmt=Tlead*Plead;
