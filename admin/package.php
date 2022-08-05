@@ -322,7 +322,7 @@ $(document).ready(function(){
                 let Tlead=$("#Tlead").val();
                 let Plead=$("#Plead").val();
                 let TAmt=Tlead*Plead;
-                $("#total").val(TAmt);
+                $("#Tamt").val(TAmt);
             });
 
         });
