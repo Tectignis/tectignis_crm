@@ -66,10 +66,13 @@ include("include/sidebar.php");
 <h3 class="card-title"><?php echo $fpackage['package_name']; ?></h3>
 </div>
 <div class="card-body">
-<?php echo $fpackage['total_amt']; ?>
+<?php echo $fpackage['total_lead']; ?>
 </div>
 <div class="card-footer">
-<?php echo $fpackage['total_lead']; ?>
+<?php echo $fpackage['total_amt']; ?>
+<div class="f-right" style="
+    float: right;
+">Assign</div>
 </div>
 </div>
 </div>
