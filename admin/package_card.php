@@ -65,7 +65,7 @@ include("include/sidebar.php");
                                 <div class="card-header border-0 pb-0">
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="mt-2"><a href=""><?php echo $fpackage['name']; ?></a></h4>
+                                    <h4 class="mt-2"><a href=""><?php echo $fpackage['package_name']; ?></a></h4>
                                     <h6 class=""><?php echo $fpackage['total_lead']; ?></h6> <h6 class=""><?php echo $fpackage['assign']; ?></h6>
                                 </div>
                                 <div class="card-footer">
