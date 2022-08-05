@@ -98,9 +98,9 @@ include("include/sidebar.php");
                   <thead>
                   <tr>
                     <th>Sr no.</th>
-                    <th>Firm Name</th>
-                    <th>Client Name</th>
-                    <th>Client Mobile Number</th>
+                    <th>Name</th>
+                    <th>Lead</th>
+                    <th>Amt</th>
                     <th>Requirement</th>
                     <th>Social Media</th>
                     <th>Created On</th>
@@ -127,7 +127,7 @@ include("include/sidebar.php");
               <div class="col-md-12">
                 <div class="form-group">
                   <label>Package Name</label>
-                  <input type="number" class="form-control" name="name" id="name" placeholder="Package Name" required>
+                  <input type="text" class="form-control" name="name" id="name" placeholder="Package Name" required>
                   <span id="namespan" class="mb-4"></span>
                 </div>
                 </div>
@@ -145,7 +145,7 @@ include("include/sidebar.php");
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Per Leads Amt</label>
-                  <input type="text" class="form-control" name="Plead" id="Plead" placeholder="Per Leads Amt" required>
+                  <input type="number" class="form-control" name="Plead" id="Plead" placeholder="Per Leads Amt" required>
                   <span id="cnamespan" class="mb-4"></span>
                 </div>
                 </div>
