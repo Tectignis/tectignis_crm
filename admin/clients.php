@@ -163,7 +163,7 @@ if(isset($_POST["submi"])){
                     $count=1;
                   while ($row=mysqli_fetch_array($sql)){ 
           ?>
-                        <div class="col-md-3 col-sm-6">
+                        <div class="col-md-4 col-sm-6">
                               <div class="card card-widget widget-user">
         <div class="widget-user-header bg-info" <?php if($row['Status']=='Deactivated'){ ?>style="background:#B2BEB5"<?php } ?>>
             <div class="widget-header border-0 pb-0">
