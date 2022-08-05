@@ -28,7 +28,7 @@ include("config.php");
 
 
 <?php
-//include("include/header.php");
+include("include/header.php");
 include("include/sidebar.php");
 ?>
 
