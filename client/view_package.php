@@ -1,12 +1,13 @@
 <?php
+session_start();
 include("config.php");
-$id=$_GET['view'];
+$id=$_SESSION['id'];
 if(isset($_GET['del_id'])){
     $delid = $_GET['del_id'];
     $sql = mysqli_query($conn,"DELETE FROM lead WHERE id = '$delid'");
     header ('location:clients.php');
   }
-?>
+?>  
 
 <!DOCTYPE html>
 <html lang="en">
@@ -81,10 +82,12 @@ if(isset($_GET['del_id'])){
         .comp-card {
     height: 137px;
 }
+
     </style>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
+   
     <div class="wrapper">
 
         <!-- Preloader -->
@@ -138,7 +141,7 @@ if(isset($_GET['del_id'])){
                                 </div> -->
                                 <!-- </div> -->
 
-           <form onclick="getdata(this.value)"  style="width: fit-content;margin-top: 1%;margin-left: 73%;">
+           <form onclick="getdata(this.value)"  style="width: fit-content;margin-top: 1%;margin-left: 77%;">
             <input type="hidden" id="leadid" value="<?php echo $id;?>">
             <select id="demo_overview_minimal_multiselect" class="dropbtn form-control" style="background-color:#fff; margin-left:73px;">
             <option disabled selected>Select your Time</option>
@@ -254,7 +257,6 @@ if(isset($_GET['del_id'])){
 </thead>
 <tbody id="leads">
 <?php
-$id=$_GET['view'];
 $sql=mysqli_query($conn,"select *, lead.Mobile_Number as mob from lead inner join client on lead.Firm_Name=client.Client_Code where Client_Code='$id'");
 $count=1;
 while ($row=mysqli_fetch_array($sql)){ 
