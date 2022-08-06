@@ -153,7 +153,7 @@ if(isset($_GET['del_id'])){
                                 <div class="card-body bg-success">
                                     <div class="row align-items-center">
                                         <div class="col">
-                                            <h6 class="m-b-20">Total Laed</h6>  
+                                            <h6 class="m-b-20">Total Lead</h6>  
                                             <?php $query=mysqli_query($conn,"select * from lead where Firm_Name='$id'");
               $count1=mysqli_num_rows($query);
                ?>
@@ -255,7 +255,7 @@ if(isset($_GET['del_id'])){
                             $id=$_GET['view'];
                             $sql=mysqli_query($conn,"select *, lead.Mobile_Number as mob from lead inner join client on lead.Firm_Name=client.Client_Code where Client_Code='$id'");
                             $count=1;?>
-<tbody id="leads" class="packageresult">
+                            <tbody id="leads" class="packageresult">
                             <?php while ($row=mysqli_fetch_array($sql)){ 
 
                             ?>
