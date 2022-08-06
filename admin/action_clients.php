@@ -45,7 +45,7 @@ include("config.php");
                                 <div class="form-group">
                                     <label for="inputEmail">Email</label>
                                     <input type="email" name="updateEmail"  value="<?php echo $row['Email']; ?>" class="form-control" id="inputEmail"
-                                        placeholder="Enter Email">
+                                        placeholder="Enter Email" readonly>
                                 </div>
                             </div>
                             <div class="col-6">
@@ -205,7 +205,107 @@ if( mail($sendTo,$subject,$emailText, "From:" .$from)){
 catch(\Exception $e){
 echo "not done";
 }
-
-
 }
+
+if(isset($_POST['assignId'])){
+  $qpackage=mysqli_query($conn,"select * from package_assign where id='".$_POST['assignId']."'");
+  $fpackage=mysqli_fetch_array($qpackage);
+  echo '
+           <div class="form-group row">
+           <input type="hidden" name="assignId" value="'.$fpackage['id'].'">
+           <input type="hidden" value="'.$fpackage['first_payment'].'" name="newpayment" >
+              <label for="payment" class="col-sm-3 col-form-label">Total Amt</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" value="'.$fpackage['total_amt'].'"  id="totalamt" name="totalamt">
+              </div>
+            </div>
+             <div class="form-group row">
+              <label for="payment" class="col-sm-3 col-form-label">Balance</label>
+              <div class="col-sm-9">
+              <input type="hidden" value="'.$fpackage['balance'].'" id="bal" >
+                <input type="text" class="form-control" value="'.$fpackage['balance'].'" id="balance" name="balance">
+              </div>
+            </div>
+            <div class="form-group row">
+            <label for="account_name" class="col-sm-3 col-form-label">Account Name</label>
+            <div class="col-sm-9">
+              <select class="form-control" name="account_name" id="account_name">
+                <option value="Tectignis It Solution Pvt. Ltd">Tectignis It Solution Pvt. Ltd</option>
+                <option value="Cash">Sachin Enterprises</option>
+                <option value="Bank">Cash</option>
+              </select>
+            </div>
+            </div>
+            <div class="form-group row">
+            <label for="paymentmode" class="col-sm-3 col-form-label">Payment Mode</label>
+            <div class="col-sm-9">
+              <select name="paymentmode" id="paymentmode" class="form-control">
+                <option value="Cash">Cash</option>
+                <option value="Imps">Imps</option>
+                <option value="Gpay">Gpay</option>
+              </select>
+            </div>
+            </div>
+            <div class="form-group row">
+              <label for="payment" class="col-sm-3 col-form-label">Payment</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" value=""  id="payment" name="payment">
+              </div>
+            </div>
+            <div class="form-group row">
+            <label for="transaction" class="col-sm-3 col-form-label">Date of Transaction</label>
+            <div class="col-sm-9">
+              <input type="datetime-local" class="form-control" value=""  id="transaction" name="transaction">
+            </div>
+            </div>
+            <div class="form-group row">
+            <label for="due_date" class="col-sm-3 col-form-label">Date of Transaction</label>
+            <div class="col-sm-9">
+              <input type="datetime-local" class="form-control" value=""  id="due_date" name="due_date">
+          </div>
+        </div>
+        <script>
+        $(document).ready(function(){
+          $("#payment").keyup(function(){
+            let total = $("#bal").val();
+            let payment = $("#payment").val();
+            let balance = total - payment;
+            $("#balance").val(balance);
+          });
+        });
+        </script>
+  ';
+}
+
+if(isset($_POST['sub'])){
+  $firm_name=$_POST['firm_name'];
+  $package=$_POST['package'];
+  $number=$_POST['number'];
+  $cname=$_POST['cname'];
+  $Rname=$_POST['Rname'];
+  $social_media=$_POST['social_media'];
+  $status="Open";
+  date_default_timezone_set('Asia/Kolkata');
+  $Date = date("Y-m-d H:i:s");
+ 
+  $sql=mysqli_query($conn,"INSERT INTO `lead`(`Firm_Name`,`Client_Name`, `Mobile_Number`,`Requirement`,`social_media`,`Created_On`,`status_deal`,`package`) VALUES ('$firm_name','$cname','$number','$Rname','$social_media','$Date','$status','$package')");
+
+  $qselectlead=mysqli_query($conn,"select *, lead.Mobile_Number as mob from lead inner join client on lead.Firm_Name=client.Client_Code where Client_Code='$firm_name' ");
+  $count=1;
+  while($fselectlead=mysqli_fetch_array($qselectlead)){
+    echo ' <tr>
+    <td>'.$count.'</td>
+    <td>'. $fselectlead['Firm_Name'].'</td>
+    <td>'. $fselectlead['Client_Name'].'</td>
+    <td>'. $fselectlead['mob'].'</td>
+    <td>'. $fselectlead['Requirement'].'</td>
+    <td>'. $fselectlead['Created_On'].'</td>  
+        <td><div class="btn-group" role="group" aria-label="Basic outlined example">
+            <button type="button" onclick="deleteBtn()" class="btn btn-sm btn-danger m-1 delbtn" data-id="='. $fselectlead['id'].'"><i class="fa fa-trash"></i></button> 
+        </div></td>
+    </tr>';
+    $count++;}
+}
+
+
 ?>
