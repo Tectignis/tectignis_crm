@@ -123,34 +123,30 @@ if(isset($_GET['del_id'])){
             <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
-<div class="card" style="height:250px;">
-    <!-- <div class="card-header"> -->
-                                <!-- <div class="form-group" style="margin-left:85%; margin-top:10px;">
-                                    <label for="inputRole">Filter</label>
-                                    <select name="filter" calss="form-control" id="filter">
-                                    <option value="select" selected disabled>Select</option>
-                                    <option value="Last Week">Last Week</option>
-
-  <option value="Last Month">Last Month</option>
-  <option value="Last 3 Months">Last 3 Months</option>
-
-</select>
-                                </div> -->
-                                <!-- </div> -->
-
-           <form onclick="getdata(this.value)"  style="width: fit-content; margin-left:70%;">
+            <div class="card" style="height:250px;">
+            <div class="card-header" >
+            <form style="float:left">
             <input type="hidden" id="leadid" value="<?php echo $id;?>">
-            <select id="demo_overview_minimal_multiselect " class="dropbtn form-control" style="background-color:#fff; margin-left:100px;">
+            <select id="demo_overview_minimal_multiselect" class="dropbtn form-control" style="background-color:#fff;" onChange="package(this.value)">
+            <option disabled selected>Select Package</option>
+            <?php 
+            $qpackageselect=mysqli_query($conn,"SELECT * FROM package");
+            while($row=mysqli_fetch_array($qpackageselect)){ ?>
+                <option value="<?php echo $row['package_name'] ?>"><?php echo $row['package_name'] ?></option>
+            <?php }
+            ?>
+            </select>
+            </form>
+           <form onclick="getdata(this.value)"  style="float:right">
+            <input type="hidden" id="leadid" value="<?php echo $id;?>">
+            <select id="demo_overview_minimal_multiselect " class="dropbtn form-control" style="background-color:#fff;">
             <option disabled selected>select</option>
-           
             <option>Last Week</option>
             <option>Monthly</option>
             <option>3 Month</option>
             </select>
             </form>
-                          
-
-
+            </div>           
                     <div class="row" style="margin:10px;">
                         <div class="col-md-3 col-sm-6">
                             <div class="card comp-card">
@@ -158,9 +154,7 @@ if(isset($_GET['del_id'])){
                                     <div class="row align-items-center">
                                         <div class="col">
                                             <h6 class="m-b-20">Total Laed</h6>  
-                                            <?php
-                                        
-              $query=mysqli_query($conn,"select * from lead where Firm_Name='$id'");
+                                            <?php $query=mysqli_query($conn,"select * from lead where Firm_Name='$id'");
               $count1=mysqli_num_rows($query);
                ?>
                <h3><?php echo $count1; ?></h3>
@@ -235,46 +229,50 @@ if(isset($_GET['del_id'])){
                     <!-- Main row -->
                     <!-- <div class="row"> -->
                         <div class="col-12">
-                        <div class="card row">
+                        <div class="card">
                             <div class="card-header">
                               <h3 class="card-title">Leads</h3>
+                              <button type="button" class="btn btn-primary float-right " data-toggle="modal" data-target="#exampleModal" style="margin-right: 5px;">
+                    + Add Lead
+                  </button>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
-<thead>
-  <tr>
-    <th>Sr No.</th>
-    <th>Firm Name</th>
-    <th>Client Name</th>
-    <th>Client Mobile No.</th>
-    <th>Requirment</th>
-    <th>Created On</th>
-    <th>Action</th>
-  </tr>
-</thead>
-<tbody id="leads">
-<?php
-$id=$_GET['view'];
-$sql=mysqli_query($conn,"select *, lead.Mobile_Number as mob from lead inner join client on lead.Firm_Name=client.Client_Code where Client_Code='$id'");
-$count=1;
-while ($row=mysqli_fetch_array($sql)){ 
+                            <thead>
+                            <tr>
+                                <th>Sr No.</th>
+                                <th>Package</th>
+                                <th>Client Name</th>
+                                <th>Client Mobile No.</th>
+                                <th>Requirment</th>
+                                <th>Created On</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            
+                            <?php
+                            $id=$_GET['view'];
+                            $sql=mysqli_query($conn,"select *, lead.Mobile_Number as mob from lead inner join client on lead.Firm_Name=client.Client_Code where Client_Code='$id'");
+                            $count=1;?>
+<tbody id="leads" class="packageresult">
+                            <?php while ($row=mysqli_fetch_array($sql)){ 
 
-?>
-<tr>
-<td><?php echo $count;?></td>
-<td><?php echo $row['Firm_Name']; ?></td>
-<td><?php echo $row['Client_Name']; ?></td>
-<td><?php echo $row['mob']; ?></td>
-<td><?php echo $row['Requirement']; ?></td>
-<td><?php echo $row['Created_On']; ?></td>  
-    <td><div class="btn-group" role="group" aria-label="Basic outlined example">
-        <button type="button" onclick="deleteBtn()" class="btn btn-sm btn-danger m-1 delbtn" data-id="=<?php echo $row['id']; ?>"><i class="fa fa-trash"></i></button> 
-      </div></td>
-  </tr>
-  <?php $count++; } ?>
-</tbody>
-</table>
+                            ?>
+                            <tr>
+                            <td><?php echo $count;?></td>
+                            <td><?php echo $row['Firm_Name']; ?></td>
+                            <td><?php echo $row['Client_Name']; ?></td>
+                            <td><?php echo $row['mob']; ?></td>
+                            <td><?php echo $row['Requirement']; ?></td>
+                            <td><?php echo $row['Created_On']; ?></td>  
+                                <td><div class="btn-group" role="group" aria-label="Basic outlined example">
+                                    <button type="button" onclick="deleteBtn()" class="btn btn-sm btn-danger m-1 delbtn" data-id="=<?php echo $row['id']; ?>"><i class="fa fa-trash"></i></button> 
+                                </div></td>
+                            </tr>
+                            <?php $count++; } ?>
+                            </tbody>
+                            </table>
                             </div>
                             <!-- /.card-body -->
                           </div>
@@ -297,6 +295,73 @@ while ($row=mysqli_fetch_array($sql)){
         <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
+    <div class="modal fade closemaual" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+      </div>
+      <div class="modal-body">
+      <form method="post" action="">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Package</label>
+                    <input type="hidden" value="<?php echo $id; ?>" id="firm_name" name="firm_name">
+                    <input type="text" value="" class="form-control" name="package" id="package" readonly>
+                </div>
+                <!-- /.form-group -->
+                <div class="form-group">
+                <label>Client Mobile Number</label>
+                  <input type="tel" minlength="10" maxlength="10" onkeypress="return onlyNumberKey(event)" class="form-control" name="number" id="number" placeholder="Mobile Number" required>
+                  <span id="numberspan" class="mb-4"></span>
+                    </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Client Name</label>
+                  <input type="text" class="form-control" name="Cname" id="cname" placeholder="Client Name" required>
+                  <span id="cnamespan" class="mb-4"></span>
+                </div>
+                <!-- /.form-group -->
+                <div class="form-group">
+                  <label>Requirement</label>
+                  <input type="text" class="form-control" name="requirement" id="Rname" placeholder="Requirement" required>
+                </div>
+                <!-- /.form-group -->
+              </div>
+                <!-- /.form-group -->
+              </div>
+              <div class="row">
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">
+                <label>Social Media</label>
+                  <select class="form-control select2" name="social_media" id="social_media" style="width: 100%;">
+                    <option selected="selected" disabled>Select</option>
+                    <option>Facebook</option>
+                    <option>Instagram</option>
+                    <option>Twitter</option>
+                    <option>Linkdin</option>
+                    <option>Youtube</option>
+                  </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+                <!-- /.form-group -->
+              </div>
+
+            <div class="modal-footer">
+                <button type="close" class="btn btn-default" data-dismiss="modal" name="close" id="close">Close</button>
+                <input  type="reset" class="btn btn-default" value="Reset"> 
+                <button type="button" name="submitt" class="btn btn-primary float-right my-3 " id="sub" style="margin-right: 5px;" >Submit </button> 
+            </div>
+         </form>
+                   </div>
+  
+                   </div>
 
     <!-- Button trigger modal -->
 
@@ -417,6 +482,37 @@ while ($row=mysqli_fetch_array($sql)){
       }
     });
   }
+
+  function package(val){
+    $("#package").val(val);
+  }
+
+  $(document).ready(function(){
+    $("#sub").click(function(){
+    let firm_name=$("#firm_name").val();
+    let package=$("#package").val();
+    let number=$("#number").val();
+    let cname=$("#cname").val();
+    let Rname=$("#Rname").val();
+    let social_media=$("#social_media").val();
+    let sub=$("#sub").val();
+    $.ajax({
+    type:"POST",
+    url:"action_clients.php",
+    data:{firm_name:firm_name,
+        package:package,
+        number:number,
+        cname:cname,
+        Rname:Rname,
+        social_media:social_media,
+        sub:sub},
+    success:function(data){
+    $(".packageresult").html(data);
+    $("#exampleModal").modal('hide');
+    }
+});
+});
+});
 </script>
 </body>
 

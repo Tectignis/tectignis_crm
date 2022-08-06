@@ -76,7 +76,6 @@ include("include/sidebar.php");
               <li class="breadcrumb-item"><a href="index.php">Home</a></li>
               <li class="breadcrumb-item active">Leads</li>
             </ol>
-          </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>

@@ -1,23 +1,24 @@
 <?php
 include("config.php");
+
 ?>
 <?php
 //leads post
-if(isset($_POST['submitt'])){
-    $name=$_POST['name'];
-    $Tlead=$_POST['Tlead'];
-    $tamt=$_POST['tamt'];
+if(isset($_POST['update'])){
+    $assignId=$_POST['assignId'];
+    $account_name=$_POST['account_name'];
+    $paymentmode=$_POST['paymentmode'];
+    $transaction=$_POST['transaction'];
+    $due_date=$_POST['due_date'];
+    $bal=$_POST['balance'];
+    $newpayment=$_POST['newpayment'];
+    $payment=$_POST['payment'];
+    $newbal=$payment+$newpayment;
     date_default_timezone_set('Asia/Kolkata');
-    $date=date('d-m-Y h:i:s a');
+    $date=date("Y-m-d h:i:s");
+    
+    $sql=mysqli_query($conn,"UPDATE package_assign SET `first_payment`='$newbal',`balance`='$bal',`update_date`='$date',`account_name`='$account_name',`payment_mode`='$paymentmode',`transaction_date`='$transaction',`due_date`='$due_date' WHERE id='$assignId'");
    
-    $sql=mysqli_query($conn,"INSERT INTO `package`(`package_name`, `total_lead`, `total_amt`, `created_date`) VALUES ('$name','$Tlead','$tamt','$date')");
-
-    if($sql==1){
-        echo '<script>alert("Saved!", "data successfully submitted", "success");</script>';
-        header("location:lead.php");
-    }else {
-        echo '<script>alert("oops...somthing went wrong");</script>';
-    }
 }
 ?>
 <!DOCTYPE html>
@@ -65,14 +66,13 @@ include("include/sidebar.php");
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Package</h1>
+            <h1>Leads</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-              <li class="breadcrumb-item active">Package</li>
+              <li class="breadcrumb-item active">Leads</li>
             </ol>
-          </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
@@ -86,87 +86,45 @@ include("include/sidebar.php");
             <!-- /.card -->
 
             <div class="card">
-                <div class="card-header">
-                  <h5 class="card-title">List of Leads</h5>    
-                      <button type="button" class="btn btn-primary float-right my-3 " data-toggle="modal" data-target="#exampleModal" style="margin-right: 5px;">
-                    + Add Package
-                  </button>
-                </div>
-              <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
                     <th>Sr no.</th>
-                    <th>Name</th>
+                    <th>Firm Name</th>
                     <th>Lead</th>
-                    <th>Amt</th>
-                    <th>Requirement</th>
-                    <th>Social Media</th>
-                    <th>Created On</th>
+                    <th>Total Amt</th>
+                    <th>Payment</th>
+                    <th>Balance</th>
+                    <th>Date</th>
                     <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
-                  </tbody>
+                  <?php
+                    $qpackage=mysqli_query($conn,"select *,package_assign.id as id  from package inner join package_assign on package_assign.lead_id=package.id inner join client on client.Client_Code=package_assign.firm_id;");
+                    $count=1;
+                  while ($row=mysqli_fetch_array($qpackage)){ 
+
+          ?>
+            <tr>
+                <td><?php echo $count;?></td>
+                <td><?php echo $row['Firm_Name']; ?></td>
+                <td><?php echo $row['total_lead']; ?></td>
+                <td><?php echo $row['total_amt']; ?></td>
+                <td><?php echo $row['first_payment']; ?></td>
+                <td><?php echo $row['balance']; ?></td>
+                <td><?php echo $row['assign_date']; ?></td>
+                    <td style="text-align:center">
+                   <button type="button" class="btn btn-primary btn-rounded assidnmodal btn-icon"  style="color: aliceblue" data-id="<?php echo $row['id']; ?>"> <i class="fas fa-edit"></i> </button> 
+                      <a href="api_crm/leaddelete.php?delid=<?php echo $row['id']; ?>"><button type="button"  onclick="return confirm('Are you sure you want to delete this item')" class="btn btn-danger btn-rounded btn-icon"  style="color: aliceblue"> <i class="fas fa-trash"></i> </button></a> </td>
+                  </tr>
+                  <?php $count++; } ?>
+                 
                 </table>
               </div>
               <!-- /.card-body -->
-            </div>
-
-            <div class="modal fade closemaual" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add Packages</h5>
-        
-      </div>
-      <div class="modal-body">
-      <form method="post" action="">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group">
-                  <label>Package Name</label>
-                  <input type="text" class="form-control" name="name" id="name" placeholder="Package Name" required>
-                  <span id="namespan" class="mb-4"></span>
-                </div>
-                </div>
-                <div class="col-md-6">
-                <!-- /.form-group -->
-                <div class="form-group">
-                <label>Total Leads</label>
-                <!--onkeypress="return onlyNumberKey(event)"-->
-                  <input type="number"  class="form-control" name="Tlead" id="Tlead" placeholder="Total Leads" required>
-                  <span id="numberspan" class="mb-4"></span>
-                    </div>
-                <!-- /.form-group -->
-              </div>
-              <!-- /.col -->
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label>Per Leads Amt</label>
-                  <input type="number" class="form-control" name="Plead" id="Plead" placeholder="Per Leads Amt" required>
-                  <span id="cnamespan" class="mb-4"></span>
-                </div>
-                </div>
-                <div class="col-md-12">
-                <!-- /.form-group -->
-                <div class="form-group">
-                  <label>Total Amt</label>
-                  <input type="text" class="form-control" name="tamt" id="Tamt" readonly>
-                </div>
-              </div>
-              </div>
-             
-            <div class="modal-footer">
-    <button type="close" class="btn btn-default" data-dismiss="modal" name="close" id="close">Close</button>  
-    <button type="submit" name="submitt" class="btn btn-primary float-right my-3 " id="sub" style="margin-right: 5px;" >
-                    Submit </button>    </div>
-
-          </div>
-         </form>
-                   </div>
-                   </div>
+                  </div>
 
             <!-- /.card -->
           </div>
@@ -174,7 +132,32 @@ include("include/sidebar.php");
         </div>
         <!-- /.row -->
       </div>
-
+<!--modal-->
+<div class="modal fade" id="assignmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-md" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post">
+                <div class="modal-body" id="assignbody" >
+                    
+                  
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" name="update" class="btn btn-primary">Update</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<!-- Modal -->
       <!-- /.container-fluid -->
     </section>
     <!-- /.content -->
@@ -210,7 +193,6 @@ include("include/sidebar.php");
 <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
 <!-- Page specific script -->
 <script>
   $(function () {
@@ -229,81 +211,22 @@ include("include/sidebar.php");
     });
   });
 </script>
-
 <script>
-   let  validenqName;
-
-    $(document).ready(function(){
- $("#namespan").hide();
-	    $("#name").keyup(function(){
-	     txt_check();
-	   });
-	   function txt_check(){
-      validenqName="no";
-		   let txt=$("#name").val();
-		   let vali =/^[A-Za-z ]+$/;
-		   if(!vali.test(txt)){
-			  $("#namespan").show().html("Enter Alphabets only").css("color","red").focus();
-			  txt_err=false;
-			  return false;
-		   }
-		   else{
-        validenqName="yes";
-		       $("#namespan").hide();
-		       
-		   }
-	   }
-     $("#sub").click(function(){
-       txt_err = true;
-       
-             txt_check();
-             
-			   
-			   if(txt_err==true){
-			      return true;
-			   }
-			   else{return false;}
-		  });
+  $(document).ready(function(){
+    $('.assidnmodal').click(function(){
+      let assignId=$(this).data('id');
+      $.ajax({
+        url:'action_clients.php',
+        type:'POST',
+        data:{assignId:assignId},
+        success:function(data){
+          $('#assignbody').html(data);
+          $('#assignmodal').modal('show');
+        }
+      });
     });
-    </script>
-<script>
-
-$(document).ready(function(){
-	   $("#sub").click(function(){
-      if(validenqName =="no"){
-         swal({
-  title: "Oops...!",
-  text: "Please fill all the fields!",
-  icon: "error",
-});
-     }
-         else{
-          swal({
-  title: "Saved!",
-  text: "data successfully submitted",
-  icon: "success",
-}).then(function(){window.location="lead.php"; });
-         }
-      mobile_err=true;
-            
-             mobile_check();
-			   
-			   if(mobile_err=true){
-			      return true;
-			   }
-			   else{return false;}
-		  });
     });
-    </script>
-    <script>
-        $(document).ready(function(){
-            $("#Tlead,#Plead").keyup(function(){
-                let Tlead=$("#Tlead").val();
-                let Plead=$("#Plead").val();
-                let TAmt=Tlead*Plead;
-                $("#Tamt").val(TAmt);
-            });
-        });
-    </script>
+   
+</script>
 </body>
 </html>
