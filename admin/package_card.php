@@ -14,13 +14,14 @@ if(isset($_POST['submitt'])){
 
     if($sql==1){
         echo '<script>alert("Saved!", "data successfully submitted", "success");</script>';
-        header("location:lead.php");
+        header("location:package_card.php");
     }else {
         echo '<script>alert("oops...somthing went wrong");</script>';
     }
 }
 
 if(isset($_POST['Assign'])){
+  $title=$_POST['title'];
   $assignto = $_POST['assignto'];
   $leadid = $_POST['leadid'];
   $totalamt = $_POST['totalamt'];
@@ -33,7 +34,7 @@ if(isset($_POST['Assign'])){
   date_default_timezone_set('Asia/Kolkata');
   $date=date('Y-m-d h:i:s a');
  
-  $qsend=mysqli_query($conn,"INSERT INTO `package_assign`(`firm_id`, `lead_id`, `total_amt`, `first_payment`, `balance`,`assign_date`,`account_name`,`payment_mode`,`transaction_date`,`due_date`) VALUES ('$assignto','$leadid','$totalamt','$payment','$balance','$date','$account_name','$paymentmode','$transaction','$due_date')");
+  $qsend=mysqli_query($conn,"INSERT INTO `package_assign`(`firm_id`, `lead_id`, `total_amt`, `first_payment`, `balance`,`assign_date`,`account_name`,`payment_mode`,`transaction_date`,`due_date`,`title`) VALUES ('$assignto','$leadid','$totalamt','$payment','$balance','$date','$account_name','$paymentmode','$transaction','$due_date','$title')");
   if($qsend==1){
     header("location:package.php");
 }
@@ -57,6 +58,7 @@ if(isset($_POST['Assign'])){
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
+  <script src="plugins/jquery/jquery.min.js"></script>
   <style>
   * {
   margin: 0;
@@ -76,7 +78,7 @@ html {
   grid-template-columns: 25% 25% 25%;
 }
 .card1 {
-  width: 325px;
+  width: 355px;
   border-radius: 10px;
   padding: 10px 20px;
   border: 0;
@@ -101,7 +103,7 @@ html {
   color: rgba(255, 255, 255, 0.08);
   font-size: 118px;
   font-weight: 900;
-  text-align: end;
+  text-align:center;
   width: 100%;
   position: absolute;
   margin-left: -6px;
@@ -132,7 +134,6 @@ html {
   text-decoration: none;
   padding: 9px 76px;
   background-color: rgba(255, 255, 255, 0.3);
-  margin-left: 33px;
   border-radius: 6px;
   transition: background-color 0.5s;
 }
@@ -198,10 +199,10 @@ include("include/sidebar.php");
             $qpackage=mysqli_query($conn,"select * from package");
             while($fpackage=mysqli_fetch_array($qpackage)){
             ?>
-        <div class="col-md-3 col-sm-6">
+        <div class="col-md-6 col-sm-6 col-lg-4">
         <div class="grid">
     <div class="card1 card3">
-    <div class="card-header-right">
+    <!-- <div class="card-header-right">
                     <div class="dropdown float-right">
                      <button class="btn" type="button" id="dropdownMenu2" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
@@ -216,7 +217,7 @@ include("include/sidebar.php");
 </div>
     
             </div>
-            </div>
+            </div> -->
       <h3><?php echo $fpackage['package_name']; ?></h3>
       <h2><?php echo $fpackage['total_amt']; ?></h2>
       <h4><?php echo $fpackage['total_lead']; ?> Leads</h4>
@@ -224,14 +225,12 @@ include("include/sidebar.php");
       <p><i class="fa fa-inr" aria-hidden="true"></i><?php echo $fpackage['total_amt']; ?></p>
       <!-- <p>Ultimate presets</p> -->
       <!-- <a href="#"><?php echo $fpackage['assign']; ?></button> -->
-      <a href="#assignformmodal<?php echo $fpackage['id']; ?>" data-toggle="modal" data-target="#assignformmodal<?php echo $fpackage['id']; ?>">Assign</a>
+      <p><a href="#assignformmodal<?php echo $fpackage['id']; ?>" data-toggle="modal" data-target="#assignformmodal<?php echo $fpackage['id']; ?>">Assign</a></p>
    </div>
-                </div>
-        <?php } ?>
-        
- 
-     
-
+   </div>
+            </div>
+   <?php } ?>
+       
             <div class="modal fade closemaual" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
     <div class="modal-content">
@@ -254,7 +253,7 @@ include("include/sidebar.php");
                 <div class="form-group">
                 <label>Total Leads</label>
                 <!--onkeypress="return onlyNumberKey(event)"-->
-                  <input type="number"  class="form-control" name="Tlead" id="Tlead" placeholder="Total Leads" required>
+                  <input type="number"  class="form-control Tlead" name="Tlead" id="Tlead" placeholder="Total Leads" required>
                   <span id="numberspan" class="mb-4"></span>
                     </div>
                 <!-- /.form-group -->
@@ -263,7 +262,7 @@ include("include/sidebar.php");
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Per Leads Amt</label>
-                  <input type="number" class="form-control" name="Plead" id="Plead" placeholder="Per Leads Amt" required>
+                  <input type="number" class="form-control Plead" name="Plead" id="Plead" placeholder="Per Leads Amt" required>
                   <span id="cnamespan" class="mb-4"></span>
                 </div>
                 </div>
@@ -271,7 +270,7 @@ include("include/sidebar.php");
                 <!-- /.form-group -->
                 <div class="form-group">
                   <label>Total Amt</label>
-                  <input type="text" class="form-control" name="tamt" id="Tamt" readonly>
+                  <input type="text" class="form-control Tamt" name="tamt" id="Tamt" readonly>
                 </div>
               </div>
               </div>
@@ -306,6 +305,12 @@ include("include/sidebar.php");
         </div>
         <form method="post" action="package_card.php">
         <div class="modal-body">
+        <div class="form-group row">
+              <label for="title" class="col-sm-3 col-form-label">Title</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control " id="title" name="title">
+              </div>
+            </div>
             <div class="form-group row">
               <label for="assignto" class="col-sm-3 col-form-label">Assign to:</label>
               <div class="col-sm-9">
@@ -347,14 +352,14 @@ include("include/sidebar.php");
             <div class="form-group row">
               <label for="payment" class="col-sm-3 col-form-label">Payment</label>
               <div class="col-sm-9">
-                <input type="hidden" value="<?php echo $fpackage['total_amt']; ?>"  id="totalamt" name="totalamt">
-                <input type="text" class="form-control" id="payment" name="payment">
+                <input type="hidden" value="<?php echo $fpackage['total_amt']; ?>"  id="totalamt<?php echo $fpackage['id']; ?>" name="totalamt">
+                <input type="text" class="form-control " id="payment<?php echo $fpackage['id']; ?>" name="payment">
               </div>
             </div>
             <div class="form-group row">
               <label for="balance" class="col-sm-3 col-form-label">Balance</label>
               <div class="col-sm-9">
-                <input type="text" name="balance" class="form-control bal" id="balance" >
+                <input type="text" name="balance" class="form-control bal" id="balance<?php echo $fpackage['id']; ?>" >
               </div>
             </div>
             <div class="form-group row">
@@ -364,7 +369,7 @@ include("include/sidebar.php");
             </div>
             </div>
             <div class="form-group row">
-            <label for="due_date" class="col-sm-3 col-form-label">Date of Transaction</label>
+            <label for="due_date" class="col-sm-3 col-form-label">Due Date</label>
             <div class="col-sm-9">
               <input type="datetime-local" class="form-control" value=""  id="due_date" name="due_date">
           </div>
@@ -373,7 +378,17 @@ include("include/sidebar.php");
         <div class="modal-footer">
           <button type="submit" name="Assign" class="btn" style="background: linear-gradient(to bottom right, #FDBD56, #FD56B6);">Submit</button>
         </div>   
-        </form>     
+        </form>  
+        
+        <script>
+          $("#payment<?php echo $fpackage['id']; ?>").keyup(function(){
+                let totalamt=$("#totalamt<?php echo $fpackage['id']; ?>").val();
+                let payment=$("#payment<?php echo $fpackage['id']; ?>").val();
+                let balance=totalamt-payment;
+                $("#balance<?php echo $fpackage['id']; ?>").val(balance);
+            });
+        </script>
+
       </div>
     </div>
   </div>
@@ -397,7 +412,7 @@ include("include/sidebar.php");
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
+
 <!-- Bootstrap 4 -->
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- DataTables  & Plugins -->
@@ -502,18 +517,11 @@ $(document).ready(function(){
     </script>
     <script>
         $(document).ready(function(){
-            $("#Tlead,#Plead").keyup(function(){
-                let Tlead=$("#Tlead").val();
-                let Plead=$("#Plead").val();
+            $(".Tlead,.Plead").keyup(function(){
+                let Tlead=$(".Tlead").val();
+                let Plead=$(".Plead").val();
                 let TAmt=Tlead*Plead;
-                $("#Tamt").val(TAmt);
-            });
-
-            $("#payment").keyup(function(){
-                let totalamt=$("#totalamt").val();
-                let payment=$("#payment").val();
-                let balance=totalamt-payment;
-                $("#balance").val(balance);
+                $(".Tamt").val(TAmt);
             });
         });
     </script>

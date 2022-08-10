@@ -203,7 +203,7 @@ $ndeactivated=mysqli_num_rows($qdeactivated);
             <div class="info-box-content">
               <span class="info-box-text">Closed Ticket</span>
               <?php
-              $qclose=mysqli_query($conn,"select * from ticket where status = 'Close'");
+              $qclose=mysqli_query($conn,"select * from ticket where status = 'Closed'");
               $nclose=mysqli_num_rows($qclose); ?>
               <h3><?php echo $nclose; ?></h3>
             </div>

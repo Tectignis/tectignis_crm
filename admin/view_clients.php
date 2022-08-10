@@ -6,6 +6,7 @@ if(isset($_GET['del_id'])){
     $sql = mysqli_query($conn,"DELETE FROM lead WHERE id = '$delid'");
     header ('location:clients.php');
   }
+ 
 ?>
 
 <!DOCTYPE html>
@@ -130,9 +131,9 @@ if(isset($_GET['del_id'])){
             <select id="demo_overview_minimal_multiselect" class="dropbtn form-control" style="background-color:#fff;" onChange="package(this.value)">
             <option disabled selected>Select Package</option>
             <?php 
-            $qpackageselect=mysqli_query($conn,"SELECT * FROM package");
+            $qpackageselect=mysqli_query($conn,"SELECT * FROM package_assign WHERE firm_id='$id'");
             while($row=mysqli_fetch_array($qpackageselect)){ ?>
-                <option value="<?php echo $row['package_name'] ?>"><?php echo $row['package_name'] ?></option>
+                <option value="<?php echo $row['title'] ?>"><?php echo $row['title'] ?></option>
             <?php }
             ?>
             </select>
@@ -146,7 +147,8 @@ if(isset($_GET['del_id'])){
             <option>3 Month</option>
             </select>
             </form>
-            </div>           
+            </div> 
+                      
                     <div class="row" style="margin:10px;">
                         <div class="col-md-3 col-sm-6">
                             <div class="card comp-card">
@@ -232,9 +234,7 @@ if(isset($_GET['del_id'])){
                         <div class="card">
                             <div class="card-header">
                               <h3 class="card-title">Leads</h3>
-                              <button type="button" class="btn btn-primary float-right " data-toggle="modal" data-target="#exampleModal" style="margin-right: 5px;">
-                    + Add Lead
-                  </button>
+                              <button type="button" class="btn btn-primary float-right " data-toggle="modal" data-target="#exampleModal" style="margin-right: 5px;">+ Add Lead</button>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -261,7 +261,7 @@ if(isset($_GET['del_id'])){
                             ?>
                             <tr>
                             <td><?php echo $count;?></td>
-                            <td><?php echo $row['Firm_Name']; ?></td>
+                            <td><?php echo $row['package']; ?></td>
                             <td><?php echo $row['Client_Name']; ?></td>
                             <td><?php echo $row['mob']; ?></td>
                             <td><?php echo $row['Requirement']; ?></td>
@@ -308,7 +308,7 @@ if(isset($_GET['del_id'])){
                 <div class="form-group">
                   <label>Package</label>
                     <input type="hidden" value="<?php echo $id; ?>" id="firm_name" name="firm_name">
-                    <input type="text" value="" class="form-control" name="package" id="package" readonly>
+                    <input type="text" value="" class="form-control" name="package" id="package">
                 </div>
                 <!-- /.form-group -->
                 <div class="form-group">
@@ -355,7 +355,6 @@ if(isset($_GET['del_id'])){
 
             <div class="modal-footer">
                 <button type="close" class="btn btn-default" data-dismiss="modal" name="close" id="close">Close</button>
-                <input  type="reset" class="btn btn-default" value="Reset"> 
                 <button type="button" name="submitt" class="btn btn-primary float-right my-3 " id="sub" style="margin-right: 5px;" >Submit </button> 
             </div>
          </form>
@@ -485,6 +484,13 @@ if(isset($_GET['del_id'])){
 
   function package(val){
     $("#package").val(val);
+    $.ajax({
+      url:"view_clients.php",
+      method:"POST",
+      data:{packa:val},
+      success:function(data){
+      }
+    });
   }
 
   $(document).ready(function(){

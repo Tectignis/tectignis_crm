@@ -207,13 +207,13 @@ if(isset($_POST["submi"])){
                 </div>
             </div>
         <div style="display:inline-block;width: 100%;">
-        <h3 class="widget-user-username"><?php echo $row['Firm_Name']; ?></h3>
-        <h5 class="widget-user-desc"><?php echo $row['Authorized_Name']; ?></h5>
+       <a href="view_clients.php?view=<?php echo $row['Client_Code'] ?>" style="color:white"> <h3 class="widget-user-username"><?php echo $row['Firm_Name']; ?></h3></a>
+       <a href="view_clients.php?view=<?php echo $row['Client_Code'] ?>" style="color:white"> <h5 class="widget-user-desc"><?php echo $row['Authorized_Name']; ?></h5></a>
         </div>
         
         </div>
         <div class="widget-user-image" style="top:112px">
-            <a href="clinet_details.php" target="_blank">
+            <a href="view_clients.php?view=<?php echo $row['Client_Code'] ?>" target="_blank">
                 <?php
                 if($row['image']==""){
 echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-circle elevation-2" style="width:100px;height:100px;">';

@@ -25,6 +25,21 @@ else{
 }
 }
 
+if(isset($_POST['raiseticket'])){
+  $firm_name=$_POST['Firm_Name'];
+  $clientname=$_POST['clientname'];
+  $mobile=$_POST['mobile'];
+  $Email=$_POST['Email'];
+  $Description=$_POST['Description'];
+  $status="Open";
+      $qraise=mysqli_query($conn,"INSERT INTO `support`(`firm_name`, `client_name`, `mobile`, `email`, `description`,`status`) VALUES ('$firm_name','$clientname','$mobile','$Email','$Description','$status')");
+      if($qraise){
+        echo "<script>alert('Ticket Raised Successfully. Please wait Our teams will solve issue');</script>";
+      }
+      else{
+        echo "<script>alert('Ticket Raised Failed');</script>";
+      }
+  }
 
 ?>
 <!DOCTYPE html>
@@ -48,6 +63,10 @@ else{
   href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.css"
   rel="stylesheet"
 />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style>
             .gradient-custom-2 {
 /* fallback for old browsers */
@@ -103,9 +122,12 @@ border-bottom-right-radius: .3rem;
                     <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 60px;"></div><div class="form-notch-trailing"></div></div>
                   </div>
 
-                  <div class="text-center pt-1 mb-5 pb-1">
+                  <div class="text-center pt-1 mb-3 pb-1">
                     <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="login" name="login" id="login" value="login">Login</button>
                     <a class="text-muted" href="forgotpassword.php">Forgot password?</a>
+                  </div>
+                  <div class="text-center">
+                  <a href="#myModal" class="text-muted" data-toggle="modal" data-target="#myModal">Raise Ticket</a>
                   </div>
                 </form>
 
@@ -117,9 +139,103 @@ border-bottom-right-radius: .3rem;
       </div>
     </div>
   </div>
+
+  <!--modal-->
+        <div class="modal fade" id="myModal" data-easein="whirlIn">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title w-100 text-center">Raise Ticket</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <!-- adding Bootstrap Form here -->
+
+                        <form method="post" id="myForm" class="needs-validation" novalidate>
+                            <div class="container">
+
+                                <div class="form-group row">
+                                    <label for="id" class="col-sm-3 col-form-label">Firm Name</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="name_id" name="Firm_Name" placeholder="Enter your Firm Name" required />
+                                            
+                                            <div class="invalid-feedback">
+                                                Please choose a Name.
+                                              </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="validationCustomUsername"  class="col-sm-3 col-form-label">Client Name</label>
+                                    <div class="input-group col-sm-9">
+                                      
+                                      <input type="text" class="form-control" id="username_id" name="clientname" placeholder="Enter your Client Name" aria-describedby="inputGroupPrepend" required>
+                                      <div class="invalid-feedback">
+                                        Please choose a username.
+                                      </div>
+                                    </div>
+                                </div>
+
+                                  <div class="form-group row">
+                                    <label for="id" class="col-sm-3 col-form-label">Mobile Number</label>
+                                    <div class="col-sm-9">
+                                        <input type="tel" class="form-control" id="mobile" minlength="10" maxlength="10" name="mobile"
+                                            placeholder="Enter your Mobile Number" required />
+                                            <div class="invalid-feedback">
+                                                Please choose a Password.
+                                              </div>
+                                    </div>
+                                   </div>
+                                   <div class="form-group row">
+                                    <label for="id" class="col-sm-3 col-form-label">Email</label>
+                                    <div class="col-sm-9">
+                                        <input type="email" class="form-control" id="email_id" name="Email"
+                                            placeholder="Enter your Email" required />
+                                            <div class="invalid-feedback">
+                                                Please choose a Email.
+                                              </div>
+                                    </div>
+                                   </div>
+                                   <div class="form-group row">
+                                    <label for="id" class="col-sm-3 col-form-label">Description</label>
+                                    <div class="col-sm-9">
+                                        <textarea class="form-control" id="description_id" name="Description"
+                                            placeholder="Enter your Description" required></textarea>
+                                            <div class="invalid-feedback">
+                                                Please choose a Description.
+                                              </div>
+                                    </div>
+                                   </div>
+
+                                 
+                            </div>
+                            <div class="modal-footer">
+                            <div class="text-center">
+                                 <button class="btn btn-primary btn-block fa-lg gradient-custom-2" name="raiseticket" type="submit">Submit</button>
+                                 </div>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                        </form>
+
+                        <script>
+                           
+                        </script>
+                    </div>
+
+                    <!-- Modal footer -->
+                   
+
+                </div>
+            </div>
+        </div>
+
+  <!-- Modal -->
 </section>
 </body>
-
 
 <script
   type="text/javascript"

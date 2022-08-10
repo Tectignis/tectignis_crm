@@ -72,7 +72,15 @@ margin-right:40px !important;
 .cld-number {
     padding: 0;
 }
-
+.container {
+  width: 85%;
+  margin: auto;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.bg-gradient-info {
+  background: linear-gradient(to bottom right, #FDBD56, #FD56B6) !important;
+}
   </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -217,6 +225,39 @@ margin-right:40px !important;
         </div>
         </div>
         <!-- /.row -->
+
+<section class="content">
+<div class="row">
+            <?php
+            $qpackage=mysqli_query($conn,"select * , lead_id, count(lead_id) as count from package inner join package_assign on package_assign.lead_id=package.id where firm_id='$id' group by lead_id HAVING COUNT(lead_id) > 0 ;");
+
+            while($fpackage=mysqli_fetch_array($qpackage)){
+            $lead_id=$fpackage['count'];
+            $lead_id1=$fpackage['total_lead'];
+            $lead_id2=($lead_id/$lead_id1)*100;
+            $round= (round($lead_id2));
+              
+            ?>
+        <div class="col-md-3 col-sm-6 col-12">
+<div class="info-box bg-gradient-info ">
+<span class="info-box-icon"><i class="far fa-bookmark"></i></span>
+<div class="info-box-content">
+<span class="info-box-text" style="text-transform:capitalize"><?php echo $fpackage['title']; ?></span>
+<span class="info-box-number"><?php echo $fpackage['count'];; ?></span>
+<div class="progress">
+<div class="progress-bar" style="width: <?php echo $round; ?>%"></div>
+</div>
+<span class="progress-description">
+<?php echo $round; ?>% out of <?php echo $fpackage['total_lead']; ?> Leads
+</span>
+</div>
+</div>
+
+            </div>
+   <?php } ?>
+            </div>
+</section>
+
         <!-- Main row -->
         <section>
           <div class="row">

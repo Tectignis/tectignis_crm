@@ -117,7 +117,8 @@ include("include/sidebar.php");
                 <td><?php echo $row['assign_date']; ?></td>
                     <td style="text-align:center">
                    <button type="button" class="btn btn-primary btn-rounded assidnmodal btn-icon"  style="color: aliceblue" data-id="<?php echo $row['id']; ?>"> <i class="fas fa-edit"></i> </button> 
-                      <a href="api_crm/leaddelete.php?delid=<?php echo $row['id']; ?>"><button type="button"  onclick="return confirm('Are you sure you want to delete this item')" class="btn btn-danger btn-rounded btn-icon"  style="color: aliceblue"> <i class="fas fa-trash"></i> </button></a> </td>
+                      <!-- <a href="api_crm/leaddelete.php?delid=<?php echo $row['id']; ?>"><button type="button"  onclick="return confirm('Are you sure you want to delete this item')" class="btn btn-danger btn-rounded btn-icon"  style="color: aliceblue"> <i class="fas fa-trash"></i> </button></a> -->
+                      </td>
                   </tr>
                   <?php $count++; } ?>
                  

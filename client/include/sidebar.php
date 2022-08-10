@@ -42,13 +42,17 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
               </p>
             </a>
             <ul class="nav nav-treeview">
+              <?php
+              $qsidepackage=mysqli_query($conn,"select *,package_assign.id as id from package inner join package_assign on package.id=package_assign.lead_id where package_assign.firm_id='$id'");
+              while($fsidepackage=mysqli_fetch_array($qsidepackage)){
+              ?>
               <li class="nav-item">
-                <a href="pages/layout/top-nav.html" class="nav-link">
+                <a href="package.php?packageId=<?php echo $fsidepackage['id'] ?>" class="nav-link <?= $page == 'package.php?packageId=<?php echo $fsidepackage["id"] ?>'  ? 'active':'' ?>">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Top Navigation</p>
+                  <p><?php echo $fsidepackage['title'] ?></p>
                 </a>
               </li>
-              
+              <?php } ?>
             </ul>
           </li>
        

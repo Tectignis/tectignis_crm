@@ -216,14 +216,14 @@ if(isset($_POST['assignId'])){
            <input type="hidden" value="'.$fpackage['first_payment'].'" name="newpayment" >
               <label for="payment" class="col-sm-3 col-form-label">Total Amt</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" value="'.$fpackage['total_amt'].'"  id="totalamt" name="totalamt">
+                <input type="text" class="form-control" value="'.$fpackage['total_amt'].'"  id="totalamt" name="totalamt" readonly>
               </div>
             </div>
              <div class="form-group row">
               <label for="payment" class="col-sm-3 col-form-label">Balance</label>
               <div class="col-sm-9">
               <input type="hidden" value="'.$fpackage['balance'].'" id="bal" >
-                <input type="text" class="form-control" value="'.$fpackage['balance'].'" id="balance" name="balance">
+                <input type="text" class="form-control" value="'.$fpackage['balance'].'" id="balance" name="balance" readonly>
               </div>
             </div>
             <div class="form-group row">
@@ -249,7 +249,7 @@ if(isset($_POST['assignId'])){
             <div class="form-group row">
               <label for="payment" class="col-sm-3 col-form-label">Payment</label>
               <div class="col-sm-9">
-                <input type="text" class="form-control" value=""  id="payment" name="payment">
+                <input type="text" class="form-control" value="" id="payment" name="payment">
               </div>
             </div>
             <div class="form-group row">
@@ -270,6 +270,10 @@ if(isset($_POST['assignId'])){
             let total = $("#bal").val();
             let payment = $("#payment").val();
             let balance = total - payment;
+            if(balance < 0){
+              alert("Payment is greater than balance");
+              $("#payment").val("");
+              $("#balance").val(total);}
             $("#balance").val(balance);
           });
         });
@@ -295,7 +299,7 @@ if(isset($_POST['sub'])){
   while($fselectlead=mysqli_fetch_array($qselectlead)){
     echo ' <tr>
     <td>'.$count.'</td>
-    <td>'. $fselectlead['Firm_Name'].'</td>
+    <td>'. $fselectlead['title'].'</td>
     <td>'. $fselectlead['Client_Name'].'</td>
     <td>'. $fselectlead['mob'].'</td>
     <td>'. $fselectlead['Requirement'].'</td>
@@ -306,6 +310,5 @@ if(isset($_POST['sub'])){
     </tr>';
     $count++;}
 }
-
 
 ?>

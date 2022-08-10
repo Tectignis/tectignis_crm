@@ -69,7 +69,7 @@ if(isset($_POST['fetch'])){
             <div class="small-box"  style="background:#6f58ce;color:white">
               <div class="inner">';
                $qBooked=mysqli_query($conn,"select * from lead where status_deal='Booked' and date(Created_On)=date(now()) and Firm_Name='$id'");
-               $nBookedFetch=mysqli_num_rows($leadBooked);
+               $nBookedFetch=mysqli_num_rows($qBooked);
               echo ' <h3>'. $nBookedFetch.'</h3>
 
                 <p>Total Booked</p>
@@ -146,7 +146,7 @@ else if($fetch == 'Last Week'){
             <div class="small-box"  style="background:#6f58ce;color:white">
               <div class="inner">';
                $qBooked=mysqli_query($conn,"select * from lead where status_deal='Booked' and YEARWEEK(Created_On) = YEARWEEK(NOW() - INTERVAL 1 WEEK) and Firm_Name='$id'");
-               $nBookedFetch=mysqli_num_rows($leadBooked);
+               $nBookedFetch=mysqli_num_rows($qBooked);
               echo ' <h3>'. $nBookedFetch.'</h3>
 
                 <p>Total No of Ticket</p>
@@ -223,7 +223,7 @@ else if($fetch == 'Monthly'){
             <div class="small-box"  style="background:#6f58ce;color:white">
               <div class="inner">';
               $qBooked=mysqli_query($conn,"select * from lead where status_deal='Booked' and Created_On > DATE_SUB(NOW(), INTERVAL 1 MONTH) and Firm_Name='$id'");
-               $nBookedFetch=mysqli_num_rows($leadBooked);
+               $nBookedFetch=mysqli_num_rows($qBooked);
               echo ' <h3>'. $nBookedFetch.'</h3>
 
                 <p>Total No of Ticket</p>
@@ -300,7 +300,7 @@ else if($fetch == '3 Month'){
             <div class="small-box"  style="background:#6f58ce;color:white">
               <div class="inner">';
               $qBooked=mysqli_query($conn,"select * from lead where status_deal='Booked' and Created_On >= DATE(NOW()) - INTERVAL 3 MONTH and Firm_Name='$id'");
-              $nBookedFetch=mysqli_num_rows($leadBooked);
+              $nBookedFetch=mysqli_num_rows($qBooked);
               echo ' <h3>'. $nBookedFetch.'</h3>
 
                 <p>Total No of Ticket</p>
