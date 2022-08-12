@@ -4,7 +4,7 @@ include("config.php");
 $id=$_SESSION['id'];
 
 include('razconf.php');
-// include('razorpay-php/Razorpay.php');
+include('razorpay-php/Razorpay.php');
 use Razorpay\Api\Api;
 use Razorpay\Api\Errors\SignatureVerificationError;
 
