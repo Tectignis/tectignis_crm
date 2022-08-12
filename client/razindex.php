@@ -4,7 +4,6 @@ include("config.php");
 $id=$_SESSION['id'];
 
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +26,7 @@ $ress=mysqli_fetch_array($qss);
     Email:<input type="text" name="email" value="<?php echo $ress['Email']; ?>"  redonly><br><br>
     Phone:<input type="text" name="phone" value="<?php echo $ress['Mobile_Number']; ?>"  redonly><br><br>
     Price:<input type="text" name="price"><br><br>
-    <button type="submit" id="rzp-button1" name="submit">Pay</button>
+    <button type="submit" name="submit">Pay</button>
 </form>
 </body>
 </html>
