@@ -12,7 +12,8 @@ $api = new Api($keyId, $keySecret);
 
 // We create an razorpay order using orders api
 // Docs: https://docs.razorpay.com/docs/orders
-
+if(isset($_POST['submit']))
+{
 $id=$_POST['id'];
 $name=$_POST['name'];
 $email=$_POST['email'];
@@ -87,7 +88,7 @@ $json = json_encode($data);
 
 require("checkout/{$checkout}.php");
 
-
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
