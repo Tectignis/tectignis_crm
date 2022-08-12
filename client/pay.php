@@ -28,7 +28,7 @@ $_SESSION['price']=$amount;
 
 $orderData = [
     'receipt'         => 3456,
-    'amount'          => $price * 100, // 2000 rupees in paise
+    'amount'          => $amount * 100, // 2000 rupees in paise
     'currency'        => 'INR',
     'payment_capture' => 1 // auto capture
 ];
