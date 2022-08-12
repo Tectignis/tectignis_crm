@@ -3,7 +3,6 @@ session_start();
 include("config.php");
 $id=$_SESSION['id'];
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
