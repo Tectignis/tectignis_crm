@@ -1,4 +1,4 @@
-<button id="rzp-button1">Pay with Razorpay</button>
+<!-- <button id="rzp-button1">Pay with Razorpay</button> -->
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <form name='razorpayform' action="verify.php" method="POST">
     <input type="hidden" name="razorpay_payment_id" id="razorpay_payment_id">
