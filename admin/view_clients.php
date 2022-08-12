@@ -6,7 +6,6 @@ if(isset($_GET['del_id'])){
     $sql = mysqli_query($conn,"DELETE FROM lead WHERE id = '$delid'");
     header ('location:clients.php');
   }
- 
 ?>
 
 <!DOCTYPE html>
@@ -148,7 +147,6 @@ if(isset($_GET['del_id'])){
             </select>
             </form>
             </div> 
-                      
                     <div class="row" style="margin:10px;">
                         <div class="col-md-3 col-sm-6">
                             <div class="card comp-card">
@@ -157,10 +155,9 @@ if(isset($_GET['del_id'])){
                                         <div class="col">
                                             <h6 class="m-b-20">Total Lead</h6>  
                                             <?php $query=mysqli_query($conn,"select * from lead where Firm_Name='$id'");
-              $count1=mysqli_num_rows($query);
-               ?>
-               <h3><?php echo $count1; ?></h3>
-
+                                            $count1=mysqli_num_rows($query);
+                                            ?>
+                                            <h3><?php echo $count1; ?></h3>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-rocket bg-success text-white"></i>
@@ -176,10 +173,10 @@ if(isset($_GET['del_id'])){
                                         <div class="col">
                                             <h6 class="m-b-20">Hot</h6>
                                             <?php
-              $query=mysqli_query($conn,"select * from lead where nature='Hot'");
-              $count1=mysqli_num_rows($query);
-               ?>
-               <h3><?php echo $count1; ?></h3>
+                                            $query=mysqli_query($conn,"select * from lead where nature='Hot'");
+                                            $count1=mysqli_num_rows($query);
+                                            ?>
+                                            <h3><?php echo $count1; ?></h3>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-rocket bg-warning text-white"></i>
@@ -195,10 +192,10 @@ if(isset($_GET['del_id'])){
                                         <div class="col">
                                             <h6 class="m-b-20">Cold</h6>
                                             <?php
-              $query=mysqli_query($conn,"select * from lead where nature='Cold'");
-              $count1=mysqli_num_rows($query);
-               ?>
-               <h3><?php echo $count1; ?></h3>
+                                            $query=mysqli_query($conn,"select * from lead where nature='Cold'");
+                                            $count1=mysqli_num_rows($query);
+                                            ?>
+                                            <h3><?php echo $count1; ?></h3>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-rocket bg-info text-white"></i>
@@ -214,10 +211,10 @@ if(isset($_GET['del_id'])){
                                         <div class="col">
                                             <h6 class="m-b-20">Warm</h6>
                                             <?php
-              $query=mysqli_query($conn,"select * from lead where nature='Warm'");
-              $count1=mysqli_num_rows($query);
-               ?>
-               <h3><?php echo $count1; ?></h3>
+                                                $query=mysqli_query($conn,"select * from lead where nature='Warm'");
+                                                $count1=mysqli_num_rows($query);
+                                                ?>
+                                                <h3><?php echo $count1; ?></h3>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-rocket bg-danger text-white"></i>
