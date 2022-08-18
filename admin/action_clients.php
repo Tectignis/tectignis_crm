@@ -140,6 +140,11 @@ $subject = 'Your New Password';
 $from = 'Tectignis IT Solution: 1.0' . "\r\n";
 $from .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 
+$qcheckclient=mysqli_query($conn,"select * from client where Email='".$Email."'");
+$qcheckclientcount=mysqli_num_rows($qcheckclient);
+if($qcheckclientcount>0){
+    echo '<script>alert("Email already exists");window.location.href="clients.php"</script>';
+}else{
 
 $emailText = '
 <html>
@@ -204,6 +209,7 @@ if( mail($sendTo,$subject,$emailText, "From:" .$from)){
 }
 catch(\Exception $e){
 echo "not done";
+}
 }
 }
 
@@ -294,12 +300,12 @@ if(isset($_POST['sub'])){
  
   $sql=mysqli_query($conn,"INSERT INTO `lead`(`Firm_Name`,`Client_Name`, `Mobile_Number`,`Requirement`,`social_media`,`Created_On`,`status_deal`,`package`) VALUES ('$firm_name','$cname','$number','$Rname','$social_media','$Date','$status','$package')");
 
-  $qselectlead=mysqli_query($conn,"select *, lead.Mobile_Number as mob from lead inner join client on lead.Firm_Name=client.Client_Code where Client_Code='$firm_name' ");
+  $qselectlead=mysqli_query($conn,"select *, lead.Mobile_Number as mob from lead inner join client on lead.Firm_Name=client.Client_Code where Client_Code='$firm_name' and package='$package' ");
   $count=1;
   while($fselectlead=mysqli_fetch_array($qselectlead)){
     echo ' <tr>
     <td>'.$count.'</td>
-    <td>'. $fselectlead['title'].'</td>
+    <td>'. $fselectlead['package'].'</td>
     <td>'. $fselectlead['Client_Name'].'</td>
     <td>'. $fselectlead['mob'].'</td>
     <td>'. $fselectlead['Requirement'].'</td>
@@ -309,6 +315,145 @@ if(isset($_POST['sub'])){
         </div></td>
     </tr>';
     $count++;}
+}
+
+if(isset($_POST['packa'])){
+  $package=$_POST['packa'];
+  $firm_name=$_POST['firm_name'];
+  echo '
+            <div class="packageresult">
+            <div class="card">
+                    <div class="row" style="margin:10px;">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="card comp-card">
+                                <div class="card-body bg-success">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <h6 class="m-b-20">Total Lead</h6> '; 
+                                            $query=mysqli_query($conn,"select * from lead where Firm_Name='$firm_name' and package='$package'");
+                                            $count1=mysqli_num_rows($query);
+                                            
+                                           echo' <h3>'.$count1.'</h3>
+                                                         </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-rocket bg-success text-white"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="card comp-card">
+                                <div class="card-body bg-warning">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <h6 class="m-b-20">Hot</h6>';
+                                            
+                                            $query=mysqli_query($conn,"select * from lead where nature='Hot' and package='$package'");
+                                            $count1=mysqli_num_rows($query);
+                                           
+                                           echo' <h3>'.$count1.'</h3>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-rocket bg-warning text-white"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="card comp-card">
+                                <div class="card-body bg-info">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <h6 class="m-b-20">Cold</h6>';
+                                            
+                                            $query=mysqli_query($conn,"select * from lead where nature='Cold' and package='$package'");
+                                            $count1=mysqli_num_rows($query);
+                                           
+                                           echo' <h3>'.$count1.'</h3>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-rocket bg-info text-white"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="card comp-card">
+                                <div class="card-body bg-danger">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <h6 class="m-b-20">Warm</h6>';
+                                           
+                                                $query=mysqli_query($conn,"select * from lead where nature='Warm' and package='$package'");
+                                                $count1=mysqli_num_rows($query);
+                                                
+                                                echo '<h3>'.$count1.'</h3>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-rocket bg-danger text-white"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- Main row -->
+                    <!-- <div class="row"> -->
+                        <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                              <h3 class="card-title">Leads</h3>
+                              <button type="button" class="btn btn-primary float-right " data-toggle="modal" data-target="#exampleModal" style="margin-right: 5px;">+ Add Lead</button>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>Sr No.</th>
+                                <th>Package</th>
+                                <th>Client Name</th>
+                                <th>Client Mobile No.</th>
+                                <th>Requirment</th>
+                                <th>Created On</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>';
+                            
+                            
+                           
+                            $sql=mysqli_query($conn,"select *, lead.Mobile_Number as mob from lead inner join client on lead.Firm_Name=client.Client_Code where Client_Code='$firm_name' and lead.package='$package'");
+                            $count=1;
+                           echo ' <tbody id="leads" class="packresult">';
+                             while ($row=mysqli_fetch_array($sql)){ 
+
+                           
+                           echo ' <tr>
+                            <td>'. $count.'</td>
+                            <td>'. $row['package'].'</td>
+                            <td>'. $row['Client_Name'].'</td>
+                            <td>'.$row['mob'].'</td>
+                            <td>'.$row['Requirement'].'</td>
+                            <td>'.$row['Created_On'].'</td>  
+                                <td><div class="btn-group" role="group" aria-label="Basic outlined example">
+                                    <button type="button" onclick="deleteBtn()" class="btn btn-sm btn-danger m-1 delbtn" data-id="='.$row['id'].'"><i class="fa fa-trash"></i></button> 
+                                </div></td>
+                            </tr>';
+                             $count++; } 
+                            echo '</tbody>
+                            </table>
+                            </div>
+                            <!-- /.card-body -->
+                          </div>
+                        </div>
+                    <!-- </div> -->
+</div>
+                    <!-- /.row (main row) -->
+                </div>';
 }
 
 ?>

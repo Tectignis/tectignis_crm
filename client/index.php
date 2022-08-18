@@ -156,7 +156,7 @@ margin-right:40px !important;
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <!-- <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
             </div>
           </div>
           <!-- ./col -->
@@ -177,7 +177,7 @@ margin-right:40px !important;
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <!-- <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
             </div>
           </div>
           <!-- ./col -->
@@ -198,7 +198,7 @@ margin-right:40px !important;
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <!-- <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
             </div>
           </div>
           <!-- ./col -->
@@ -216,7 +216,7 @@ margin-right:40px !important;
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <!-- <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
             </div>
           </div>
           <!-- ./col -->

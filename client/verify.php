@@ -55,8 +55,7 @@ if ($success === true)
 }
 else
 {
-    $html = "<p>Your payment failed</p>
+    echo "<p>Your payment failed</p>
              <p>{$error}</p>";
 }
 
-echo $html;

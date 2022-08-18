@@ -21,7 +21,7 @@ if(isset($_POST['fetch'])){
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          
             </div>
           </div>
           <!-- ./col -->
@@ -38,7 +38,7 @@ if(isset($_POST['fetch'])){
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+           
             </div>
           </div>
           <!-- ./col -->
@@ -58,7 +58,7 @@ if(isset($_POST['fetch'])){
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+             
             </div>
           </div>
           <!-- ./col -->
@@ -77,7 +77,7 @@ if(isset($_POST['fetch'])){
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            
             </div>
           </div>
           <!-- ./col -->';
@@ -98,7 +98,7 @@ else if($fetch == 'Last Week'){
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          
             </div>
           </div>
           <!-- ./col -->
@@ -115,7 +115,7 @@ else if($fetch == 'Last Week'){
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+             
             </div>
           </div>
           <!-- ./col -->
@@ -135,7 +135,7 @@ else if($fetch == 'Last Week'){
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+
             </div>
           </div>
           <!-- ./col -->
@@ -154,7 +154,7 @@ else if($fetch == 'Last Week'){
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+         
             </div>
           </div>
           <!-- ./col -->';
@@ -175,7 +175,7 @@ else if($fetch == 'Monthly'){
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+           
             </div>
           </div>
           <!-- ./col -->
@@ -192,7 +192,7 @@ else if($fetch == 'Monthly'){
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+          
             </div>
           </div>
           <!-- ./col -->
@@ -212,7 +212,7 @@ else if($fetch == 'Monthly'){
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+         
             </div>
           </div>
           <!-- ./col -->
@@ -231,7 +231,7 @@ else if($fetch == 'Monthly'){
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+
             </div>
           </div>
           <!-- ./col -->';
@@ -252,7 +252,7 @@ else if($fetch == '3 Month'){
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+
             </div>
           </div>
           <!-- ./col -->
@@ -269,7 +269,7 @@ else if($fetch == '3 Month'){
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+
             </div>
           </div>
           <!-- ./col -->
@@ -289,7 +289,7 @@ else if($fetch == '3 Month'){
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+
             </div>
           </div>
           <!-- ./col -->
@@ -308,7 +308,7 @@ else if($fetch == '3 Month'){
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+
             </div>
           </div>
           <!-- ./col -->';

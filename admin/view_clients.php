@@ -121,9 +121,9 @@ if(isset($_GET['del_id'])){
 
             <!-- Main content -->   
 
-            <section class="content">
+            <section class="content ">
                 <div class="container-fluid">
-            <div class="card" style="height:250px;">
+            <div class="card" >
             <div class="card-header" >
             <form style="float:left">
             <input type="hidden" id="leadid" value="<?php echo $id;?>">
@@ -139,7 +139,7 @@ if(isset($_GET['del_id'])){
             </form>
            <form onclick="getdata(this.value)"  style="float:right">
             <input type="hidden" id="leadid" value="<?php echo $id;?>">
-            <select id="demo_overview_minimal_multiselect " class="dropbtn form-control" style="background-color:#fff;">
+            <select id="demo_overview_minimal_multiselect" class="dropbtn form-control" style="background-color:#fff;">
             <option disabled selected>select</option>
             <option>Last Week</option>
             <option>Monthly</option>
@@ -147,7 +147,10 @@ if(isset($_GET['del_id'])){
             </select>
             </form>
             </div> 
-                    <div class="row" style="margin:10px;">
+            </div>
+            <div class="packageresult">
+            <div class="card">
+                    <div class="row " style="margin:10px;">
                         <div class="col-md-3 col-sm-6">
                             <div class="card comp-card">
                                 <div class="card-body bg-success">
@@ -224,7 +227,7 @@ if(isset($_GET['del_id'])){
                             </div>
                         </div>
                     </div>
-                    </div>
+            </div>
                     <!-- Main row -->
                     <!-- <div class="row"> -->
                         <div class="col-12">
@@ -252,7 +255,7 @@ if(isset($_GET['del_id'])){
                             $id=$_GET['view'];
                             $sql=mysqli_query($conn,"select *, lead.Mobile_Number as mob from lead inner join client on lead.Firm_Name=client.Client_Code where Client_Code='$id'");
                             $count=1;?>
-                            <tbody id="leads" class="packageresult">
+                            <tbody id="leads" class="packresult">
                             <?php while ($row=mysqli_fetch_array($sql)){ 
 
                             ?>
@@ -274,8 +277,8 @@ if(isset($_GET['del_id'])){
                             <!-- /.card-body -->
                           </div>
                         </div>
+                            </div>
                     <!-- </div> -->
-
                     <!-- /.row (main row) -->
                 </div><!-- /.container-fluid -->
             </section>
@@ -481,11 +484,14 @@ if(isset($_GET['del_id'])){
 
   function package(val){
     $("#package").val(val);
+    let firm_name=$("#leadid").val();
     $.ajax({
-      url:"view_clients.php",
+      url:"action_clients.php",
       method:"POST",
-      data:{packa:val},
+      data:{packa:val,
+        firm_name:firm_name},
       success:function(data){
+        $(".packageresult").html(data);
       }
     });
   }
@@ -510,7 +516,7 @@ if(isset($_GET['del_id'])){
         social_media:social_media,
         sub:sub},
     success:function(data){
-    $(".packageresult").html(data);
+    $(".packresult").html(data);
     $("#exampleModal").modal('hide');
     }
 });
