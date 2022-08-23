@@ -3,7 +3,6 @@ session_start();
 include("config.php");
 
 
-
 if(isset($_POST['update'])){
     $id=$_POST['dnk'];
     $nature=$_POST['nature'];

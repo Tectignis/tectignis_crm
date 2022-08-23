@@ -9,13 +9,13 @@ if(!isset($_SESSION['id']))
   header("location:clientlogin.php");
 }
 //lead delete
-// if(isset($_GET['delid'])){
-//     $id=mysqli_real_escape_string($conn,$_GET['delid']);
-//     $sql=mysqli_query($conn,"delete from lead where id='$id'");
-//     if($sql=1){
-//         header("location:lead.php");
-//     }
-//     }
+if(isset($_GET['delid'])){
+    $id=mysqli_real_escape_string($conn,$_GET['delid']);
+    $sql=mysqli_query($conn,"delete from lead where id='$id'");
+    if($sql=1){
+        header("location:package.php");
+    }
+    }
 
     if(isset($_GET['gen'])){
       $id=mysqli_real_escape_string($conn,$_GET['gen']);
@@ -64,6 +64,7 @@ $title= $fcardpackage['title'];
 <html lang="en">
 
 <head>
+<base href="/tectignis_crm/client/" />
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Leads | CRM</title>
@@ -121,7 +122,6 @@ $title= $fcardpackage['title'];
 
 <body class="hold-transition sidebar-mini">
   <div class="wrapper">
-
 
     <?php
 include("include/header.php");
@@ -291,7 +291,7 @@ if((date('Y-m-d , h:i:s')) <= ($fcardpackage['due_date'])){
                     
                       <?php
                      
-                          $qsql=mysqli_query($conn,"select *, lead.Mobile_Number from lead inner join client on client.Client_Code=lead.Firm_Name inner join package_assign on package_assign.title=lead.package where lead.deal=0 and package_assign.id='$packageId' and client.Client_Code='$id' and lead.package='$title';");
+                          $qsql=mysqli_query($conn,"select *,lead.id as id, lead.Mobile_Number from lead inner join client on client.Client_Code=lead.Firm_Name inner join package_assign on package_assign.title=lead.package where lead.deal=0 and package_assign.id='$packageId' and client.Client_Code='$id' and lead.package='$title';");
                           $count=1;
                         while ($frow=mysqli_fetch_array($qsql)){ 
                                       ?>            
@@ -309,11 +309,11 @@ if((date('Y-m-d , h:i:s')) <= ($fcardpackage['due_date'])){
                               class="fas fa-pen"></i>
                           </button>
 
-                          <a href="lead.php?delid=<?php echo $frow['id']; ?>"><button type="button"
+                          <a href="package?delid=<?php echo $frow['id']; ?>"><button type="button"
                               onclick="return confirm('Are you sure you want to delete this item')"
                               class="btn btn-danger btn-rounded btn-icon" style="color: aliceblue"><i
                                 class="fas fa-trash"></i> </button></a>
-                          <a href="lead.php?gen=<?php echo $frow['id'];?>">
+                          <a href="package?gen=<?php echo $frow['id'];?>">
                             <button class="btn btn-warning" name="submit">Deals</button>
                           </a>
                         </td>

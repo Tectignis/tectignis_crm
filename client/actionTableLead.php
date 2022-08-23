@@ -6,7 +6,7 @@ $id=$_SESSION['id'];
 if(isset($_POST['package_id'])){
   $packageId=$_POST['package_id'];
 $lead_id=$_POST['leadid'];
-$empQuery = "select *, lead.Mobile_Number from lead inner join client on client.Client_Code=lead.Firm_Name inner join package_assign on package_assign.title=lead.package where lead.deal=0 and package_assign.id='$packageId' and client.Client_Code='$id' and lead.package='$lead_id';";
+$empQuery = "select *,lead.id as id, lead.Mobile_Number from lead inner join client on client.Client_Code=lead.Firm_Name inner join package_assign on package_assign.title=lead.package where lead.deal=0 and package_assign.id='$packageId' and client.Client_Code='$id' and lead.package='$lead_id';";
 $empRecords = mysqli_query($conn, $empQuery);
 $count=1;
 while ($row=mysqli_fetch_array($empRecords)){

@@ -165,7 +165,7 @@ if(isset($_POST["submi"])){
           ?>
                         <div class="col-md-4 col-sm-6">
                               <div class="card card-widget widget-user">
-        <div class="widget-user-header bg-info" <?php if($row['Status']=='Deactivated'){ ?>style="background:#B2BEB5;header:168px"<?php } ?> style="height:168px;">
+        <div class="widget-user-header bg-info" <?php if($row['Status']=='Deactivated'){ ?>style="background:#B2BEB5;height:168px"<?php } ?> style="height:168px;">
             <div class="widget-header border-0 pb-0">
                 <div class="d-flex align-items-center float-left">
                     <div class="d-grid">
@@ -184,7 +184,7 @@ if(isset($_POST["submi"])){
                         <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                             
                         
-                            <a href="view_clients.php?view=<?php echo $row['Client_Code'] ?>" class="dropdown-item"
+                            <a href="view_clients/<?php echo $row['Client_Code'] ?>" class="dropdown-item"
                            ><i class="fa fa-eye"></i> View</a>
     
                             <button class="dropdown-item usereditid" type="button"  data-id="<?php echo $row['Client_Code'] ?>"><i class="far fa-edit"></i> Edit</button>
@@ -197,23 +197,23 @@ if(isset($_POST["submi"])){
                                 Password</button>
                                 <?php
                                 if($row['Status']=='Activated'){ ?>
-                                    <a href="clients.php?client=<?php echo $row['Client_Code'] ?>" class="dropdown-item" type="button" data-id=""><i class="fas fa-toggle-off"></i> Deactivated</a>
+                                    <a href="clients?client=<?php echo $row['Client_Code'] ?>" class="dropdown-item" type="button" data-id=""><i class="fas fa-toggle-off"></i> Deactivated</a>
                                <?php } else{
                                 ?>
-                                <a href="clients.php?declient=<?php echo $row['Client_Code'] ?>" class="dropdown-item" type="button" data-id=""><i class="fas fa-toggle-on"></i> Activated</a>  
+                                <a href="clients?declient=<?php echo $row['Client_Code'] ?>" class="dropdown-item" type="button" data-id=""><i class="fas fa-toggle-on"></i> Activated</a>  
                                 <?php } ?>
                         </div>
                     </div>
                 </div>
             </div>
         <div style="display:inline-block;width: 100%;">
-       <a href="view_clients.php?view=<?php echo $row['Client_Code'] ?>" style="color:white"> <h3 class="widget-user-username"><?php echo $row['Firm_Name']; ?></h3></a>
-       <a href="view_clients.php?view=<?php echo $row['Client_Code'] ?>" style="color:white"> <h5 class="widget-user-desc"><?php echo $row['Authorized_Name']; ?></h5></a>
+       <a href="view_clients/<?php echo $row['Client_Code'] ?>" style="color:white"> <h3 class="widget-user-username"><?php echo $row['Firm_Name']; ?></h3></a>
+       <a href="view_clients/<?php echo $row['Client_Code'] ?>" style="color:white"> <h5 class="widget-user-desc"><?php echo $row['Authorized_Name']; ?></h5></a>
         </div>
         
         </div>
         <div class="widget-user-image" style="top:112px">
-            <a href="view_clients.php?view=<?php echo $row['Client_Code'] ?>" target="_blank">
+            <a href="view_clients/<?php echo $row['Client_Code'] ?>" target="_blank">
                 <?php
                 if($row['image']==""){
 echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-circle elevation-2" style="width:100px;height:100px;">';

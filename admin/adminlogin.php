@@ -2,8 +2,8 @@
 session_start();
 include("config.php");
 if(isset($_POST['login'])){
-$Email=$_POST['email'];
-$Password1=$_POST['password'];
+$Email=mysqli_real_escape_string($conn,$_POST['email']);
+$Password1=mysqli_real_escape_string($conn,$_POST['password']);
 
 $sql=mysqli_query($conn,"select * from login where Email='$Email'");
 if(mysqli_num_rows($sql)>0){

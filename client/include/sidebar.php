@@ -26,7 +26,7 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                <li class="nav-item">
-            <a href="index.php" class="nav-link <?= $page == 'index.php' ? 'active':'' ?>">
+            <a href="index" class="nav-link <?= $page == 'index.php' ? 'active':'' ?>">
             <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -47,7 +47,7 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
               while($fsidepackage=mysqli_fetch_array($qsidepackage)){
               ?>
               <li class="nav-item">
-                <a href="package.php?packageId=<?php echo $fsidepackage['id'] ?>" class="nav-link <?= $page == 'package.php?packageId=<?php echo $fsidepackage["id"] ?>'  ? 'active':'' ?>">
+                <a href="package/<?php echo $fsidepackage['id'] ?>" class="nav-link <?= $page == 'package.php?packageId=<?php echo $fsidepackage["id"] ?>'  ? 'active':'' ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p><?php echo $fsidepackage['title'] ?></p>
                 </a>
@@ -57,7 +57,7 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
           </li>
        
           <li class="nav-item">
-            <a href="lead.php" class="nav-link <?= $page == 'lead.php'  ? 'active':'' ?>">
+            <a href="lead" class="nav-link <?= $page == 'lead.php'  ? 'active':'' ?>">
             <i class="nav-icon fa fa-fw fa-users"></i>
               <p>
               Leads
@@ -65,7 +65,7 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
             </a>
           </li>
           <li class="nav-item">
-            <a href="tickettable.php" class="nav-link <?= $page == 'tickettable.php' || $page == 'ticketform.php' ? 'active':'' ?>">
+            <a href="tickettable" class="nav-link <?= $page == 'tickettable.php' || $page == 'ticketform' ? 'active':'' ?>">
             <i class="nav-icon fas fa-th"></i>
               <p>
                 Ticket
@@ -73,7 +73,7 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
             </a>
           </li>
           <li class="nav-item">
-            <a href="profile.php" class="nav-link <?= $page == 'profile.php' ? 'active':'' ?>">
+            <a href="profile" class="nav-link <?= $page == 'profile.php' ? 'active':'' ?>">
             <i class="nav-icon fas fa-address-card"></i>
               <p>
                 Profile
@@ -81,7 +81,7 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
             </a>
           </li>
           <li class="nav-item">
-            <a href="deal.php" class="nav-link <?= $page == 'deal.php' ? 'active':'' ?>">
+            <a href="deal" class="nav-link <?= $page == 'deal.php' ? 'active':'' ?>">
             <i class="nav-icon fas fa-handshake"></i>
               <p>
                 Deals
@@ -90,7 +90,7 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
           </li>
           
           <li class="nav-item">
-            <a href="changepassword.php" class="nav-link <?= $page == 'changepassword.php' ? 'active':'' ?>">
+            <a href="changepassword" class="nav-link <?= $page == 'changepassword.php' ? 'active':'' ?>">
               <i class="nav-icon fas fa-solid fa-key"></i>
               <p>
                 Change Password

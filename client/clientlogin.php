@@ -2,8 +2,8 @@
 session_start();
 include("config.php");
 if(isset($_POST['login'])){
-$Email=$_POST['emailid'];
-$Password1=$_POST['password'];
+$Email=mysqli_real_escape_string($conn,$_POST['emailid']);
+$Password1=mysqli_real_escape_string($conn,$_POST['password']);
 
 $sql=mysqli_query($conn,"select * from client where Email='$Email' AND Status='Activated'");
 
