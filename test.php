@@ -3,9 +3,9 @@ if(isset($_POST['submit'])){
 	$mobile='91'.$_POST['mobile'];
 	$message=$_POST['message'];
 	
-	$apiKey = urlencode('NTk1MDY5Nzc1NzU1NjQzNDc3MzY0ZjcwNzMzMjRiNjc=');
+	$apiKey = urlencode('NjQ3ODcyNGI2YjcxNTA2NTUxMzk2MzZlN2E0YTcxMzI=');
 	$numbers = array($mobile);
-	$sender = urlencode('TXTLCL');
+	$sender = urlencode('tectignis');
 	$message = rawurlencode($message);
 	$numbers = implode(',', $numbers);
  	$data = array('apikey' => $apiKey, 'numbers' => $numbers, "sender" => $sender, "message" => $message);
