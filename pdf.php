@@ -6,7 +6,7 @@ $conn = new PDO("mysql:host=151.106.124.51;dbname=u188140722_crm1", "u188140722_
 function fetch_customer_data($conn)
 {
  $query = "SELECT * FROM LEAD";
- $statement = $connect->prepare($query);
+ $statement = $conn->prepare($query);
  $statement->execute();
  $result = $statement->fetchAll();
  $output = '
