@@ -31,6 +31,7 @@ function fetch_customer_data($conn)
     <td>'.$row["package"].'</td>
    </tr>
   ';
+  
  }
  $output .= '
   </table>
