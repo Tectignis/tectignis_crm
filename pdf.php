@@ -2,7 +2,7 @@
 //index.php
 
 $message = '';
-$connect = new PDO("mysql:host=151.106.124.51;dbname=u188140722_crm1", "u188140722_crm1", "Admin@123");
+$conn = new PDO("mysql:host=151.106.124.51;dbname=u188140722_crm1", "u188140722_crm1", "Admin@123");
 function fetch_customer_data($conn)
 {
  $query = "SELECT * FROM LEAD";
