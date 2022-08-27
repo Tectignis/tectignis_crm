@@ -17,6 +17,8 @@ if(isset($_POST['submit'])){
 	curl_close($ch);
 	echo $response;
 }	
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
