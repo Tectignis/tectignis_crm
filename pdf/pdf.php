@@ -43,7 +43,7 @@ if(isset($_POST["action"]))
 {
  include('pdf.php');
  $file_name = md5(rand()) . '.pdf';
- header('location:http://wa.me/send?phone=9199999999&attachment=c://users/downloads/'.$file_name);
+ header('location:http://wa.me/send?phone=9199&attachment=c://users/downloads/'.$file_name);
 }
 
 ?>
