@@ -6,8 +6,7 @@ $message = '';
 function fetch_customer_data($conn)
 {
  $query = "SELECT * FROM LEAD";
- $statement = $conn->prepare($query);
- $statement->execute();
+ $statement = mysqli_query($conn,$query);
  $result = $statement->fetchAll();
  $output = '
  <div class="table-responsive">
@@ -94,7 +93,7 @@ if(isset($_POST["action"]))
    </form>
    <br />
    <?php
-   echo fetch_customer_data($connect);
+   echo fetch_customer_data($conn);
    ?>   
   </div>
   <br />
