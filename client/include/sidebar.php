@@ -56,14 +56,14 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
             </ul>
           </li>
        
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="lead" class="nav-link <?= $page == 'lead.php'  ? 'active':'' ?>">
             <i class="nav-icon fa fa-fw fa-users"></i>
               <p>
               Leads
               </p>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a href="tickettable" class="nav-link <?= $page == 'tickettable.php' || $page == 'ticketform' ? 'active':'' ?>">
             <i class="nav-icon fas fa-th"></i>
