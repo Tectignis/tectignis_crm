@@ -45,7 +45,7 @@ if(isset($_POST["action"]))
  include('pdf.php');
  $file_name = md5(rand()) . '.pdf';
  $html_code = '<link rel="stylesheet" href="bootstrap.min.css">';
- $html_code .= fetch_customer_data($connect);
+ $html_code .= fetch_customer_data($conn);
  $pdf = new Pdf();
  $pdf->load_html($html_code);
  $pdf->render();
