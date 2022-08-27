@@ -5,8 +5,8 @@ include("admin/config.php");
 $message = '';
 function fetch_customer_data($conn)
 {
- $query = "SELECT * FROM tbl_customer";
- $statement = $connect->prepare($query);
+ $query = "SELECT * FROM LEAD";
+ $statement = $conn->prepare($query);
  $statement->execute();
  $result = $statement->fetchAll();
  $output = '
