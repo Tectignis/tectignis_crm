@@ -64,7 +64,7 @@ $title= $fcardpackage['title'];
 <html lang="en">
 
 <head>
-<base href="/tectignis_crm/client/" />
+<base href="/realestate.tectignis.in/client/" />
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Leads | CRM</title>

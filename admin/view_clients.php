@@ -12,7 +12,7 @@ if(isset($_GET['del_id'])){
 <html lang="en">
 
 <head>
-<base href="/tectignis_crm/admin/" />
+<base href="/realestate.tectignis.in/admin/" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin CRM | Dashboard</title>
