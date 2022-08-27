@@ -166,10 +166,10 @@ $id=$_POST['id'];
                                     </thead>
                                     <tbody>
                                     <?php
-                    $sql=mysqli_query($conn,"select * from category");
-                    $count=1;
-                  while ($row=mysqli_fetch_array($sql)){ 
-          ?>
+                                        $sql=mysqli_query($conn,"select * from category");
+                                        $count=1;
+                                            while ($row=mysqli_fetch_array($sql)){ 
+                                            ?>
                                         <tr>
                                             <td><?php echo $count;?></td>
                                             <td><?php echo $row['category']; ?></td>
