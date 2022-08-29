@@ -53,7 +53,7 @@ $file_name = md5(rand()) . '.pdf';
  $pdf->render();
  $file = $pdf->output();
  file_put_contents($file_name, $file);
-header('location:https://api.whatsapp.com/send?phone=917057643539&text=https://realestate.tectignis.in/pdf/'.$file_name);
+header('location:https://api.whatsapp.com/send?phone=919936473959&text=https://realestate.tectignis.in/pdf/'.$file_name);
 }
 
 ?>
