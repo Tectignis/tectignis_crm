@@ -10,7 +10,7 @@ function fetch_customer_data($conn)
  $statement->execute();
  $result = $statement->fetchAll();
  $output = '
- <div><img src="h.jpg" style="width:400px">
+ <div><img src="h.jpeg" style="width:100%">
  <div class="table-responsive">
   <table class="table table-striped table-bordered">
    <tr>
@@ -36,7 +36,7 @@ function fetch_customer_data($conn)
  $output .= '
   </table>
  </div>
- <div><img src="f.jpg" style="width:400px">
+ <div><img src="f.jpg" style="width:100%">
  ';
  return $output;
 }
@@ -52,14 +52,14 @@ $file_name = md5(rand()) . '.pdf';
  $pdf->render();
  $file = $pdf->output();
  file_put_contents($file_name, $file);
-header('location:https://api.whatsapp.com/send?phone=919936473959&text=https://realestate.tectignis.in/pdf/'.$file_name);
+header('location:https://api.whatsapp.com/send?phone=918879253568&text=https://realestate.tectignis.in/pdf/'.$file_name);
 }
 
 ?>
 <!DOCTYPE html>
 <html>
  <head>
-  <title>Create Dynamic PDF Send As Attachment with Email in PHP</title>
+  <title>Create Dynamic PDF Send As Attachment with Whatsapp in PHP</title>
   <script src="jquery.min.js"></script>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -68,7 +68,7 @@ header('location:https://api.whatsapp.com/send?phone=919936473959&text=https://r
  <body>
   <br />
   <div class="container">
-   <h3 align="center">Create Dynamic PDF Send As Attachment with Email in PHP</h3>
+   <h3 align="center">Create Dynamic PDF Send As Attachment with Whatsapp in PHP</h3>
    <br />
    <form method="post">
     <input type="submit" name="action" class="btn btn-danger" value="PDF Send" /><?php echo $message; ?>
