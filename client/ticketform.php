@@ -83,28 +83,14 @@ include("include/sidebar.php");
           <!-- /.card-header -->
           <div class="card-body">
           <form action="./api/ticketform_action.php" method="post">
-          <?php $sql=mysqli_query($conn,"select * from ticket where Client_Code='".$_SESSION['id']."' order by id desc");
-                     
-                      $arr=mysqli_fetch_array($sql);
-                      $dnk=$arr['id'];
-                      $lastid=$dnk+1;
-                     
-                      if(empty($lastid)){
-						           $number="0000";
-					           }else{
-						          $id=str_pad($lastid + 0, 4,0, STR_PAD_LEFT);
-					        	  $number="$id";
-					            }	
-                    
-                      
-                      					  ?>
+         
                                     <div class="card-body">
 
 
                                         <div class="form-group">
                                             <label for="exampleprop" style="font-size: 1.3em;" class="col-sm-2 col-form-label">Subject</label>
                                             <div class="col-sm-12">
-                                              <input type="hidden" value="<?php echo $number; ?>" name="ticket_no">
+                                              
                                                 <input type="text" class="form-control" placeholder="Subject" name="subject" id="description" required>
                                                     
                                             </div>

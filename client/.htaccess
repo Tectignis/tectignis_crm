@@ -1,0 +1,7 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+
+# RewriteRule ^([^/\.]+)/([^/.]+)?$ package.php?type=$1&packageId=$2&packageId=$3
+RewriteRule ^package/([a-zA-Z0-9-/]+)?$ package.php?packageId=$1
+RewriteRule ^([^\.]+)$ $1.php [NC,L]

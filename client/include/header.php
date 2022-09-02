@@ -1,57 +1,24 @@
 
 
 <?php
+$name=$_SESSION['fname'];
         $client_id=$_SESSION['id'];
+      
         ?>
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+    <li class="nav-item">
+        <a class="nav-link" id="sideCollapse" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
+     
       <li class="nav-item d-none d-sm-inline-block">
-      <!-- <h3><a href="#"><?php echo $fname ?></a></h3> -->
+        
+      <h3><a href="#"><?php echo $name ?></a></h3>
 </li>
-<li>
-<div class="card ml-2" style="width: fit-content;">
-              <div class="card-header">
-              <?php 
-//                 date_default_timezone_set('Asia/Kolkata');
-//                 $date='';
-// $get_swor = mysqli_query($conn,"select * from lead where Firm_Name='$id' and date(remainder_date)=date(now())");
-//   if (mysqli_num_rows($get_swor) > 0) { 
-//      while ( $swork_info = mysqli_fetch_array($get_swor)) { 
-//       $date = $swork_info['remainder_date']; 
-	
-// $time=date("h:i", strtotime($date));
-// $timestamp = strtotime($time);
-// $current_time=date("h:i");
-// // echo $current_time;
-// $current_time_timestamp = strtotime($current_time);
-// $dd=$current_time_timestamp-$timestamp;
-// if ($current_time == $time) {
-// echo "<font size=\"4\" color=\"red\">";
-// // echo strftime('%H:%M', $dd);
-// echo "</font>1 hrs left for requirment" . $swork_info['Requirement'] ." </p>";
-// }
-// }
-// }
-?>
-<?php
-$date='2002-08-01 14:58';
-$time=date("h:i", strtotime($date));
-$timestamp = strtotime($time);
-$current_time=date("h:i");
-$current_time_timestamp = strtotime($current_time);
-$dd=$current_time_timestamp-3600;
-if ($current_time == $dd) {
-echo "<font size=\"4\" color=\"red\">";
-// echo strftime('%H:%M', $dd);
-echo "</font>1 hrs left for requirment" . " </p>";
-}
-
-?>
-              </div>
+<li style="margin-top: 6px;color: slategray;margin-left: 14px;">
+<div class=" ml-2" style="width: fit-content;">
+                <div id="output" style=""></div>
             </div>
 </li> 
 
@@ -83,15 +50,6 @@ while($unread_time=mysqli_fetch_assoc($res_message)){
 </p>
 <?php } ?>
 <div class="dropdown-divider"></div>
-<!-- <a href="#" class="dropdown-item">
-<i class="fas fa-users mr-2"></i> 8 friend requests
-<span class="float-right text-muted text-sm">12 hours</span>
-</a>
-<div class="dropdown-divider"></div>
-<a href="#" class="dropdown-item">
-<i class="fas fa-file mr-2"></i> 3 new reports
-<span class="float-right text-muted text-sm">2 days</span>
-</a> -->
 <div class="dropdown-divider"></div>
 <a href="lead.php" class="dropdown-item dropdown-footer">See All Lead</a>
 </div>
@@ -106,5 +64,6 @@ while($unread_time=mysqli_fetch_assoc($res_message)){
       </li>
     </ul>
   </nav>
+  
 
   

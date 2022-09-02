@@ -83,7 +83,7 @@ $ndeactivated=mysqli_num_rows($qdeactivated);
         <div class="row">
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-info">
+            <div class="small-box" style="background:#ffad08;color:white">
               <div class="inner">
               <?php
               $query=mysqli_query($conn,"select * from client");
@@ -102,7 +102,7 @@ $ndeactivated=mysqli_num_rows($qdeactivated);
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-danger">
+            <div class="small-box" style="background:#984c89;color:white">
               <div class="inner">
               <?php
               $query=mysqli_query($conn,"select * from lead");
@@ -120,7 +120,7 @@ $ndeactivated=mysqli_num_rows($qdeactivated);
           </div>
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-warning">
+            <div class="small-box" style="background:#e02b2b;color:white">
               <div class="inner">
               <?php
               $fhot=mysqli_query($conn,"select * from lead where nature='Hot'");
@@ -138,7 +138,7 @@ $ndeactivated=mysqli_num_rows($qdeactivated);
           </div>
           <!-- ./col -->
           <div class="col-lg-3 col-6">
-            <div class="small-box bg-info">
+            <div class="small-box " style="background:#6658ce;color:white">
               <div class="inner">
                 <?php $fcold= mysqli_query($conn,"select * from lead where nature='Cold'");
                 $ncold=mysqli_num_rows($fcold); ?>
@@ -164,7 +164,7 @@ $ndeactivated=mysqli_num_rows($qdeactivated);
       <div class="row">
         <div class="col-12 col-sm-6 col-md-3">
           <div class="info-box">
-          <span class="info-box-icon bg-info elevation-1"><i class="fas fa-book-open"></i></span>
+          <span class="info-box-icon elevation-1" style="background:#399eaf;color:white"><i class="fas fa-book-open"></i></span>
           <div class="info-box-content">
           <?php $qopen=mysqli_query($conn,"select * from ticket where status = 'Open'");
                $nopen=mysqli_num_rows($qopen); ?>
@@ -175,37 +175,37 @@ $ndeactivated=mysqli_num_rows($qdeactivated);
         </div>
         <div class="col-md-3 col-sm-6 col-12">
           <div class="info-box">
-            <span class="info-box-icon bg-warning elevation-1"><i class="fa fa-book"></i></span>
-            <div class="info-box-content">
-              <span class="info-box-text">Closed Ticket</span>
-              <?php
-              $qclose=mysqli_query($conn,"select * from ticket where status = 'Close'");
-              $nclose=mysqli_num_rows($qclose); ?>
-              <h3><?php echo $nclose; ?></h3>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6 col-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-primary elevation-1"><i class="fas fa-book-medical"></i></span>
-            <div class="info-box-content">
-              <span class="info-box-text">Hold Ticket</span>
-              <?php
-              $qhold=mysqli_query($conn,"select * from ticket where status = 'Hold'");
-              $nhold=mysqli_num_rows($qclose); ?>
-              <h3><?php echo $nhold; ?></h3>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6 col-12">
-          <div class="info-box">
-            <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-edit"></i></span>
+            <span class="info-box-icon elevation-1" style="background:#9f3a8e;color:white"><i class="fas fa-edit"></i></span>
             <div class="info-box-content">
               <span class="info-box-text">In Process Ticket</span>
               <?php
               $qprocess=mysqli_query($conn,"select * from ticket where status = 'Inprocess'");
               $nprocess=mysqli_num_rows($qprocess); ?>
               <h3><?php echo $nprocess; ?></h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-12">
+          <div class="info-box">
+            <span class="info-box-icon elevation-1" style="background:#540d48;color:white"><i class="fas fa-book-medical"></i></span>
+            <div class="info-box-content">
+              <span class="info-box-text">Hold Ticket</span>
+              <?php
+              $qhold=mysqli_query($conn,"select * from ticket where status = 'Hold'");
+              $nhold=mysqli_num_rows($qhold); ?>
+              <h3><?php echo $nhold; ?></h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-12">
+          <div class="info-box">
+            <span class="info-box-icon bg-warning elevation-1" style="background:#c7b377"><i class="fa fa-book"></i></span>
+            <div class="info-box-content">
+              <span class="info-box-text">Closed Ticket</span>
+              <?php
+              $qclose=mysqli_query($conn,"select * from ticket where status = 'Closed'");
+              $nclose=mysqli_num_rows($qclose); ?>
+              <h3><?php echo $nclose; ?></h3>
             </div>
           </div>
         </div>
@@ -217,8 +217,8 @@ $ndeactivated=mysqli_num_rows($qdeactivated);
           <div class="row">
             <div class="col-md-6">
               <div class="card card-warning">
-                <div class="card-header">
-                <h3 class="card-title">Pie Chart</h3>
+                <div class="card-header" style="background:#e32a59;color:white">
+                <h3 class="card-title">Lead Status</h3>
                 <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                 <i class="fas fa-minus"></i>
@@ -238,8 +238,8 @@ $ndeactivated=mysqli_num_rows($qdeactivated);
 
             <div class="col-md-6">
               <div class="card card-danger">
-                <div class="card-header">
-                <h3 class="card-title">Pie Chart</h3>
+                <div class="card-header" style="background:#0c8db4;color:white">
+                <h3 class="card-title">Client Status</h3>
                 <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                 <i class="fas fa-minus"></i>
@@ -314,9 +314,9 @@ let warmChart = new Chart(ctx, {
     labels: ["Warm", "Hot", "Cold"],
     datasets: [{
       backgroundColor: [
-        "#2ecc71",
-        "#3498db",
-        "#95a5a6",
+        "#73B4D9",
+        "#2081B7",
+        "#065987",
         
       ],
       data: [<?php echo $leadWarmFetch. ',' .$leadHotFetch. ',' .$leadColdFetch ?>]
@@ -332,8 +332,8 @@ let bookedChart = new Chart(chartx, {
     labels: ["Activated", "Deactivated"],
     datasets: [{
       backgroundColor: [
-        "#9b59b6",
-        "#f1c40f",
+        "#333399",
+        "#666699",
       ],
       data: [<?php echo $nactivated. ',' .$ndeactivated ?>]
     }]

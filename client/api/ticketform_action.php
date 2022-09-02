@@ -7,13 +7,13 @@ session_start();
 if(isset($_POST['ticket'])){
     
     $id=$_SESSION['id'];
-    $ticket_no=$_POST['ticket_no'];
     $subject=$_POST['subject'];
     $description=$_POST['description'];
+    $status='Open';
     date_default_timezone_set('Asia/Kolkata');
       $date=date('Y-m-d H:i:s');
 
-    $sql=mysqli_query($conn,"INSERT INTO `ticket`(`ticket_no`, `Subject`, `Description`,`Client_Code`,`date`) VALUES ('$ticket_no','$subject','$description' ,'$id','$date')");
+    $sql=mysqli_query($conn,"INSERT INTO `ticket`(`Subject`, `Description`,`Client_Code`,`date`,`status`) VALUES ('$subject','$description' ,'$id','$date','$status')");
      if($sql==1){
         echo"<script>alert('new record has been added succesfully!');window.location='../tickettable.php'</script>";
      }

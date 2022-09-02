@@ -116,7 +116,7 @@ include("include/sidebar.php");
                   </thead>
                   <tbody>
                   <?php
-                     $sql=mysqli_query($conn,"select lead.*, client.* from lead inner join client on client.Client_Code=lead.Firm_Name where lead.deal='1'");
+                     $sql=mysqli_query($conn,"select lead.*, client.* from lead inner join client on client.Client_Code=lead.Firm_Name where lead.deal='1' and Client_Code='$id'");
                      $count=1;
                          while($arr=mysqli_fetch_array($sql)){
           ?>
@@ -140,6 +140,9 @@ include("include/sidebar.php");
             else if($status_deal=='On Hold'){
                 echo '<span class="badge badge-warning">On Hold</span>';
             }
+            else if($status_deal=='Booked'){
+              echo '<span class="badge badge-info">Booked</span>';
+          }
             else if($status_deal=='Closed Deal'){
                 echo '<span class="badge badge-danger">Closed Deal</span>';
             }

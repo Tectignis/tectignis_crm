@@ -4,19 +4,15 @@ $id=$_GET['view'];
 if(isset($_GET['del_id'])){
     $delid = $_GET['del_id'];
     $sql = mysqli_query($conn,"DELETE FROM lead WHERE id = '$delid'");
-    if($sql){
-      header ("location:clients.php"); 
-     
-    }
-    else{ echo "<script>alert('Failed to Delete')</script>"; }
+    header ('location:clients.php');
   }
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+<base href="https://realestate.tectignis.in/admin/" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin CRM | Dashboard</title>
@@ -67,12 +63,11 @@ if(isset($_GET['del_id'])){
             justify-content: center;
         }
 
-        .card {
-            border-radius: 15px !important;
+        .card,.card-body {
+            border-radius: 10px !important;
         }
 
-        .badge,
-        .btn {
+        .badge{
             border-radius: 10px !important;
         }
 
@@ -125,51 +120,48 @@ if(isset($_GET['del_id'])){
             </div>
             <!-- /.content-header -->
 
-            <!-- Main content -->
-            <section class="content">
+            <!-- Main content -->   
+
+            <section class="content ">
                 <div class="container-fluid">
-<div class="card" style="height:250px;">
-    <!-- <div class="card-header"> -->
-                                <!-- <div class="form-group" style="margin-left:85%; margin-top:10px;">
-                                    <label for="inputRole">Filter</label>
-                                    <select name="filter" calss="form-control" id="filter">
-                                    <option value="select" selected disabled>Select</option>
-                                    <option value="Last Week">Last Week</option>
-
-  <option value="Last Month">Last Month</option>
-  <option value="Last 3 Months">Last 3 Months</option>
-
-</select>
-                                </div> -->
-                                <!-- </div> -->
-
-           <form onclick="getdata(this.value)"  style="width: fit-content; margin-left:70%;">
+            <div class="card" >
+            <div class="card-header" >
+            <form style="float:left">
             <input type="hidden" id="leadid" value="<?php echo $id;?>">
-            <select id="demo_overview_minimal_multiselect " class="dropbtn form-control" style="background-color:#fff; margin-left:100px;">
+            <select id="demo_overview_minimal_multiselect" class="dropbtn form-control" style="background-color:#fff;" onChange="package(this.value)">
+            <option disabled selected>Select Package</option>
+            <?php 
+            $qpackageselect=mysqli_query($conn,"SELECT * FROM package_assign WHERE firm_id='$id'");
+            while($row=mysqli_fetch_array($qpackageselect)){ ?>
+                <option value="<?php echo $row['title'] ?>"><?php echo $row['title'] ?></option>
+            <?php }
+            ?>
+            </select>
+            </form>
+           <form onclick="getdata(this.value)"  style="float:right">
+            <input type="hidden" id="leadid" value="<?php echo $id;?>">
+            <select id="demo_overview_minimal_multiselect" class="dropbtn form-control" style="background-color:#fff;">
             <option disabled selected>select</option>
-           
             <option>Last Week</option>
             <option>Monthly</option>
             <option>3 Month</option>
             </select>
             </form>
-                          
-
-
-                    <div class="row" style="margin:10px;">
+            </div> 
+            </div>
+            <div class="packageresult">
+            <div class="card">
+                    <div class="row " style="margin:10px;">
                         <div class="col-md-3 col-sm-6">
                             <div class="card comp-card">
                                 <div class="card-body bg-success">
                                     <div class="row align-items-center">
                                         <div class="col">
-                                            <h6 class="m-b-20">Total Laed</h6>  
-                                            <?php
-                                        
-              $query=mysqli_query($conn,"select * from lead where Firm_Name='$id'");
-              $count1=mysqli_num_rows($query);
-               ?>
-               <h3><?php echo $count1; ?></h3>
-
+                                            <h6 class="m-b-20">Total Lead</h6>  
+                                            <?php $query=mysqli_query($conn,"select * from lead where Firm_Name='$id'");
+                                            $count1=mysqli_num_rows($query);
+                                            ?>
+                                            <h3><?php echo $count1; ?></h3>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-rocket bg-success text-white"></i>
@@ -185,10 +177,10 @@ if(isset($_GET['del_id'])){
                                         <div class="col">
                                             <h6 class="m-b-20">Hot</h6>
                                             <?php
-              $query=mysqli_query($conn,"select * from lead where nature='Hot'");
-              $count1=mysqli_num_rows($query);
-               ?>
-               <h3><?php echo $count1; ?></h3>
+                                            $query=mysqli_query($conn,"select * from lead where nature='Hot'");
+                                            $count1=mysqli_num_rows($query);
+                                            ?>
+                                            <h3><?php echo $count1; ?></h3>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-rocket bg-warning text-white"></i>
@@ -204,10 +196,10 @@ if(isset($_GET['del_id'])){
                                         <div class="col">
                                             <h6 class="m-b-20">Cold</h6>
                                             <?php
-              $query=mysqli_query($conn,"select * from lead where nature='Cold'");
-              $count1=mysqli_num_rows($query);
-               ?>
-               <h3><?php echo $count1; ?></h3>
+                                            $query=mysqli_query($conn,"select * from lead where nature='Cold'");
+                                            $count1=mysqli_num_rows($query);
+                                            ?>
+                                            <h3><?php echo $count1; ?></h3>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-rocket bg-info text-white"></i>
@@ -223,10 +215,10 @@ if(isset($_GET['del_id'])){
                                         <div class="col">
                                             <h6 class="m-b-20">Warm</h6>
                                             <?php
-              $query=mysqli_query($conn,"select * from lead where nature='Warm'");
-              $count1=mysqli_num_rows($query);
-               ?>
-               <h3><?php echo $count1; ?></h3>
+                                                $query=mysqli_query($conn,"select * from lead where nature='Warm'");
+                                                $count1=mysqli_num_rows($query);
+                                                ?>
+                                                <h3><?php echo $count1; ?></h3>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-rocket bg-danger text-white"></i>
@@ -236,54 +228,58 @@ if(isset($_GET['del_id'])){
                             </div>
                         </div>
                     </div>
-                    </div>
+            </div>
                     <!-- Main row -->
                     <!-- <div class="row"> -->
                         <div class="col-12">
-                        <div class="card row">
+                        <div class="card">
                             <div class="card-header">
                               <h3 class="card-title">Leads</h3>
+                              <button type="button" class="btn btn-primary float-right " data-toggle="modal" data-target="#exampleModal" style="margin-right: 5px;">+ Add Lead</button>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
-<thead>
-  <tr>
-    <th>Sr No.</th>
-    <th>Client Name</th>
-    <th>Client Mobile No.</th>
-    <th>Requirment</th>
-    <th>Created On</th>
-    <th>Action</th>
-  </tr>
-</thead>
-<tbody id="leads">
-<?php
-$id=$_GET['view'];
-$sql=mysqli_query($conn,"select *, lead.Mobile_Number as mob from lead inner join client on lead.Firm_Name=client.Client_Code where Client_Code='$id'");
-$count=1;
-while ($row=mysqli_fetch_array($sql)){ 
+                            <thead>
+                            <tr>
+                                <th>Sr No.</th>
+                                <th>Package</th>
+                                <th>Client Name</th>
+                                <th>Client Mobile No.</th>
+                                <th>Requirment</th>
+                                <th>Created On</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            
+                            <?php
+                            $id=$_GET['view'];
+                            $sql=mysqli_query($conn,"select *, lead.Mobile_Number as mob from lead inner join client on lead.Firm_Name=client.Client_Code where Client_Code='$id'");
+                            $count=1;?>
+                            <tbody id="leads" class="packresult">
+                            <?php while ($row=mysqli_fetch_array($sql)){ 
 
-?>
-<tr>
-<td><?php echo $count;?></td>
-<td><?php echo $row['Client_Name']; ?></td>
-<td><?php echo $row['mob']; ?></td>
-<td><?php echo $row['Requirement']; ?></td>
-<td><?php echo $row['Created_On']; ?></td>  
-    <td><div class="btn-group" role="group" aria-label="Basic outlined example">
-        <button type="button" onclick="deleteBtn()" class="btn btn-sm btn-danger m-1 delbtn" data-id="=<?php echo $row['id']; ?>"><i class="fa fa-trash"></i></button> 
-      </div></td>
-  </tr>
-  <?php $count++; } ?>
-</tbody>
-</table>
+                            ?>
+                            <tr>
+                            <td><?php echo $count;?></td>
+                            <td><?php echo $row['package']; ?></td>
+                            <td><?php echo $row['Client_Name']; ?></td>
+                            <td><?php echo $row['mob']; ?></td>
+                            <td><?php echo $row['Requirement']; ?></td>
+                            <td><?php echo $row['Created_On']; ?></td>  
+                                <td><div class="btn-group" role="group" aria-label="Basic outlined example">
+                                    <button type="button" onclick="deleteBtn()" class="btn btn-sm btn-danger m-1 delbtn" data-id="=<?php echo $row['id']; ?>"><i class="fa fa-trash"></i></button> 
+                                </div></td>
+                            </tr>
+                            <?php $count++; } ?>
+                            </tbody>
+                            </table>
                             </div>
                             <!-- /.card-body -->
                           </div>
                         </div>
+                            </div>
                     <!-- </div> -->
-
                     <!-- /.row (main row) -->
                 </div><!-- /.container-fluid -->
             </section>
@@ -300,6 +296,72 @@ while ($row=mysqli_fetch_array($sql)){
         <!-- /.control-sidebar -->
     </div>
     <!-- ./wrapper -->
+    <div class="modal fade closemaual" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+      </div>
+      <div class="modal-body">
+      <form method="post" action="">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Package</label>
+                    <input type="hidden" value="<?php echo $id; ?>" id="firm_name" name="firm_name">
+                    <input type="text" value="" class="form-control" name="package" id="package">
+                </div>
+                <!-- /.form-group -->
+                <div class="form-group">
+                <label>Client Mobile Number</label>
+                  <input type="tel" minlength="10" maxlength="10" onkeypress="return onlyNumberKey(event)" class="form-control" name="number" id="number" placeholder="Mobile Number" required>
+                  <span id="numberspan" class="mb-4"></span>
+                    </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Client Name</label>
+                  <input type="text" class="form-control" name="Cname" id="cname" placeholder="Client Name" required>
+                  <span id="cnamespan" class="mb-4"></span>
+                </div>
+                <!-- /.form-group -->
+                <div class="form-group">
+                  <label>Requirement</label>
+                  <input type="text" class="form-control" name="requirement" id="Rname" placeholder="Requirement" required>
+                </div>
+                <!-- /.form-group -->
+              </div>
+                <!-- /.form-group -->
+              </div>
+              <div class="row">
+              <!-- /.col -->
+              <div class="col-md-6">
+                <div class="form-group">
+                <label>Social Media</label>
+                  <select class="form-control select2" name="social_media" id="social_media" style="width: 100%;">
+                    <option selected="selected" disabled>Select</option>
+                    <option>Facebook</option>
+                    <option>Instagram</option>
+                    <option>Twitter</option>
+                    <option>Linkdin</option>
+                    <option>Youtube</option>
+                  </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+                <!-- /.form-group -->
+              </div>
+
+            <div class="modal-footer">
+                <button type="close" class="btn btn-default" data-dismiss="modal" name="close" id="close">Close</button>
+                <button type="button" name="submitt" class="btn btn-primary float-right my-3 " id="sub" style="margin-right: 5px;" >Submit </button> 
+            </div>
+         </form>
+                   </div>
+  
+                   </div>
 
     <!-- Button trigger modal -->
 
@@ -355,7 +417,7 @@ while ($row=mysqli_fetch_array($sql)){
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      "buttons": ["csv", "excel", "pdf", "print"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
    
   });
@@ -420,6 +482,47 @@ while ($row=mysqli_fetch_array($sql)){
       }
     });
   }
+
+  function package(val){
+    $("#package").val(val);
+    let firm_name=$("#leadid").val();
+    $.ajax({
+      url:"action_clients.php",
+      method:"POST",
+      data:{packa:val,
+        firm_name:firm_name},
+      success:function(data){
+        $(".packageresult").html(data);
+      }
+    });
+  }
+
+  $(document).ready(function(){
+    $("#sub").click(function(){
+    let firm_name=$("#firm_name").val();
+    let package=$("#package").val();
+    let number=$("#number").val();
+    let cname=$("#cname").val();
+    let Rname=$("#Rname").val();
+    let social_media=$("#social_media").val();
+    let sub=$("#sub").val();
+    $.ajax({
+    type:"POST",
+    url:"action_clients.php",
+    data:{firm_name:firm_name,
+        package:package,
+        number:number,
+        cname:cname,
+        Rname:Rname,
+        social_media:social_media,
+        sub:sub},
+    success:function(data){
+    $(".packresult").html(data);
+    $("#exampleModal").modal('hide');
+    }
+});
+});
+});
 </script>
 </body>
 

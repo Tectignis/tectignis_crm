@@ -2,7 +2,6 @@
 session_start();
 include("config.php");
 $id=$_SESSION['id'];
-
 if(!isset($_SESSION['id']))
 {
   header("location:log_client.php");

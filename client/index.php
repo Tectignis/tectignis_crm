@@ -13,11 +13,11 @@ $leadCold=mysqli_query($conn,"select * from lead where nature='Cold' and Firm_Na
 $leadColdFetch=mysqli_num_rows($leadCold);
 $leadWarm=mysqli_query($conn,"select * from lead where nature='Warm' and Firm_Name='$id'");
 $leadWarmFetch=mysqli_num_rows($leadWarm);
-$leadBooked=mysqli_query($conn,"select * from lead where nature='Booked' and Firm_Name='$id'");
+$leadBooked=mysqli_query($conn,"select * from lead where status_deal='Booked' and Firm_Name='$id'");
 $leadBookedFetch=mysqli_num_rows($leadBooked);
-$leadLeadClosed=mysqli_query($conn,"select * from lead where nature='Lead Closed' and Firm_Name='$id'");
+$leadLeadClosed=mysqli_query($conn,"select * from lead where nature='Deal Closed' and Firm_Name='$id'");
 $leadLeadClosedFetch=mysqli_num_rows($leadLeadClosed);
-$leadSiteView=mysqli_query($conn,"select * from lead where nature='Site View' and Firm_Name='$id'");
+$leadSiteView=mysqli_query($conn,"select * from lead where nature='Site Visit' and Firm_Name='$id'");
 $leadSiteViewFetch=mysqli_num_rows($leadSiteView);
 $leadDate=mysqli_query($conn,'SELECT Created_On, (DATE_FORMAT(Created_On,"%M")) AS "Month", COUNT(*) AS Number_of_registered_users FROM lead WHERE year(Created_On)= year(Created_On) and Firm_Name='.$id.' GROUP BY (DATE_FORMAT(Created_On,"%M")) ORDER BY "Month" ASC');
 $leadDate1=mysqli_query($conn,'SELECT Created_On, (DATE_FORMAT(Created_On,"%M")) AS "Month", COUNT(*) AS Number_of_registered_users FROM lead WHERE year(Created_On)= year(Created_On) and Firm_Name='.$id.' GROUP BY (DATE_FORMAT(Created_On,"%M")) ORDER BY "Month" ASC');
@@ -72,7 +72,15 @@ margin-right:40px !important;
 .cld-number {
     padding: 0;
 }
-
+.container {
+  width: 85%;
+  margin: auto;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.bg-gradient-info {
+  background: linear-gradient(to bottom right, #FDBD56, #FD56B6) !important;
+}
   </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -99,19 +107,7 @@ margin-right:40px !important;
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1 class="m-0">Dashboard</h1>
-            <form onclick="getdata(this.value)"  style="width: fit-content;float:left">
-            <input type="hidden" id="leadid" value="<?php echo $id;?>">
-            <select id="demo_overview_minimal_multiselect " class="dropbtn form-control" style="background-color:#fff;">
-            <option>select</option>
-            <option>Today</option>
-            <option>Last Week</option>
-            <option>Monthly</option>
-            <option>3 Month</option>
-            </select>
-            </form>
-
-            
-
+           
           </div><!-- /.col -->
 
           <div class="col-sm-6">
@@ -127,33 +123,27 @@ margin-right:40px !important;
 
     <!-- Main content -->
     <section class="content">
+        <div class="card">
+        <div class="card-body" style="padding: 0.9rem;">
+             <div style=" display: inline-block;">
+            <form onclick="getdata(this.value)"  style="width: fit-content;float:left">
+            <input type="hidden" id="leadid" value="<?php echo $id;?>">
+            <select id="demo_overview_minimal_multiselect " class="dropbtn form-control" style="background-color:#fff;">
+            <option>select</option>
+            <option>Today</option>
+            <option>Last Week</option>
+            <option>Monthly</option>
+            <option>3 Month</option>
+            </select>
+            </form>
+</div>
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row" id="leads">
-         <!-- ./col -->
-         <div class="col-lg-3 col-6">
+           <!-- ./col -->
+           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-primary">
-              <div class="inner">
-              <?php
-              $query=mysqli_query($conn,"select * from lead where Firm_Name='$id'");
-               $count1=mysqli_num_rows($query);
-                ?>
-               <h3><?php echo $count1; ?></h3>
-
-                <p>Total Leads</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-              </div>
-              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
+            <div class="small-box" style="background:#ffad08;color:white">
               <div class="inner">
               <?php
               $query=mysqli_query($conn,"select * from lead where status_deal='Open' and Firm_Name='$id'");
@@ -166,15 +156,36 @@ margin-right:40px !important;
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <!-- <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
             </div>
           </div>
           <!-- ./col -->
           
+         <!-- ./col -->
+         <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box" style="background:#984c89;color:white">
+              <div class="inner">
+              <?php
+              $query=mysqli_query($conn,"select * from lead where Firm_Name='$id'");
+               $count1=mysqli_num_rows($query);
+                ?>
+               <h3><?php echo $count1; ?></h3>
+
+                <p>Total Leads</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <!-- <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
+            </div>
+          </div>
+          <!-- ./col -->
+         
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-info">
+            <div class="small-box " style="background:#e02b2b;color:white">
               <div class="inner">
               <?php
               $query=mysqli_query($conn,"select * from lead where status_deal='Closed' and Firm_Name='$id'");
@@ -187,7 +198,7 @@ margin-right:40px !important;
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <!-- <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
             </div>
           </div>
           <!-- ./col -->
@@ -195,32 +206,65 @@ margin-right:40px !important;
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-danger">
+            <div class="small-box" style="background:#6f58ce;color:white">
               <div class="inner">
-              <?php
-              $query=mysqli_query($conn,"select * from ticket where client_code='$id'");
-               $count1=mysqli_num_rows($query);
-                ?>
-               <h3><?php echo $count1; ?></h3>
+             
+               <h3><?php echo $leadBookedFetch; ?></h3>
 
-                <p>Total No of Ticket</p>
+                <p>Total Booked</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <!-- <a href="lead.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a> -->
             </div>
           </div>
           <!-- ./col -->
         </div>
+        </div>
+        </div>
+        </div>
         <!-- /.row -->
+
+<section class="content">
+<div class="row">
+            <?php
+            $qpackage=mysqli_query($conn,"select * , lead_id, count(lead_id) as count from package inner join package_assign on package_assign.lead_id=package.id where firm_id='$id' group by lead_id HAVING COUNT(lead_id) > 0 ;");
+
+            while($fpackage=mysqli_fetch_array($qpackage)){
+            $lead_id=$fpackage['count'];
+            $lead_id1=$fpackage['total_lead'];
+            $lead_id2=($lead_id/$lead_id1)*100;
+            $round= (round($lead_id2));
+              
+            ?>
+        <div class="col-md-3 col-sm-6 col-12">
+<div class="info-box bg-gradient-info ">
+<span class="info-box-icon"><i class="far fa-bookmark"></i></span>
+<div class="info-box-content">
+<span class="info-box-text" style="text-transform:capitalize"><?php echo $fpackage['title']; ?></span>
+<span class="info-box-number"><?php echo $fpackage['count'];; ?></span>
+<div class="progress">
+<div class="progress-bar" style="width: <?php echo $round; ?>%"></div>
+</div>
+<span class="progress-description">
+<?php echo $round; ?>% out of <?php echo $fpackage['total_lead']; ?> Leads
+</span>
+</div>
+</div>
+
+            </div>
+   <?php } ?>
+            </div>
+</section>
+
         <!-- Main row -->
         <section>
           <div class="row">
             <div class="col-md-6">
               <div class="card card-warning">
-                <div class="card-header">
-                <h3 class="card-title">Pie Chart</h3>
+                <div class="card-header" style="background:#e32a59;color:white">
+                <h3 class="card-title">Lead Status</h3>
                 <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                 <i class="fas fa-minus"></i>
@@ -240,8 +284,8 @@ margin-right:40px !important;
 
             <div class="col-md-6">
               <div class="card card-danger">
-                <div class="card-header">
-                <h3 class="card-title">Pie Chart</h3>
+                <div class="card-header" style="background:#0c8db4;color:white">
+                <h3 class="card-title">Lead Status</h3>
                 <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                 <i class="fas fa-minus"></i>
@@ -265,8 +309,8 @@ margin-right:40px !important;
           <div class="row">
             <div class="col-md-6">
               <div class="card card-success">
-                <div class="card-header">
-                <h3 class="card-title">Bar Chart</h3>
+                <div class="card-header" style="background:#e32a59;color:white">
+                <h3 class="card-title">Monthly Lead and Ticket</h3>
                 <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                 <i class="fas fa-minus"></i>
@@ -316,7 +360,7 @@ margin-right:40px !important;
             <div class="col-md-6">
               
             <div class="card card-success">
-                <div class="card-header">
+                <div class="card-header" style="background:#0c8db4">
                 <h3 class="card-title">Calendar</h3>
                 <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -398,9 +442,9 @@ let warmChart = new Chart(ctx, {
     labels: ["Warm", "Hot", "Cold"],
     datasets: [{
       backgroundColor: [
-        "#2ecc71",
-        "#3498db",
-        "#95a5a6",
+        "#73B4D9",
+        "#2081B7",
+        "#065987",
         
       ],
       data: [<?php echo $leadWarmFetch. ',' .$leadHotFetch. ',' .$leadColdFetch ?>]
@@ -416,9 +460,9 @@ let bookedChart = new Chart(chartx, {
     labels: ["Booked", "Lead closed", "Site View"],
     datasets: [{
       backgroundColor: [
-        "#9b59b6",
-        "#f1c40f",
-        "#e74c3c"
+        "#333399",
+        "#666699",
+        "#7390D9"
       ],
       data: [<?php echo $leadBookedFetch. ',' .$leadLeadClosedFetch. ',' .$leadSiteViewFetch ?>]
     }]

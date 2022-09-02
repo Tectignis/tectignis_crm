@@ -1,8 +1,7 @@
 <?php
 $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
 ?>
-
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+ <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <div class=" mt-3 pb-3 mb-3">
     <a href="#" style="text-decoration: none" class="brand-link">
@@ -15,40 +14,58 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
       </span>
     </a>
 </div>
+
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
+     
 
       <!-- SidebarSearch Form -->
-      <div class="form-inline">
-       
-      </div>
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="index.php" class="nav-link <?= $page == 'index.php' ? 'active':'' ?>">
+               <li class="nav-item">
+            <a href="index" class="nav-link <?= $page == 'index.php' ? 'active':'' ?>">
             <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
               </p>
             </a>
           </li>
-          
+             <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Packages
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <?php
+              $qsidepackage=mysqli_query($conn,"select *,package_assign.id as id from package inner join package_assign on package.id=package_assign.lead_id where package_assign.firm_id='$id'");
+              while($fsidepackage=mysqli_fetch_array($qsidepackage)){
+              ?>
+              <li class="nav-item">
+                <a href="package/<?php echo $fsidepackage['id'] ?>" class="nav-link <?= $page == 'package.php?packageId=<?php echo $fsidepackage["id"] ?>'  ? 'active':'' ?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p><?php echo $fsidepackage['title'] ?></p>
+                </a>
+              </li>
+              <?php } ?>
+            </ul>
+          </li>
        
-          <li class="nav-item">
-            <a href="lead.php" class="nav-link <?= $page == 'lead.php'  ? 'active':'' ?>">
+          <!-- <li class="nav-item">
+            <a href="lead" class="nav-link <?= $page == 'lead.php'  ? 'active':'' ?>">
             <i class="nav-icon fa fa-fw fa-users"></i>
               <p>
               Leads
               </p>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
-            <a href="tickettable.php" class="nav-link <?= $page == 'tickettable.php' || $page == 'ticketform.php' ? 'active':'' ?>">
+            <a href="tickettable" class="nav-link <?= $page == 'tickettable.php' || $page == 'ticketform' ? 'active':'' ?>">
             <i class="nav-icon fas fa-th"></i>
               <p>
                 Ticket
@@ -56,7 +73,7 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
             </a>
           </li>
           <li class="nav-item">
-            <a href="profile.php" class="nav-link <?= $page == 'profile.php' ? 'active':'' ?>">
+            <a href="profile" class="nav-link <?= $page == 'profile.php' ? 'active':'' ?>">
             <i class="nav-icon fas fa-address-card"></i>
               <p>
                 Profile
@@ -64,32 +81,26 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
             </a>
           </li>
           <li class="nav-item">
-            <a href="deal.php" class="nav-link <?= $page == 'deal.php' ? 'active':'' ?>">
+            <a href="deal" class="nav-link <?= $page == 'deal.php' ? 'active':'' ?>">
             <i class="nav-icon fas fa-handshake"></i>
               <p>
                 Deals
               </p>
             </a>
           </li>
+          
           <li class="nav-item">
-            <a href="project.php" class="nav-link <?= $page == 'project.php' ? 'active':'' ?>">
-            <i class="nav-icon fa fa-file-pdf"></i>
-              <p>
-                Project
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="changepassword.php" class="nav-link <?= $page == 'changepassword.php' ? 'active':'' ?>">
+            <a href="changepassword" class="nav-link <?= $page == 'changepassword.php' ? 'active':'' ?>">
               <i class="nav-icon fas fa-solid fa-key"></i>
               <p>
                 Change Password
               </p>
             </a>
           </li>
-</ul>
-</nav>
+        </ul>
+      </nav>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
   </aside>
+

@@ -2,13 +2,16 @@
 session_start();
 include("config.php");
 if(isset($_POST['login'])){
-$Email=$_POST['email'];
-$Password1=$_POST['password'];
+  
+$Email=mysqli_real_escape_string($conn,$_POST['email']);
+$Password1=mysqli_real_escape_string($conn,$_POST['password']);
+$nEmail=filter_var($Email,FILTER_SANITIZE_STRING);
+$nPassword1=filter_var($Password1,FILTER_SANITIZE_STRING);
 
-$sql=mysqli_query($conn,"select * from login where Email='$Email'");
+$sql=mysqli_query($conn,"call loginEmail('$nEmail');");
 if(mysqli_num_rows($sql)>0){
   $row=mysqli_fetch_assoc($sql); 
-  $verify=password_verify($Password1,$row['Password']);
+  $verify=password_verify($nPassword1,$row['Password']);
 
  if($verify==1){
     $_SESSION['aid']=$row['id'];

@@ -36,3 +36,24 @@ if($unread_count>0){
           });
       });
    </script>
+    <script>
+  $("#sideCollapse").click(function(){
+    $(".sidebar-mini").toggleClass("sidebar-collapse");
+  });
+</script>
+
+<script>
+  myMethod();
+setInterval(function(){
+  myMethod(); // this will run after every 5 seconds
+}, 10000);
+function myMethod( )
+{
+$.ajax({ url: 'action_index.php',
+         type: 'post',
+         success: function(output) {
+                      document.getElementById('output').innerHTML = output;
+                  }
+  });
+}
+</script>

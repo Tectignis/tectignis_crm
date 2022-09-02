@@ -159,74 +159,106 @@ if(isset($_POST["submi"])){
 
                     <div class="row">
                     <?php
-                    $sql=mysqli_query($conn,"select * from client");
+                    $sql=mysqli_query($conn,"SELECT * FROM client inner join category on client.Category=category.id;");
                     $count=1;
                   while ($row=mysqli_fetch_array($sql)){ 
           ?>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="card  text-center"  <?php if($row['Status']=='Deactivated'){ ?>style="background:#B2BEB5"<?php } ?>>
-                                <div class="card-header border-0 pb-0">
-                                    <div class="d-flex align-items-center">
-                                        <div class="d-grid">
-                                            <div class="badge bg-primary p-2 px-3 rounded"><?php echo $row['Category']; ?>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-header-right">
-                                        <div class="dropdown">
-                                            <button class="btn" type="button" id="dropdownMenu2" data-toggle="dropdown"
-                                                aria-haspopup="true" aria-expanded="false">
-                                                <i class="fa fa-ellipsis-v"></i>
-                                            </button>
-
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                                
-                                            
-                                            <a href="view_clients.php?view=<?php echo $row['Client_Code'] ?>"> <button class="dropdown-item"
-                                                type="button"  ><i class="fa fa-eye"></i> View</button></a>
-
-                                                <button class="dropdown-item usereditid" type="button"  data-id="<?php echo $row['Client_Code'] ?>"><i class="far fa-edit"></i> Edit</button>
-
-                                                <button class="dropdown-item delbtn" type="button" onclick="deleteBtn()" data-id="=<?php echo $row['Client_Code']; ?>"><i class="fa fa-trash-alt"></i> Delete</button>
-
-
-                                                <button class="dropdown-item rpassword" type="button" data-toggle="modal"
-                                                data-id="<?php echo $row['Client_Code']; ?>" ><i class="fa fa-key"></i> Reset
-                                                    Password</button>
-
-                                                    <?php
-                                                    if($row['Status']=='Activated'){ ?>
-                                                        <a href="clients.php?client=<?php echo $row['Client_Code'] ?>" class="dropdown-item" type="button" data-id=""><i class="fas fa-toggle-off"></i> Deactivated</a>
-                                                   <?php } else{
-                                                    ?>
-                                                    <a href="clients.php?declient=<?php echo $row['Client_Code'] ?>" class="dropdown-item" type="button" data-id=""><i class="fas fa-toggle-on"></i> Activated</a>  
-                                                    <?php } ?>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                <a href="clinet_details.php" target="_blank">
-                                    <?php
-                                    if($row['image']==""){
-echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded-circle card-avatar" style="width:100px;height:100px;">';
-                                    }else{
-
-                                        ?>
-                                   
-                                        <img alt="user-image" class="img-fluid rounded-circle card-avatar"
-                                            src="dist/img/<?php echo $row['image'] ?>" style="height:100px;width:100px;">
-<?php } ?>
-                                    </a>
-                                    <h4 class="mt-2"><a href=""><?php echo $row['Authorized_Name']; ?></a></h4>
-                                    <h6 class=""><?php echo $row['Email']; ?></h6><h6 class="">
-
-                                </div>
-                            </div>
+                        <div class="col-md-4 col-sm-6">
+                              <div class="card card-widget widget-user">
+        <div class="widget-user-header bg-info" <?php if($row['Status']=='Deactivated'){ ?>style="background:#B2BEB5;height:168px"<?php } ?> style="height:168px;">
+            <div class="widget-header border-0 pb-0">
+                <div class="d-flex align-items-center float-left">
+                    <div class="d-grid">
+                        <div class="badge bg-primary p-2 px-3 rounded">
+                            <?php echo $row['category']; ?>
                         </div>
+                    </div>
+                </div>
+                <div class="widget-header-right float-right">
+                    <div class="dropdown">
+                        <button class="btn" type="button" id="dropdownMenu2" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-ellipsis-v"></i>
+                        </button>
+    
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            
+                        
+                            <a href="view_clients/<?php echo $row['Client_Code'] ?>" class="dropdown-item"
+                           ><i class="fa fa-eye"></i> View</a>
+    
+                            <button class="dropdown-item usereditid" type="button"  data-id="<?php echo $row['Client_Code'] ?>"><i class="far fa-edit"></i> Edit</button>
+    
+                            <button class="dropdown-item delbtn" type="button" onclick="deleteBtn()" data-id="=<?php echo $row['Client_Code']; ?>"><i class="fa fa-trash-alt"></i> Delete</button>
+    
+    
+                            <button class="dropdown-item rpassword" type="button" data-toggle="modal"
+                            data-id="<?php echo $row['Client_Code']; ?>" ><i class="fa fa-key"></i> Reset
+                                Password</button>
+                                <?php
+                                if($row['Status']=='Activated'){ ?>
+                                    <a href="clients?client=<?php echo $row['Client_Code'] ?>" class="dropdown-item" type="button" data-id=""><i class="fas fa-toggle-off"></i> Deactivated</a>
+                               <?php } else{
+                                ?>
+                                <a href="clients?declient=<?php echo $row['Client_Code'] ?>" class="dropdown-item" type="button" data-id=""><i class="fas fa-toggle-on"></i> Activated</a>  
+                                <?php } ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div style="display:inline-block;width: 100%;">
+       <a href="view_clients/<?php echo $row['Client_Code'] ?>" style="color:white"> <h3 class="widget-user-username"><?php echo $row['Firm_Name']; ?></h3></a>
+       <a href="view_clients/<?php echo $row['Client_Code'] ?>" style="color:white"> <h5 class="widget-user-desc"><?php echo $row['Authorized_Name']; ?></h5></a>
+        </div>
+        
+        </div>
+        <div class="widget-user-image" style="top:112px">
+            <a href="view_clients/<?php echo $row['Client_Code'] ?>" target="_blank">
+                <?php
+                if($row['image']==""){
+echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-circle elevation-2" style="width:100px;height:100px;">';
+                }else{
+
+                    ?>
+               
+                    <img alt="user-image" class="img-circle elevation-2"
+                        src="dist/img/<?php echo $row['image'] ?>" style="height:100px;width:100px;">
+<?php } ?>
+                </a>
+        </div>
+        <div class="card-footer">
+        <div class="row">
+        <div class="col-sm-4 border-right">
+        <div class="description-block">
+        <h5 class="description-header">3,200</h5>
+        <span class="description-text">Total Packages</span>
+        </div>
+        
+        </div>
+        
+        <div class="col-sm-4 border-right">
+        <div class="description-block">
+        <h5 class="description-header">13,000</h5>
+        <span class="description-text">Total Leads</span>
+        </div>
+        
+        </div>
+        
+        <div class="col-sm-4">
+        <div class="description-block">
+        <h5 class="description-header">35</h5>
+        <span class="description-text">PRODUCTS</span>
+        </div>
+        
+        </div>
+        
+        </div>
+        
+        </div>
+        </div>
+                </div>
                         <?php } ?>
-                        <div class="col-md-3 col-sm-6 text-center">
+                        <div class="col-md-4 col-sm-6 text-center">
                             <a href="#" class="btn-addnew-project" data-bs-toggle="tooltip" data-bs-placement="top"
                                 title="" data-ajax-popup="true" data-size="lg" data-title="Create User" data-url=""
                                 data-toggle="modal" data-target="#exampleModal" data-bs-original-title="Create User">
@@ -322,6 +354,13 @@ echo '<img src="dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded
                 <div class="modal-body">
                     <form method="post" action="action_clients.php" enctype="multipart/form-data">
                         <div class="row">
+                        <div class="col-6">
+                                <div class="form-group">
+                                    <label for="inputName">Firm Name</label>
+                                    <input type="text" name="fname" class="form-control" id="inputfname"
+                                        placeholder="Enter Firm Name">
+                                </div>
+                            </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="inputName">Name</label>
