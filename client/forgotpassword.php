@@ -71,7 +71,7 @@ if( mail($sendTo,$subject,$emailText, "From:" .$from)){
 
     if($sql==1){
         echo '<script>alert("data successfully submitted");</script>';
-        header("location:clientlogin.php");
+        header("location:log_client.php");
     }else {
         echo '<script>alert("oops...somthing went wrong");</script>';
     }
@@ -162,7 +162,7 @@ border-bottom-right-radius: .3rem;
                   <div class="pt-1 mb-5 pb-1">
                     <button  class="btn btn-primary fa-lg gradient-custom-2 mb-3" type="submit" name="forgot" id="forgot" value="forgot">Forgot</button>
                 
-                    <a href="clientlogin.php" class="btn btn-primary fa-lg gradient-custom-2 mb-3" type="cancel" name="cancel" id="cancel" value="cancel">Cancel</a>
+                    <a href="log_client.php" class="btn btn-primary fa-lg gradient-custom-2 mb-3" type="cancel" name="cancel" id="cancel" value="cancel">Cancel</a>
                   </div>
 
                 </form>

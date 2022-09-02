@@ -30,7 +30,34 @@ $updateName = $_POST['updateName'];
    }
   }
 
+
+
+$id=$_GET['id'];
+if(isset($_POST["submitt"])){
+	$Old_password=$_POST["oldpassword"];
+	$New_password=$_POST["newpassword"];
+    $Confirm_password=$_POST["confirmpassword"];
+
+	$sql = mysqli_query($conn,"SELECT * FROM users WHERE id='$id'");
+		$row=mysqli_fetch_assoc($sql); 
+		$verify=password_verify($Old_password,$row['password']);
+	
+	$hashpassword=password_hash($New_password,PASSWORD_BCRYPT);
+
+		if($verify==1){
+			$query=mysqli_query($conn,"UPDATE `users` SET `password`='$hashpassword' WHERE id='$id'");
+      if($query){
+        session_destroy();   // function that Destroys Session 
+        echo "<script>alert('Password Changed Successfully'),window.location='users.php';</script>";
+      }
+		}
+		else{
+			echo"<script>alert('Invalid Password');</script>";
+		}
+	
+	}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -252,67 +279,39 @@ $updateName = $_POST['updateName'];
                 </div>
                 <div class="modal-body">
 
-                    <form>
+                    <form method="post">
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="inputPass">Password</label>
-                                    <input type="password" name="resetPass"  class="form-control" id="inputPass" placeholder="Enter Password">
+                                    <label for="inputPass">Old Password</label>
+                                    <input type="password" name="oldpassword"  class="form-control" id="oldpassword" placeholder="Enter Password">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="inputPass">New Password</label>
+                                    <input type="password" name="newpassword"  class="form-control" id="newpassword" placeholder="Enter Password">
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="inputConfirmPass">Confirm Password</label>
-                                    <input type="password" name="confirmResetPass"  class="form-control" id="inputConfirmPass" placeholder="Re-enter Password">
+                                    <input type="password" name="confirmpassword"  class="form-control" id="confirmpassword" placeholder="Re-enter Password">
                                 </div>
                             </div>
                         </div>
+                        <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" name="submitt" id="submitt" class="btn btn-primary">Update</button>
+                </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" name="update" class="btn btn-primary">Update</button>
-                </div>
+                
             </div>
         </div>
     </div>
-      <div class="modal fade" id="resetUserPass" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Reset Password</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="inputPass">Password</label>
-                                    <input type="password" name="resetPass" class="form-control" id="inputPass"
-                                        placeholder="Enter Password">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="inputConfirmPass">Confirm Password</label>
-                                    <input type="password" name="confirmResetPass" class="form-control"
-                                        id="inputConfirmPass" placeholder="Re-enter Password">
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" name="update" class="btn btn-primary">Update</button>
-                </div>
-            </div>
-        </div>
-    </div>
+      
+      
     <!-- Edit Users Modal -->
     <div class="modal fade" id="dnkModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -518,6 +517,19 @@ $updateName = $_POST['updateName'];
 
           });
           </script>
+          <script type="text/javascript">
+    $(function () {
+        $("#submitt").click(function () {
+            var password = $("#newpassword").val();
+            var confirmPassword = $("#confirmpassword").val();
+            if (password != confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+            return true;
+        });
+    });
+</script>
                 </body>
 
 </html>

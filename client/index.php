@@ -5,7 +5,7 @@ include("config.php");
 $id=$_SESSION['id'];
 if(!isset($_SESSION['id']))
 {
-  header("location:clientlogin.php");
+  header("location:log_client.php");
 }
 $leadHot=mysqli_query($conn,"select * from lead where nature='Hot' and Firm_Name='$id'");
 $leadHotFetch=mysqli_num_rows($leadHot);
