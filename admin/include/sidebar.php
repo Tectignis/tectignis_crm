@@ -76,7 +76,7 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
               </p>
             </a>
           </li>
-
+<!-- 
             <li class="nav-item">
             <a href="lead" class="nav-link <?= $page == 'lead.php' ? 'active' :'' ?>">
             
@@ -85,7 +85,7 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
                 Leads
               </p>
             </a>
-            </li>
+            </li> -->
 
             <li class="nav-item">
             <a href="system_setting" class="nav-link <?= $page == 'system_setting.php' ? 'active' :'' ?>">
