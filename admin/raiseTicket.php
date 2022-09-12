@@ -106,6 +106,7 @@ include("include/sidebar.php");
                     <th>Mobile</th>
                     <th>Email</th>
                     <th>Description</th>
+                    <th>Created On</th>
                     <th>Status</th>
                     <th>Action No.</th>
                   </tr>
@@ -125,6 +126,7 @@ include("include/sidebar.php");
                 <td><?php echo $row['mobile']; ?></td>
                 <td><?php echo $row['email']; ?></td>
                 <td><?php echo $row['description']; ?></td>
+                <td><?php $s = $row['date'];$date = strtotime($s);echo date('d-M-Y ', $date);?></td>
                 <td style="text-align:center"><?php
                                                 $status=$row['status'];
                                                 if($status=='0'){

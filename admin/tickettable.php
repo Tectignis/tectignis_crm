@@ -104,13 +104,14 @@ include("include/sidebar.php");
                     <td>Firm Name</td>
                     <th>Subject</th>
                     <th>Description</th>
+                    <th>Created On</th>
                     <th>Status</th>
                     <th>Action No.</th>
                   </tr>
                   </thead>
                   <tbody>
                     <?php
-                    $sql=mysqli_query($conn,"select ticket.*, client.* from ticket inner join client on ticket.Client_Code=client.Client_Code");
+                    $sql=mysqli_query($conn,"select ticket.*,ticket.date as date, client.* from ticket inner join client on ticket.Client_Code=client.Client_Code");
                     $count=1;
                   while ($row=mysqli_fetch_array($sql)){ 
           ?>
@@ -121,6 +122,7 @@ include("include/sidebar.php");
                 <td><?php echo $row['Firm_Name']; ?></td>
                 <td><?php echo $row['Subject']; ?></td> 
                 <td><?php echo $row['Description']; ?></td>
+                <td><?php $s = $row['date'];$date = strtotime($s);echo date('d-M-Y ', $date);?></td>
                 <td style="text-align:center"><?php
                                                 $status=$row['status'];
                                                 if($status=='0'){
