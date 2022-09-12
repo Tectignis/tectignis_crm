@@ -105,10 +105,7 @@ border-bottom-right-radius: .3rem;
                   <div class="text-center pt-1 mb-5 pb-1">
                     <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="login" name="login" id="login" value="login">Login</button>
                     <a class="text-muted" href="forgotpassword.php">Forgot password?</a>
-<<<<<<< HEAD
-=======
 
->>>>>>> 1ae808876ea53a2f27854f358a90c62b6895a466
                   </div>
                 </form>
 
@@ -122,11 +119,10 @@ border-bottom-right-radius: .3rem;
   </div>
 </section>
 </body>
+
 <script>
-<!-- MDB -->
-<script
   type="text/javascript"
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.2.0/mdb.min.js"
-></script>
 </script>
+
 </html>

@@ -3,9 +3,15 @@ include("config.php");
 ?>
 <?php
 if(isset($_POST['submitt'])){
+  $chkl2="";
+  $chkl4="";
     $roles=$_POST['roles'];
-   
-    $sql=mysqli_query($conn,"INSERT INTO `roles`(`roles`) VALUES ('$roles')");
+    $permission = $_POST['permissions'];
+    foreach($permission as $chkl1){$chkl2.= $chkl1.",";}
+    $module = $_POST['module'];
+    foreach($module as $chkl3){$chkl4.= $chkl3.",";}
+
+    $sql=mysqli_query($conn,"INSERT INTO `roles`(`roles`,`permission`,`module`) VALUES ('$roles','$chkl2',' $chkl4')");
     if($sql){
         echo "<script>alert('Roles Added Successfully');</script>";
         echo "<script>window.location.href='roles.php';</script>";

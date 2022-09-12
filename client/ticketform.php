@@ -3,7 +3,7 @@ session_start();
 include("config.php");
 if(!isset($_SESSION['id']))
 {
-  header("location:clientlogin.php");
+  header("location:log_client.php");
 }
 ?>
 

@@ -4,6 +4,7 @@ include("config.php");
 <?php
 if(isset($_POST['update'])){
 $roles = $_POST['updaterole'];
+
 $id=$_POST['id'];
 
    
@@ -93,6 +94,7 @@ $id=$_POST['id'];
         .comp-card {
             height: 137px;
         }
+        
     </style>
 </head>
 
@@ -162,7 +164,7 @@ $id=$_POST['id'];
           ?>
                                         <tr>
                                             <td><?php echo $row['roles']; ?></td>
-                                            <td></td>
+                                            <td><?php echo $row['permission']; ?></td>
                                             <td><div class="btn-group" role="group" aria-label="Basic outlined example">
                                                 <button type="button" class="btn btn-sm btn-info m-1 useredit" data-toggle="modal" data-target="#editUser" data-id="<?php echo $row['id']; ?>"><i class="fa fa-pen"></i></button>
 
@@ -176,7 +178,7 @@ $id=$_POST['id'];
                             <!-- /.card-body -->
                         </div>
                         <!-- /.card -->
-
+                        
 
                     <!-- /.row (main row) -->
                 </div><!-- /.container-fluid -->
@@ -212,14 +214,223 @@ $id=$_POST['id'];
                        <div class="row">
                            <div class="col-12">
                                <div class="form-group">
-                                   <label for="inputName">Role</label>
+                                   <label for="inputName">Role Name</label>
                                    <input type="text" name="roles" class="form-control" id="inputroles" placeholder="Enter Role">        
                                </div>
+                           </div>
+                 
+                           <div class="col-md-12">
+              
+                    <div class="table-border-style">   
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th width="15%" style="background-color:#dee2e6;" >
+                                            <div class="form-check">
+                                                <input type="checkbox" style="position:relative; background-color:#dee2e6;" class="align-middle form-check-input" name="checkall" id="checkall">
+                                            </div>
+                                           
+                                        </th>
+                                        <th width="15%" class="text-dark" style="background-color:#dee2e6;">Module</th>
+                                        <th width="100%" class="text-dark" style="background-color:#dee2e6;">Permissions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                                                                                                                            <tr>
+
+                                                     <td width="10%">
+                                                        <div class="form-check">
+                                                             <input type="checkbox" class="align-middle ischeck form-check-input" name="module[]" id="users" value="users" data-id="User">
+                                                        </div>
+                                                       
+                                                    </td>
+                                                    <td width="10%"><label class="ischeck" data-id="User">Users</label></td>
+                                                    <td>
+                                                        <div class="row">
+                                                        <div class="col-3 form-check">
+                                                                    <input class="form-check-input isscheck isscheck_Estimation" id="permission_124" name="permissions[]" type="checkbox" value="View">
+                                                                    <label for="permission_124" class="form-check-labe font-weight-500">View</label>
+                                                                </div>
+                                                                                                                                                                                                                                                        <div class="col-3 form-check">
+                                                                    <input class="form-check-input isscheck isscheck_User" id="permission_4" name="permissions[]" type="checkbox" value="Create">
+                                                                    <label for="permission_4" class="form-check-labe font-weight-500">Create</label>
+                                                                </div>
+                                                                                                                                                                                                                                                                                                                    <div class="col-3 form-check">
+                                                                    <input class="form-check-input isscheck isscheck_User" id="permission_5" name="permissions[]" type="checkbox" value="Edit">
+                                                                    <label for="permission_5" class="form-check-labe font-weight-500">Edit</label>
+                                                                </div>
+                                                                                                                                                                                                                                                        <div class="col-3 form-check">
+                                                                    <input class="form-check-input isscheck isscheck_User" id="permission_6" name="permissions[]" type="checkbox" value="Delete">
+                                                                    <label for="permission_6" class="form-check-labe font-weight-500">Delete</label>
+                                                                </div>
+                                                                                                                                                                                                                                            </div>
+                                                    </td>
+                                                </tr>
+                                                                                                           <tr>
+
+                                                     <td width="10%">
+                                                        <div class="form-check">
+                                                             <input type="checkbox" class="align-middle ischeck form-check-input" name="module[]" id="role"  data-id="Role">
+                                                        </div>
+                                                       
+                                                    </td>
+                                                    <td width="10%"><label class="ischeck" data-id="Role">Role</label></td>
+                                                    <td>
+                                                        <div class="row">
+                                                        <div class="col-3 form-check">
+                                                                    <input class="form-check-input isscheck isscheck_Estimation" id="permission_124" name="permissions[]" type="checkbox" value="View">
+                                                                    <label for="permission_124" class="form-check-labe font-weight-500">View</label>
+                                                                </div>
+                                                                                                                                                                                                                                                        <div class="col-3 form-check">
+                                                                    <input class="form-check-input isscheck isscheck_Role" id="permission_8" name="permissions[]" type="checkbox" value="Create">
+                                                                    <label for="permission_8" class="form-check-labe font-weight-500">Create</label>
+                                                                </div>
+                                                                                                                                                                                                                                                                                                                    <div class="col-3 form-check">
+                                                                    <input class="form-check-input isscheck isscheck_Role" id="permission_9" name="permissions[]" type="checkbox" value="Edit">
+                                                                    <label for="permission_9" class="form-check-labe font-weight-500">Edit</label>
+                                                                </div>
+                                                                                                                                                                                                                                                        <div class="col-3 form-check">
+                                                                    <input class="form-check-input isscheck isscheck_Role" id="permission_10" name="permissions[]" type="checkbox" value="Delete">
+                                                                    <label for="permission_10" class="form-check-labe font-weight-500">Delete</label>
+                                                                </div>
+                                                                                                                                                                                                                                            </div>
+                                                    </td>
+                                                </tr>
+                                                                                                                                            <tr>
+
+                                                     <td width="10%">
+                                                        <div class="form-check">
+                                                             <input type="checkbox" class="align-middle ischeck form-check-input" name="module[]" id="lead" data-id="Lead">
+                                                        </div>
+                                                       
+                                                    </td>
+                                                    <td width="10%"><label class="ischeck" data-id="Lead">Lead</label></td>
+                                                    <td>
+                                                        <div class="row">
+                                                        <div class="col-3 form-check">
+                                                                    <input class="form-check-input isscheck isscheck_Estimation" id="permission_124" name="permissions[]" type="checkbox" value="View">
+                                                                    <label for="permission_124" class="form-check-labe font-weight-500">View</label>
+                                                                </div>
+                                                                                                                                                                                                                                                        <div class="col-3 form-check">
+                                                                    <input class="form-check-input isscheck isscheck_Lead" id="permission_44" name="permissions[]" type="checkbox" value="Create">
+                                                                    <label for="permission_44" class="form-check-labe font-weight-500">Create</label>
+                                                                </div>
+                                                                                                                                                                                                                                                                                                                    <div class="col-3 form-check">
+                                                                    <input class="form-check-input isscheck isscheck_Lead" id="permission_45" name="permissions[]" type="checkbox" value="Edit">
+                                                                    <label for="permission_45" class="form-check-labe font-weight-500">Edit</label>
+                                                                </div>
+                                                                                                                                                                                                                                                        <div class="col-3 form-check">
+                                                                    <input class="form-check-input isscheck isscheck_Lead" id="permission_46" name="permissions[]" type="checkbox" value="Delete">
+                                                                    <label for="permission_46" class="form-check-labe font-weight-500">Delete</label>
+                                                                </div>
+                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                       
+                                                                                                                    </div>
+                                                    </td>
+                                                </tr>
+                                                                                                                                            <tr>
+
+                                                     <td width="10%">
+                                                        <div class="form-check">
+                                                             <input type="checkbox" class="align-middle ischeck form-check-input" name="module[]" id="client" data-id="Deal">
+                                                        </div>
+                                                       
+                                                    </td>
+                                                    <td width="10%"><label class="ischeck" data-id="Deal">Client</label></td>
+                                                    <td>
+                                                        <div class="row">
+                                                        <div class="col-3 form-check">
+                                                                    <input class="form-check-input isscheck isscheck_Estimation" id="permission_124" name="permissions[]" type="checkbox" value="View">
+                                                                    <label for="permission_124" class="form-check-labe font-weight-500">View</label>
+                                                                </div>
+                                                                                                                                                                                                                                                        <div class="col-3 form-check">
+                                                                    <input class="form-check-input isscheck isscheck_Deal" id="permission_66" name="permissions[]" type="checkbox" value="Create">
+                                                                    <label for="permission_66" class="form-check-labe font-weight-500">Create</label>
+                                                                </div>
+                                                                                                                                                                                                                                                                                                                    <div class="col-3 form-check">
+                                                                    <input class="form-check-input isscheck isscheck_Deal" id="permission_67" name="permissions[]" type="checkbox" value="Edit">
+                                                                    <label for="permission_67" class="form-check-labe font-weight-500">Edit</label>
+                                                                </div>
+                                                                                                                                                                                                                                                        <div class="col-3 form-check">
+                                                                    <input class="form-check-input isscheck isscheck_Deal" id="permission_68" name="permissions[]" type="checkbox" value="Delete">
+                                                                    <label for="permission_68" class="form-check-labe font-weight-500">Delete</label>
+                                                                </div>
+                                                                                                                                                                                                                                                       
+                                                                                                                                                                                                                                                        
+                                                                                                                    </div>
+                                                    </td>
+                                                </tr>
+                                                                                                                                            <tr>
+
+                                                     <td width="10%">
+                                                        <div class="form-check">
+                                                             <input type="checkbox" class="align-middle ischeck form-check-input" name="module[]" id="system_setting" data-id="Estimation">
+                                                        </div>
+                                                       
+                                                    </td>
+                                                    <td width="10%"><label class="ischeck" data-id="Estimation">System Setting</label></td>
+                                                    <td>
+                                                        <div class="row">
+                                                        <div class="col-3 form-check">
+                                                                    <input class="form-check-input isscheck isscheck_Estimation" id="permission_124" name="permissions[]" type="checkbox" value="View">
+                                                                    <label for="permission_124" class="form-check-labe font-weight-500">View</label>
+                                                                </div>
+                                                                                                                                                                                                                                                        <div class="col-3 form-check">
+                                                                    <input class="form-check-input isscheck isscheck_Estimation" id="permission_121" name="permissions[]" type="checkbox" value="Create">
+                                                                    <label for="permission_121" class="form-check-labe font-weight-500">Create</label>
+                                                                </div>
+                                                                                                                                                                                                                                                                                                                    <div class="col-3 form-check">
+                                                                    <input class="form-check-input isscheck isscheck_Estimation" id="permission_122" name="permissions[]" type="checkbox" value="Edit">
+                                                                    <label for="permission_122" class="form-check-labe font-weight-500">Edit</label>
+                                                                </div>
+                                                                                                                                                                                                                                                        <div class="col-3 form-check">
+                                                                    <input class="form-check-input isscheck isscheck_Estimation" id="permission_123" name="permissions[]" type="checkbox" value="Delete">
+                                                                    <label for="permission_123" class="form-check-labe font-weight-500">Delete</label>
+                                                                </div>
+                                                                                                                                                                                                                                                        
+                                                                                                                                                                                </div>
+                                                    </td>
+                                                </tr>
+                                                                                                                                          
+                                                                                                                                            
+                                                                                                                                           
+                                                                                                                                           
+                                               
+                                                                                                                                            
+
+
+                                                                                                                                          
+                                                                                                                                          
+                                                                                                                                           
+                                                                                                                                           
+                                                                                                                                          
+                                                                                                                                          
+                                                                                                                                          
+                                                                                                                                                                                                                            
+                                                                                                                                         
+                                                                                                                                          
+                                                                                                                                          
+                                                                                                                                                                                                                        
+                                                                                                                                           
+                                                                                                                                           
+                                                                                       
+                                                
+                                                
+                                                
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+               
+        </div>
                            </div>
                        </div>
                        <div class="modal-footer">
                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                    <button type="submit" name="submitt" class="btn btn-primary">Create</button>
+               </div>
                </div>
                    </form>
                </div>

@@ -6,7 +6,7 @@ $id=$_SESSION['id'];
 $uid = $_SESSION['aname'];
 if(!isset($_SESSION['id']))
 {
-  header("location:clientlogin.php");
+  header("location:log_client.php");
 }
 
 if(isset($_GET['delid'])){

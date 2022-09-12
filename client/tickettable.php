@@ -4,7 +4,7 @@ include("config.php");
 $id=$_SESSION['id'];
 if(!isset($_SESSION['id']))
 {
-  header("location:clientlogin.php");
+  header("location:log_client.php");
 }
 ?>
 

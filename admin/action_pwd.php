@@ -19,7 +19,7 @@ if(isset($_POST["submit"])){
 			$query=mysqli_query($conn,"UPDATE `login` SET `password`='$hashpassword' WHERE Id='$d'");
       if($query){
         session_destroy();   // function that Destroys Session 
-        echo "<script>alert('Password Changed Successfully'),window.location='adminlogin.php';</script>";
+        echo "<script>alert('Password Changed Successfully'),window.location='log_admin.php';</script>";
       }
 		}
 		else{
@@ -58,7 +58,7 @@ if   ($New_password==$Confirm_password){
   $hasPassword=password_hash($New_password,PASSWORD_BCRYPT);
   $sql=mysqli_query($conn,"UPDATE `login` SET `Password`='$hasPassword' WHERE Email='$Email'");
    if($sql==1){
-        header("location:adminlogin.php");
+        header("location:log_admin.php");
     }else{
         echo "<script>alert('Password is incorrect');</script>";
     }
