@@ -32,6 +32,11 @@ else{
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login</title>
+    <?php
+    $logosql=mysqli_query($conn,'select * from system_setting');
+    $fetchlogo=mysqli_fetch_array($logosql);
+    ?>
+    <link rel="icon" type="image/png" sizes="32x32" href="dist/img/logo/<?php echo $fetchlogo['favicon'] ?>">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 
     <style>

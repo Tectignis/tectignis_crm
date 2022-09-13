@@ -5,6 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin CRM | Login</title>
+    <?php
+    $logosql=mysqli_query($conn,'select * from system_setting');
+    $fetchlogo=mysqli_fetch_array($logosql);
+    ?>
+    <link rel="icon" type="image/png" sizes="32x32" href="dist/img/logo/<?php echo $fetchlogo['favicon'] ?>">
         <!-- Font Awesome -->
 <link
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
