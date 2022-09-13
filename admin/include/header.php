@@ -3,7 +3,8 @@ session_start();
 if(!isset($_SESSION['aid'])){
   header("location:adminlogin.php");
 }
-
+$logosql=mysqli_query($conn,'select * from system_setting');
+$fetchlogo=mysqli_fetch_array($logosql);
 ?>
 
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
