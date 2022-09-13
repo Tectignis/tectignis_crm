@@ -226,7 +226,8 @@ margin-right:40px !important;
         </div>
         <!-- /.row -->
 
-<section class="content">
+<section class="content mt-4">
+  <h3>Packages</h3>
 <div class="row">
             <?php
             $qpackage=mysqli_query($conn,"select * , lead_id, count(lead_id) as count from package inner join package_assign on package_assign.lead_id=package.id where firm_id='$id' group by lead_id HAVING COUNT(lead_id) > 0 ;");
