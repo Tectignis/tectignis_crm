@@ -39,7 +39,11 @@ if(isset($_POST['favicon']))
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin CRM | Dashboard</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="dist/img/logo/<?php echo $fetchlogo['logo'] ?>">
+    <?php
+    $logosql=mysqli_query($conn,'select * from system_setting');
+    $fetchlogo=mysqli_fetch_array($logosql);
+    ?>
+    <link rel="icon" type="image/png" sizes="32x32" href="dist/img/logo/<?php echo $fetchlogo['fevicon'] ?>">
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
