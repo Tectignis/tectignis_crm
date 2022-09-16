@@ -1,3 +1,13 @@
+<?php
+session_start();
+include("config.php");
+$id=$_SESSION['id'];
+
+if(!isset($_SESSION['id']))
+{
+  header("location:log_client.php");
+}
+?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
@@ -79,77 +89,94 @@
                             <!-- User Card -->
                             <div class="card">
                                 <div class="card-body">
+                                <?php
+            
+            $sql=mysqli_query($conn,"select * from client where Client_Code='".$_SESSION['id']."'");
+                
+         $row=mysqli_fetch_array($sql)
+        ?>
                                     <div class="user-avatar-section">
                                         <div class="d-flex align-items-center flex-column">
-                                            <img class="img-fluid rounded mt-3 mb-2" src="app-assets/images/portrait/small/avatar-s-2.jpg" height="110" width="110" alt="User avatar" />
+                                            
+                                        <a href="#" target="_blank">
+                                        <?php
+                                                    if($row['image']==""){
+                                                        
+                                                        
+                                                        echo '<img alt="User avatar"class="img-fluid rounded mt-3 mb-2" 
+                                                        src="app-assets/images/portrait/small/avatar-s-2.jpg style="width:110px;height:100px;">';
+                                                    }
+                                                    else{
+                                                        ?>
+                                                        
+                                                        <img class="img-fluid rounded mt-3 mb-2" src="app-assets/images/portrait/small/<?php echo $row['image'] ?>" height="110" width="110" alt="User avatar" />
+                                                
+                                                    <?php } ?>
+                                                    </a>
                                             <div class="user-info text-center">
-                                                <h4>Gertrude Barton</h4>
-                                                <span class="badge bg-light-secondary">Author</span>
+                                                <h4><?php echo $row['Firm_Name']; ?></h4>
+                                                <span class="badge bg-light-secondary"><?php echo $row['Status']; ?></span>
                                             </div>
                                         </div>
                                     </div>
+                                  
+                                    <?php
+              $query=mysqli_query($conn,"select * from package_assign where firm_id='$id'");
+               $count1=mysqli_num_rows($query);
+                ?>
                                     <div class="d-flex justify-content-around my-2 pt-75">
                                         <div class="d-flex align-items-start me-2">
                                             <span class="badge bg-light-primary p-75 rounded">
                                                 <i data-feather="check" class="font-medium-2"></i>
                                             </span>
                                             <div class="ms-75">
-                                                <h4 class="mb-0">1.23k</h4>
-                                                <small>Tasks Done</small>
+                                                <h4 class="mb-0"><?php echo $count1; ?></h4>
+                                                <small>Total Packages</small>
                                             </div>
                                         </div>
+                                        <?php
+              $query=mysqli_query($conn,"select * from lead where Firm_Name='$id'");
+               $count2=mysqli_num_rows($query);
+                ?>
                                         <div class="d-flex align-items-start">
                                             <span class="badge bg-light-primary p-75 rounded">
                                                 <i data-feather="briefcase" class="font-medium-2"></i>
                                             </span>
                                             <div class="ms-75">
-                                                <h4 class="mb-0">568</h4>
-                                                <small>Projects Done</small>
+                                                <h4 class="mb-0"><?php echo $count2; ?></h4>
+                                                <small>Total Leads</small>
                                             </div>
                                         </div>
                                     </div>
+                                   
                                     <h4 class="fw-bolder border-bottom pb-50 mb-1">Details</h4>
                                     <div class="info-container">
                                         <ul class="list-unstyled">
                                             <li class="mb-75">
                                                 <span class="fw-bolder me-25">Username:</span>
-                                                <span>violet.dev</span>
+                                                <span><?php echo $row['Authorized_Name'] ?></span>
                                             </li>
                                             <li class="mb-75">
-                                                <span class="fw-bolder me-25">Billing Email:</span>
-                                                <span>vafgot@vultukir.org</span>
+                                                <span class="fw-bolder me-25">Email:</span>
+                                                <span><?php echo $row['Email'] ?></span>
                                             </li>
                                             <li class="mb-75">
                                                 <span class="fw-bolder me-25">Status:</span>
-                                                <span class="badge bg-light-success">Active</span>
+                                                <span class="badge bg-light-success"><?php echo $row['Status'] ?></span>
                                             </li>
-                                            <li class="mb-75">
-                                                <span class="fw-bolder me-25">Role:</span>
-                                                <span>Author</span>
-                                            </li>
-                                            <li class="mb-75">
-                                                <span class="fw-bolder me-25">Tax ID:</span>
-                                                <span>Tax-8965</span>
-                                            </li>
+                                            
+                                           
                                             <li class="mb-75">
                                                 <span class="fw-bolder me-25">Contact:</span>
-                                                <span>+1 (609) 933-44-22</span>
+                                                <span><?php echo $row['Mobile_Number'] ?></span>
                                             </li>
                                             <li class="mb-75">
-                                                <span class="fw-bolder me-25">Language:</span>
-                                                <span>English</span>
+                                                <span class="fw-bolder me-25">Join date</span>
+                                                <span><?php echo $row['Date'] ?></span>
                                             </li>
-                                            <li class="mb-75">
-                                                <span class="fw-bolder me-25">Country:</span>
-                                                <span>Wake Island</span>
-                                            </li>
+                                            
                                         </ul>
-                                        <div class="d-flex justify-content-center pt-2">
-                                            <a href="javascript:;" class="btn btn-primary me-1" data-bs-target="#editUser" data-bs-toggle="modal">
-                                                Edit
-                                            </a>
-                                            <a href="javascript:;" class="btn btn-outline-danger suspend-user">Suspended</a>
-                                        </div>
+                                       
                                     </div>
                                 </div>
                             </div>
