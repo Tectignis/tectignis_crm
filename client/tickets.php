@@ -105,6 +105,153 @@ if(!isset($_SESSION['id']))
             <div class="content-body">
 
 
+            <div class="row">
+                    <div class="col-12">
+
+                        <!-- /.card -->
+
+                        <div class="card">
+                            <div class="card-header border-bottom p-1">
+                                <div class="head-label">
+                                    <h6 class="mb-0">List of Client</h6>
+                                </div>
+                                <div class="dt-action-buttons text-end">
+                                    <a href="ticketform.php" button type="button" class="btn btn-primary float-right"
+                                    style="margin-right: 5px;">
+                                    + Add Ticket
+                                </a>
+                                </div>
+                            </div>
+                            <!-- <div class="card-header">
+                                <h5 class="card-title">List of Client</h5>
+                                <a href="ticketform.php" button type="button" class="btn btn-primary float-right"
+                                    style="margin-right: 5px;">
+                                    + Add Ticket
+                                </a>
+                            </div> -->
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Sr no.</th>
+                                            <th>Ticket No.</th>
+                                            <th>Description</th>
+                                            <th>Subject</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>bbc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+
+                                        </tr>
+
+
+                                        <tr>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+
+                                        </tr>
+
+
+                                        <tr>
+                                            <td>a11bc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+
+                                        </tr>
+
+
+
+
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
                 <!-- Basic table -->
                 <section id="basic-datatable">
                     <div class="row">
@@ -220,18 +367,19 @@ if(!isset($_SESSION['id']))
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->
-    <script src="app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js"></script>
-    <script src="app-assets/vendors/js/tables/datatable/dataTables.bootstrap5.min.js"></script>
-    <script src="app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js"></script>
-    <script src="app-assets/vendors/js/tables/datatable/responsive.bootstrap5.min.js"></script>
-    <script src="app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js"></script>
-    <script src="app-assets/vendors/js/tables/datatable/datatables.buttons.min.js"></script>
-    <script src="app-assets/vendors/js/tables/datatable/jszip.min.js"></script>
-    <script src="app-assets/vendors/js/tables/datatable/pdfmake.min.js"></script>
-    <script src="app-assets/vendors/js/tables/datatable/vfs_fonts.js"></script>
-    <script src="app-assets/vendors/js/tables/datatable/buttons.html5.min.js"></script>
-    <script src="app-assets/vendors/js/tables/datatable/buttons.print.min.js"></script>
-    <script src="app-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="plugins/jszip/jszip.min.js"></script>
+    <script src="plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     <script src="app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
     <!-- END: Page Vendor JS-->
 
@@ -243,6 +391,17 @@ if(!isset($_SESSION['id']))
     <!-- BEGIN: Page JS-->
     <script src="app-assets/js/scripts/tables/table-datatables-basic.js"></script>
     <!-- END: Page JS-->
+    <script>
+        $(function () {
+            $("#example1").DataTable({
+                "responsive": true,
+                "lengthChange": true,
+                "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+        });
+    </script>
 
     <script>
         $(window).on('load', function () {
