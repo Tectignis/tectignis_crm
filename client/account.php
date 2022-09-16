@@ -456,15 +456,15 @@
                     <ul class="menu-content">
                         <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Account Settings">Account Settings</span></a>
                             <ul class="menu-content">
-                                <li><a class="d-flex align-items-center" href="page-account-settings-account.html"><span class="menu-item text-truncate" data-i18n="Account">Account</span></a>
+                                <li><a class="d-flex align-items-center" href="account.php"><span class="menu-item text-truncate" data-i18n="Account">Account</span></a>
                                 </li>
-                                <li><a class="d-flex align-items-center" href="page-account-settings-security.html"><span class="menu-item text-truncate" data-i18n="Security">Security</span></a>
+                                <li><a class="d-flex align-items-center" href="security.php"><span class="menu-item text-truncate" data-i18n="Security">Security</span></a>
                                 </li>
-                                <li><a class="d-flex align-items-center" href="page-account-settings-billing.html"><span class="menu-item text-truncate" data-i18n="Billings &amp; Plans">Billings &amp; Plans</span></a>
+                                <li><a class="d-flex align-items-center" href="billing&plans.php"><span class="menu-item text-truncate" data-i18n="Billings &amp; Plans">Billings &amp; Plans</span></a>
                                 </li>
-                                <li><a class="d-flex align-items-center" href="page-account-settings-notifications.html"><span class="menu-item text-truncate" data-i18n="Notifications">Notifications</span></a>
+                                <li><a class="d-flex align-items-center" href="notification.php"><span class="menu-item text-truncate" data-i18n="Notifications">Notifications</span></a>
                                 </li>
-                                <li><a class="d-flex align-items-center" href="page-account-settings-connections.html"><span class="menu-item text-truncate" data-i18n="Connections">Connections</span></a>
+                                <li><a class="d-flex align-items-center" href="connection.php"><span class="menu-item text-truncate" data-i18n="Connections">Connections</span></a>
                                 </li>
                             </ul>
                         </li>
