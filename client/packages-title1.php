@@ -17,12 +17,11 @@
 
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/vendors.min.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/tables/datatable/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/tables/datatable/responsive.bootstrap5.min.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/tables/datatable/buttons.bootstrap5.min.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/tables/datatable/rowGroup.bootstrap5.min.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/pickers/flatpickr/flatpickr.min.css">
-    <!-- END: Vendor CSS-->
+        <!-- DataTables -->
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!-- END: Page CSS-->
 
     <!-- BEGIN: Theme CSS-->
     <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap.css">
@@ -148,65 +147,149 @@
                </section>
               
                 <!-- Basic table -->
-                <section id="basic-datatable">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <table class="datatables-basic table">
+               <section>
+                <div class="row">
+                    <div class="col-12">
+                          <!-- /.card -->
+
+                          <div class="card">
+                            <div class="card-header border-bottom p-1">
+                                <div class="head-label">
+                                    <h6 class="mb-0">List of Client</h6>
+                                </div>
+                                <div class="dt-action-buttons text-end">
+                                    <a href="ticketform.php" button type="button" class="btn btn-primary float-right"
+                                    style="margin-right: 5px;">
+                                    + Add Ticket
+                                </a>
+                                </div>
+                            </div>
+                            <!-- <div class="card-header">
+                                <h5 class="card-title">List of Client</h5>
+                                <a href="ticketform.php" button type="button" class="btn btn-primary float-right"
+                                    style="margin-right: 5px;">
+                                    + Add Ticket
+                                </a>
+                            </div> -->
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th></th>
-                                            <th></th>
-                                            <th>Client Name</th>
-                                            <th>Client MObile Number</th>
-                                            <th>Requirement</th>
-                                            <th>Created On</th>
-                                            <th>Source</th>
-                                            <th>Nature</th>
-                                            <th>Action</th>
+                                            <th>Sr no.</th>
+                                            <th>Ticket No.</th>
+                                            <th>Description</th>
+                                            <th>Subject</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
+                                    <tbody>
+
+                                        <tr>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>bbc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+
+                                        </tr>
+
+
+                                        <tr>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+
+                                        </tr>
+
+
+                                        <tr>
+                                            <td>a11bc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+                                            <td>abc</td>
+
+                                        </tr>
+                                       </tbody>
                                 </table>
                             </div>
+                            <!-- /.card-body -->
                         </div>
+                        <!-- /.card -->
                     </div>
-                    <!-- Modal to add new record -->
-                    <div class="modal modal-slide-in fade" id="modals-slide-in">
-                        <div class="modal-dialog sidebar-sm">
-                            <form class="add-new-record modal-content pt-0">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">×</button>
-                                <div class="modal-header mb-1">
-                                    <h5 class="modal-title" id="exampleModalLabel">New Record</h5>
-                                </div>
-                                <div class="modal-body flex-grow-1">
-                                    <div class="mb-1">
-                                        <label class="form-label" for="basic-icon-default-fullname">Full Name</label>
-                                        <input type="text" class="form-control dt-full-name" id="basic-icon-default-fullname" placeholder="John Doe" aria-label="John Doe" />
-                                    </div>
-                                    <div class="mb-1">
-                                        <label class="form-label" for="basic-icon-default-post">Post</label>
-                                        <input type="text" id="basic-icon-default-post" class="form-control dt-post" placeholder="Web Developer" aria-label="Web Developer" />
-                                    </div>
-                                    <div class="mb-1">
-                                        <label class="form-label" for="basic-icon-default-email">Email</label>
-                                        <input type="text" id="basic-icon-default-email" class="form-control dt-email" placeholder="john.doe@example.com" aria-label="john.doe@example.com" />
-                                        <small class="form-text"> You can use letters, numbers & periods </small>
-                                    </div>
-                                    <div class="mb-1">
-                                        <label class="form-label" for="basic-icon-default-date">Joining Date</label>
-                                        <input type="text" class="form-control dt-date" id="basic-icon-default-date" placeholder="MM/DD/YYYY" aria-label="MM/DD/YYYY" />
-                                    </div>
-                                    <div class="mb-4">
-                                        <label class="form-label" for="basic-icon-default-salary">Salary</label>
-                                        <input type="text" id="basic-icon-default-salary" class="form-control dt-salary" placeholder="$12000" aria-label="$12000" />
-                                    </div>
-                                    <button type="button" class="btn btn-primary data-submit me-1">Submit</button>
-                                    <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </section>
+                </div>
+               </section>
                 <!--/ Basic table -->
 
             
@@ -227,18 +310,18 @@
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->
-    <script src="app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js"></script>
-    <script src="app-assets/vendors/js/tables/datatable/dataTables.bootstrap5.min.js"></script>
-    <script src="app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js"></script>
-    <script src="app-assets/vendors/js/tables/datatable/responsive.bootstrap5.min.js"></script>
-    <script src="app-assets/vendors/js/tables/datatable/datatables.checkboxes.min.js"></script>
-    <script src="app-assets/vendors/js/tables/datatable/datatables.buttons.min.js"></script>
-    <script src="app-assets/vendors/js/tables/datatable/jszip.min.js"></script>
-    <script src="app-assets/vendors/js/tables/datatable/pdfmake.min.js"></script>
-    <script src="app-assets/vendors/js/tables/datatable/vfs_fonts.js"></script>
-    <script src="app-assets/vendors/js/tables/datatable/buttons.html5.min.js"></script>
-    <script src="app-assets/vendors/js/tables/datatable/buttons.print.min.js"></script>
-    <script src="app-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js"></script>
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="plugins/jszip/jszip.min.js"></script>
+    <script src="plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
     <script src="app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
     <!-- END: Page Vendor JS-->
 
@@ -250,6 +333,19 @@
     <!-- BEGIN: Page JS-->
     <script src="app-assets/js/scripts/tables/table-datatables-basic.js"></script>
     <!-- END: Page JS-->
+
+    <script>
+        $(function () {
+            $("#example1").DataTable({
+                "responsive": true,
+                "lengthChange": true,
+                "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+        });
+    </script>
+   
 
     <script>
         $(window).on('load', function() {
