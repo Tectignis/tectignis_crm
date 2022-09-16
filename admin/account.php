@@ -9,7 +9,7 @@
     <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>User View - Connections - Vuexy - Bootstrap HTML admin template</title>
+    <title>User View - Account - Vuexy - Bootstrap HTML admin template</title>
     <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
@@ -19,6 +19,10 @@
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/forms/select/select2.min.css">
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/animate/animate.min.css">
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/extensions/sweetalert2.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/tables/datatable/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/tables/datatable/responsive.bootstrap5.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/tables/datatable/buttons.bootstrap5.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/tables/datatable/rowGroup.bootstrap5.min.css">
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
@@ -48,12 +52,12 @@
 <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
 
     <!-- BEGIN: Header-->
- <?php include "include/header.php" ?>
+    <?php include "include/header.php"; ?>
     <!-- END: Header-->
 
 
     <!-- BEGIN: Main Menu-->
-    <?php include "include/sidebar.php" ?>
+    <?php include "include/sidebar.php"; ?>
 
     <!-- END: Main Menu-->
 
@@ -65,7 +69,7 @@
             <div class="content-header row">
             </div>
             <div class="content-body">
-                <section class="app-user-view-connections">
+                <section class="app-user-view-account">
                     <div class="row">
                         <!-- User Sidebar -->
                         <div class="col-xl-4 col-lg-5 col-md-5 order-1 order-md-0">
@@ -138,7 +142,9 @@
                                             </li>
                                         </ul>
                                         <div class="d-flex justify-content-center pt-2">
-                                            <a href="javascript:;" class="btn btn-primary me-1" data-bs-target="#editUser" data-bs-toggle="modal">Edit</a>
+                                            <a href="javascript:;" class="btn btn-primary me-1" data-bs-target="#editUser" data-bs-toggle="modal">
+                                                Edit
+                                            </a>
                                             <a href="javascript:;" class="btn btn-outline-danger suspend-user">Suspended</a>
                                         </div>
                                     </div>
@@ -185,7 +191,7 @@
                             <!-- User Pills -->
                             <ul class="nav nav-pills mb-2">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="app-user-view-account.html">
+                                    <a class="nav-link active" href="app-user-view-account.html">
                                         <i data-feather="user" class="font-medium-3 me-50"></i>
                                         <span class="fw-bold">Account</span></a>
                                 </li>
@@ -207,213 +213,111 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="app-user-view-connections.html">
+                                    <a class="nav-link" href="app-user-view-connections.html">
                                         <i data-feather="link" class="font-medium-3 me-50"></i><span class="fw-bold">Connections</span>
                                     </a>
                                 </li>
                             </ul>
                             <!--/ User Pills -->
 
-                            <!-- connection -->
+                            <!-- Project table -->
                             <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title mb-75">Connected accounts</h4>
-                                    <p>Display content from your connected accounts on your site</p>
-
-                                    <!-- Connections -->
-                                    <div class="d-flex mt-2">
-                                        <div class="flex-shrink-0">
-                                            <img src="app-assets/images/icons/social/google.png" alt="google" class="me-1" height="38" width="38" />
-                                        </div>
-                                        <div class="d-flex align-item-center justify-content-between flex-grow-1">
-                                            <div class="me-1">
-                                                <p class="fw-bolder mb-0">Google</p>
-                                                <span>Calendar and contacts</span>
-                                            </div>
-                                            <div class="mt-50 mt-sm-0">
-                                                <div class="form-check form-switch form-check-primary">
-                                                    <input type="checkbox" class="form-check-input" id="checkboxGoogle" checked />
-                                                    <label class="form-check-label" for="checkboxGoogle">
-                                                        <span class="switch-icon-left"><i data-feather="check"></i></span>
-                                                        <span class="switch-icon-right"><i data-feather="x"></i></span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex mt-2">
-                                        <div class="flex-shrink-0">
-                                            <img src="app-assets/images/icons/social/slack.png" alt="slack" class="me-1" height="38" width="38" />
-                                        </div>
-                                        <div class="d-flex align-item-center justify-content-between flex-grow-1">
-                                            <div class="me-1">
-                                                <p class="fw-bolder mb-0">Slack</p>
-                                                <span>Communication</span>
-                                            </div>
-                                            <div class="mt-50 mt-sm-0">
-                                                <div class="form-check form-switch form-check-primary">
-                                                    <input type="checkbox" class="form-check-input" id="checkboxSlack" />
-                                                    <label class="form-check-label" for="checkboxSlack">
-                                                        <span class="switch-icon-left"><i data-feather="check"></i></span>
-                                                        <span class="switch-icon-right"><i data-feather="x"></i></span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex mt-2">
-                                        <div class="flex-shrink-0">
-                                            <img src="app-assets/images/icons/social/github.png" alt="github" class="me-1" height="38" width="38" />
-                                        </div>
-                                        <div class="d-flex align-item-center justify-content-between flex-grow-1">
-                                            <div class="me-1">
-                                                <p class="fw-bolder mb-0">Github</p>
-                                                <span>Manage your Git repositories</span>
-                                            </div>
-                                            <div class="mt-50 mt-sm-0">
-                                                <div class="form-check form-switch form-check-primary">
-                                                    <input type="checkbox" class="form-check-input" id="checkboxGithub" checked />
-                                                    <label class="form-check-label" for="checkboxGithub">
-                                                        <span class="switch-icon-left"><i data-feather="check"></i></span>
-                                                        <span class="switch-icon-right"><i data-feather="x"></i></span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex mt-2">
-                                        <div class="flex-shrink-0">
-                                            <img src="app-assets/images/icons/social/mailchimp.png" alt="mailchimp" class="me-1" height="38" width="38" />
-                                        </div>
-                                        <div class="d-flex align-item-center justify-content-between flex-grow-1">
-                                            <div class="me-1">
-                                                <p class="fw-bolder mb-0">Mailchimp</p>
-                                                <span>Email marketing service</span>
-                                            </div>
-                                            <div class="mt-50 mt-sm-0">
-                                                <div class="form-check form-switch form-check-primary">
-                                                    <input type="checkbox" class="form-check-input" id="checkboxMailchimp" />
-                                                    <label class="form-check-label" for="checkboxMailchimp">
-                                                        <span class="switch-icon-left"><i data-feather="check"></i></span>
-                                                        <span class="switch-icon-right"><i data-feather="x"></i></span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex mt-2">
-                                        <div class="flex-shrink-0">
-                                            <img src="app-assets/images/icons/social/asana.png" alt="asana" class="me-1" height="38" width="38" />
-                                        </div>
-                                        <div class="d-flex align-item-center justify-content-between flex-grow-1">
-                                            <div class="me-1">
-                                                <p class="fw-bolder mb-0">Asana</p>
-                                                <span>Communication</span>
-                                            </div>
-                                            <div class="mt-50 mt-sm-0">
-                                                <div class="form-check form-switch form-check-primary">
-                                                    <input type="checkbox" class="form-check-input" id="checkboxAsana" />
-                                                    <label class="form-check-label" for="checkboxAsana">
-                                                        <span class="switch-icon-left"><i data-feather="check"></i></span>
-                                                        <span class="switch-icon-right"><i data-feather="x"></i></span>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /Connections -->
+                                <h4 class="card-header">User's Projects List</h4>
+                                <div class="table-responsive">
+                                    <table class="table datatable-project">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Project</th>
+                                                <th class="text-nowrap">Total Task</th>
+                                                <th>Progress</th>
+                                                <th>Hours</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
                                 </div>
                             </div>
+                            <!-- /Project table -->
 
+                            <!-- Activity Timeline -->
                             <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title mb-75">Social accounts</h4>
-                                    <p>Display content from social accounts on your site</p>
-                                    <!-- Social Accounts -->
-                                    <div class="d-flex mt-2">
-                                        <div class="flex-shrink-0">
-                                            <img src="app-assets/images/icons/social/facebook.png" alt="facebook" class="me-1" height="38" width="38" />
-                                        </div>
-                                        <div class="d-flex justify-content-between flex-grow-1">
-                                            <div class="me-1">
-                                                <p class="fw-bolder mb-0">Facebook</p>
-                                                <span>Not Connected</span>
+                                <h4 class="card-header">User Activity Timeline</h4>
+                                <div class="card-body pt-1">
+                                    <ul class="timeline ms-50">
+                                        <li class="timeline-item">
+                                            <span class="timeline-point timeline-point-indicator"></span>
+                                            <div class="timeline-event">
+                                                <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
+                                                    <h6>User login</h6>
+                                                    <span class="timeline-event-time me-1">12 min ago</span>
+                                                </div>
+                                                <p>User login at 2:12pm</p>
                                             </div>
-                                            <div class="mt-50 mt-sm-0">
-                                                <button type="button" class="btn btn-icon btn-outline-secondary">
-                                                    <i data-feather="link" class="font-medium-3"></i>
-                                                </button>
+                                        </li>
+                                        <li class="timeline-item">
+                                            <span class="timeline-point timeline-point-warning timeline-point-indicator"></span>
+                                            <div class="timeline-event">
+                                                <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
+                                                    <h6>Meeting with john</h6>
+                                                    <span class="timeline-event-time me-1">45 min ago</span>
+                                                </div>
+                                                <p>React Project meeting with john @10:15am</p>
+                                                <div class="d-flex flex-row align-items-center mb-50">
+                                                    <div class="avatar me-50">
+                                                        <img src="app-assets/images/portrait/small/avatar-s-7.jpg" alt="Avatar" width="38" height="38" />
+                                                    </div>
+                                                    <div class="user-info">
+                                                        <h6 class="mb-0">Leona Watkins (Client)</h6>
+                                                        <p class="mb-0">CEO of pixinvent</p>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex align-items-start mt-2">
-                                        <div class="flex-shrink-0">
-                                            <img src="app-assets/images/icons/social/twitter.png" alt="twitter" class="me-1" height="38" width="38" />
-                                        </div>
-                                        <div class="d-flex justify-content-between flex-grow-1">
-                                            <div class="me-1">
-                                                <p class="fw-bolder mb-0">Twitter</p>
-                                                <a href="https://twitter.com/pixinvent" target="_blank">@pixinvent</a>
+                                        </li>
+                                        <li class="timeline-item">
+                                            <span class="timeline-point timeline-point-info timeline-point-indicator"></span>
+                                            <div class="timeline-event">
+                                                <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
+                                                    <h6>Create a new react project for client</h6>
+                                                    <span class="timeline-event-time me-1">2 day ago</span>
+                                                </div>
+                                                <p>Add files to new design folder</p>
                                             </div>
-                                            <div class="mt-50 mt-sm-0">
-                                                <button type="button" class="btn btn-icon btn-outline-secondary">
-                                                    <i data-feather="x" class="font-medium-3"></i>
-                                                </button>
+                                        </li>
+                                        <li class="timeline-item">
+                                            <span class="timeline-point timeline-point-danger timeline-point-indicator"></span>
+                                            <div class="timeline-event">
+                                                <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
+                                                    <h6>Create Invoices for client</h6>
+                                                    <span class="timeline-event-time me-1">12 min ago</span>
+                                                </div>
+                                                <p class="mb-0">Create new Invoices and send to Leona Watkins</p>
+                                                <div class="d-flex flex-row align-items-center mt-50">
+                                                    <img class="me-1" src="app-assets/images/icons/pdf.png" alt="data.json" height="25" />
+                                                    <h6 class="mb-0">Invoices.pdf</h6>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex mt-2">
-                                        <div class="flex-shrink-0">
-                                            <img src="app-assets/images/icons/social/linkedin.png" alt="instagram" class="me-1" height="38" width="38" />
-                                        </div>
-                                        <div class="d-flex justify-content-between flex-grow-1">
-                                            <div class="me-1">
-                                                <p class="fw-bolder mb-0">Linkedin</p>
-                                                <a href="https://www.linkedin.com/company/pixinvent" target="_blank"> @pixinvent </a>
-                                            </div>
-                                            <div class="mt-50 mt-sm-0">
-                                                <button type="button" class="btn btn-icon btn-outline-secondary">
-                                                    <i data-feather="x" class="font-medium-3"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex mt-2">
-                                        <div class="flex-shrink-0">
-                                            <img src="app-assets/images/icons/social/dribbble.png" alt="dribbble" class="me-1" height="38" width="38" />
-                                        </div>
-                                        <div class="d-flex justify-content-between flex-grow-1">
-                                            <div class="me-1">
-                                                <p class="fw-bolder mb-0">Dribbble</p>
-                                                <span>Not Connected</span>
-                                            </div>
-                                            <div class="mt-50 mt-sm-0">
-                                                <button type="button" class="btn btn-icon btn-outline-secondary">
-                                                    <i data-feather="link" class="font-medium-3"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex mt-2">
-                                        <div class="flex-shrink-0">
-                                            <img src="app-assets/images/icons/social/behance.png" alt="behance" class="me-1" height="38" width="38" />
-                                        </div>
-                                        <div class="d-flex justify-content-between flex-grow-1">
-                                            <div class="me-1">
-                                                <p class="fw-bolder mb-0">Behance</p>
-                                                <span>Not Connected</span>
-                                            </div>
-                                            <div class="mt-50 mt-sm-0">
-                                                <button type="button" class="btn btn-icon btn-outline-secondary">
-                                                    <i data-feather="link" class="font-medium-3"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /Social Accounts -->
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
-                            <!--/ connection -->
+                            <!-- /Activity Timeline -->
+
+                            <!-- Invoice table -->
+                            <div class="card">
+                                <table class="invoice-table table text-nowrap">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>#ID</th>
+                                            <th><i data-feather="trending-up"></i></th>
+                                            <th>TOTAL Paid</th>
+                                            <th class="text-truncate">Issued Date</th>
+                                            <th class="cell-fit">Actions</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <!-- /Invoice table -->
                         </div>
                         <!--/ User Content -->
                     </div>
@@ -600,6 +504,18 @@
     <script src="app-assets/vendors/js/forms/cleave/cleave.min.js"></script>
     <script src="app-assets/vendors/js/forms/cleave/addons/cleave-phone.us.js"></script>
     <script src="app-assets/vendors/js/forms/validation/jquery.validate.min.js"></script>
+    <script src="app-assets/vendors/js/extensions/moment.min.js"></script>
+    <script src="app-assets/vendors/js/tables/datatable/jquery.dataTables.min.js"></script>
+    <script src="app-assets/vendors/js/tables/datatable/dataTables.bootstrap5.min.js"></script>
+    <script src="app-assets/vendors/js/tables/datatable/dataTables.responsive.min.js"></script>
+    <script src="app-assets/vendors/js/tables/datatable/responsive.bootstrap5.js"></script>
+    <script src="app-assets/vendors/js/tables/datatable/datatables.buttons.min.js"></script>
+    <script src="app-assets/vendors/js/tables/datatable/jszip.min.js"></script>
+    <script src="app-assets/vendors/js/tables/datatable/pdfmake.min.js"></script>
+    <script src="app-assets/vendors/js/tables/datatable/vfs_fonts.js"></script>
+    <script src="app-assets/vendors/js/tables/datatable/buttons.html5.min.js"></script>
+    <script src="app-assets/vendors/js/tables/datatable/buttons.print.min.js"></script>
+    <script src="app-assets/vendors/js/tables/datatable/dataTables.rowGroup.min.js"></script>
     <script src="app-assets/vendors/js/extensions/sweetalert2.all.min.js"></script>
     <script src="app-assets/vendors/js/extensions/polyfill.min.js"></script>
     <!-- END: Page Vendor JS-->
@@ -611,6 +527,7 @@
 
     <!-- BEGIN: Page JS-->
     <script src="app-assets/js/scripts/pages/modal-edit-user.js"></script>
+    <script src="app-assets/js/scripts/pages/app-user-view-account.js"></script>
     <script src="app-assets/js/scripts/pages/app-user-view.js"></script>
     <!-- END: Page JS-->
 
