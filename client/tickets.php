@@ -402,6 +402,7 @@ if(!isset($_SESSION['id']))
 
         });
     </script>
+    
 
     <script>
         $(window).on('load', function () {
