@@ -4,10 +4,10 @@
     <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <?php
+    <!-- <?php
     $logosql=mysqli_query($conn,'select * from system_setting');
     $fetchlogo=mysqli_fetch_array($logosql);
-    ?>
+    ?> -->
     <link rel="icon" type="image/png" sizes="32x32" href="dist/img/logo/<?php echo $fetchlogo['favicon'] ?>">
     <title>Statistics Cards - Vuexy - Bootstrap HTML admin template</title>
     <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">

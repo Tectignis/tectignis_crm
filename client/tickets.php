@@ -115,12 +115,9 @@ if(!isset($_SESSION['id']))
                                 <div class="head-label">
                                     <h6 class="mb-0">List of Client</h6>
                                 </div>
-                                <div class="dt-action-buttons text-end">
-                                    <a href="ticketform.php" button type="button" class="btn btn-primary float-right"
-                                    style="margin-right: 5px;">
-                                    + Add Ticket
-                                </a>
-                                </div>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNewCard">
+                                Add Ticket
+                            </button>
                             </div>
                             <!-- <div class="card-header">
                                 <h5 class="card-title">List of Client</h5>
@@ -193,7 +190,46 @@ if(!isset($_SESSION['id']))
     <div class="drag-target"></div>
     <?php include "include/footer.php"; ?>
 
+    <div class="modal fade" id="addNewCard" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-transparent">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-sm-5 mx-50 pb-5">
+                    <h1 class="text-center mb-1" id="addNewCardTitle">Create Category</h1>
+                   
 
+                    <!-- form -->
+                    <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75"  method="post">
+                        <div class="col-12">
+                            <label class="form-label" for="modalAddCardNumber">Subject</label>
+                            <div class="input-group input-group-merge">
+                                <input id="modalAddCardNumber" name="subject" class="form-control add-credit-card-mask" type="text" placeholder="......." aria-describedby="modalAddCard2" data-msg="Please enter your credit card number" />
+                                <span class="input-group-text cursor-pointer p-25" id="modalAddCard2">
+                                    <span class="add-card-type"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label" for="modalAddCardNumber">Description</label>
+                            <div class="input-group input-group-merge">
+                                <input id="modalAddCardNumber" name="description" class="form-control add-credit-card-mask" type="text" placeholder="......." aria-describedby="modalAddCard2" data-msg="Please enter your credit card number" />
+                                <span class="input-group-text cursor-pointer p-25" id="modalAddCard2">
+                                    <span class="add-card-type"></span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="col-12 text-center">
+                            <button type="submit" class="btn btn-primary me-1 mt-1" name="ticket">Submit</button>
+                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <!-- BEGIN: Vendor JS-->
