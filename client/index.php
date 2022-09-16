@@ -306,8 +306,8 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="card">
                         <div class="card-header flex-column align-items-start">
-                            <h4 class="card-title mb-75">Expense Ratio</h4>
-                            <span class="card-subtitle text-muted">Spending on various categories </span>
+                            <h4 class="card-title mb-75">Lead Status </h4>
+                            
                         </div>
                         <div class="card-body">
                             <div id="donut-chart"></div>
@@ -319,14 +319,14 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
                 <div class="col-lg-6 col-md-6 col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">Sessions By Device</h4>
+                            <h4 class="card-title">Lead Status </h4>
                         </div>
                         <div class="card-body">
                             <canvas class="doughnut-chart-ex chartjs" data-height="275"></canvas>
                             <div class="d-flex justify-content-between mt-3 mb-1">
                                 <div class="d-flex align-items-center">
                                     <i data-feather="monitor" class="font-medium-2 text-primary"></i>
-                                    <span class="fw-bold ms-75 me-25">Desktop</span>
+                                    <span class="fw-bold ms-75 me-25">Booked</span>
                                     <span>- 80%</span>
                                 </div>
                                 <div>
@@ -337,7 +337,7 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
                             <div class="d-flex justify-content-between mb-1">
                                 <div class="d-flex align-items-center">
                                     <i data-feather="tablet" class="font-medium-2 text-warning"></i>
-                                    <span class="fw-bold ms-75 me-25">Mobile</span>
+                                    <span class="fw-bold ms-75 me-25">Lead Closed</span>
                                     <span>- 10%</span>
                                 </div>
                                 <div>
@@ -348,7 +348,7 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
                             <div class="d-flex justify-content-between">
                                 <div class="d-flex align-items-center">
                                     <i data-feather="tablet" class="font-medium-2 text-success"></i>
-                                    <span class="fw-bold ms-75 me-25">Tablet</span>
+                                    <span class="fw-bold ms-75 me-25">Site View</span>
                                     <span>- 10%</span>
                                 </div>
                                 <div>
@@ -367,7 +367,8 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
                     <div class="card">
                         <div
                             class=" card-header d-flex flex-md-row flex-column justify-content-md-between justify-content-start align-items-md-center align-items-start ">
-                            <h4 class="card-title">Data Science</h4>
+                            <h4 class="card-title">Lead Status 
+                            Monthly Lead and Ticket</h4>
                             <div class="d-flex align-items-center mt-md-0 mt-1">
                                 <i class="font-medium-2" data-feather="calendar"></i>
                                 <input type="text" class="form-control flat-picker bg-transparent border-0 shadow-none"
@@ -424,16 +425,16 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
                 </script>
                 <div class="col-lg-6 col-md-6 col-12 position-relative">
 
-                    <!-- Calendar -->
-                    <div class="card shadow-none border-0 mb-0 rounded-0">
-                        <div class="card-body pb-0">
-                            <div id="calendar"></div>
+                            <!-- Calendar -->
+                                <div class="card shadow-none border-0 mb-0 rounded-0">
+                                    <div class="card-body pb-0">
+                                        <div id="calendar"></div>
+                                    </div>
+                                </div>
+                            <!-- /Calendar -->
+
                         </div>
                     </div>
-                    <!-- /Calendar -->
-
-                </div>
-            </div>
 
 
 

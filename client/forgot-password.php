@@ -1,49 +1,94 @@
 <?php
-session_start();
 include("config.php");
-if(isset($_POST['login'])){
-$Email=$_POST['emailid'];
-$Password1=$_POST['password'];
+if(isset($_POST['forgot'])){
+  $Email=$_POST['email'];
 
-$sql=mysqli_query($conn,"select * from client where Email='$Email' AND Status='Activated'");
+$Password= rand(100000, 999999);
+$hasPassword=password_hash($Password,PASSWORD_BCRYPT);
 
-if(mysqli_num_rows($sql)>0){
-  $row=mysqli_fetch_assoc($sql); 
-  $verify=password_verify($Password1,$row['Password']);
 
- if($verify==1){
-   $_SESSION['aname']=$row['Authorized_Name'];
-     $_SESSION['id']=$row['Client_Code'];
-     $_SESSION['fname']=$row['Firm_Name'];
-        header("location:index.php");
-    }else{
-        echo "<script>alert('Password is incorrect');</script>";
-    }
+$from = 'Enquiry <naiduvedant@gmail.com>' . "\r\n";
+$sendTo = 'Enquiry <'.$Email.'>';
+$subject = 'Your New Password';
+// $fields = array( 'name' => 'name' );
+$from = 'Tectignis IT Solution: 1.0' . "\r\n";
+$from .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+
+
+$emailText = '
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="x-apple-disable-message-reformatting"> 
+  <title></title>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700" rel="stylesheet">
+  <style>
+      html,
+body {
+  margin: 0 auto !important;
+  padding: 0 !important;
+  height: 100% !important;
+  width: 100% !important;
+  background: #f1f1f1;
 }
-else{
-    echo "<script>alert('Invalid Email Id');</script>";
+* {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
 }
-}
+  </style>
+</head>
+<body width="100%" style="margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #f1f1f1;">
+<div style="font-family: Helvetica,Arial,sans-serif;min-width:1000px;overflow:auto;line-height:2">
+<div style="margin:50px auto;width:70%;padding:20px 0">
+<div style="border-bottom:1px solid #eee">
+  <a href="" style="font-size:1.4em;color: #00466a;text-decoration:none;font-weight:600">Agreerent</a>
+</div>
+<p>Please enter below password</p>
+<h2 style="background: #00466a;margin: 0 auto;width: max-content;padding: 0 10px;color: #fff;border-radius: 4px;">'.$Password.'</h2>
+<p style="font-size:0.9em;">Regards,<br />Your Brand</p>
+<hr style="border:none;border-top:1px solid #eee" />
+<div style="float:right;padding:8px 0;color:#aaa;font-size:0.8em;line-height:1;font-weight:300">
+  <p>Your Brand Inc</p>
+  <p>1600 Amphitheatre Parkway</p>
+  <p>California</p>
+</div>
+</div>
+</div>
+</body>
+</html>';
 
-if(isset($_POST['raiseticket'])){
-  $firm_name=$_POST['Firm_Name'];
-  $clientname=$_POST['clientname'];
-  $mobile=$_POST['mobile'];
-  $Email=$_POST['Email'];
-  $Description=$_POST['Description'];
-  date_default_timezone_set('Asia/Kolkata');
-$date = date('d-m-y h:i:s');
-  $status="Open";
-      $qraise=mysqli_query($conn,"INSERT INTO `support`(`firm_name`, `client_name`, `mobile`, `email`, `description`,`status`,`date`) VALUES ('$firm_name','$clientname','$mobile','$Email','$Description','$status','$date')");
-      if($qraise){
-        echo "<script>alert('Ticket Raised Successfully. Please wait Our teams will solve issue');</script>";
-      }
-      else{
-        echo "<script>alert('Ticket Raised Failed');</script>";
-      }
+try{
+foreach($_POST as $key => $value){
+  if(isset($fields[$key])){
+    $emailText.="$fields[$key]: $value\n";
   }
-?>
+}
+if( mail($sendTo,$subject,$emailText, "From:" .$from)){
 
+    $sql=mysqli_query($conn,"UPDATE `client` SET `Password`='$hasPassword' WHERE Email='$Email'");
+
+    if($sql==1){
+        echo '<script>alert("data successfully submitted");</script>';
+        header("location:log_client.php");
+    }else {
+        echo '<script>alert("oops...somthing went wrong");</script>';
+    }
+ 
+}else{
+  echo "eeee $sendTo $subject $emailText $from";
+}
+}
+catch(\Exception $e){
+echo "not done";
+}
+
+
+}
+
+
+?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
@@ -55,7 +100,7 @@ $date = date('d-m-y h:i:s');
     <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Login Page - Vuexy - Bootstrap HTML admin template</title>
+    <title>Forgot Password Page - Vuexy - Bootstrap HTML admin template</title>
     <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
@@ -99,7 +144,7 @@ $date = date('d-m-y h:i:s');
             <div class="content-body">
                 <div class="auth-wrapper auth-basic px-2">
                     <div class="auth-inner my-2">
-                        <!-- Login basic -->
+                        <!-- Forgot Password basic -->
                         <div class="card mb-0">
                             <div class="card-body">
                                 <a href="index.html" class="brand-logo">
@@ -126,40 +171,26 @@ $date = date('d-m-y h:i:s');
                                             </g>
                                         </g>
                                     </svg>
-                                    <h2 class="brand-text text-primary ms-1">Client-Login</h2>
+                                    <h2 class="brand-text text-primary ms-1">CRM Client</h2>
                                 </a>
 
-                                <h4 class="card-title mb-2" style="text-align:center;">Welcome to CRM 👋</h4>
-                               
+                                <h4 class="card-title mb-1">Forgot Password? 🔒</h4>
+                                <p class="card-text mb-2">Enter your email and we'll send you instructions to reset your password</p>
 
-                                <form class="auth-login-form mt-2" method="POST">
+                                <form class="auth-forgot-password-form mt-2" action="auth-reset-password-basic.html" method="POST">
                                     <div class="mb-1">
-                                        <label for="login-email" class="form-label">Email</label>
-                                        <input type="text" class="form-control" id="login-email" name="emailid" placeholder="" aria-describedby="login-email" tabindex="1" autofocus />
+                                        <label for="forgot-password-email" class="form-label">Email</label>
+                                        <input type="text" class="form-control" id="forgot-password-email" name="email" placeholder="john@example.com" aria-describedby="forgot-password-email" tabindex="1" autofocus />
                                     </div>
-
-                                    <div class="mb-1">
-                                        <div class="d-flex justify-content-between">
-                                            <label class="form-label" for="login-password">Password</label>
-                                            <a href="forgot-password.php">
-                                                <small>Forgot Password?</small>
-                                            </a>
-                                        </div>
-                                        <div class="input-group input-group-merge form-password-toggle">
-                                            <input type="password" class="form-control form-control-merge" id="login-password" name="password" tabindex="2" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="login-password" />
-                                            <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
-                                        </div>
-                                    </div>
-                                    <div class="mb-1">
-                                        
-                                    </div>
-                                    <button class="btn btn-primary w-100" tabindex="4" name="login">Login</button>
+                                    <button class="btn btn-primary w-100" name="forgot" tabindex="2">Send New Password</button>
                                 </form>
 
-                                
+                                <p class="text-center mt-2">
+                                    <a href="auth-login-basic.html"> <i data-feather="chevron-left" name="cancel"></i> Back to login </a>
+                                </p>
                             </div>
                         </div>
-                        <!-- /Login basic -->
+                        <!-- /Forgot Password basic -->
                     </div>
                 </div>
 
@@ -183,7 +214,7 @@ $date = date('d-m-y h:i:s');
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->
-    <script src="app-assets/js/scripts/pages/auth-login.js"></script>
+    <script src="app-assets/js/scripts/pages/auth-forgot-password.js"></script>
     <!-- END: Page JS-->
 
     <script>

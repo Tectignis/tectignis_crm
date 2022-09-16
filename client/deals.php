@@ -1,3 +1,23 @@
+<?php
+session_start();
+include("config.php");
+
+$id=$_SESSION['id'];
+$uid = $_SESSION['aname'];
+if(!isset($_SESSION['id']))
+{
+  header("location:log_client.php");
+}
+
+if(isset($_GET['delid'])){
+    $id=mysqli_real_escape_string($conn,$_GET['delid']);
+    $sql=mysqli_query($conn,"delete from lead where id='$id'");
+    if($sql=1){
+        header("location:deal.php");
+    }
+    }
+?>
+
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
@@ -88,7 +108,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <table class="datatables-basic table">
+                                <table class="datatables-basic table" id="example1">
                                     <thead>
                                         <tr>
                                             <th></th>
@@ -102,7 +122,52 @@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
-                                </table>
+                                    <tbody>
+                  <?php
+                     $sql=mysqli_query($conn,"select lead.*, client.* from lead inner join client on client.Client_Code=lead.Firm_Name where lead.deal='1' and Client_Code='$id'");
+                     $count=1;
+                         while($arr=mysqli_fetch_array($sql)){
+          ?>
+            <tr>
+                <td><?php echo $count;?></td>
+               
+                <td><?php echo $arr['Client_Name']; ?></td>
+                <td><?php echo $arr['Mobile_Number']; ?></td>
+                <td><?php echo $arr['Requirement']; ?></td>
+                <td><?php echo $arr['Created_On']; ?></td>
+                
+                <td><?php 
+                
+                $status_deal=$arr['status_deal']; 
+               if($status_deal=='Open'){
+                echo '<span class="badge badge-success">Open</span>';
+            }
+            else if($status_deal=='In Process'){
+                echo '<span class="badge badge-primary">In Process</span>';
+            }
+            else if($status_deal=='On Hold'){
+                echo '<span class="badge badge-warning">On Hold</span>';
+            }
+            else if($status_deal=='Booked'){
+              echo '<span class="badge badge-info">Booked</span>';
+          }
+            else if($status_deal=='Closed Deal'){
+                echo '<span class="badge badge-danger">Closed Deal</span>';
+            }
+                
+                ?>
+                
+            </td>
+                    <td style="text-align:center">
+                     
+                     <button class="btn btn-sm btn-primary dnkediti" data-id='<?php echo $arr['id']; ?>'><i class="fas fa-eye"></i></button>
+                     
+                     <a href="deal.php?delid=<?php echo $arr['id']; ?>"><button type="button"  onclick="return confirm('Are you sure you want to delete this item')" class="btn btn-danger btn-rounded btn-icon"  style="color: aliceblue"> <i class="fas fa-trash"></i> </button></a>
+                     </td>
+                  </tr>
+                  <?php $count++; } ?>
+                </tbody>
+                </table>
                             </div>
                         </div>
                     </div>
@@ -198,6 +263,23 @@
             }
         })
     </script>
+    <script>
+$(document).ready(function(){
+$('.dnkediti1').click(function(){
+  let dnkidno1 = $(this).data('id');
+
+  $.ajax({
+   url: 'dealmodal.php',
+   type: 'post',
+   data: {dnkidno1: dnkidno1},
+   success: function(response1){ 
+     $('.body2').html(response1);
+     $('#dnkModal2').modal('show'); 
+   }
+ });
+});
+});
+</script>
 </body>
 <!-- END: Body-->
 
