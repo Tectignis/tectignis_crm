@@ -187,30 +187,30 @@
                             <!-- User Pills -->
                             <ul class="nav nav-pills mb-2">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="app-user-view-account.html">
+                                    <a class="nav-link" href="account.php">
                                         <i data-feather="user" class="font-medium-3 me-50"></i>
                                         <span class="fw-bold">Account</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="app-user-view-security.html">
+                                    <a class="nav-link" href="security.php>
                                         <i data-feather="lock" class="font-medium-3 me-50"></i>
                                         <span class="fw-bold">Security</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="app-user-view-billing.html">
+                                    <a class="nav-link active" href="abilling&plans.php">
                                         <i data-feather="bookmark" class="font-medium-3 me-50"></i>
                                         <span class="fw-bold">Billing & Plans</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="app-user-view-notifications.html">
+                                    <a class="nav-link" href="notification.php">
                                         <i data-feather="bell" class="font-medium-3 me-50"></i><span class="fw-bold">Notifications</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="app-user-view-connections.html">
+                                    <a class="nav-link" href="connection.php">
                                         <i data-feather="link" class="font-medium-3 me-50"></i><span class="fw-bold">Connections</span>
                                     </a>
                                 </li>
