@@ -1,3 +1,48 @@
+<?php
+session_start();
+include("config.php");
+if(isset($_POST['login'])){
+$Email=$_POST['emailid'];
+$Password1=$_POST['password'];
+
+$sql=mysqli_query($conn,"select * from client where Email='$Email' AND Status='Activated'");
+
+if(mysqli_num_rows($sql)>0){
+  $row=mysqli_fetch_assoc($sql); 
+  $verify=password_verify($Password1,$row['Password']);
+
+ if($verify==1){
+   $_SESSION['aname']=$row['Authorized_Name'];
+     $_SESSION['id']=$row['Client_Code'];
+     $_SESSION['fname']=$row['Firm_Name'];
+        header("location:index.php");
+    }else{
+        echo "<script>alert('Password is incorrect');</script>";
+    }
+}
+else{
+    echo "<script>alert('Invalid Email Id');</script>";
+}
+}
+
+if(isset($_POST['raiseticket'])){
+  $firm_name=$_POST['Firm_Name'];
+  $clientname=$_POST['clientname'];
+  $mobile=$_POST['mobile'];
+  $Email=$_POST['Email'];
+  $Description=$_POST['Description'];
+  date_default_timezone_set('Asia/Kolkata');
+$date = date('d-m-y h:i:s');
+  $status="Open";
+      $qraise=mysqli_query($conn,"INSERT INTO `support`(`firm_name`, `client_name`, `mobile`, `email`, `description`,`status`,`date`) VALUES ('$firm_name','$clientname','$mobile','$Email','$Description','$status','$date')");
+      if($qraise){
+        echo "<script>alert('Ticket Raised Successfully. Please wait Our teams will solve issue');</script>";
+      }
+      else{
+        echo "<script>alert('Ticket Raised Failed');</script>";
+      }
+  }
+?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
@@ -77,7 +122,7 @@
                                     </g>
                                 </g>
                             </svg>
-                            <h2 class="brand-text text-primary ms-1">Vuexy</h2>
+                            <h2 class="brand-text text-primary ms-1">Client-Login</h2>
                         </a>
                         <!-- /Brand logo-->
                         <!-- Left Text-->
@@ -88,34 +133,27 @@
                         <!-- Login-->
                         <div class="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5">
                             <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
-                                <h2 class="card-title fw-bold mb-1">Welcome to Vuexy! 👋</h2>
-                                <p class="card-text mb-2">Please sign-in to your account and start the adventure</p>
-                                <form class="auth-login-form mt-2" action="index.html" method="POST">
+                                <h2 class="card-title fw-bold mb-1"  style="text-align:center;">Welcome to CRM 👋</h2>
+                                
+                                <form class="auth-login-form mt-2"  method="POST">
                                     <div class="mb-1">
                                         <label class="form-label" for="login-email">Email</label>
-                                        <input class="form-control" id="login-email" type="text" name="login-email" placeholder="john@example.com" aria-describedby="login-email" autofocus="" tabindex="1" />
+                                        <input class="form-control" id="login-email" type="text" name="emailid" placeholder="....." aria-describedby="login-email" autofocus="" tabindex="1" />
                                     </div>
                                     <div class="mb-1">
                                         <div class="d-flex justify-content-between">
-                                            <label class="form-label" for="login-password">Password</label><a href="auth-forgot-password-cover.html"><small>Forgot Password?</small></a>
+                                            <label class="form-label" for="login-password">Password</label><a href="forgot-password.php"><small>Forgot Password?</small></a>
                                         </div>
                                         <div class="input-group input-group-merge form-password-toggle">
-                                            <input class="form-control form-control-merge" id="login-password" type="password" name="login-password" placeholder="············" aria-describedby="login-password" tabindex="2" /><span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
+                                            <input class="form-control form-control-merge" id="login-password" type="password" name="password" placeholder="············" aria-describedby="login-password" tabindex="2" /><span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
                                         </div>
                                     </div>
-                                    <div class="mb-1">
-                                        <div class="form-check">
-                                            <input class="form-check-input" id="remember-me" type="checkbox" tabindex="3" />
-                                            <label class="form-check-label" for="remember-me"> Remember Me</label>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-primary w-100" tabindex="4">Sign in</button>
+                                    
+                                    <button class="btn btn-primary w-100" name="login" tabindex="4">Login</button>
                                 </form>
-                                <p class="text-center mt-2"><span>New on our platform?</span><a href="auth-register-cover.html"><span>&nbsp;Create an account</span></a></p>
-                                <div class="divider my-2">
-                                    <div class="divider-text">or</div>
-                                </div>
-                                <div class="auth-footer-btn d-flex justify-content-center"><a class="btn btn-facebook" href="#"><i data-feather="facebook"></i></a><a class="btn btn-twitter white" href="#"><i data-feather="twitter"></i></a><a class="btn btn-google" href="#"><i data-feather="mail"></i></a><a class="btn btn-github" href="#"><i data-feather="github"></i></a></div>
+                                
+                                
+                                
                             </div>
                         </div>
                         <!-- /Login-->
