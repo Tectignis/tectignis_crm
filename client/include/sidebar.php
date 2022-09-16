@@ -46,8 +46,7 @@
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="tickets.php"><i data-feather="save"></i><span class="menu-title text-truncate" data-i18n="File Manager">Tickets</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="profile.php"><i data-feather="map"></i><span class="menu-title text-truncate" data-i18n="Leaflet Maps">Profile</span></a>
-                </li>
+               
                 <li class=" nav-item"><a class="d-flex align-items-center" href="deals.php" target="_blank"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">Deals</span></a>
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="pricing.php" target="_blank"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">Pricing</span></a>

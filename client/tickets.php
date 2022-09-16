@@ -142,134 +142,6 @@ if(!isset($_SESSION['id']))
                                         </tr>
                                     </thead>
                                     <tbody>
-
-                                        <tr>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>bbc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-
-                                        </tr>
-
-                                        <tr>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-
-                                        </tr>
-
-                                        <tr>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-
-                                        </tr>
-
-                                        <tr>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-
-                                        </tr>
-
-                                        <tr>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-
-                                        </tr>
-
-
-                                        <tr>
-                                            <td>a11bc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-
-                                        </tr>
-
-
-
-
-                                </table>
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-                        <!-- /.card -->
-                    </div>
-                    <!-- /.col -->
-                </div>
-                <!-- /.row -->
-                <!-- Basic table -->
-                <section id="basic-datatable">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <table class="datatables-basic table">
-                                    <thead>
-                                        <tr>
-                                            <th>Sr no.</th>
-                                            <th>Ticket No.</th>
-                                            <th>Description</th>
-                                            <th>Subject</th>
-                                            <th>Status</th>
-                                            
-                      
-                                        </tr>
-                                    </thead>
-                                    <tbody>
                                         <?php
                                             $sql=mysqli_query($conn,"select * from ticket where Client_Code='$id'");
                                             $count=1;
@@ -299,53 +171,15 @@ if(!isset($_SESSION['id']))
                                     </tbody>
                                 </table>
                             </div>
+                            <!-- /.card-body -->
                         </div>
+                        <!-- /.card -->
                     </div>
-                    <!-- Modal to add new record -->
-                    <div class="modal modal-slide-in fade" id="modals-slide-in">
-                        <div class="modal-dialog sidebar-sm">
-                            <form class="add-new-record modal-content pt-0">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close">×</button>
-                                <div class="modal-header mb-1">
-                                    <h5 class="modal-title" id="exampleModalLabel">New Record</h5>
-                                </div>
-                                <div class="modal-body flex-grow-1">
-                                    <div class="mb-1">
-                                        <label class="form-label" for="basic-icon-default-fullname">Full Name</label>
-                                        <input type="text" class="form-control dt-full-name"
-                                            id="basic-icon-default-fullname" placeholder="John Doe"
-                                            aria-label="John Doe" />
-                                    </div>
-                                    <div class="mb-1">
-                                        <label class="form-label" for="basic-icon-default-post">Post</label>
-                                        <input type="text" id="basic-icon-default-post" class="form-control dt-post"
-                                            placeholder="Web Developer" aria-label="Web Developer" />
-                                    </div>
-                                    <div class="mb-1">
-                                        <label class="form-label" for="basic-icon-default-email">Email</label>
-                                        <input type="text" id="basic-icon-default-email" class="form-control dt-email"
-                                            placeholder="john.doe@example.com" aria-label="john.doe@example.com" />
-                                        <small class="form-text"> You can use letters, numbers & periods </small>
-                                    </div>
-                                    <div class="mb-1">
-                                        <label class="form-label" for="basic-icon-default-date">Joining Date</label>
-                                        <input type="text" class="form-control dt-date" id="basic-icon-default-date"
-                                            placeholder="MM/DD/YYYY" aria-label="MM/DD/YYYY" />
-                                    </div>
-                                    <div class="mb-4">
-                                        <label class="form-label" for="basic-icon-default-salary">Salary</label>
-                                        <input type="text" id="basic-icon-default-salary" class="form-control dt-salary"
-                                            placeholder="$12000" aria-label="$12000" />
-                                    </div>
-                                    <button type="button" class="btn btn-primary data-submit me-1">Submit</button>
-                                    <button type="reset" class="btn btn-outline-secondary"
-                                        data-bs-dismiss="modal">Cancel</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </section>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+                <!-- Basic table -->
+               
                 <!--/ Basic table -->
 
 
