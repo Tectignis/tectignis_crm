@@ -1,5 +1,8 @@
 <?php
+session_start();
 include("config.php");
+
+$id=$_SESSION['id'];
 $leadHot=mysqli_query($conn,"select * from lead where nature='Hot' and Firm_Name='$id'");
 $leadHotFetch=mysqli_num_rows($leadHot);
 $leadCold=mysqli_query($conn,"select * from lead where nature='Cold' and Firm_Name='$id'");
@@ -87,31 +90,7 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper container-xxl p-0">
-            <div class="content-header row">
-            </div>
-            <div class="row">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="content-body">
-                        <!-- Dashboard Ecommerce Starts -->
-
-                        <section id="dashboard-ecommerce">
-                            <div style=" display: inline-block;">
-                                <form onclick="getdata(this.value)" style="width: fit-content;float:left">
-                                    <input type="hidden" id="leadid" value="<?php echo $id;?>">
-                                    <select id="demo_overview_minimal_multiselect " class="dropbtn form-control"
-                                        style="background-color:#fff;">
-                                        <option>select</option>
-                                        <option>Today</option>
-                                        <option>Last Week</option>
-                                        <option>Monthly</option>
-                                        <option>3 Month</option>
-                                    </select>
-                                </form>
-                            </div>
-                        </section>
-                    </div>
-                </div>
-            </div>
+           
             <div class="row match-height" id="dashboard-ecommerce">
                 <!-- Medal Card -->
                 <div class="col-xl-4 col-md-6 col-12">
@@ -136,14 +115,19 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
                         <div class="card-header">
                             <h4 class="card-title">Statistics</h4>
                             <div class="dropdown chart-dropdown">
+                            <form onclick="getdata(this.value)">
+                            <input type="hidden" id="leadid" value="<?php echo $id;?>">
                                         <button class="btn btn-sm border-0 dropdown-toggle p-50" type="button" id="dropdownItem4" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Last 7 Days
+                                            Select
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownItem4">
-                                            <a class="dropdown-item" href="#">Last 28 Days</a>
-                                            <a class="dropdown-item" href="#">Last Month</a>
-                                            <a class="dropdown-item" href="#">Last Year</a>
+                                        
+                                            <a class="dropdown-item" href="#">Today </a>
+                                            <a class="dropdown-item" href="#">Last Week</a>
+                                            <a class="dropdown-item" href="#">Monthly</a>
+                                            <a class="dropdown-item" href="#">3 Month</a>
                                         </div>
+                                        </form>
                                     </div>
                         </div>
                         <div class="card-body statistics-body">
