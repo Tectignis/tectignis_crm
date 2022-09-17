@@ -1,4 +1,7 @@
-
+<?php
+include("config.php");
+?>
+<!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
 
@@ -35,7 +38,19 @@
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <!-- END: Custom CSS-->
-
+<style>
+   
+    .MultiCarousel { float: left; overflow: hidden; padding: 15px; width: 100%; position:relative; }
+.MultiCarousel{ Height: 100%;}
+    .MultiCarousel .MultiCarousel-inner { transition: 1s ease all; float: left; }
+        .MultiCarousel .MultiCarousel-inner .item { float: left;}
+        .MultiCarousel .MultiCarousel-inner .item > div { text-align: center; padding:10px; margin:10px; background:#f1f1f1; color:#666;}
+    .MultiCarousel .leftLst, .MultiCarousel .rightLst { position:absolute; border-radius:50%;top:calc(50% - 20px); }
+    .MultiCarousel .leftLst { left:0; }
+    .MultiCarousel .rightLst { right:0; }
+    
+        .MultiCarousel .leftLst.over, .MultiCarousel .rightLst.over { pointer-events: none; background:#ccc; }
+</style>
 </head>
 <!-- END: Head-->
 
@@ -77,6 +92,253 @@
                         </div>
                     </div>
                     <!--/ title text and switch button -->
+
+
+                    <div class="container">
+	<div class="row">
+		<div class="MultiCarousel" data-items="1,2,3,4" data-slide="1" id="MultiCarousel"  data-interval="1000">
+            <div class="MultiCarousel-inner">
+<?php
+$price=mysqli_query($conn,"select * package");
+while($fetchprice=mysqli_fetch_array($price)){
+?>
+                <div class="item">
+                       <!-- enterprise plan -->
+                                    <div class="card enterprise-pricing text-center">
+                                        <div class="card-body">
+                                            <img src="app-assets/images/illustration/Pot3.svg" class="mb-2" alt="svg img" />
+                                            <h3><?php echo $fetchprice['package_name'] ?></h3>
+                                            <p class="card-text">Solution for big organizations</p>
+                                            <div class="annual-plan">
+                                                <div class="plan-price mt-2">
+                                                    <sup class="font-medium-1 fw-bold text-primary">$</sup>
+                                                    <span class="pricing-enterprise-value fw-bolder text-primary"><?php echo $fetchprice['total_amt'] ?></span>
+                                                    <sub class="pricing-duration text-body font-medium-1 fw-bold">/month</sub>
+                                                </div>
+                                                <small class="annual-pricing d-none text-muted"></small>
+                                            </div>
+                                            <ul class="list-group list-group-circle text-start">
+                                                <li class="list-group-item">PayPal payments</li>
+                                                <li class="list-group-item">Logic Jumps</li>
+                                                <li class="list-group-item">File upload with 5GB storage</li>
+                                                <li class="list-group-item">Custom domain support</li>
+                                                <li class="list-group-item">Stripe integration</li>
+                                            </ul>
+                                            <button class="btn w-100 btn-outline-primary mt-2">Upgrade</button>
+                                        </div>
+                                    </div>
+                                <!--/ enterprise plan -->
+                </div>
+                <?php } ?>
+                <div class="item">
+                    <div class="pad15">
+                        <!-- enterprise plan -->
+                                    <div class="card enterprise-pricing text-center">
+                                        <div class="card-body">
+                                            <img src="app-assets/images/illustration/Pot3.svg" class="mb-2" alt="svg img" />
+                                            <h3>Enterprise</h3>
+                                            <p class="card-text">Solution for big organizations</p>
+                                            <div class="annual-plan">
+                                                <div class="plan-price mt-2">
+                                                    <sup class="font-medium-1 fw-bold text-primary">$</sup>
+                                                    <span class="pricing-enterprise-value fw-bolder text-primary">99</span>
+                                                    <sub class="pricing-duration text-body font-medium-1 fw-bold">/month</sub>
+                                                </div>
+                                                <small class="annual-pricing d-none text-muted"></small>
+                                            </div>
+                                            <ul class="list-group list-group-circle text-start">
+                                                <li class="list-group-item">PayPal payments</li>
+                                                <li class="list-group-item">Logic Jumps</li>
+                                                <li class="list-group-item">File upload with 5GB storage</li>
+                                                <li class="list-group-item">Custom domain support</li>
+                                                <li class="list-group-item">Stripe integration</li>
+                                            </ul>
+                                            <button class="btn w-100 btn-outline-primary mt-2">Upgrade</button>
+                                        </div>
+                                    </div>
+                                <!--/ enterprise plan -->
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="pad15">
+                        <!-- enterprise plan -->
+                                    <div class="card enterprise-pricing text-center">
+                                        <div class="card-body">
+                                            <img src="app-assets/images/illustration/Pot3.svg" class="mb-2" alt="svg img" />
+                                            <h3>Enterprise</h3>
+                                            <p class="card-text">Solution for big organizations</p>
+                                            <div class="annual-plan">
+                                                <div class="plan-price mt-2">
+                                                    <sup class="font-medium-1 fw-bold text-primary">$</sup>
+                                                    <span class="pricing-enterprise-value fw-bolder text-primary">99</span>
+                                                    <sub class="pricing-duration text-body font-medium-1 fw-bold">/month</sub>
+                                                </div>
+                                                <small class="annual-pricing d-none text-muted"></small>
+                                            </div>
+                                            <ul class="list-group list-group-circle text-start">
+                                                <li class="list-group-item">PayPal payments</li>
+                                                <li class="list-group-item">Logic Jumps</li>
+                                                <li class="list-group-item">File upload with 5GB storage</li>
+                                                <li class="list-group-item">Custom domain support</li>
+                                                <li class="list-group-item">Stripe integration</li>
+                                            </ul>
+                                            <button class="btn w-100 btn-outline-primary mt-2">Upgrade</button>
+                                        </div>
+                                    </div>
+                                <!--/ enterprise plan -->
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="pad15">
+                        <!-- enterprise plan -->
+                                    <div class="card enterprise-pricing text-center">
+                                        <div class="card-body">
+                                            <img src="app-assets/images/illustration/Pot3.svg" class="mb-2" alt="svg img" />
+                                            <h3>Enterprise</h3>
+                                            <p class="card-text">Solution for big organizations</p>
+                                            <div class="annual-plan">
+                                                <div class="plan-price mt-2">
+                                                    <sup class="font-medium-1 fw-bold text-primary">$</sup>
+                                                    <span class="pricing-enterprise-value fw-bolder text-primary">99</span>
+                                                    <sub class="pricing-duration text-body font-medium-1 fw-bold">/month</sub>
+                                                </div>
+                                                <small class="annual-pricing d-none text-muted"></small>
+                                            </div>
+                                            <ul class="list-group list-group-circle text-start">
+                                                <li class="list-group-item">PayPal payments</li>
+                                                <li class="list-group-item">Logic Jumps</li>
+                                                <li class="list-group-item">File upload with 5GB storage</li>
+                                                <li class="list-group-item">Custom domain support</li>
+                                                <li class="list-group-item">Stripe integration</li>
+                                            </ul>
+                                            <button class="btn w-100 btn-outline-primary mt-2">Upgrade</button>
+                                        </div>
+                                    </div>
+                                <!--/ enterprise plan -->
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="pad15">
+                        <!-- enterprise plan -->
+                                    <div class="card enterprise-pricing text-center">
+                                        <div class="card-body">
+                                            <img src="app-assets/images/illustration/Pot3.svg" class="mb-2" alt="svg img" />
+                                            <h3>Enterprise</h3>
+                                            <p class="card-text">Solution for big organizations</p>
+                                            <div class="annual-plan">
+                                                <div class="plan-price mt-2">
+                                                    <sup class="font-medium-1 fw-bold text-primary">$</sup>
+                                                    <span class="pricing-enterprise-value fw-bolder text-primary">99</span>
+                                                    <sub class="pricing-duration text-body font-medium-1 fw-bold">/month</sub>
+                                                </div>
+                                                <small class="annual-pricing d-none text-muted"></small>
+                                            </div>
+                                            <ul class="list-group list-group-circle text-start">
+                                                <li class="list-group-item">PayPal payments</li>
+                                                <li class="list-group-item">Logic Jumps</li>
+                                                <li class="list-group-item">File upload with 5GB storage</li>
+                                                <li class="list-group-item">Custom domain support</li>
+                                                <li class="list-group-item">Stripe integration</li>
+                                            </ul>
+                                            <button class="btn w-100 btn-outline-primary mt-2">Upgrade</button>
+                                        </div>
+                                    </div>
+                                <!--/ enterprise plan -->
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="pad15">
+                       <!-- enterprise plan -->
+                                    <div class="card enterprise-pricing text-center">
+                                        <div class="card-body">
+                                            <img src="app-assets/images/illustration/Pot3.svg" class="mb-2" alt="svg img" />
+                                            <h3>Enterprise</h3>
+                                            <p class="card-text">Solution for big organizations</p>
+                                            <div class="annual-plan">
+                                                <div class="plan-price mt-2">
+                                                    <sup class="font-medium-1 fw-bold text-primary">$</sup>
+                                                    <span class="pricing-enterprise-value fw-bolder text-primary">99</span>
+                                                    <sub class="pricing-duration text-body font-medium-1 fw-bold">/month</sub>
+                                                </div>
+                                                <small class="annual-pricing d-none text-muted"></small>
+                                            </div>
+                                            <ul class="list-group list-group-circle text-start">
+                                                <li class="list-group-item">PayPal payments</li>
+                                                <li class="list-group-item">Logic Jumps</li>
+                                                <li class="list-group-item">File upload with 5GB storage</li>
+                                                <li class="list-group-item">Custom domain support</li>
+                                                <li class="list-group-item">Stripe integration</li>
+                                            </ul>
+                                            <button class="btn w-100 btn-outline-primary mt-2">Upgrade</button>
+                                        </div>
+                                    </div>
+                                <!--/ enterprise plan -->
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="pad15">
+                       <!-- enterprise plan -->
+                                    <div class="card enterprise-pricing text-center">
+                                        <div class="card-body">
+                                            <img src="app-assets/images/illustration/Pot3.svg" class="mb-2" alt="svg img" />
+                                            <h3>Enterprise</h3>
+                                            <p class="card-text">Solution for big organizations</p>
+                                            <div class="annual-plan">
+                                                <div class="plan-price mt-2">
+                                                    <sup class="font-medium-1 fw-bold text-primary">$</sup>
+                                                    <span class="pricing-enterprise-value fw-bolder text-primary">99</span>
+                                                    <sub class="pricing-duration text-body font-medium-1 fw-bold">/month</sub>
+                                                </div>
+                                                <small class="annual-pricing d-none text-muted"></small>
+                                            </div>
+                                            <ul class="list-group list-group-circle text-start">
+                                                <li class="list-group-item">PayPal payments</li>
+                                                <li class="list-group-item">Logic Jumps</li>
+                                                <li class="list-group-item">File upload with 5GB storage</li>
+                                                <li class="list-group-item">Custom domain support</li>
+                                                <li class="list-group-item">Stripe integration</li>
+                                            </ul>
+                                            <button class="btn w-100 btn-outline-primary mt-2">Upgrade</button>
+                                        </div>
+                                    </div>
+                                <!--/ enterprise plan -->
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="pad15">
+                       <!-- enterprise plan -->
+                                    <div class="card enterprise-pricing text-center">
+                                        <div class="card-body">
+                                            <img src="app-assets/images/illustration/Pot3.svg" class="mb-2" alt="svg img" />
+                                            <h3>Enterprise</h3>
+                                            <p class="card-text">Solution for big organizations</p>
+                                            <div class="annual-plan">
+                                                <div class="plan-price mt-2">
+                                                    <sup class="font-medium-1 fw-bold text-primary">$</sup>
+                                                    <span class="pricing-enterprise-value fw-bolder text-primary">99</span>
+                                                    <sub class="pricing-duration text-body font-medium-1 fw-bold">/month</sub>
+                                                </div>
+                                                <small class="annual-pricing d-none text-muted"></small>
+                                            </div>
+                                            <ul class="list-group list-group-circle text-start">
+                                                <li class="list-group-item">PayPal payments</li>
+                                                <li class="list-group-item">Logic Jumps</li>
+                                                <li class="list-group-item">File upload with 5GB storage</li>
+                                                <li class="list-group-item">Custom domain support</li>
+                                                <li class="list-group-item">Stripe integration</li>
+                                            </ul>
+                                            <button class="btn w-100 btn-outline-primary mt-2">Upgrade</button>
+                                        </div>
+                                    </div>
+                                <!--/ enterprise plan -->
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary leftLst"><</button>
+            <button class="btn btn-primary rightLst">></button>
+        </div>
+	</div>
+
 
                     <!-- pricing plan cards -->
                     <div class="row pricing-card">
@@ -293,6 +555,114 @@
                 });
             }
         })
+    </script>
+
+    <script>
+        $(document).ready(function () {
+    var itemsMainDiv = ('.MultiCarousel');
+    var itemsDiv = ('.MultiCarousel-inner');
+    var itemWidth = "";
+
+    $('.leftLst, .rightLst').click(function () {
+        var condition = $(this).hasClass("leftLst");
+        if (condition)
+            click(0, this);
+        else
+            click(1, this)
+    });
+
+   ResCarouselSize();
+
+
+
+
+    $(window).resize(function () {
+        ResCarouselSize();
+    });
+
+    //this function define the size of the items
+    function ResCarouselSize() {
+        var incno = 0;
+        var dataItems = ("data-items");
+        var itemClass = ('.item');
+        var id = 0;
+        var btnParentSb = '';
+        var itemsSplit = '';
+        var sampwidth = $(itemsMainDiv).width();
+        var bodyWidth = $('body').width();
+        $(itemsDiv).each(function () {
+            id = id + 1;
+            var itemNumbers = $(this).find(itemClass).length;
+            btnParentSb = $(this).parent().attr(dataItems);
+            itemsSplit = btnParentSb.split(',');
+            $(this).parent().attr("id", "MultiCarousel" + id);
+
+            if (bodyWidth >= 1200) {
+                incno = itemsSplit[3];
+                itemWidth = sampwidth / incno;
+            }
+            else if (bodyWidth >= 992) {
+                incno = itemsSplit[2];
+                itemWidth = sampwidth / incno;
+            }
+            else if (bodyWidth >= 600) {
+                incno = itemsSplit[1];
+                itemWidth = sampwidth / incno;
+            }
+            else {
+                incno = itemsSplit[0];
+                itemWidth = sampwidth / incno;
+            }
+            $(this).css({ 'transform': 'translateX(0px)', 'width': itemWidth * itemNumbers });
+            $(this).find(itemClass).each(function () {
+                $(this).outerWidth(itemWidth);
+            });
+
+            $(".leftLst").addClass("over");
+            $(".rightLst").removeClass("over");
+
+        });
+    }
+
+
+    //this function used to move the items
+    function ResCarousel(e, el, s) {
+        var leftBtn = ('.leftLst');
+        var rightBtn = ('.rightLst');
+        var translateXval = '';
+        var divStyle = $(el + ' ' + itemsDiv).css('transform');
+        var values = divStyle.match(/-?[\d\.]+/g);
+        var xds = Math.abs(values[4]);
+        if (e == 0) {
+            translateXval = parseInt(xds) - parseInt(itemWidth * s);
+            $(el + ' ' + rightBtn).removeClass("over");
+
+            if (translateXval <= itemWidth / 2) {
+                translateXval = 0;
+                $(el + ' ' + leftBtn).addClass("over");
+            }
+        }
+        else if (e == 1) {
+            var itemsCondition = $(el).find(itemsDiv).width() - $(el).width();
+            translateXval = parseInt(xds) + parseInt(itemWidth * s);
+            $(el + ' ' + leftBtn).removeClass("over");
+
+            if (translateXval >= itemsCondition - itemWidth / 2) {
+                translateXval = itemsCondition;
+                $(el + ' ' + rightBtn).addClass("over");
+            }
+        }
+        $(el + ' ' + itemsDiv).css('transform', 'translateX(' + -translateXval + 'px)');
+    }
+
+    //It is used to get some elements from btn
+    function click(ell, ee) {
+        var Parent = "#" + $(ee).parent().attr("id");
+        var slide = $(Parent).attr("data-slide");
+        ResCarousel(ell, Parent, slide);
+    }
+
+});
     </script>
 </body>
 <!-- END: Body-->
