@@ -132,8 +132,23 @@
                     </div>
                     <!-- list and filter start -->
                     <div class="card">
+                        <div class="card-header border-bottom p-1">
+                            <div class="head-label">
+                                <h4 class="mb-0">Properties</h6>
+                            </div>
+                            <div class="dt-action-buttons text-end">
+                                <a href="ticketform.php" button type="button" class="btn btn-primary float-right"
+                                    data-bs-toggle="modal" data-bs-target="#default" style="margin-right: 5px;">
+                                    + Add Property
+                                </a>
+                                <!-- <butto`n type="button" class="btn btn-outline-primary" data-bs-toggle="modal"
+                                    data-bs-target="#default">
+                                    Basic Modal
+                                </button>` -->
+                            </div>
+                        </div>
                         <div class="card-body border-bottom">
-                            <h4 class="card-title ">Search & Filter</h4>
+                            <p class="card-title mt-2">Search & Filter</h4>
                             <div class="row">
                                 <div class="col-md-4 user_role"><label class="form-label"
                                         for="UserRole">Type</label><select id="UserRole"
@@ -147,8 +162,7 @@
 
                                 <div class="col-md-4 user_status"><label class="form-label"
                                         for="FilterTransaction">Status</label>
-                                    <select id="FilterTransaction"
-                                        class="form-select text-capitalize mb-md-0 mb-2xx">
+                                    <select id="FilterTransaction" class="form-select text-capitalize mb-md-0 mb-2xx">
                                         <option value="" disabled selected> Select Status </option>
                                         <option value="Pending" class="text-capitalize">Available</option>
                                         <option value="Active" class="text-capitalize">Not Available</option>
@@ -159,13 +173,13 @@
                                     <button class="btn btn-primary mb-0 mt-2" style="">Submit</button>
                                 </div>
                             </div>
-                            <hr>    
-                            <div class="row mt-3">
+                            <!-- <hr>     -->
+                            <div class="row mt-1">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Mobile No.</th>
                                             <th>Clients</th>
+                                            <th>Mobile No.</th>
                                             <th>Type</th>
                                             <th>Cost</th>
                                             <th>Status</th>
@@ -181,12 +195,10 @@
                                             <td>999/-</td>
                                             <td>Sold</td>
                                             <td>
-                                                <a href="index.php" class="btn btn-sm"><i class="fa fa-eye"
-                                                        style="font-size:15px;"></i></a>
-                                                <a href="index.php" class="btn btn-sm"><i class="fa fa-edit"
-                                                        style="font-size:15px;"></i></a>
-                                                <a href="index.php" class="btn btn-sm"><i class="fa fa-trash-alt"
-                                                        style="font-size:15px;"></i></a>
+                                                <a href="index.php" class="btn btn-sm"><i class="fa fa-eye"></i></a>
+                                                <a href="index.php" class="btn btn-sm"><i class="fa fa-edit"></i></a>
+                                                <a href="index.php" class="btn btn-sm"><i
+                                                        class="fa fa-trash-alt"></i></a>
                                             </td>
 
                                         </tr>
@@ -203,6 +215,77 @@
             </div>
         </div>
     </div>
+
+    <!-- Basic Modals start -->
+    <div class="demo-inline-spacing">
+        <!-- Basic trigger modal -->
+        <div class="basic-modal">
+
+
+            <!-- Modal -->
+            <div class="modal fade text-start" id="default" tabindex="-1" aria-labelledby="myModalLabel1"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel1">Add Property </h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="editUserForm" class="invoice-repeater row gy-1 pt-75" onsubmit="return false">
+                                <div class="col-12 col-md-12">
+                                    <label class="form-label" for="modalEditUserFirstName">Title</label>
+                                    <input type="text" id="modalEditUserFirstName" name="modalEditUserFirstName"
+                                        class="form-control" placeholder="Title" Placeholder="Title" data-msg="Title" />
+                                </div>
+                                <div class="col-12 col-md-12">
+                                    <label class="form-label" for="modalEditUserLastName">Description</label>
+                                    <input type="text" id="modalEditUserLastName" name="description"
+                                        class="form-control" placeholder="Description" data-msg="Description" />
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label" for="modalEditUserEmail">Monthly</label>
+                                    <input type="number" id="modalEditUserEmail" name="monthly" class="form-control"
+                                        placeholder="Monthly" />
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label" for="modalEditUserEmail">Annualy</label>
+                                    <input type="number" id="modalEditUserEmail" name="annualy" class="form-control"
+                                        placeholder="Annualy" />
+                                </div>
+                                <div class="col-12">
+                                    <div class="d-flex align-items-center mt-1">
+                                        <div class="form-check form-switch form-check-primary">
+                                            <input type="checkbox" class="form-check-input" id="customSwitch10"
+                                                checked />
+                                            <label class="form-check-label" for="customSwitch10">
+                                                <span class="switch-icon-left"><i data-feather="check"></i></span>
+                                                <span class="switch-icon-right"><i data-feather="x"></i></span>
+                                            </label>
+                                        </div>
+                                        <label class="form-check-label fw-bolder" for="customSwitch10">Use as a
+                                            billing address?</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 text-center mt-2 pt-50">
+                                    <button type="submit" class="btn btn-primary me-1">Submit</button>
+                                    <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+                                        aria-label="Close">
+                                        Discard
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Accept</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Basic trigger modal end -->
+    </div>
+    <!-- Basic Modals end -->
     <!-- END: Content-->
 
     <?php include "include/footer.php"; ?>
@@ -249,25 +332,25 @@
     <!-- END: Page JS-->
 
     <script>
-    $(window).on('load', function() {
-        if (feather) {
-            feather.replace({
-                width: 14,
-                height: 14
-            });
-        }
-    })
+        $(window).on('load', function () {
+            if (feather) {
+                feather.replace({
+                    width: 14,
+                    height: 14
+                });
+            }
+        })
     </script>
     <script>
-    $(function() {
-        $("#example1").DataTable({
-            "responsive": true,
-            "lengthChange": true,
-            "autoWidth": false,
-            "buttons": ["copy", "csv", "excel", "pdf", "print"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $(function () {
+            $("#example1").DataTable({
+                "responsive": true,
+                "lengthChange": true,
+                "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
-    });
+        });
     </script>
 </body>
 <!-- END: Body-->
