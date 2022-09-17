@@ -1,3 +1,10 @@
+<?php
+session_start();
+include("config.php");
+$id=$_SESSION['id'];
+
+?>
+
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
@@ -204,28 +211,47 @@
                             <thead>
                                         <tr>
                                            
-                                            <th>Sr.No</th>
-                                            <th>Ticket No</th>
-                                            <th>Firm Name</th>
-                                            <th>Subject</th>
+                                        <th>Sr no.</th>
+                                            <th>Ticket No.</th>
                                             <th>Description</th>
-                                            <th>Created On</th>
+                                            <th>Subject</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                             
                                         </tr>
                                     </thead>
                                     <tbody>
-                                      
+                                    <?php
+                                            $sql=mysqli_query($conn,"select * from ticket where Client_Code='$id'");
+                                            $count=1;
+                                            while ($row=mysqli_fetch_array($sql)){ 
+                                        ?>
                                         <tr>
-                                          <td>tg</td>
-                                          <td>dgfgd</td>
-                                          <td>dgfg</td>
-                                          <td>dgfg</td>
-                                          <td>gd</td>
-                                          <td>dfgfg</td>
-                                          <td>dgfg</td>
-                                         
+                                             <td><?php echo $count;?></td>
+                                            <td><?php echo $row['ticket_no']; ?></td>
+                                            <td><?php echo $row['Description']; ?></td>
+                                            <td><?php echo $row['Subject']; ?></td>
+                                            <td style="text-align:center">
+                                            <?php
+                                                $status=$row['status'];
+                                                if($status=='Open'){
+                                                    echo '<span class="badge badge-light-danger">Open</span>';
+                                                }
+                                                else if($status=='Inprocess'){
+                                                    echo '<span class="badge badge-light-primary">In Proccess</span>';
+                                                }else if($status=='Hold'){
+                                                   echo '<span class="badge badge-light-dark">Hold On</span>';
+                                                }else if($status=='Closed'){
+                                                    echo '<span class="badge badge-light-success">Closed</span>';
+                                                }
+                                                ?>
+                                            </td>
+                                          <!-- <td> <a href="ticket.php" class="btn btn-sm"><i class="fa fa-eye"></i></a>
+                                                <a href="ticket.php" class="btn btn-sm"><i class="fa fa-edit"></i></a>
+                                                <a href="ticket.php" class="btn btn-sm"><i
+                                                        class="fa fa-trash-alt"></i></a>
+                                            </td>
+                                          -->
                                          <td>
                       
 
@@ -242,11 +268,10 @@
                     <i class="fab fa-trash"></i>
                   
                     </button>
-
-                   
                   </td>
                                         </tr>
                                     </tbody>
+                                    <?php $count++; } ?>
                                 </table>
                             </div>
                         </div>

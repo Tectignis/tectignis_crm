@@ -356,13 +356,11 @@ if(isset($_POST['add_property'])){
     <!-- Basic Modals end -->
     <!-- END: Content-->
 
-    <?php include "include/footer.php"; ?>
 
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
 
-
-    <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
+    <?php include "include/footer.php"; ?>
     <!-- END: Footer-->
 
 
