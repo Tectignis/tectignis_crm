@@ -6,22 +6,25 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
-    <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
-    <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="description"
+        content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords"
+        content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
     <title>User List - Vuexy - Bootstrap HTML admin template</title>
     <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
+        rel="stylesheet">
 
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/vendors.min.css">
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/forms/select/select2.min.css">
-     <!-- DataTables -->
-     <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-     <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-     <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-     <!-- END: Page CSS-->
+    <!-- DataTables -->
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!-- END: Page CSS-->
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
@@ -49,10 +52,11 @@
 
 <!-- BEGIN: Body-->
 
-<body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
+<body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click"
+    data-menu="vertical-menu-modern" data-col="">
 
-<?php include "include/header.php"; ?>
-<?php include "include/sidebar.php"; ?>
+    <?php include "include/header.php"; ?>
+    <?php include "include/sidebar.php"; ?>
 
     <!-- BEGIN: Content-->
     <div class="app-content content ">
@@ -70,11 +74,11 @@
                                 <div class="card-body d-flex align-items-center justify-content-between">
                                     <div>
                                         <h3 class="fw-bolder mb-75">21,459</h3>
-                                        <span class="fw-bolder">Flat   Sell</span>
+                                        <span class="fw-bolder">Flat Sell</span>
                                     </div>
                                     <div class="avatar bg-light-primary p-50">
                                         <span class="avatar-content">
-                                            <i  class="font-medium-4 fa fa-home"></i>
+                                            <i class="font-medium-4 fa fa-home"></i>
                                         </span>
                                     </div>
                                 </div>
@@ -89,7 +93,7 @@
                                     </div>
                                     <div class="avatar bg-light-danger p-50">
                                         <span class="avatar-content">
-                                        <i  class="font-medium-4 fa fa-home"></i>
+                                            <i class="font-medium-4 fa fa-home"></i>
                                         </span>
                                     </div>
                                 </div>
@@ -119,7 +123,7 @@
                                     </div>
                                     <div class="avatar bg-light-warning p-50">
                                         <span class="avatar-content">
-                                        <i class="font-medium-4 fa fa-home"></i>
+                                            <i class="font-medium-4 fa fa-home"></i>
                                         </span>
                                     </div>
                                 </div>
@@ -131,37 +135,66 @@
                         <div class="card-body border-bottom">
                             <h4 class="card-title ">Search & Filter</h4>
                             <div class="row">
-                                    <div class="col-md-4 user_role"><label class="form-label" for="UserRole">Role</label><select id="UserRole" class="form-select text-capitalize mb-md-0 mb-2"><option value=""> Select Role </option><option value="Admin" class="text-capitalize">Admin</option><option value="Author" class="text-capitalize">Author</option><option value="Editor" class="text-capitalize">Editor</option><option value="Maintainer" class="text-capitalize">Maintainer</option><option value="Subscriber" class="text-capitalize">Subscriber</option></select></div>
-                                    <div class="col-md-4 user_plan"><label class="form-label" for="UserPlan">Plan</label><select id="UserPlan" class="form-select text-capitalize mb-md-0 mb-2"><option value=""> Select Plan </option><option value="Basic" class="text-capitalize">Basic</option><option value="Company" class="text-capitalize">Company</option><option value="Enterprise" class="text-capitalize">Enterprise</option><option value="Team" class="text-capitalize">Team</option></select></div>
-                                    <div class="col-md-4 user_status"><label class="form-label" for="FilterTransaction">Status</label><select id="FilterTransaction" class="form-select text-capitalize mb-md-0 mb-2xx"><option value=""> Select Status </option><option value="Pending" class="text-capitalize">Pending</option><option value="Active" class="text-capitalize">Active</option><option value="Inactive" class="text-capitalize">Inactive</option></select></div>
+                                <div class="col-md-4 user_role"><label class="form-label"
+                                        for="UserRole">Type</label><select id="UserRole"
+                                        class="form-select text-capitalize mb-md-0 mb-2">
+                                        <option value="" disabled selected> Select Type </option>
+                                        <option value="Admin" class="text-capitalize">Flat Sell</option>
+                                        <option value="Author" class="text-capitalize">Flat Rent</option>
+                                        <option value="Editor" class="text-capitalize">Shop / Office Sell</option>
+                                        <option value="Maintainer" class="text-capitalize">Shop / Office Rent</option>
+                                    </select></div>
+
+                                <div class="col-md-4 user_status"><label class="form-label"
+                                        for="FilterTransaction">Status</label>
+                                    <select id="FilterTransaction"
+                                        class="form-select text-capitalize mb-md-0 mb-2xx">
+                                        <option value="" disabled selected> Select Status </option>
+                                        <option value="Pending" class="text-capitalize">Available</option>
+                                        <option value="Active" class="text-capitalize">Not Available</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 user_status"><label class="form-label"
+                                        for="FilterTransaction"></label>
+                                    <button class="btn btn-primary mb-0 mt-2" style="">Submit</button>
+                                </div>
                             </div>
-                            <hr>
+                            <hr>    
                             <div class="row mt-3">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Sr no.</th>
-                                            <th>Ticket No.</th>
-                                            <th>Description</th>
-                                            <th>Subject</th>
+                                            <th>Mobile No.</th>
+                                            <th>Clients</th>
+                                            <th>Type</th>
+                                            <th>Cost</th>
                                             <th>Status</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 
                                         <tr>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
-                                            <td>abc</td>
+                                            <td>Sarvesh</td>
+                                            <td>1234567890</td>
+                                            <td>flat sell</td>
+                                            <td>999/-</td>
+                                            <td>Sold</td>
+                                            <td>
+                                                <a href="index.php" class="btn btn-sm"><i class="fa fa-eye"
+                                                        style="font-size:15px;"></i></a>
+                                                <a href="index.php" class="btn btn-sm"><i class="fa fa-edit"
+                                                        style="font-size:15px;"></i></a>
+                                                <a href="index.php" class="btn btn-sm"><i class="fa fa-trash-alt"
+                                                        style="font-size:15px;"></i></a>
+                                            </td>
 
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                  
+
                     </div>
                     <!-- list and filter end -->
                 </section>
@@ -172,12 +205,12 @@
     </div>
     <!-- END: Content-->
 
-<?php include "include/footer.php"; ?>
+    <?php include "include/footer.php"; ?>
 
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
 
- 
+
     <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
     <!-- END: Footer-->
 
@@ -200,7 +233,7 @@
     <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
     <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-    <script src="app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js"></script> 
+    <script src="app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
     <script src="app-assets/vendors/js/forms/validation/jquery.validate.min.js"></script>
     <script src="app-assets/vendors/js/forms/cleave/cleave.min.js"></script>
     <script src="app-assets/vendors/js/forms/cleave/addons/cleave-phone.us.js"></script>
@@ -216,26 +249,26 @@
     <!-- END: Page JS-->
 
     <script>
-        $(window).on('load', function() {
-            if (feather) {
-                feather.replace({
-                    width: 14,
-                    height: 14
-                });
-            }
-        })
-    </script>
-           <script>
-            $(function () {
-                $("#example1").DataTable({
-                    "responsive": true,
-                    "lengthChange": true,
-                    "autoWidth": false,
-                    "buttons": ["copy", "csv", "excel", "pdf", "print"]
-                }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    
+    $(window).on('load', function() {
+        if (feather) {
+            feather.replace({
+                width: 14,
+                height: 14
             });
-        </script>
+        }
+    })
+    </script>
+    <script>
+    $(function() {
+        $("#example1").DataTable({
+            "responsive": true,
+            "lengthChange": true,
+            "autoWidth": false,
+            "buttons": ["copy", "csv", "excel", "pdf", "print"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+    });
+    </script>
 </body>
 <!-- END: Body-->
 
