@@ -1,10 +1,21 @@
+
 <?php
-session_start();
-include("config.php");
-$id=$_SESSION['id'];
-if(!isset($_SESSION['id']))
-{
-  header("location:log_client.php");
+if(isset($_POST['ticket'])){
+    
+    $id=$_SESSION['id'];
+    $subject=$_POST['subject'];
+    $description=$_POST['description'];
+    $status='Open';
+    date_default_timezone_set('Asia/Kolkata');
+      $date=date('Y-m-d H:i:s');
+
+    $sql=mysqli_query($conn,"INSERT INTO `ticket`(`Subject`, `Description`,`Client_Code`,`date`,`status`) VALUES ('$subject','$description' ,'$id','$date','$status')");
+     if($sql==1){
+        echo"<script>alert('new record has been added succesfully!');php</script>";
+     }
+     else{
+        echo"<script>alert('connection failed!');</script>";
+     }
 }
 ?>
 <!DOCTYPE html>
@@ -201,7 +212,7 @@ if(!isset($_SESSION['id']))
                    
 
                     <!-- form -->
-                    <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75"  method="post">
+                    <form id="addNewCardValidation"  class="row gy-1 gx-2 mt-75"  method="post">
                         <div class="col-12">
                             <label class="form-label" for="modalAddCardNumber">Subject</label>
                             <div class="input-group input-group-merge">
