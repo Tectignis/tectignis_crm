@@ -49,6 +49,8 @@
                
                 <li class=" nav-item"><a class="d-flex align-items-center" href="deals.php" target="_blank"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">Deals</span></a>
                 </li>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="event.php" target="_blank"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">Events</span></a>
+                </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="pricing.php" target="_blank"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">Pricing</span></a>
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Invoice">Account Setting</span></a>
