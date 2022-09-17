@@ -2,7 +2,7 @@
   include("../config.php");
   ?>
 <?php
-//leads post
+//leads post hello
 
 
 if(isset($_POST['leadsubmitt'])){
