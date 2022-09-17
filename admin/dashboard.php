@@ -4,7 +4,7 @@ $leadTotal=mysqli_query($conn,"select * from lead where nature='Hot'");
 $leadTotalFetch=mysqli_num_rows($leadTotal);
 $leadHot=mysqli_query($conn,"select * from lead where nature='Hot'");
 $leadHotFetch=mysqli_num_rows($leadHot);
-// $total
+$total=$leadHotFetch*100/$leadTotalFetch;
 $leadCold=mysqli_query($conn,"select * from lead where nature='Cold' ");
 $leadColdFetch=mysqli_num_rows($leadCold);
 $leadWarm=mysqli_query($conn,"select * from lead where nature='Warm'");
