@@ -252,7 +252,8 @@ if(isset($_POST['add_property'])){
                                                     echo '<span class="badge badge-success">available</span>';
                                                 }
                                                 else if($status=='not available'){
-                                                    echo '<span class="badge badge-danger">not available</span>';}
+                                                    echo '<span class="badge badge-danger">not available</span>';
+                                                }
                                                 ?>
                                             </td>
                                             <td class="mx-0">
