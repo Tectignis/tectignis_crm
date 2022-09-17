@@ -1,12 +1,5 @@
 <?php
-session_start();
 include("config.php");
-
-$id=$_SESSION['id'];
-if(!isset($_SESSION['id']))
-{
-  header("location:log_client.php");
-}
 $leadHot=mysqli_query($conn,"select * from lead where nature='Hot' and Firm_Name='$id'");
 $leadHotFetch=mysqli_num_rows($leadHot);
 $leadCold=mysqli_query($conn,"select * from lead where nature='Cold' and Firm_Name='$id'");
@@ -119,80 +112,117 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="card">
-                        <div class="card-body d-flex align-items-center justify-content-between">
-                            <div>
+            <div class="row match-height" id="dashboard-ecommerce">
+                <!-- Medal Card -->
+                <div class="col-xl-4 col-md-6 col-12">
+                    <div class="card card-congratulation-medal">
+                        <div class="card-body">
+                            <h5>Congratulations 🎉 John!</h5>
+                            <p class="card-text font-small-3">You have won gold medal</p>
+                            <h3 class="mb-75 mt-2 pt-50">
+                                <a href="#">$48.9k</a>
+                            </h3>
+                            <button type="button" class="btn btn-primary">View Sales</button>
+                            <img src="app-assets/images/illustration/badge.svg" class="congratulation-medal"
+                                alt="Medal Pic" />
+                        </div>
+                    </div>
+                </div>
+                <!--/ Medal Card -->
+
+                <!-- Statistics Card -->
+                <div class="col-xl-8 col-md-6 col-12">
+                    <div class="card card-statistics">
+                        <div class="card-header">
+                            <h4 class="card-title">Statistics</h4>
+                            <div class="dropdown chart-dropdown">
+                                        <button class="btn btn-sm border-0 dropdown-toggle p-50" type="button" id="dropdownItem4" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Last 7 Days
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownItem4">
+                                            <a class="dropdown-item" href="#">Last 28 Days</a>
+                                            <a class="dropdown-item" href="#">Last Month</a>
+                                            <a class="dropdown-item" href="#">Last Year</a>
+                                        </div>
+                                    </div>
+                        </div>
+                        <div class="card-body statistics-body">
+
+                            <div class="row">
                                 <?php
-              $query=mysqli_query($conn,"select * from lead where status_deal='Open' and Firm_Name='$id'");
-               $count1=mysqli_num_rows($query);
-                ?>
-                                <h3 class="fw-bolder mb-75"><?php echo $count1; ?></h3>
-                                <span>New Leads</span>
-                            </div>
-                            <div class="avatar bg-light-primary p-50">
-                                <span class="avatar-content">
-                                    <i data-feather="user" class="font-medium-4"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="card">
-                        <div class="card-body d-flex align-items-center justify-content-between">
-                            <div>
+                                $query=mysqli_query($conn,"select * from lead where status_deal='Open' and Firm_Name='$id'");
+                                $count1=mysqli_num_rows($query);
+                                    ?>
+                                <div class="col-xl-3 col-sm-6 col-12 mb-2 mb-xl-0">
+                                    <div class="d-flex flex-row">
+                                        <div class="avatar bg-light-primary me-2">
+                                            <div class="avatar-content">
+                                                <i data-feather="trending-up" class="avatar-icon"></i>
+                                            </div>
+                                        </div>
+                                        <div class="my-auto">
+                                            <h4 class="fw-bolder mb-0"><?php echo $count1; ?></h4>
+                                            <p class="card-text font-small-3 mb-0">New Leads</p>
+                                        </div>
+                                    </div>
+                                </div>
                                 <?php
-              $query=mysqli_query($conn,"select * from lead where Firm_Name='$id'");
-               $count1=mysqli_num_rows($query);
-                ?>
-                                <h3 class="fw-bolder mb-75"><?php echo $count1; ?></h3>
-                                <span>Total Leads</span>
-                            </div>
-                            <div class="avatar bg-light-danger p-50">
-                                <span class="avatar-content">
-                                    <i data-feather="user-plus" class="font-medium-4"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="card">
-                        <div class="card-body d-flex align-items-center justify-content-between">
-                            <div>
+                                        $query=mysqli_query($conn,"select * from lead where Firm_Name='$id'");
+                                        $count1=mysqli_num_rows($query);
+                                         ?>
+                                <div class="col-xl-3 col-sm-6 col-12 mb-2 mb-xl-0">
+                                    <div class="d-flex flex-row">
+                                        <div class="avatar bg-light-info me-2">
+                                            <div class="avatar-content">
+                                                <i data-feather="user" class="avatar-icon"></i>
+                                            </div>
+                                        </div>
+                                        <div class="my-auto">
+                                            <h4 class="fw-bolder mb-0"><?php echo $count1; ?></h4>
+                                            <p class="card-text font-small-3 mb-0">Total Leads</p>
+                                        </div>
+                                    </div>
+                                </div>
                                 <?php
-              $query=mysqli_query($conn,"select * from lead where status_deal='Closed' and Firm_Name='$id'");
-               $count1=mysqli_num_rows($query);
-                ?>
-                                <h3 class="fw-bolder mb-75"><?php echo $count1; ?></h3>
-                                <span>Closed Leads</span>
+                                    $query=mysqli_query($conn,"select * from lead where status_deal='Closed' and Firm_Name='$id'");
+                                    $count1=mysqli_num_rows($query);
+                                    ?>
+                                <div class="col-xl-3 col-sm-6 col-12 mb-2 mb-sm-0">
+                                    <div class="d-flex flex-row">
+                                        <div class="avatar bg-light-danger me-2">
+                                            <div class="avatar-content">
+                                                <i data-feather="box" class="avatar-icon"></i>
+                                            </div>
+                                        </div>
+                                        <div class="my-auto">
+                                            <h4 class="fw-bolder mb-0"><?php echo $count1; ?></h4>
+                                            <p class="card-text font-small-3 mb-0">Follow up</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-sm-6 col-12">
+                                    <div class="d-flex flex-row">
+                                        <div class="avatar bg-light-success me-2">
+                                            <div class="avatar-content">
+                                                <i data-feather="dollar-sign" class="avatar-icon"></i>
+                                            </div>
+                                        </div>
+                                        <div class="my-auto">
+                                            <h4 class="fw-bolder mb-0"><?php echo $leadBookedFetch; ?></h4>
+                                            <p class="card-text font-small-3 mb-0">Total Deals</p>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
-                            <div class="avatar bg-light-success p-50">
-                                <span class="avatar-content">
-                                    <i data-feather="user-check" class="font-medium-4"></i>
-                                </span>
-                            </div>
+
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="card">
-                        <div class="card-body d-flex align-items-center justify-content-between">
-                            <div>
-                                <h3 class="fw-bolder mb-75"><?php echo $leadBookedFetch; ?></h3>
-                                <span>Total Booked</span>
-                            </div>
-                            <div class="avatar bg-light-warning p-50">
-                                <span class="avatar-content">
-                                    <i data-feather="user-x" class="font-medium-4"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!--/ Statistics Card -->
+
             </div>
+
 
             <!-- <div class="row match-height">
                         <div class="col-xl-12 col-md-6 col-12">
@@ -263,42 +293,7 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
                         </div>
                     </div> -->
 
-            <div class="row match-height">
 
-                <!-- Earnings Card -->
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="card earnings-card">
-                        <div class="card-body">
-                            <div class="row">
-                                <?php
-            $qpackage=mysqli_query($conn,"select * , lead_id, count(lead_id) as count from package inner join package_assign on package_assign.lead_id=package.id where firm_id='$id' group by lead_id HAVING COUNT(lead_id) > 0 ;");
-
-            while($fpackage=mysqli_fetch_array($qpackage)){
-            $lead_id=$fpackage['count'];
-            $lead_id1=$fpackage['total_lead'];
-            $lead_id2=($lead_id/$lead_id1)*100;
-            $round= (round($lead_id2));
-              
-            ?>
-                                <div class="col-6">
-                                    <h4 class="card-title mb-1">Packages</h4>
-                                    <div class="font-small-2"><?php echo $fpackage['title']; ?></div>
-                                    <h5 class="mb-1"><?php echo $fpackage['count'];; ?></h5>
-                                    <p class="card-text text-muted font-small-2">
-                                        <span class="fw-bolder"><?php echo $round; ?></span><span><?php echo $round; ?>
-                                            % out of <?php echo $fpackage['total_lead']; ?> Leads</span>
-                                    </p>
-                                </div>
-                                <?php } ?>
-                                <div class="col-6">
-                                    <div id="earnings-chart"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--/ Earnings Card -->
-            </div>
 
             <div class="row match-height">
                 <!-- Goal Overview Card -->
@@ -307,7 +302,7 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
                     <div class="card">
                         <div class="card-header flex-column align-items-start">
                             <h4 class="card-title mb-75">Lead Status </h4>
-                            
+
                         </div>
                         <div class="card-body">
                             <div id="donut-chart"></div>
@@ -367,8 +362,8 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
                     <div class="card">
                         <div
                             class=" card-header d-flex flex-md-row flex-column justify-content-md-between justify-content-start align-items-md-center align-items-start ">
-                            <h4 class="card-title">Lead Status 
-                            Monthly Lead and Ticket</h4>
+                            <h4 class="card-title">Lead Status
+                                Monthly Lead and Ticket</h4>
                             <div class="d-flex align-items-center mt-md-0 mt-1">
                                 <i class="font-medium-2" data-feather="calendar"></i>
                                 <input type="text" class="form-control flat-picker bg-transparent border-0 shadow-none"
@@ -423,18 +418,8 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
                         ]
                     }
                 </script>
-                <div class="col-lg-6 col-md-6 col-12 position-relative">
 
-                            <!-- Calendar -->
-                                <div class="card shadow-none border-0 mb-0 rounded-0">
-                                    <div class="card-body pb-0">
-                                        <div id="calendar"></div>
-                                    </div>
-                                </div>
-                            <!-- /Calendar -->
-
-                        </div>
-                    </div>
+            </div>
 
 
 
