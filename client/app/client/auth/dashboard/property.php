@@ -2,10 +2,10 @@
 <?php
 session_start();
 include("config.php");
-$id=$_SESSION['id'];
+// $id=$_SESSION['id'];
 if(isset($_POST['add_property'])){
     
-    // $add_property=$_POST['add_property'];
+    $description=$_POST['description'];
    
     $client_name1=$_POST['client_name'];
     $mobile_no1=$_POST['mobile_no'];
@@ -18,7 +18,7 @@ if(isset($_POST['add_property'])){
     // date_default_timezone_set('Asia/Kolkata');
     //   $date=date('Y-m-d H:i:s');
 
-    $sql=mysqli_query($conn,"INSERT INTO `property`(`client_name`, `mobile_no`,`apartment_type`,`area`,`type`,`status`) VALUES ('$client_name1','$mobile_no1' ,'$apartment_type1','$area1','$type1','$status')");
+    $sql=mysqli_query($conn,"INSERT INTO `property`(`client_name`, `mobile_no`,`apartment_type`,`area`,`type`,`status`,`description`) VALUES ('$client_name1','$mobile_no1' ,'$apartment_type1','$area1','$type1','$status','$description')");
      if($sql==1){
         echo"<script>alert('new record has been added succesfully!');php</script>";
      }
@@ -26,6 +26,39 @@ if(isset($_POST['add_property'])){
         echo"<script>alert('connection failed!');</script>";
      }
 }
+
+
+
+if(isset($_POST['cusEdit'])){
+    $id=$_POST['id'];
+    $description=$_POST['description'];
+    $client_name1=$_POST['client_name'];
+    $mobile_no1=$_POST['mobile_no'];
+    $apartment_type1=$_POST['apartment_type'];
+    $area1=$_POST['area'];
+    $status='available';
+    $type1=$_POST['type'];
+    $status=$_POST['status'];
+
+
+   
+   
+    $sql="UPDATE `property` SET `client_name`='$client_name1',`mobile_no`='$mobile_no1',`apartment_type`='$apartment_type1',`area`='$area1',`status`='$status',`type`='$type',`description`='$description' WHERE id='$id.'";
+
+    if (mysqli_query($conn, $sql)){
+      header("location:property.php");
+   } else {
+      echo "<script> alert ('connection failed !');window.location.href='property.php'</script>";
+   }
+  }
+
+  if(isset($_GET['delid'])){
+    $id=mysqli_real_escape_string($conn,$_GET['delid']);
+    $sql=mysqli_query($conn,"delete from property where id='$id'");
+    if($sql=1){
+        header("location:property.php");
+    }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -249,19 +282,29 @@ if(isset($_POST['add_property'])){
                                             <td style="text-align:center"><?php
                                                 $status=$row['status'];
                                                 if($status=='available'){
-                                                    echo '<span class="badge badge-success">available</span>';
+                                                    echo '<span class="badge badge-light-success">available</span>';
                                                 }
                                                 else if($status=='not available'){
-                                                    echo '<span class="badge badge-danger">not available</span>';
+                                                    echo '<span class="badge badge-light-danger">not available</span>';
                                                 }
                                                 ?>
                                             </td>
-                                            <td class="mx-0">
-                                                <a href="index.php" class="ms-1"><i class="fa fa-eye"></i></a>
-                                                <a href="index.php" class="ms-1"><i class="fa fa-edit"></i></a>
-                                                <a href="index.php" class="ms-1"><i
-                                                        class="fa fa-trash-alt"></i></a>
-                                            </td>
+                                            <td>
+                      
+
+                
+                    <button type="button" data-id="<?php echo $row['id'] ?>"  class="btn btn-outline-primary view" data-bs-toggle="modal" data-bs-target="#addNewCard" >
+                    <i data-feather="eye"></i>
+                                    </button>
+
+                                    <a href="property.php?delid=<?php echo $row['id']; ?>"><button type="button" class="btn btn-outline-primary"><i data-feather="trash"></i></button></a>
+
+
+                                    <button type="button" data-id="<?php echo $row['id'] ?>"  class="btn btn-outline-primary edit" data-bs-toggle="modal" data-bs-target="#edit" >
+                                    <i data-feather="edit"></i>
+                                    </button>
+
+                  </td>
 
                                         </tr>
                                         <?php $count++; } ?>
@@ -303,12 +346,12 @@ if(isset($_POST['add_property'])){
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <label class="form-label" for="modalEditUserLastName">Mobile No.</label>
-                                    <input type="text" name="mobile_no" id="modalEditUserLastName" name="description"
+                                    <input type="text" name="mobile_no" id="modalEditUserLastName" 
                                         class="form-control" placeholder="Mobile No." data-msg="Description" />
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <label class="form-label" for="modalEditUserLastName">Area</label>
-                                    <input type="text" name="area" id="modalEditUserLastName" name="description"
+                                    <input type="text" name="area" id="modalEditUserLastName" 
                                         class="form-control" placeholder="Building Name" data-msg="Description" />
                                 </div>
                                 <div class="col-12 col-md-6">
@@ -337,6 +380,10 @@ if(isset($_POST['add_property'])){
 
                                     </select>
                                 </div>
+                                <div class="col-12 col-md-12">
+                                <label class="form-label" for="modalEditUserEmail">Description</label>
+                                <textarea  class="form-control" placeholder="description" name="description" ></textarea>
+                                </div>
                                 <div class="modal-footer">
                             <button type="submit" class="btn btn-primary" name="add_property" data-bs-dismiss="modal">Add</button>
                             <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
@@ -352,6 +399,47 @@ if(isset($_POST['add_property'])){
             </div>
         </div>
         <!-- Basic trigger modal end -->
+
+             <!-- view customer -->
+     <div class="modal fade" id="addNewCard" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-transparent">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75" onsubmit="return false" action="cus.php">
+
+                            <div class="modal-body px-sm-5 mx-50 pb-5 body">
+
+                            </div>
+                         
+                         </form>
+                        
+                        </div>
+                    </div>
+                </div>
+                <!--/ view customer -->
+
+                <!-- edit customer -->
+  <div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-transparent">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75" action="" method="post">
+
+                            <div class="modal-body px-sm-5 mx-50 pb-5 body1">
+
+                            </div>
+                         
+                           
+                         </form>
+                        
+                        </div>
+                    </div>
+                </div>
+                <!--/ Edit customer -->
     </div>
     <!-- Basic Modals end -->
     <!-- END: Content-->
@@ -418,6 +506,43 @@ if(isset($_POST['add_property'])){
 
         });
     </script>
+    <script>
+          $(document).ready(function(){
+          $('.view').click(function(){
+            let dnk = $(this).data('id');
+           
+            $.ajax({
+            url: 'cus.php',
+            type: 'post',
+            data: {dnk: dnk},
+            success: function(response2){ 
+              $('.body').html(response2);
+              $('#addNewCard').modal('show'); 
+            }
+          });
+          });
+          });
+          </script>
+
+
+
+<script>
+          $(document).ready(function(){
+          $('.edit').click(function(){
+            let dnkk = $(this).data('id');
+           
+            $.ajax({
+            url: 'cus.php',
+            type: 'post',
+            data: {dnkk: dnkk},
+            success: function(response1){ 
+              $('.body1').html(response1);
+              $('#editmodal').modal('show'); 
+            }
+          });
+          });
+          });
+          </script>
 </body>
 <!-- END: Body-->
 
