@@ -263,7 +263,7 @@ if(isset($_POST['add_property'])){
                                             </td>
 
                                         </tr>
-                                        <?php $count++; } ?>
+                                        <?php $count++; } ?> 
                                     </tbody>
                                 </table>
                             </div>
