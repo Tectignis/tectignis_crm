@@ -5,16 +5,13 @@ $id=$_SESSION['id'];
 if(isset($_POST['submit'])){
     $title=$_POST['title'];
     $schedule=$_POST['schedule'];
-    $site_visit=$_POST['site_visit'];
-    $monthly_rent=$_POST['monthly_rent'];
-    $call_followup=$_POST['call_followup'];
-    $registration=$_POST['registration'];
+    $select_label=$_POST['select_label'];
     $start_date=$_POST['start_date'];
     $end_date=$_POST['end_date'];
     $description=$_POST['description'];
     
 
-    $sql=mysqli_query($conn,"INSERT INTO `event`(`title`, `schedule`, `site_visit`, `monthly_rent`, `call_followup`, `registration`, `start_date`, `end_date`, `description`) VALUES ('$title','$schedule','$site_visit','$monthly_rent','$call_followup','$registration','$start_date','$end_date','$description')");
+    $sql=mysqli_query($conn,"INSERT INTO `event`(`title`, `schedule`, `select_label`, `start_date`, `end_date`, `description`) VALUES ('$title','$schedule','$select_label','$start_date','$end_date','$description')");
      if($sql==1){
         echo"<script>alert('new record has been added succesfully!');php</script>";
      }
@@ -253,15 +250,15 @@ if(isset($_POST['submit'])){
                                 required />
                         </div>
                         <div class="mb-1">
-                            <label for="select-label" class="form-label">Label</label>
+                            <label for="select-label" class="form-label" name="select_label">Label</label>
                             <select class="select2 select-label form-select w-100" id="select-label"
-                                name="select-label">
-                                <option data-label="primary" value="Business" name="schedule">schedule A Meeting
+                                name="select_label">
+                                <option data-label="primary" value="Business" >schedule A Meeting
                                 </option>
-                                <option data-label="danger" value="Personal" name="site_visit">Site Visit</option>
-                                <option data-label="warning" value="Family" name="monthly_rent">Monthly Rent</option>
-                                <option data-label="success" value="Holiday" name="call_followup">Call Followup</option>
-                                <option data-label="info" value="Holiday" name="registration">Registration</option>
+                                <option data-label="danger" value="Personal" >Site Visit</option>
+                                <option data-label="warning" value="Family" >Monthly Rent</option>
+                                <option data-label="success" value="Holiday" >Call Followup</option>
+                                <option data-label="info" value="Holiday" >Registration</option>
                             </select>
                         </div>
                         <div class="mb-1 position-relative">
