@@ -37,6 +37,8 @@
     <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-menu.css">
     <link rel="stylesheet" type="text/css" href="app-assets/css/plugins/forms/form-validation.css">
     <!-- END: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="app-assets\fonts\font-awesome\css\font-awesome.css">
+
 
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
@@ -49,7 +51,8 @@
 
 <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
 
-
+<?php include "include/header.php"; ?>
+<?php include "include/sidebar.php"; ?>
 
     <!-- BEGIN: Content-->
     <div class="app-content content ">
@@ -67,11 +70,11 @@
                                 <div class="card-body d-flex align-items-center justify-content-between">
                                     <div>
                                         <h3 class="fw-bolder mb-75">21,459</h3>
-                                        <span>Total Users</span>
+                                        <span class="fw-bolder">Flat   Sell</span>
                                     </div>
                                     <div class="avatar bg-light-primary p-50">
                                         <span class="avatar-content">
-                                            <i data-feather="user" class="font-medium-4"></i>
+                                            <i  class="font-medium-4 fa fa-home"></i>
                                         </span>
                                     </div>
                                 </div>
@@ -82,11 +85,11 @@
                                 <div class="card-body d-flex align-items-center justify-content-between">
                                     <div>
                                         <h3 class="fw-bolder mb-75">4,567</h3>
-                                        <span>Paid Users</span>
+                                        <span class="fw-bolder">Flat Rent</span>
                                     </div>
                                     <div class="avatar bg-light-danger p-50">
                                         <span class="avatar-content">
-                                            <i data-feather="user-plus" class="font-medium-4"></i>
+                                        <i  class="font-medium-4 fa fa-home"></i>
                                         </span>
                                     </div>
                                 </div>
@@ -97,11 +100,11 @@
                                 <div class="card-body d-flex align-items-center justify-content-between">
                                     <div>
                                         <h3 class="fw-bolder mb-75">19,860</h3>
-                                        <span>Active Users</span>
+                                        <span class="fw-bolder">Shops / Office Sell</span>
                                     </div>
                                     <div class="avatar bg-light-success p-50">
                                         <span class="avatar-content">
-                                            <i data-feather="user-check" class="font-medium-4"></i>
+                                            <i class="font-medium-4 fa fa fa-home"></i>
                                         </span>
                                     </div>
                                 </div>
@@ -112,11 +115,11 @@
                                 <div class="card-body d-flex align-items-center justify-content-between">
                                     <div>
                                         <h3 class="fw-bolder mb-75">237</h3>
-                                        <span>Pending Users</span>
+                                        <span class="fw-bolder">Shops / Office Rent</span>
                                     </div>
                                     <div class="avatar bg-light-warning p-50">
                                         <span class="avatar-content">
-                                            <i data-feather="user-x" class="font-medium-4"></i>
+                                        <i class="font-medium-4 fa fa-home"></i>
                                         </span>
                                     </div>
                                 </div>
@@ -169,13 +172,12 @@
     </div>
     <!-- END: Content-->
 
+<?php include "include/footer.php"; ?>
+
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
 
-    <!-- BEGIN: Footer-->
-    <footer class="footer footer-static footer-light">
-        <p class="clearfix mb-0"><span class="float-md-start d-block d-md-inline-block mt-25">COPYRIGHT &copy; 2021<a class="ms-25" href="https://1.envato.market/pixinvent_portfolio" target="_blank">Pixinvent</a><span class="d-none d-sm-inline-block">, All rights Reserved</span></span><span class="float-md-end d-none d-md-block">Hand-crafted & Made with<i data-feather="heart"></i></span></p>
-    </footer>
+ 
     <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
     <!-- END: Footer-->
 

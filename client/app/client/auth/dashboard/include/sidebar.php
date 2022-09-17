@@ -51,6 +51,8 @@
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="pricing.php" target="_blank"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">Pricing</span></a>
                 </li>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="property.php" target="_blank"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">Property</span></a>
+                </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Invoice">Account Setting</span></a>
                     <ul class="menu-content">
                         <li><a class="d-flex align-items-center" href="account.php"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Account</span></a>
