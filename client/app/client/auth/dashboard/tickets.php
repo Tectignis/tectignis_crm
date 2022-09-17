@@ -163,17 +163,18 @@ if(isset($_POST['ticket'])){
                                             <td><?php echo $row['ticket_no']; ?></td>
                                             <td><?php echo $row['Description']; ?></td>
                                             <td><?php echo $row['Subject']; ?></td>
-                                            <td style="text-align:center"><?php
+                                            <td style="text-align:center">
+                                            <?php
                                                 $status=$row['status'];
                                                 if($status=='Open'){
-                                                    echo '<span class="badge badge-success">Open</span>';
+                                                    echo '<span class="badge badge-light-danger">Open</span>';
                                                 }
                                                 else if($status=='Inprocess'){
-                                                    echo '<span class="badge badge-danger">In Proccess</span>';
+                                                    echo '<span class="badge badge-light-primary">In Proccess</span>';
                                                 }else if($status=='Hold'){
-                                                   echo '<span class="badge badge-warning">Hold On</span>';
+                                                   echo '<span class="badge badge-light-dark">Hold On</span>';
                                                 }else if($status=='Closed'){
-                                                    echo '<span class="badge badge-secondary">Closed</span>';
+                                                    echo '<span class="badge badge-light-success">Closed</span>';
                                                 }
                                                 ?>
                                             </td>
