@@ -1,3 +1,33 @@
+
+<?php
+session_start();
+include("config.php");
+$id=$_SESSION['id'];
+if(isset($_POST['add_property'])){
+    
+    // $add_property=$_POST['add_property'];
+   
+    $client_name1=$_POST['client_name'];
+    $mobile_no1=$_POST['mobile_no'];
+    $apartment_type1=$_POST['apartment_type'];
+    $area1=$_POST['area'];
+    $status='available';
+    $type1=$_POST['type'];
+
+    // $status='Open';
+    // date_default_timezone_set('Asia/Kolkata');
+    //   $date=date('Y-m-d H:i:s');
+
+    $sql=mysqli_query($conn,"INSERT INTO `property`(`client_name`, `mobile_no`,`apartment_type`,`area`,`type`,`status`) VALUES ('$client_name1','$mobile_no1' ,'$apartment_type1','$area1','$type1','$status')");
+     if($sql==1){
+        echo"<script>alert('new record has been added succesfully!');php</script>";
+     }
+     else{
+        echo"<script>alert('connection failed!');</script>";
+     }
+}
+?>
+
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
@@ -69,11 +99,15 @@
                 <!-- users list start -->
                 <section class="app-user-list">
                     <div class="row">
+                          <?php
+                                $query=mysqli_query($conn,"select * from property where type='flat sell'");
+                                $count1=mysqli_num_rows($query);
+                                    ?>
                         <div class="col-lg-3 col-sm-6">
                             <div class="card">
                                 <div class="card-body d-flex align-items-center justify-content-between">
                                     <div>
-                                        <h3 class="fw-bolder mb-75">21,459</h3>
+                                        <h3 class="fw-bolder mb-75"><?php echo $count1; ?></h3>
                                         <span class="fw-bolder">Flat Sell</span>
                                     </div>
                                     <div class="avatar bg-light-primary p-50">
@@ -84,11 +118,15 @@
                                 </div>
                             </div>
                         </div>
+                        <?php
+                                $query=mysqli_query($conn,"select * from property where type='Flat Rent'");
+                                $count2=mysqli_num_rows($query);
+                                    ?>
                         <div class="col-lg-3 col-sm-6">
                             <div class="card">
                                 <div class="card-body d-flex align-items-center justify-content-between">
                                     <div>
-                                        <h3 class="fw-bolder mb-75">4,567</h3>
+                                        <h3 class="fw-bolder mb-75"><?php echo $count2; ?></h3>
                                         <span class="fw-bolder">Flat Rent</span>
                                     </div>
                                     <div class="avatar bg-light-danger p-50">
@@ -99,11 +137,15 @@
                                 </div>
                             </div>
                         </div>
+                        <?php
+                                $query=mysqli_query($conn,"select * from property where type='Shop / Office Sell'");
+                                $count3=mysqli_num_rows($query);
+                                    ?>
                         <div class="col-lg-3 col-sm-6">
                             <div class="card">
                                 <div class="card-body d-flex align-items-center justify-content-between">
                                     <div>
-                                        <h3 class="fw-bolder mb-75">19,860</h3>
+                                        <h3 class="fw-bolder mb-75"><?php echo $count3; ?></h3>
                                         <span class="fw-bolder">Shops / Office Sell</span>
                                     </div>
                                     <div class="avatar bg-light-success p-50">
@@ -114,12 +156,16 @@
                                 </div>
                             </div>
                         </div>
+                        <?php
+                                $query=mysqli_query($conn,"select * from property where type='Shop / Office Rent'");
+                                $count4=mysqli_num_rows($query);
+                                    ?>
                         <div class="col-lg-3 col-sm-6">
                             <div class="card">
                                 <div class="card-body d-flex align-items-center justify-content-between">
                                     <div>
-                                        <h3 class="fw-bolder mb-75">237</h3>
-                                        <span class="fw-bolder">Shops / Office Rent</span>
+                                        <h3 class="fw-bolder mb-75"><?php echo $count4; ?></h3>
+                                        <span class="fw-bolder">Shop / Office Rent</span>
                                     </div>
                                     <div class="avatar bg-light-warning p-50">
                                         <span class="avatar-content">
@@ -154,18 +200,18 @@
                                         for="UserRole">Type</label><select id="UserRole"
                                         class="form-select text-capitalize mb-md-0 mb-2">
                                         <option value="" disabled selected> Select Type </option>
-                                        <option value="Admin" class="text-capitalize">Flat Sell</option>
-                                        <option value="Author" class="text-capitalize">Flat Rent</option>
-                                        <option value="Editor" class="text-capitalize">Shop / Office Sell</option>
-                                        <option value="Maintainer" class="text-capitalize">Shop / Office Rent</option>
+                                        <option value="Flat Sell" class="text-capitalize">Flat Sell</option>
+                                        <option value="Flat Rent" class="text-capitalize">Flat Rent</option>
+                                        <option value="Shop / Office Sell" class="text-capitalize">Shop / Office Sell</option>
+                                        <option value="Shop / Office Rent" class="text-capitalize">Shop / Office Rent</option>
                                     </select></div>
 
                                 <div class="col-md-4 user_status"><label class="form-label"
                                         for="FilterTransaction">Status</label>
                                     <select id="FilterTransaction" class="form-select text-capitalize mb-md-0 mb-2xx">
                                         <option value="" disabled selected> Select Status </option>
-                                        <option value="Pending" class="text-capitalize">Available</option>
-                                        <option value="Active" class="text-capitalize">Not Available</option>
+                                        <option value="Available" class="text-capitalize">Available</option>
+                                        <option value="Not Available" class="text-capitalize">Not Available</option>
                                     </select>
                                 </div>
                                 <div class="col-md-4 user_status"><label class="form-label"
@@ -178,32 +224,46 @@
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Clients</th>
+                                            <th>Client Name</th>
                                             <th>Mobile No.</th>
                                             <th>Type</th>
-                                            <th>Cost</th>
+                                            <th>Apartment Type</th>
+                                            <th>Area</th>
                                             <th>Status</th>
-                                            <th>Building Name</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                    <?php
+                                            $sql=mysqli_query($conn,"select * from property");
+                                            $count=1;
+                                            while ($row=mysqli_fetch_array($sql)){ 
+                                        ?>
 
                                         <tr>
-                                            <td>Sarvesh</td>
-                                            <td>1234567890</td>
-                                            <td>flat sell</td>
-                                            <td>999/-</td>
-                                            <td>Sold</td>
-                                            <td>Dreamland</td>
-                                            <td>
-                                                <a href="index.php" class="btn btn-sm"><i class="fa fa-eye"></i></a>
-                                                <a href="index.php" class="btn btn-sm"><i class="fa fa-edit"></i></a>
-                                                <a href="index.php" class="btn btn-sm"><i
+                                            <td><?php echo $row['client_name']; ?></td>
+                                            <td><?php echo $row['mobile_no']; ?></td>
+                                            <td><?php echo $row['type']; ?></td>
+                                            <td><?php echo $row['apartment_type']; ?></td>
+                                            <td><?php echo $row['area']; ?></td>
+                                            <td style="text-align:center"><?php
+                                                $status=$row['status'];
+                                                if($status=='available'){
+                                                    echo '<span class="badge badge-success">available</span>';
+                                                }
+                                                else if($status=='not available'){
+                                                    echo '<span class="badge badge-danger">not available</span>';}
+                                                ?>
+                                            </td>
+                                            <td class="mx-0">
+                                                <a href="index.php" class="ms-1"><i class="fa fa-eye"></i></a>
+                                                <a href="index.php" class="ms-1"><i class="fa fa-edit"></i></a>
+                                                <a href="index.php" class="ms-1"><i
                                                         class="fa fa-trash-alt"></i></a>
                                             </td>
 
                                         </tr>
+                                        <?php $count++; } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -234,47 +294,58 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form id="editUserForm" class="invoice-repeater row gy-1 pt-75" onsubmit="return false">
+                            <form id="" class="row gy-1 pt-75" method="post">
                                 <div class="col-12 col-md-12">
-                                    <label class="form-label" for="modalEditUserFirstName">Client</label>
-                                    <input type="text" id="modalEditUserFirstName" name="modalEditUserFirstName"
+                                    <label class="form-label" for="modalEditUserFirstName">Client Name</label>
+                                    <input type="text" id="modalEditUserFirstName" name="client_name"
                                         class="form-control" placeholder="Client Name" Placeholder="Title" data-msg="Title" />
                                 </div>
-                                <div class="col-12 col-md-12">
+                                <div class="col-12 col-md-6">
                                     <label class="form-label" for="modalEditUserLastName">Mobile No.</label>
-                                    <input type="text" id="modalEditUserLastName" name="description"
+                                    <input type="text" name="mobile_no" id="modalEditUserLastName" name="description"
                                         class="form-control" placeholder="Mobile No." data-msg="Description" />
                                 </div>
-                                <div class="col-12 col-md-12">
-                                    <label class="form-label" for="modalEditUserLastName">Building Name</label>
-                                    <input type="text" id="modalEditUserLastName" name="description"
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label" for="modalEditUserLastName">Area</label>
+                                    <input type="text" name="area" id="modalEditUserLastName" name="description"
                                         class="form-control" placeholder="Building Name" data-msg="Description" />
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <label class="form-label" for="modalEditUserEmail">Type</label>
-                                    <select id="UserRole"
+                                    <select id="UserRole" name="type"
                                         class="form-select text-capitalize mb-md-0 mb-2">
                                         <option value="" disabled selected> Select Type </option>
-                                        <option value="Admin" class="text-capitalize">Flat Sell</option>
-                                        <option value="Author" class="text-capitalize">Flat Rent</option>
-                                        <option value="Editor" class="text-capitalize">Shop / Office Sell</option>
-                                        <option value="Maintainer" class="text-capitalize">Shop / Office Rent</option>
+                                        <option value="Flat Sell" class="text-capitalize">Flat Sell</option>
+                                        <option value="Flat Rent" class="text-capitalize">Flat Rent</option>
+                                        <option value="Shop / Office Sell" class="text-capitalize">Shop / Office Sell</option>
+                                        <option value="Shop / Office Rent" class="text-capitalize">Shop / Office Rent</option>
                                     </select>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <label class="form-label" for="modalEditUserEmail">Cost</label>
-                                    <input type="number" id="modalEditUserEmail" name="annualy" class="form-control"
-                                        placeholder="Cost" />
+                                    <label class="form-label" for="modalEditUserEmail">Apartment Type</label>
+                                    <select id="UserRole" name="apartment_type"
+                                        class="form-select text-capitalize mb-md-0 mb-2">
+                                        <option value="" disabled selected> Select Apartment Type </option>
+                                        <option value="1RK" class="text-capitalize">1RK</option>
+                                        <option value="1BHK" class="text-capitalize">1BHK</option>
+                                        <option value="2BHK" class="text-capitalize">2BHK</option>
+                                        <option value="3BHK" class="text-capitalize">3BHK</option>
+                                        <option value="Office" class="text-capitalize">Office</option>
+                                        <option value="Shop" class="text-capitalize">Shop</option>
+                                        <option value="Other" class="text-capitalize">Other</option>
+
+                                    </select>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Add</button>
+                                <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" name="add_property" data-bs-dismiss="modal">Add</button>
                             <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
                                         aria-label="Close">
                                         Close
                                     </button>
                         </div>
+                            </form>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
