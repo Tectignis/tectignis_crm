@@ -183,6 +183,7 @@
                                             <th>Type</th>
                                             <th>Cost</th>
                                             <th>Status</th>
+                                            <th>Building Name</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -194,6 +195,7 @@
                                             <td>flat sell</td>
                                             <td>999/-</td>
                                             <td>Sold</td>
+                                            <td>Dreamland</td>
                                             <td>
                                                 <a href="index.php" class="btn btn-sm"><i class="fa fa-eye"></i></a>
                                                 <a href="index.php" class="btn btn-sm"><i class="fa fa-edit"></i></a>
@@ -234,50 +236,44 @@
                         <div class="modal-body">
                             <form id="editUserForm" class="invoice-repeater row gy-1 pt-75" onsubmit="return false">
                                 <div class="col-12 col-md-12">
-                                    <label class="form-label" for="modalEditUserFirstName">Title</label>
+                                    <label class="form-label" for="modalEditUserFirstName">Client</label>
                                     <input type="text" id="modalEditUserFirstName" name="modalEditUserFirstName"
-                                        class="form-control" placeholder="Title" Placeholder="Title" data-msg="Title" />
+                                        class="form-control" placeholder="Client Name" Placeholder="Title" data-msg="Title" />
                                 </div>
                                 <div class="col-12 col-md-12">
-                                    <label class="form-label" for="modalEditUserLastName">Description</label>
+                                    <label class="form-label" for="modalEditUserLastName">Mobile No.</label>
                                     <input type="text" id="modalEditUserLastName" name="description"
-                                        class="form-control" placeholder="Description" data-msg="Description" />
+                                        class="form-control" placeholder="Mobile No." data-msg="Description" />
+                                </div>
+                                <div class="col-12 col-md-12">
+                                    <label class="form-label" for="modalEditUserLastName">Building Name</label>
+                                    <input type="text" id="modalEditUserLastName" name="description"
+                                        class="form-control" placeholder="Building Name" data-msg="Description" />
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <label class="form-label" for="modalEditUserEmail">Monthly</label>
-                                    <input type="number" id="modalEditUserEmail" name="monthly" class="form-control"
-                                        placeholder="Monthly" />
+                                    <label class="form-label" for="modalEditUserEmail">Type</label>
+                                    <select id="UserRole"
+                                        class="form-select text-capitalize mb-md-0 mb-2">
+                                        <option value="" disabled selected> Select Type </option>
+                                        <option value="Admin" class="text-capitalize">Flat Sell</option>
+                                        <option value="Author" class="text-capitalize">Flat Rent</option>
+                                        <option value="Editor" class="text-capitalize">Shop / Office Sell</option>
+                                        <option value="Maintainer" class="text-capitalize">Shop / Office Rent</option>
+                                    </select>
                                 </div>
                                 <div class="col-12 col-md-6">
-                                    <label class="form-label" for="modalEditUserEmail">Annualy</label>
+                                    <label class="form-label" for="modalEditUserEmail">Cost</label>
                                     <input type="number" id="modalEditUserEmail" name="annualy" class="form-control"
-                                        placeholder="Annualy" />
-                                </div>
-                                <div class="col-12">
-                                    <div class="d-flex align-items-center mt-1">
-                                        <div class="form-check form-switch form-check-primary">
-                                            <input type="checkbox" class="form-check-input" id="customSwitch10"
-                                                checked />
-                                            <label class="form-check-label" for="customSwitch10">
-                                                <span class="switch-icon-left"><i data-feather="check"></i></span>
-                                                <span class="switch-icon-right"><i data-feather="x"></i></span>
-                                            </label>
-                                        </div>
-                                        <label class="form-check-label fw-bolder" for="customSwitch10">Use as a
-                                            billing address?</label>
-                                    </div>
-                                </div>
-                                <div class="col-12 text-center mt-2 pt-50">
-                                    <button type="submit" class="btn btn-primary me-1">Submit</button>
-                                    <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
-                                        aria-label="Close">
-                                        Discard
-                                    </button>
+                                        placeholder="Cost" />
                                 </div>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Accept</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Add</button>
+                            <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+                                        aria-label="Close">
+                                        Close
+                                    </button>
                         </div>
                     </div>
                 </div>
