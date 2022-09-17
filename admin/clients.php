@@ -393,40 +393,35 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body px-sm-5 mx-50 pb-5">
-                    <h1 class="text-center mb-1" id="addNewCardTitle">Add New Card</h1>
-                    <p class="text-center">Add card for future billing</p>
+                    <h1 class="text-center mb-1" id="addNewCardTitle">Add New Client</h1>
 
                     <!-- form -->
                     <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75" onsubmit="return false">
                         <div class="col-12 col-md-6">
                             <label class="form-label" for="modalEditUserFirstName">Firm Name</label>
-                            <input type="text" id="modalEditUserFirstName" name="modalEditUserFirstName" class="form-control" placeholder="" value="" data-msg="Please enter your firm name" />
+                            <input type="text" id="modalEditUserFirstName" name="modalEditUserFirstName" class="form-control" placeholder="Firm Name" value="" data-msg="Please enter your firm name" />
                         </div>
                         <div class="col-12 col-md-6">
                             <label class="form-label" for="modalEditUserLastName"> Name</label>
-                            <input type="text" id="modalEditUserLastName" name="modalEditUserLastName" class="form-control" placeholder="" value="" data-msg="Please enter your name" />
+                            <input type="text" id="modalEditUserLastName" name="modalEditUserLastName" class="form-control" placeholder="Name" value="" data-msg="Please enter your name" />
                         </div>
                         
                         <div class="col-12 col-md-6">
                             <label class="form-label" for="modalEditUserEmail"> Email:</label>
-                            <input type="email" id="modalEditUserEmail" name="modalEditUserEmail" class="form-control" value="" placeholder="" />
+                            <input type="email" id="modalEditUserEmail" name="modalEditUserEmail" class="form-control" value="" placeholder="Email" />
                         </div>
                         <div class="col-12 col-md-6">
                             <label class="form-label" for="modalEditUserEmail">Mobile No:</label>
-                            <input type="number" id="modalEditUserEmail" name="modalEditUserEmail" class="form-control" value="" placeholder="" />
+                            <input type="number" id="modalEditUserEmail" name="modalEditUserEmail" class="form-control" value="" placeholder="Mobile No" />
                         </div>
                         <div class="col-12 col-md-6">
-                            <label class="form-label" for="modalEditUserStatus">Category</label>
+                            <label class="form-label" for="modalEditUserStatus">Packages</label>
                             <select id="modalEditUserStatus" name="modalEditUserStatus" class="form-select" aria-label="Default select example">
                                 <option selected>Real Estate</option>
                                 <option value="1">Active</option>
                                 <option value="2">Inactive</option>
                                 <option value="3">Suspended</option>
                             </select>
-                        </div>
-                        <div class="col-12 col-md-6">
-                            <label class="form-label" for="modalEditTaxID">Image</label>
-                            <input type="text" id="modalEditTaxID" name="modalEditTaxID" class="form-control modal-edit-tax-id" placeholder="Tax-8894" value="Tax-8894" />
                         </div>
 
                         <div class="col-12 text-center">
