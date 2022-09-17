@@ -2,9 +2,10 @@
 <?php
 session_start();
 include("config.php");
+$id=$_SESSION['id'];
 if(isset($_POST['ticket'])){
     
-    $id=$_SESSION['id'];
+   
     $subject=$_POST['subject'];
     $description=$_POST['description'];
     $status='Open';
