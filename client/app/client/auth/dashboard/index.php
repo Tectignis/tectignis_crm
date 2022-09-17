@@ -95,16 +95,26 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
                 <!-- Medal Card -->
                 <div class="col-xl-4 col-md-6 col-12">
                     <div class="card card-congratulation-medal">
+                                        <?php
+                                
+                                $sql=mysqli_query($conn,"select * from client");  
+                                $row=mysqli_fetch_array($sql)
+                                ?>
                         <div class="card-body">
-                            <h5>Congratulations 🎉 John!</h5>
+                            <h5>Welcome 🎉 <?php echo $row['Authorized_Name'] ?></h5>
                             <p class="card-text font-small-3">You have won gold medal</p>
+                            <?php
+              $query=mysqli_query($conn,"select * from package_assign where firm_id='$id'");
+               $count1=mysqli_num_rows($query);
+                ?>
                             <h3 class="mb-75 mt-2 pt-50">
-                                <a href="#">$48.9k</a>
+                                <a href="#"><?php echo $count1; ?></a>
                             </h3>
                             <button type="button" class="btn btn-primary">View Sales</button>
                             <img src="app-assets/images/illustration/badge.svg" class="congratulation-medal"
                                 alt="Medal Pic" />
                         </div>
+                            
                     </div>
                 </div>
                 <!--/ Medal Card -->
