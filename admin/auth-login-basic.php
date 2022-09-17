@@ -1,3 +1,28 @@
+<?php
+session_start();
+include("config.php");
+if(isset($_POST['login'])){
+$Email=$_POST['email'];
+$Password1=$_POST['password'];
+
+$sql=mysqli_query($conn,"select * from login where Email='$Email'");
+if(mysqli_num_rows($sql)>0){
+  $row=mysqli_fetch_assoc($sql); 
+  $verify=password_verify($Password1,$row['Password']);
+
+ if($verify==1){
+    $_SESSION['aid']=$row['id'];
+   
+    header("location:index.php");
+    }else{
+        echo "<script>alert('Password is incorrect');</script>";
+    }
+}
+else{
+    echo "<script>alert('Invalid Email Id');</script>";
+}
+}
+?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
@@ -9,7 +34,7 @@
     <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Login Page - Vuexy - Bootstrap HTML admin template</title>
+    <title>Admin CRM | Login</title>
     <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
@@ -56,7 +81,7 @@
                         <!-- Login basic -->
                         <div class="card mb-0">
                             <div class="card-body">
-                                <a href="index.html" class="brand-logo">
+                                <a href="index.php" class="brand-logo">
                                     <svg viewbox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="28">
                                         <defs>
                                             <lineargradient id="linearGradient-1" x1="100%" y1="10.5120544%" x2="50%" y2="89.4879456%">
@@ -80,64 +105,34 @@
                                             </g>
                                         </g>
                                     </svg>
-                                    <h2 class="brand-text text-primary ms-1">Vuexy</h2>
+                                    <h2 class="brand-text text-primary ms-1">CRM</h2>
                                 </a>
 
-                                <h4 class="card-title mb-1">Welcome to Vuexy! 👋</h4>
-                                <p class="card-text mb-2">Please sign-in to your account and start the adventure</p>
-
-                                <form class="auth-login-form mt-2" action="index.html" method="POST">
+                                <h4 class="card-title mb-1">Welcome to CRM! 👋</h4>
+                               
+                                <form class="auth-login-form mt-2"  method="POST">
                                     <div class="mb-1">
                                         <label for="login-email" class="form-label">Email</label>
-                                        <input type="text" class="form-control" id="login-email" name="login-email" placeholder="john@example.com" aria-describedby="login-email" tabindex="1" autofocus />
+                                        <input type="text" class="form-control" id="login-email" name="email" placeholder="john@example.com" aria-describedby="login-email" tabindex="1" autofocus />
                                     </div>
 
                                     <div class="mb-1">
                                         <div class="d-flex justify-content-between">
                                             <label class="form-label" for="login-password">Password</label>
-                                            <a href="auth-forgot-password-basic.html">
+                                            <a href="auth-forgot-password-basic.php">
                                                 <small>Forgot Password?</small>
                                             </a>
                                         </div>
                                         <div class="input-group input-group-merge form-password-toggle">
-                                            <input type="password" class="form-control form-control-merge" id="login-password" name="login-password" tabindex="2" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="login-password" />
+                                            <input type="password" class="form-control form-control-merge" id="login-password" name="password" tabindex="2" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="login-password" />
                                             <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
                                         </div>
                                     </div>
-                                    <div class="mb-1">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" id="remember-me" tabindex="3" />
-                                            <label class="form-check-label" for="remember-me"> Remember Me </label>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-primary w-100" tabindex="4">Sign in</button>
+                                  
+                                    <button type="submit" name="login" class="btn btn-primary w-100" tabindex="4">Login</button>
                                 </form>
 
-                                <p class="text-center mt-2">
-                                    <span>New on our platform?</span>
-                                    <a href="auth-register-basic.html">
-                                        <span>Create an account</span>
-                                    </a>
-                                </p>
-
-                                <div class="divider my-2">
-                                    <div class="divider-text">or</div>
-                                </div>
-
-                                <div class="auth-footer-btn d-flex justify-content-center">
-                                    <a href="#" class="btn btn-facebook">
-                                        <i data-feather="facebook"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-twitter white">
-                                        <i data-feather="twitter"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-google">
-                                        <i data-feather="mail"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-github">
-                                        <i data-feather="github"></i>
-                                    </a>
-                                </div>
+                               
                             </div>
                         </div>
                         <!-- /Login basic -->

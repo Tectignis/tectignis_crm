@@ -28,7 +28,7 @@
                             </svg></span>
                         <h2 class="brand-text">Client</h2>
                     </a></li>
-                <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse"><i class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i><i class="d-none d-xl-block collapse-toggle-icon font-medium-4  text-primary" data-feather="disc" data-ticon="disc"></i></a></li>
+                <!-- <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse"><i class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i><i class="d-none d-xl-block collapse-toggle-icon font-medium-4  text-primary" data-feather="disc" data-ticon="disc"></i></a></li> -->
             </ul>
         </div>
         <div class="shadow-bottom"></div>
@@ -37,24 +37,20 @@
                 <li class=" nav-item"><a class="d-flex align-items-center" href="index.php"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Dashboards</span></a></li>
               
                 <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Invoice">Packages</span></a>
-                    <ul class="menu-content">
-                        <li><a class="d-flex align-items-center" href="packages-title1.php"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Title1</span></a>
-                        </li>
-                        <li><a class="d-flex align-items-center" href="packages-title2.php"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">Title2</span></a>
-                        </li>
-                    </ul>
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="tickets.php"><i data-feather="save"></i><span class="menu-title text-truncate" data-i18n="File Manager">Tickets</span></a>
                 </li>
                
-                <li class=" nav-item"><a class="d-flex align-items-center" href="deals.php" target="_blank"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">Deals</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="deals.php"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">Deals</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="event.php" target="_blank"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">Events</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="event.php"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">Events</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="pricing.php" target="_blank"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">Pricing</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="pricing.php"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">Pricing</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="property.php" target="_blank"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">Property</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="property.php"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">Property</span></a>
                 </li>
+                </li>
+               
                 <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Invoice">Account Setting</span></a>
                     <ul class="menu-content">
                         <li><a class="d-flex align-items-center" href="account.php"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Account</span></a>

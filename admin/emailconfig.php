@@ -1,9 +1,26 @@
 <?php
-session_start();
 include("config.php");
-$id=$_SESSION['id'];
+
+if(isset($_POST['emailSettingSubmit'])){
+
+    $host=mysqli_real_escape_string($conn,$_POST['host']);
+    $port=$_POST['port'];
+    $email=$_POST['email'];
+    $username=$_POST['username'];
+    $password=mysqli_real_escape_string($conn,$_POST['password']);
+
+    $sql=mysqli_query($conn,"update email_config set host='$host',port='$port',email='$email',username='$username',password='$password'");
+
+    if($sql){
+        echo "<script>alert('Email Configuration Updated Successfully');</script>";
+    }
+    else{
+        echo "<script>alert('Email Configuration Not Updated');</script>";
+    }
+}
 
 ?>
+
 
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
@@ -16,7 +33,7 @@ $id=$_SESSION['id'];
     <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Bootstrap Tables - Vuexy - Bootstrap HTML admin template</title>
+    <title>Form Layouts - Vuexy - Bootstrap HTML admin template</title>
     <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
@@ -50,9 +67,7 @@ $id=$_SESSION['id'];
 <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
 
     <!-- BEGIN: Header-->
-    <?php
-       include('include/header.php');
-       ?>
+    <?php include"include/header.php";?>
     <ul class="main-search-list-defaultlist d-none">
         <li class="d-flex align-items-center"><a href="#">
                 <h6 class="section-label mt-75 mb-0">Files</h6>
@@ -167,9 +182,7 @@ $id=$_SESSION['id'];
             </ul>
         </div>
         <div class="shadow-bottom"></div>
-        <?php
-       include('include/sidebar.php');
-       ?>
+        <?php include"include/sidebar.php";?>
     </div>
     <!-- END: Main Menu-->
 
@@ -182,154 +195,104 @@ $id=$_SESSION['id'];
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-start mb-0">Support Table</h2>
+                            <h2 class="content-header-title float-start mb-0"> Email Configuration</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Support Table
+                                   
+                                    <li class="breadcrumb-item active"><a href="#">Email</a>
                                     </li>
                                 </ol>
                             </div>
                         </div>
                     </div>
                 </div>
-               
+              
             </div>
             <div class="content-body">
-                <!-- Basic Tables start -->
-                <div class="row" id="basic-table">
+                <!-- Basic Horizontal form layout section start -->
+                <section id="basic-horizontal-layouts">
+                    <div class="row">
                     <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Ticket</h4>
-                                
-                            </div>
-                           
-                            <div class="table-responsive">
-                            <table class="datatables-basic table">
-                            <thead>
-                                        <tr>
-                                           
-                                        <th>Sr no.</th>
-                                            <th>Ticket No.</th>
-                                            <th>Description</th>
-                                            <th>Subject</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                            
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    <?php
-                                            $sql=mysqli_query($conn,"select * from ticket where Client_Code='$id'");
-                                            $count=1;
-                                            while ($row=mysqli_fetch_array($sql)){ 
-                                        ?>
-                                        <tr>
-                                             <td><?php echo $count;?></td>
-                                            <td><?php echo $row['ticket_no']; ?></td>
-                                            <td><?php echo $row['Description']; ?></td>
-                                            <td><?php echo $row['Subject']; ?></td>
-                                            <td style="text-align:center">
-                                            <?php
-                                                $status=$row['status'];
-                                                if($status=='Open'){
-                                                    echo '<span class="badge badge-light-danger">Open</span>';
-                                                }
-                                                else if($status=='Inprocess'){
-                                                    echo '<span class="badge badge-light-primary">In Proccess</span>';
-                                                }else if($status=='Hold'){
-                                                   echo '<span class="badge badge-light-dark">Hold On</span>';
-                                                }else if($status=='Closed'){
-                                                    echo '<span class="badge badge-light-success">Closed</span>';
-                                                }
-                                                ?>
-                                            </td>
-                                          <!-- <td> <a href="ticket.php" class="btn btn-sm"><i class="fa fa-eye"></i></a>
-                                                <a href="ticket.php" class="btn btn-sm"><i class="fa fa-edit"></i></a>
-                                                <a href="ticket.php" class="btn btn-sm"><i
-                                                        class="fa fa-trash-alt"></i></a>
-                                            </td>
-                                          -->
-                                         <td>
-                      
-
-                 <button type="button" id="view" data-id="<?php echo $row['id'] ?>"class="delete-row btn-sm btn-info">
-                    <i class="fas fa-eye"></i>
-                    </button>
-
-
-                    <button type="button" class="delete-row btn-sm btn-info">
-                    <i class="fas fa-edit"></i>
-                    </button>
-
-                    <button type="button" class="delete-row btn-sm btn-info">
-                    <i class="fab fa-trash"></i>
-                  
-                    </button>
-                  </td>
-                                        </tr>
-                                    </tbody>
-                                    <?php $count++; } ?>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Basic Tables end -->
-
-               <!-- Edit User Modal -->
-               <div class="modal fade" id="editUser" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog modal-lg modal-dialog-centered modal-edit-user">
-                        <div class="modal-content">
-                            <div class="modal-header bg-transparent">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body pb-5 px-sm-5 pt-50">
-                                <div class="text-center mb-2">
-                                    <h1 class="mb-1">Customer Details</h1>
-                                    
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title"> Email Setup</h4>
                                 </div>
-                                <form id="editUserForm" class="row gy-1 pt-75" onsubmit="return false">
-                                    <div class="col-12 col-md-6">
-                                        <label class="form-label" for="modalEditUserFirstName">Customer Name</label>
-                                        <input type="text" id="modalEditUserFirstName" name="modalEditUserFirstName" class="form-control" placeholder="John" value="Gertrude" data-msg="Please enter your first name" />
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <label class="form-label" for="modalEditUserLastName">Company Name</label>
-                                        <input type="text" id="modalEditUserLastName" name="modalEditUserLastName" class="form-control" placeholder="Doe" value="Barton" data-msg="Please enter your last name" />
-                                    </div>
-                                  
-                                    <div class="col-12 col-md-6">
-                                        <label class="form-label" for="modalEditUserEmail">Email:</label>
-                                        <input type="text" id="modalEditUserEmail" name="modalEditUserEmail" class="form-control" value="gertrude@gmail.com" placeholder="example@domain.com" />
-                                    </div>
-                                
-                                    <div class="col-12 col-md-6">
-                                        <label class="form-label" for="modalEditUserPhone">Contact No</label>
-                                        <input type="text" id="modalEditUserPhone" name="modalEditUserPhone" class="form-control phone-number-mask" placeholder="+1 (609) 933-44-22" value="+1 (609) 933-44-22" />
-                                    </div>
+                                <div class="card-body">
                                     
-                                    <div class="col-6">
-                                        <label class="form-label" for="modalEditUserName">Whatsapp No</label>
-                                        <input type="text" id="modalEditUserName" name="modalEditUserName" class="form-control" value="gertrude.dev" placeholder="john.doe.007" />
-                                    </div>
-                                   
-                                    <div class="col-12 text-center mt-2 pt-50">
-                                        <button type="submit" class="btn btn-primary me-1">Submit</button>
-                                        <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">
-                                            Discard
-                                        </button>
-                                    </div>
-                                </form>
+                                <?php
+              $sql=mysqli_query($conn,"select * from email_config");
+              $arr=mysqli_fetch_array($sql);
+              ?>
+                                    <form class="form form-horizontal" name="emailSetupForm" id="emailSetupForm" method="post" enctype="multipart/form-data">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="mb-1 row">
+                                                    <div class="col-sm-3">
+                                                        <label class="col-form-label" for="host">Host</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" id="first-name" value="<?php echo $arr['host'] ?>" class="form-control" name="host" placeholder="host" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="mb-1 row">
+                                                    <div class="col-sm-3">
+                                                        <label class="col-form-label" for="email-id">Port</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" id="email-id" value="<?php echo $arr['port'] ?>" class="form-control" name="port" placeholder="port" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="mb-1 row">
+                                                    <div class="col-sm-3">
+                                                        <label class="col-form-label" for="contact-info">Email</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <input type="email"  value="<?php echo $arr['email'] ?>"id="contact-info" class="form-control" name="email" placeholder="email" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="mb-1 row">
+                                                    <div class="col-sm-3">
+                                                        <label class="col-form-label" for="password">Username</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <input type="password" id="password" value="<?php echo $arr['username'] ?>" class="form-control" name="username" placeholder="Password" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="mb-1 row">
+                                                    <div class="col-sm-3">
+                                                        <label class="col-form-label" for="password">Password</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <input type="password" id="password" value="<?php echo $arr['password'] ?>"  class="form-control" name="password" placeholder="Password" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                          
+                                            <div class="col-sm-9 offset-sm-3">
+                                            <button type="submit"  name="emailSettingSubmit" class="btn btn-primary me-1">Save</button>
+                                               
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
+                        <div class="col-md-6 col-12">
+                            
+                        </div>
                     </div>
-                </div>
-                <!--/ Edit User Modal -->
-
-            
+                </section>
+                <!-- Basic Horizontal form layout section end -->
 
 
             </div>
@@ -340,9 +303,10 @@ $id=$_SESSION['id'];
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
 
-    <?php
-       include('include/footer.php');
-       ?>
+    <!-- BEGIN: Footer-->
+    <?php include"include/footer.php";?>
+    <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
+    <!-- END: Footer-->
 
 
     <!-- BEGIN: Vendor JS-->
@@ -358,10 +322,6 @@ $id=$_SESSION['id'];
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->
-
-    <!-- BEGIN: Page JS-->
-    <script src="app-assets/js/scripts/tables/table-datatables-basic.js"></script>
-    <!-- END: Page JS-->
     <!-- END: Page JS-->
 
     <script>
