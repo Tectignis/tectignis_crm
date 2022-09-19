@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("../config.php");
-$id=$_SESSION['id'];
+// $id=$_SESSION['id'];
 
 ?>
 <!DOCTYPE html>
@@ -15,7 +15,7 @@ $id=$_SESSION['id'];
 <body>
     
 <?php
-$qss=mysqli_query($conn,"SELECT * FROM `client` WHERE `Client_Code`='$id'");
+$qss=mysqli_query($conn,"SELECT * FROM `client` WHERE `Client_Code`='35'");
 $ress=mysqli_fetch_array($qss);
 ?>
 <form action="pay.php" method="post">
