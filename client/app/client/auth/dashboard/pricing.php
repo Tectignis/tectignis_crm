@@ -71,117 +71,59 @@ $mob=$ress['Mobile_Number'];
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                        <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75" method="post">
-                                                    <div class="row">                            <div class="col-6">
-                                                            <label class="form-label" for="modalAddCardNumber">Code</label>
-                                                            <div class="input-group input-group-merge">
-                                                                <input id="modalAddCardNumber" name="todo" class="form-control add-credit-card-mask"
-                                                                    type="text" placeholder="......." aria-describedby="modalAddCard2"
-                                                                    data-msg="Please enter your credit card number" />
-                                                                <span class="input-group-text cursor-pointer p-25" id="modalAddCard2">
-                                                                    <span class="add-card-type"></span>
-                                                                </span>
-                                                            </div>
-                                                        </div>
+                                                        <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75" method="post" style="font-size:40px;">
+                                                        <div class="row">
                                                         <div class="col-6">
-                                                            <label class="form-label" for="modalAddCardNumber">Package Name</label>
-                                                            <div class="input-group input-group-merge">
-                                                                <input id="modalAddCardNumber" name="todo" class="form-control add-credit-card-mask"
-                                                                    type="text" placeholder="......." aria-describedby="modalAddCard2"
-                                                                    data-msg="Please enter your credit card number" />
-                                                                <span class="input-group-text cursor-pointer p-25" id="modalAddCard2">
-                                                                    <span class="add-card-type"></span>
-                                                                </span>
-                                                            </div>
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;"><b>Code: </b></label>
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;">001</label>
                                                         </div>
                                                         
+                                                        <div class="col-6">
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;"><b>Package Name:</b></label>
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;">aaa</label>
+                                                        </div>
                                                         </div>
                                                         <div class="row">  
                                                         <div class="col-6">
-                                                            <label class="form-label" for="modalAddCardNumber">Name</label>
-                                                            <div class="input-group input-group-merge">
-                                                                <input id="modalAddCardNumber" name="todo" class="form-control add-credit-card-mask"
-                                                                    type="text" placeholder="......." aria-describedby="modalAddCard2"
-                                                                    data-msg="Please enter your credit card number" />
-                                                                <span class="input-group-text cursor-pointer p-25" id="modalAddCard2">
-                                                                    <span class="add-card-type"></span>
-                                                                </span>
-                                                            </div>
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;"><b>Name:</b></label>
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;">kajal</label>
                                                         </div>
+                                                        
                                                         <div class="col-6">
-                                                            <label class="form-label" for="modalAddCardNumber">Start Date</label>
-                                                            <div class="input-group input-group-merge">
-                                                                <input id="modalAddCardNumber" name="todo" class="form-control add-credit-card-mask"
-                                                                    type="text" placeholder="......." aria-describedby="modalAddCard2"
-                                                                    data-msg="Please enter your credit card number" />
-                                                                <span class="input-group-text cursor-pointer p-25" id="modalAddCard2">
-                                                                    <span class="add-card-type"></span>
-                                                                </span>
-                                                            </div>
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;"><b>Start Date:</b></label>
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;">8 Aug 2022</label>
                                                         </div>
                                                         </div>
                                                         <div class="row"> 
+                                                        
                                                         <div class="col-6">
-                                                            <label class="form-label" for="modalAddCardNumber">Email</label>
-                                                            <div class="input-group input-group-merge">
-                                                                <input id="modalAddCardNumber" name="todo" class="form-control add-credit-card-mask"
-                                                                    type="text" placeholder="......." aria-describedby="modalAddCard2"
-                                                                    data-msg="Please enter your credit card number" />
-                                                                <span class="input-group-text cursor-pointer p-25" id="modalAddCard2">
-                                                                    <span class="add-card-type"></span>
-                                                                </span>
-                                                            </div>
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;"><b>Email:</b></label>
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;">lead@tectignis.in</label>
                                                         </div>
                                                         <div class="col-6">
-                                                            <label class="form-label" for="modalAddCardNumber">End Date</label>
-                                                            <div class="input-group input-group-merge">
-                                                                <input id="modalAddCardNumber" name="todo" class="form-control add-credit-card-mask"
-                                                                    type="text" placeholder="......." aria-describedby="modalAddCard2"
-                                                                    data-msg="Please enter your credit card number" />
-                                                                <span class="input-group-text cursor-pointer p-25" id="modalAddCard2">
-                                                                    <span class="add-card-type"></span>
-                                                                </span>
-                                                            </div>
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;"><b>End Date:</b></label>
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;">8 Aug 2022</label>
                                                         </div>
+                                                       
                                                         </div>
                                                         <div class="row"> 
+                                                        
                                                         <div class="col-6">
-                                                            <label class="form-label" for="modalAddCardNumber">Contact No</label>
-                                                            <div class="input-group input-group-merge">
-                                                                <input id="modalAddCardNumber" name="todo" class="form-control add-credit-card-mask"
-                                                                    type="text" placeholder="......." aria-describedby="modalAddCard2"
-                                                                    data-msg="Please enter your credit card number" />
-                                                                <span class="input-group-text cursor-pointer p-25" id="modalAddCard2">
-                                                                    <span class="add-card-type"></span>
-                                                                </span>
-                                                            </div>
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;"><b>Contact No:</b></label>
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;">7577575757</label>
                                                         </div>
                                                         <div class="col-6">
-                                                            <label class="form-label" for="modalAddCardNumber">Leads</label>
-                                                            <div class="input-group input-group-merge">
-                                                                <input id="modalAddCardNumber" name="todo" class="form-control add-credit-card-mask"
-                                                                    type="text" placeholder="......." aria-describedby="modalAddCard2"
-                                                                    data-msg="Please enter your credit card number" />
-                                                                <span class="input-group-text cursor-pointer p-25" id="modalAddCard2">
-                                                                    <span class="add-card-type"></span>
-                                                                </span>
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;"><b>Leads:</b></label>
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;">aaa</label>
+                                                            
+                                                            <div class="col-6">
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;"><b>Cost:</b></label>
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;">900</label>
                                                             </div>
                                                         </div>
                                                         
-                                                    </div>
-                                                    <div class="row"> 
-                                                        <div class="col-6">
-                                                            <label class="form-label" for="modalAddCardNumber">Cost</label>
-                                                            <div class="input-group input-group-merge">
-                                                                <input id="modalAddCardNumber" name="todo" class="form-control add-credit-card-mask"
-                                                                    type="text" placeholder="......." aria-describedby="modalAddCard2"
-                                                                    data-msg="Please enter your credit card number" />
-                                                                <span class="input-group-text cursor-pointer p-25" id="modalAddCard2">
-                                                                    <span class="add-card-type"></span>
-                                                                </span>
-                                                            </div>
                                                         </div>
-                        
+                                                        
                     </form>
                                                         </div>
                                                         <div class="modal-footer">
@@ -267,7 +209,7 @@ while($fetchprice=mysqli_fetch_array($price)){
                                                 <li class="list-group-item">Stripe integration</li>
                                             </ul>
                                             <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#large">
-                                                Large Modal
+                                            Upgrade
                                             </button>
                                         </div>
                                     </div>
