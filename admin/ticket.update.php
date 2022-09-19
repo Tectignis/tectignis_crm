@@ -74,67 +74,9 @@ if (mysqli_query($conn, $sql)){
 
 <?php
 if(isset($_POST['dnk'])){
-    $query=mysqli_query($conn,"select * from ticket where id='".$_POST['dnk']."'");
+    echo $_POST['dnk'];
+        $query=mysqli_query($conn,"select * from ticket where id='".$_POST['dnk']."'");
     $row=mysqli_fetch_array($query);
-    echo ' 
-    <h1 class="text-center mb-1" id="addNewCardTitle">Customer Details</h1>
-    <div class="row">
-    <div class="col-md-12">
-    <div class="row">
-    <div class="col-md-12">
-      <div class="form-group">
-        <label for="date">
-        <b> Ticket No: </b> 
-        </label>
-        <input type="hidden" name="id" value="'.$row['id'].'">
-        '.$row['ticket_no'].'
-      </div>
-    </div>
-    </div>
- </br>
-      <div class="row">
-       <div class="col-md-12">
-          <div class="form-group">
-            <label for="clock_in">
-            <b>  Description : </b> 
-            </label> '.$row['Description'].'
-          </div>
-        </div>
-        </div>        
-      
-        </br>
-      <div class="row">
-      <div class="col-md-12">
-      <div class="form-group">
-        <label for="date">
-        <b>  Contact No : </b> 
-        </label> '.$row['contact_no'].'
-          </div>
-        </div>
-        </div>       
-        </br>
-        <div class="row">
-      <div class="col-md-12">
-      <div class="form-group">
-        <label for="date">
-        <b>  Subject: </b> 
-        </label> '.$row['Subject'].'
-      </div>
-    </div>
-  </div>
-  </br>
-  <div class="row">
-  <div class="col-md-12">
-  <div class="form-group">
-    <label for="date">
-    <b> Status: </b> 
-    </label> '.$row['Status'].'
-  </div>
-</div>
-</div>
-
-    </div>
-  </div>
-  ';
+    echo 'hiiiiii';
   }
   ?>

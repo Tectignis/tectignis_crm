@@ -126,7 +126,12 @@ $aid=2;
                                     <span class="fw-bold">Security</span>
                                 </a>
                             </li>
-
+                            <li class="nav-item">
+                                <a class="nav-link" href="system-setting.php">
+                                    <i data-feather="link" class="font-medium-3 me-50"></i>
+                                    <span class="fw-bold">System Setting</span>
+                                </a>
+                            </li>
                             <!-- connection -->
                             <li class="nav-item">
                                 <a class="nav-link" href="page-account-settings-connections.html">

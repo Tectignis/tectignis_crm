@@ -286,25 +286,23 @@ include("config.php");
                 <!-- Basic Tables end -->
 
 
-                <div class="modal fade" id="addNewCard" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
+                <div class="modal fade" id="addNewCard" tabindex="-1" aria-labelledby="addNewCard" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header bg-transparent">
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <form id="addNewCardValidation" method="POST" action="ticket.update.php" class="row gy-1 gx-2 mt-75" >
-
-                            <div class="modal-body px-sm-5 mx-50 pb-5 body">
+                            <div class="modal-body px-sm-5 mx-50 pb-5 body2">
 
                                 </div>
                                 
-                         </form>
+                         
                         
                         </div>
                     </div>
                 </div>
 
-               <div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
+               <div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="addNewCardTitle"       aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header bg-transparent">
@@ -375,7 +373,7 @@ include("config.php");
         
 <script>
           $(document).ready(function(){
-          $('#view').click(function(){
+          $('.view').click(function(){
             let dnk = $(this).data('id');
            
             $.ajax({
@@ -383,7 +381,7 @@ include("config.php");
             type: 'post',
             data: {dnk: dnk},
             success: function(response2){ 
-              $('.body').html(response2);
+              $('.body2').html(response2);
               $('#addNewCard').modal('show'); 
             }
           });
