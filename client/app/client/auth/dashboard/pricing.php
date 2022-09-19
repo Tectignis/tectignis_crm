@@ -63,7 +63,76 @@ $mob=$ress['Mobile_Number'];
 <!-- BEGIN: Body-->
 
 <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
-
+<div class="modal fade text-start" id="large" tabindex="-1" aria-labelledby="myModalLabel17" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title" id="myModalLabel17">Large Modal</h4>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                        <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75" method="post" style="font-size:40px;">
+                                                        <div class="row">
+                                                        <div class="col-6">
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;"><b>Code: </b></label>
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;">001</label>
+                                                        </div>
+                                                        
+                                                        <div class="col-6">
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;"><b>Package Name:</b></label>
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;">aaa</label>
+                                                        </div>
+                                                        </div>
+                                                        <div class="row">  
+                                                        <div class="col-6">
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;"><b>Name:</b></label>
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;">kajal</label>
+                                                        </div>
+                                                        
+                                                        <div class="col-6">
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;"><b>Start Date:</b></label>
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;">8 Aug 2022</label>
+                                                        </div>
+                                                        </div>
+                                                        <div class="row"> 
+                                                        
+                                                        <div class="col-6">
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;"><b>Email:</b></label>
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;">lead@tectignis.in</label>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;"><b>End Date:</b></label>
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;">8 Aug 2022</label>
+                                                        </div>
+                                                       
+                                                        </div>
+                                                        <div class="row"> 
+                                                        
+                                                        <div class="col-6">
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;"><b>Contact No:</b></label>
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;">7577575757</label>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;"><b>Leads:</b></label>
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;">aaa</label>
+                                                            
+                                                            <div class="col-6">
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;"><b>Cost:</b></label>
+                                                            <label class="form-label" for="modalAddCardNumber" style="font-size:20px;">900</label>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        </div>
+                                                        
+                    </form>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Pay</button>
+                                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+    </div>
     <!-- BEGIN: Header-->
     <?php include "include/header.php"; ?>
     <!-- END: Header-->
@@ -139,7 +208,9 @@ while($fetchprice=mysqli_fetch_array($price)){
                                                 <li class="list-group-item">Custom domain support</li>
                                                 <li class="list-group-item">Stripe integration</li>
                                             </ul>
-                                            <button class="btn w-100 btn-outline-primary mt-2" type="submit">Upgrade</button>
+                                            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#large">
+                                            Upgrade
+                                            </button>
                                         </div>
                                     </div>
                                     </form>
