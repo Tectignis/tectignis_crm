@@ -1,5 +1,11 @@
 <?php
 include("config.php");
+$fetchsql=mysqli_query($conn,"select * from client WHERE `Client_Code`='35'");
+$ress=mysqli_fetch_array($fetchsql);
+$code=$ress['Client_Code'];
+$firm=$ress['Firm_Name'];
+$email=$ress['Email'];
+$mob=$ress['Mobile_Number'];
 ?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
@@ -99,11 +105,20 @@ include("config.php");
 		<div class="MultiCarousel" data-items="1,2,3,4" data-slide="1" id="MultiCarousel"  data-interval="1000">
             <div class="MultiCarousel-inner">
 <?php
-$price=mysqli_query($conn,"select * package");
+$price=mysqli_query($conn,"select * from package");
 while($fetchprice=mysqli_fetch_array($price)){
 ?>
                 <div class="item">
                        <!-- enterprise plan -->
+                      
+                       <div class="pad15">
+                       <form action="pay.php" method="post">
+                        <input type="hidden" value="<?php echo $fetchprice['total_amt'] ?>" name="amt">
+                        <input type="hidden" value="<?php echo $fetchprice['package_name'] ?>" name="packagename">
+                        <input type="hidden" value="<?php echo $code ?>" name="id">
+                        <input type="hidden" value="<?php echo $firm ?>" name="firm">
+                        <input type="hidden" value="<?php echo $email ?>" name="email">
+                        <input type="hidden" value="<?php echo $mob ?>" name="mob">
                                     <div class="card enterprise-pricing text-center">
                                         <div class="card-body">
                                             <img src="app-assets/images/illustration/Pot3.svg" class="mb-2" alt="svg img" />
@@ -124,9 +139,12 @@ while($fetchprice=mysqli_fetch_array($price)){
                                                 <li class="list-group-item">Custom domain support</li>
                                                 <li class="list-group-item">Stripe integration</li>
                                             </ul>
-                                            <button class="btn w-100 btn-outline-primary mt-2">Upgrade</button>
+                                            <button class="btn w-100 btn-outline-primary mt-2" type="submit">Upgrade</button>
                                         </div>
                                     </div>
+                                    </form>
+</div>
+
                                 <!--/ enterprise plan -->
                 </div>
                 <?php } ?>
