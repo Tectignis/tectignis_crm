@@ -65,6 +65,8 @@
                         </li>
                     </ul>
                 </li>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="quotation.php"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">Quotation</span></a>
+                </li>
             </ul>
         </div>
     </div>
