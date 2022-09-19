@@ -1,23 +1,10 @@
 <?php
-session_start();
+// session_start();
 include("config.php");
-$id=$_SESSION['id'];
+// $id=$_SESSION['id'];
 
 
-if(isset($_POST['edit'])){
-    $id=$_POST['id'];
-    $description = $_POST['description'];
-    $status = $_POST['ststus'];
-   
-    $sql="UPDATE `ticket` SET `description`='$description',`status`='$status' WHERE id='$id
-    .'";
 
-    if (mysqli_query($conn, $sql)){
-      header("location:ticket.php");
-   } else {
-      echo "<script> alert ('connection failed !');window.location.href='ticket.php'</script>";
-   }
-  }
 
   if(isset($_GET['delid'])){
     $id=mysqli_real_escape_string($conn,$_GET['delid']);
@@ -247,7 +234,7 @@ if(isset($_POST['edit'])){
                                     <tbody>
                                     <?php
                                     
-                                            $sql=mysqli_query($conn,"select * from ticket where Client_Code='$id'");
+                                            $sql=mysqli_query($conn,"select * from ticket");
                                             $count=1;
                                             while ($row=mysqli_fetch_array($sql)){ 
                                         ?>
@@ -273,10 +260,9 @@ if(isset($_POST['edit'])){
                                             </td>
                                          <td>
                       
-
-                 <button type="button" id="view" data-id="<?php echo $row['id'] ?>"class="btn btn-outline-primary eye">
-                                    <i data-feather="eye"></i>
-                    </button>
+                                         <button type="button" data-id="<?php echo $row['id'] ?>"  class="btn btn-outline-primary view" data-bs-toggle="modal" data-bs-target="#addNewCard" >
+                    <i data-feather="eye"></i>
+                                    </button>
 
 
                     <button type="button" data-id="<?php echo $row['id'] ?>"  class="btn btn-outline-primary edit" data-bs-toggle="modal" data-bs-target="#edit" >
@@ -300,60 +286,43 @@ if(isset($_POST['edit'])){
                 <!-- Basic Tables end -->
 
 
-<!-- view modal  -->
-<div class="modal fade" id="addNewCard" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
+                <div class="modal fade" id="addNewCard" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header bg-transparent">
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <form id="view" class="row gy-1 gx-2 mt-75">
+                            <form id="addNewCardValidation" method="POST" action="ticket.update.php" class="row gy-1 gx-2 mt-75" >
 
                             <div class="modal-body px-sm-5 mx-50 pb-5 body">
 
-                            </div>
-                         
+                                </div>
+                                
                          </form>
                         
                         </div>
                     </div>
                 </div>
-               <!-- Edit User Modal -->
 
-               
-               <div class="modal fade" id="edit" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog modal-lg modal-dialog-centered modal-edit-user">
+               <div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header bg-transparent">
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="modal-body pb-5 px-sm-5 pt-50">
-                                <div class="text-center mb-2">
-                                    <h1 class="mb-1">Ticket</h1>
-                                    
+                            <form id="addNewCardValidation" method="post" action="ticket.update.php" class="row gy-1 gx-2 mt-75" >
+
+                            <div class="modal-body px-sm-5 mx-50 pb-5 body1">
+
                                 </div>
-                                <form id="edit" class="row gy-1 pt-75" onsubmit="return false">
-                                    <div class="col-12 col-md-6">
-                                        <label class="form-label" for="modalEditUserFirstName">Description</label>
-                                        <input type="text" id="description" name="description" class="form-control" placeholder="Description" value="" data-msg="Please enter your first name" />
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <label class="form-label" for="modalEditUserLastName">Status</label>
-                                        <input type="text" id="status" name="status" class="form-control"  data-msg="Please enter your last name" />
-                                    </div>
-                                  
-                                   
-                                    <div class="col-12 text-center mt-2 pt-50">
-                                        <button type="submit" class="btn btn-primary me-1">Submit</button>
-                                        <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">
-                                            Discard
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
+                                
+                         </form>
+                        
                         </div>
                     </div>
                 </div>
+                <!--/ edit customer -->
+               
                 <!--/ Edit User Modal -->
 
             
@@ -388,7 +357,10 @@ if(isset($_POST['edit'])){
 
     <!-- BEGIN: Page JS-->
     <script src="app-assets/js/scripts/tables/table-datatables-basic.js"></script>
+
     <!-- END: Page JS-->
+    <script src="app-assets/js/scripts/forms/form-select2.js"></script>
+
     <!-- END: Page JS-->
 
     <script>
@@ -403,11 +375,11 @@ if(isset($_POST['edit'])){
         
 <script>
           $(document).ready(function(){
-          $('.view').click(function(){
+          $('#view').click(function(){
             let dnk = $(this).data('id');
            
             $.ajax({
-            url: 'ticket.php',
+            url: 'ticket.update.php',
             type: 'post',
             data: {dnk: dnk},
             success: function(response2){ 
@@ -427,7 +399,7 @@ if(isset($_POST['edit'])){
             let dnkk = $(this).data('id');
            
             $.ajax({
-            url: 'ticket.php',
+            url: 'ticket.update.php',
             type: 'post',
             data: {dnkk: dnkk},
             success: function(response1){ 
@@ -438,6 +410,7 @@ if(isset($_POST['edit'])){
           });
           });
           </script>
+          
     </script>
 </body>
 <!-- END: Body-->
