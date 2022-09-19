@@ -72,9 +72,8 @@ $mob=$ress['Mobile_Number'];
                                                         </div>
                                                         <div class="modal-body">
                                                         <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75" method="post">
-                                                    <div class="row">                            
-                                                    <div class="col-6">
-                                                            <label class="form-label" for="modalAddCardNumber">Name</label>
+                                                    <div class="row">                            <div class="col-6">
+                                                            <label class="form-label" for="modalAddCardNumber">Code</label>
                                                             <div class="input-group input-group-merge">
                                                                 <input id="modalAddCardNumber" name="todo" class="form-control add-credit-card-mask"
                                                                     type="text" placeholder="......." aria-describedby="modalAddCard2"
@@ -95,8 +94,11 @@ $mob=$ress['Mobile_Number'];
                                                                 </span>
                                                             </div>
                                                         </div>
+                                                        
+                                                        </div>
+                                                        <div class="row">  
                                                         <div class="col-6">
-                                                            <label class="form-label" for="modalAddCardNumber">Email</label>
+                                                            <label class="form-label" for="modalAddCardNumber">Name</label>
                                                             <div class="input-group input-group-merge">
                                                                 <input id="modalAddCardNumber" name="todo" class="form-control add-credit-card-mask"
                                                                     type="text" placeholder="......." aria-describedby="modalAddCard2"
@@ -117,8 +119,10 @@ $mob=$ress['Mobile_Number'];
                                                                 </span>
                                                             </div>
                                                         </div>
+                                                        </div>
+                                                        <div class="row"> 
                                                         <div class="col-6">
-                                                            <label class="form-label" for="modalAddCardNumber">Contact No</label>
+                                                            <label class="form-label" for="modalAddCardNumber">Email</label>
                                                             <div class="input-group input-group-merge">
                                                                 <input id="modalAddCardNumber" name="todo" class="form-control add-credit-card-mask"
                                                                     type="text" placeholder="......." aria-describedby="modalAddCard2"
@@ -139,6 +143,19 @@ $mob=$ress['Mobile_Number'];
                                                                 </span>
                                                             </div>
                                                         </div>
+                                                        </div>
+                                                        <div class="row"> 
+                                                        <div class="col-6">
+                                                            <label class="form-label" for="modalAddCardNumber">Contact No</label>
+                                                            <div class="input-group input-group-merge">
+                                                                <input id="modalAddCardNumber" name="todo" class="form-control add-credit-card-mask"
+                                                                    type="text" placeholder="......." aria-describedby="modalAddCard2"
+                                                                    data-msg="Please enter your credit card number" />
+                                                                <span class="input-group-text cursor-pointer p-25" id="modalAddCard2">
+                                                                    <span class="add-card-type"></span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
                                                         <div class="col-6">
                                                             <label class="form-label" for="modalAddCardNumber">Leads</label>
                                                             <div class="input-group input-group-merge">
@@ -150,6 +167,9 @@ $mob=$ress['Mobile_Number'];
                                                                 </span>
                                                             </div>
                                                         </div>
+                                                        
+                                                    </div>
+                                                    <div class="row"> 
                                                         <div class="col-6">
                                                             <label class="form-label" for="modalAddCardNumber">Cost</label>
                                                             <div class="input-group input-group-merge">
@@ -161,9 +181,6 @@ $mob=$ress['Mobile_Number'];
                                                                 </span>
                                                             </div>
                                                         </div>
-                                                        
-                                                    </div>
-
                         
                     </form>
                                                         </div>
