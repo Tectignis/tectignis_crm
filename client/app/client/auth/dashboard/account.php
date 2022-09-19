@@ -219,7 +219,7 @@ include("config.php");
                                         <span class="fw-bold">Account</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="app-user-view-security.html">
+                                    <a class="nav-link" href="changepassword.php">
                                         <i data-feather="lock" class="font-medium-3 me-50"></i>
                                         <span class="fw-bold">Security</span>
                                     </a>
