@@ -1,4 +1,4 @@
-<?php
+<?php 
 // session_start();
 include("config.php");
 ?>
@@ -74,9 +74,100 @@ if (mysqli_query($conn, $sql)){
 
 <?php
 if(isset($_POST['dnk'])){
-    echo $_POST['dnk'];
-        $query=mysqli_query($conn,"select * from ticket where id='".$_POST['dnk']."'");
+    $query=mysqli_query($conn,"select * from ticket where id='".$_POST['dnk']."'");
     $row=mysqli_fetch_array($query);
-    echo 'hiiiiii';
+    echo ' 
+    <h1 class="text-center mb-1" id="addNewCardTitle">Ticket Details</h1>
+    <div class="row">
+    <div class="col-md-12">
+    <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label for="date">
+        <b> Ticket No: </b> 
+        </label>
+        <input type="hidden" name="id" value="'.$row['id'].'">
+        '.$row['ticket_no'].'
+      </div>
+    </div>
+    </div>
+ </br>
+ <div class="row">
+ <div class="col-md-12">
+ <div class="row">
+ <div class="col-md-12">
+   <div class="form-group">
+     <label for="date">
+     <b> Client Code: </b> 
+     </label>
+     <input type="hidden" name="id" value="'.$row['id'].'">
+     '.$row['Client_Code'].'
+   </div>
+ </div>
+ </div>
+</br>
+      <div class="row">
+       <div class="col-md-12">
+          <div class="form-group">
+            <label for="clock_in">
+            <b> Description : </b> 
+            </label> '.$row['Description'].'
+          </div>
+        </div>
+        </div>        
+      
+        </br>
+      <div class="row">
+      <div class="col-md-12">
+      <div class="form-group">
+        <label for="date">
+        <b>  Subject : </b> 
+        </label> '.$row['Subject'].'
+          </div>
+        </div>
+        </div>       
+        </br>
+        <div class="row">
+ <div class="col-md-12">
+ <div class="row">
+ <div class="col-md-12">
+   <div class="form-group">
+     <label for="date">
+     <b> Comment: </b> 
+     </label>
+     <input type="hidden" name="id" value="'.$row['id'].'">
+     '.$row['Comment'].'
+   </div>
+ </div>
+ </div>
+</br>
+<div class="row">
+ <div class="col-md-12">
+ <div class="row">
+ <div class="col-md-12">
+   <div class="form-group">
+     <label for="date">
+     <b> Date: </b> 
+     </label>
+     <input type="hidden" name="id" value="'.$row['id'].'">
+     '.$row['date'].'
+   </div>
+ </div>
+ </div>
+</br>
+        <div class="row">
+      <div class="col-md-12">
+      <div class="form-group">
+        <label for="date">
+        <b>  Status: </b> 
+        </label> '.$row['status'].'
+      </div>
+    </div>
+  </div>
+  
+
+    </div>
+  </div>
+  ';
   }
   ?>

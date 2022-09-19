@@ -1,5 +1,5 @@
 <?php
-// session_start();
+session_start();
 include("config.php");
 // $id=$_SESSION['id'];
 
@@ -193,12 +193,12 @@ include("config.php");
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-start mb-0">Support Table</h2>
+                            <h2 class="content-header-title float-start mb-0">Ticket Table</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a>
+                                    <li class="breadcrumb-item"><a href="index.php">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Support Table
+                                    <li class="breadcrumb-item active">Ticket Table
                                     </li>
                                 </ol>
                             </div>
@@ -224,8 +224,11 @@ include("config.php");
                                            
                                         <th>Sr no.</th>
                                             <th>Ticket No.</th>
+                                            <th>Client Code</th>
                                             <th>Description</th>
                                             <th>Subject</th>
+                                            <th>Comment</th>
+                                            <th>Date</th>
                                             <th>Status</th>
                                             <th>Action</th>
                                             
@@ -241,8 +244,12 @@ include("config.php");
                                         <tr>
                                              <td><?php echo $count;?></td>
                                             <td><?php echo $row['ticket_no']; ?></td>
+                                            <td><?php echo $row['Client_Code']; ?></td>
                                             <td><?php echo $row['Description']; ?></td>
                                             <td><?php echo $row['Subject']; ?></td>
+                                            <td><?php echo $row['Comment']; ?></td>
+                                            <td><?php echo $row['date']; ?></td>
+
                                             <td style="text-align:center">
                                             <?php
                                                 $status=$row['status'];
@@ -264,6 +271,7 @@ include("config.php");
                     <i data-feather="eye"></i>
                                     </button>
 
+ 
 
                     <button type="button" data-id="<?php echo $row['id'] ?>"  class="btn btn-outline-primary edit" data-bs-toggle="modal" data-bs-target="#edit" >
                                     <i data-feather="edit"></i>
@@ -284,19 +292,19 @@ include("config.php");
                     </div>
                 </div>
                 <!-- Basic Tables end -->
-
-
-                <div class="modal fade" id="addNewCard" tabindex="-1" aria-labelledby="addNewCard" aria-hidden="true">
+                <div class="modal fade" id="addNewCard" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header bg-transparent">
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="modal-body px-sm-5 mx-50 pb-5 body2">
+                            <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75" onsubmit="return false" action="ticket.update.php">
 
-                                </div>
-                                
+                            <div class="modal-body px-sm-5 mx-50 pb-5 body">
+
+                            </div>
                          
+                         </form>
                         
                         </div>
                     </div>
@@ -370,8 +378,8 @@ include("config.php");
                 });
             }
         })
-        
-<script>
+        </script>
+        <script>
           $(document).ready(function(){
           $('.view').click(function(){
             let dnk = $(this).data('id');
@@ -381,7 +389,7 @@ include("config.php");
             type: 'post',
             data: {dnk: dnk},
             success: function(response2){ 
-              $('.body2').html(response2);
+              $('.body').html(response2);
               $('#addNewCard').modal('show'); 
             }
           });
@@ -409,6 +417,16 @@ include("config.php");
           });
           </script>
           
+          <script>
+        $(function () {
+            $("#example1").DataTable({
+                "responsive": true,
+                "lengthChange": true,
+                "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+        });
     </script>
 </body>
 <!-- END: Body-->
