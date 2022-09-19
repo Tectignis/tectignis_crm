@@ -63,7 +63,117 @@ $mob=$ress['Mobile_Number'];
 <!-- BEGIN: Body-->
 
 <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
+<div class="modal fade text-start" id="large" tabindex="-1" aria-labelledby="myModalLabel17" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title" id="myModalLabel17">Large Modal</h4>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                        <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75" method="post">
+                                                    <div class="row">                            
+                                                    <div class="col-6">
+                                                            <label class="form-label" for="modalAddCardNumber">Name</label>
+                                                            <div class="input-group input-group-merge">
+                                                                <input id="modalAddCardNumber" name="todo" class="form-control add-credit-card-mask"
+                                                                    type="text" placeholder="......." aria-describedby="modalAddCard2"
+                                                                    data-msg="Please enter your credit card number" />
+                                                                <span class="input-group-text cursor-pointer p-25" id="modalAddCard2">
+                                                                    <span class="add-card-type"></span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <label class="form-label" for="modalAddCardNumber">Package Name</label>
+                                                            <div class="input-group input-group-merge">
+                                                                <input id="modalAddCardNumber" name="todo" class="form-control add-credit-card-mask"
+                                                                    type="text" placeholder="......." aria-describedby="modalAddCard2"
+                                                                    data-msg="Please enter your credit card number" />
+                                                                <span class="input-group-text cursor-pointer p-25" id="modalAddCard2">
+                                                                    <span class="add-card-type"></span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <label class="form-label" for="modalAddCardNumber">Email</label>
+                                                            <div class="input-group input-group-merge">
+                                                                <input id="modalAddCardNumber" name="todo" class="form-control add-credit-card-mask"
+                                                                    type="text" placeholder="......." aria-describedby="modalAddCard2"
+                                                                    data-msg="Please enter your credit card number" />
+                                                                <span class="input-group-text cursor-pointer p-25" id="modalAddCard2">
+                                                                    <span class="add-card-type"></span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <label class="form-label" for="modalAddCardNumber">Start Date</label>
+                                                            <div class="input-group input-group-merge">
+                                                                <input id="modalAddCardNumber" name="todo" class="form-control add-credit-card-mask"
+                                                                    type="text" placeholder="......." aria-describedby="modalAddCard2"
+                                                                    data-msg="Please enter your credit card number" />
+                                                                <span class="input-group-text cursor-pointer p-25" id="modalAddCard2">
+                                                                    <span class="add-card-type"></span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <label class="form-label" for="modalAddCardNumber">Contact No</label>
+                                                            <div class="input-group input-group-merge">
+                                                                <input id="modalAddCardNumber" name="todo" class="form-control add-credit-card-mask"
+                                                                    type="text" placeholder="......." aria-describedby="modalAddCard2"
+                                                                    data-msg="Please enter your credit card number" />
+                                                                <span class="input-group-text cursor-pointer p-25" id="modalAddCard2">
+                                                                    <span class="add-card-type"></span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <label class="form-label" for="modalAddCardNumber">End Date</label>
+                                                            <div class="input-group input-group-merge">
+                                                                <input id="modalAddCardNumber" name="todo" class="form-control add-credit-card-mask"
+                                                                    type="text" placeholder="......." aria-describedby="modalAddCard2"
+                                                                    data-msg="Please enter your credit card number" />
+                                                                <span class="input-group-text cursor-pointer p-25" id="modalAddCard2">
+                                                                    <span class="add-card-type"></span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <label class="form-label" for="modalAddCardNumber">Leads</label>
+                                                            <div class="input-group input-group-merge">
+                                                                <input id="modalAddCardNumber" name="todo" class="form-control add-credit-card-mask"
+                                                                    type="text" placeholder="......." aria-describedby="modalAddCard2"
+                                                                    data-msg="Please enter your credit card number" />
+                                                                <span class="input-group-text cursor-pointer p-25" id="modalAddCard2">
+                                                                    <span class="add-card-type"></span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <label class="form-label" for="modalAddCardNumber">Cost</label>
+                                                            <div class="input-group input-group-merge">
+                                                                <input id="modalAddCardNumber" name="todo" class="form-control add-credit-card-mask"
+                                                                    type="text" placeholder="......." aria-describedby="modalAddCard2"
+                                                                    data-msg="Please enter your credit card number" />
+                                                                <span class="input-group-text cursor-pointer p-25" id="modalAddCard2">
+                                                                    <span class="add-card-type"></span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
 
+                        
+                    </form>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Pay</button>
+                                                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+    </div>
     <!-- BEGIN: Header-->
     <?php include "include/header.php"; ?>
     <!-- END: Header-->
@@ -139,7 +249,9 @@ while($fetchprice=mysqli_fetch_array($price)){
                                                 <li class="list-group-item">Custom domain support</li>
                                                 <li class="list-group-item">Stripe integration</li>
                                             </ul>
-                                            <button class="btn w-100 btn-outline-primary mt-2" type="submit">Upgrade</button>
+                                            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#large">
+                                                Large Modal
+                                            </button>
                                         </div>
                                     </div>
                                     </form>
