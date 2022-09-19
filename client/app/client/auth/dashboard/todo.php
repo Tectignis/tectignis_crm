@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("config.php");
-$id=$_SESSION['id'];
+// $id=$_SESSION['id'];
 if(isset($_POST['submit'])){
     $todo=$_POST['todo'];
     $status=$_POST['status'];
@@ -14,17 +14,7 @@ if(isset($_POST['submit'])){
         echo"<script>alert('connection failed!');</script>";
      }
 }
-if(isset($_POST['submit'])){
-    $status=$_POST['status'];
-   
-    $sql=mysqli_query($conn,"UPDATE `todo` SET `status`='$status' where id='$id'");
-     if($sql==1){
-        echo"<script>alert('new record has been added succesfully!');php</script>";
-     }
-     else{
-        echo"<script>alert('connection failed!');</script>";
-     }
-}
+
 
 ?>
 <!DOCTYPE html>
@@ -106,20 +96,21 @@ if(isset($_POST['submit'])){
                                 </button>
                             </div>
                             <div class="sidebar-menu-list">
+                           
                             
                                 <div class="list-group list-group-filters">
                                     <a href="#" class="list-group-item list-group-item-action active">
                                         <i data-feather="mail" class="font-medium-3 me-50"></i>
                                         <span class="align-middle"> My Task</span>
                                     </a>
-
+                                   
                                     <a href="#" class="list-group-item list-group-item-action">
                                         <i data-feather="check" class="font-medium-3 me-50"></i> <span
                                             class="align-middle">Completed</span>
                                     </a>
-
+                               
                                 </div>
-                                
+                               
 
                             </div>
                         </div>
@@ -161,7 +152,7 @@ if(isset($_POST['submit'])){
                             <!-- Todo List starts -->
                             <div class="todo-task-list-wrapper list-group">
 
-                                <ul class="todo-task-list media-list" id="todo-task-list">
+                                <ul class="todo-task-list media-list getcheck" id="todo-task-list">
                                     <?php
                                             $sql=mysqli_query($conn,"select * from todo");
                                           
@@ -173,7 +164,7 @@ if(isset($_POST['submit'])){
                                                 <i data-feather="more-vertical" class="drag-icon"></i>
                                                 <div class="title-wrapper">
                                                     <div class="form-check">
-                                                        <input type="checkbox" name="status" class="form-check-input" value="<?php echo $row['status']; ?>"
+                                                        <input type="checkbox" <?php if($row['status'] == 'close'){ ?>checked <?php } ?> name="status[]" class="form-check-input checkservice" value="<?php echo $row['todo'] ?>"
                                                             id="customCheck1" />
                                                         <label class="form-check-label" for="customCheck1"></label>
                                                     </div>
@@ -251,7 +242,17 @@ if(isset($_POST['submit'])){
                                 </span>
                             </div>
                         </div>
-                        
+                        <div class="col-12">
+                            <label class="form-label" for="modalAddCardNumber">Add Status</label>
+                            <div class="input-group input-group-merge">
+                                <input id="modalAddCardNumber" name="status" class="form-control add-credit-card-mask"
+                                    type="text" placeholder="open" aria-describedby="modalAddCard2"
+                                    data-msg="Please enter your credit card number" />
+                                <span class="input-group-text cursor-pointer p-25" id="modalAddCard2">
+                                    <span class="add-card-type"></span>
+                                </span>
+                            </div>
+                        </div>
 
                         <div class="col-12 text-center">
                             <button type="submit" class="btn btn-primary me-1 mt-1" name="submit">Submit</button>
@@ -296,6 +297,27 @@ if(isset($_POST['submit'])){
                 });
             }
         })
+    </script>
+
+    <script>
+        $(document).ready(function(){
+    $(".getcheck").change(function(){
+            var test = new Array();
+            $("input[name='status[]']:checked").each(function() {
+                test.push($(this).val());
+            });
+            $.ajax({
+    url:"chechk.php",
+    method:"post",
+    data:{
+        chec:test
+    },
+    success:function(data){
+       alert(data);
+      }
+})
+        });
+   })
     </script>
 </body>
 <!-- END: Body-->
