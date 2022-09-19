@@ -3,6 +3,29 @@ session_start();
 include("config.php");
 $id=$_SESSION['id'];
 
+
+if(isset($_POST['edit'])){
+    $id=$_POST['id'];
+    $description = $_POST['description'];
+    $status = $_POST['ststus'];
+   
+    $sql="UPDATE `ticket` SET `description`='$description',`status`='$status' WHERE id='$id
+    .'";
+
+    if (mysqli_query($conn, $sql)){
+      header("location:ticket.php");
+   } else {
+      echo "<script> alert ('connection failed !');window.location.href='ticket.php'</script>";
+   }
+  }
+
+  if(isset($_GET['delid'])){
+    $id=mysqli_real_escape_string($conn,$_GET['delid']);
+    $sql=mysqli_query($conn,"delete from ticket where id='$id'");
+    if($sql=1){
+        header("location:ticket.php");
+    }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +43,7 @@ $id=$_SESSION['id'];
     <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="app-assets\fonts\font-awesome\css\font-awesome.css">
 
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/vendors.min.css">
@@ -222,6 +246,7 @@ $id=$_SESSION['id'];
                                     </thead>
                                     <tbody>
                                     <?php
+                                    
                                             $sql=mysqli_query($conn,"select * from ticket where Client_Code='$id'");
                                             $count=1;
                                             while ($row=mysqli_fetch_array($sql)){ 
@@ -246,26 +271,21 @@ $id=$_SESSION['id'];
                                                 }
                                                 ?>
                                             </td>
-                                          <!-- <td> <a href="ticket.php" class="btn btn-sm"><i class="fa fa-eye"></i></a>
-                                                <a href="ticket.php" class="btn btn-sm"><i class="fa fa-edit"></i></a>
-                                                <a href="ticket.php" class="btn btn-sm"><i
-                                                        class="fa fa-trash-alt"></i></a>
-                                            </td>
-                                          -->
                                          <td>
                       
 
-                 <button type="button" id="view" data-id="<?php echo $row['id'] ?>"class="delete-row btn-sm btn-info">
-                    <i class="fas fa-eye"></i>
+                 <button type="button" id="view" data-id="<?php echo $row['id'] ?>"class="btn btn-outline-primary eye">
+                                    <i data-feather="eye"></i>
                     </button>
 
 
-                    <button type="button" class="delete-row btn-sm btn-info">
-                    <i class="fas fa-edit"></i>
-                    </button>
+                    <button type="button" data-id="<?php echo $row['id'] ?>"  class="btn btn-outline-primary edit" data-bs-toggle="modal" data-bs-target="#edit" >
+                                    <i data-feather="edit"></i>
+                                    </button>
 
-                    <button type="button" class="delete-row btn-sm btn-info">
-                    <i class="fab fa-trash"></i>
+                    <!-- <button type="button" data-id="<?php echo $row['id'] ?>" class="delete-row btn-sm btn-info"> -->
+                    <!-- <i class="fas fa-trash"></i> -->
+                    <a href="ticket.php?delid=<?php echo $row['id']; ?>"><button type="button" class="btn btn-outline-primary"><i data-feather="trash"></i></button></a>
                   
                     </button>
                   </td>
@@ -279,8 +299,29 @@ $id=$_SESSION['id'];
                 </div>
                 <!-- Basic Tables end -->
 
+
+<!-- view modal  -->
+<div class="modal fade" id="addNewCard" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-transparent">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form id="view" class="row gy-1 gx-2 mt-75">
+
+                            <div class="modal-body px-sm-5 mx-50 pb-5 body">
+
+                            </div>
+                         
+                         </form>
+                        
+                        </div>
+                    </div>
+                </div>
                <!-- Edit User Modal -->
-               <div class="modal fade" id="editUser" tabindex="-1" aria-hidden="true">
+
+               
+               <div class="modal fade" id="edit" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog modal-lg modal-dialog-centered modal-edit-user">
                         <div class="modal-content">
                             <div class="modal-header bg-transparent">
@@ -288,33 +329,19 @@ $id=$_SESSION['id'];
                             </div>
                             <div class="modal-body pb-5 px-sm-5 pt-50">
                                 <div class="text-center mb-2">
-                                    <h1 class="mb-1">Customer Details</h1>
+                                    <h1 class="mb-1">Ticket</h1>
                                     
                                 </div>
-                                <form id="editUserForm" class="row gy-1 pt-75" onsubmit="return false">
+                                <form id="edit" class="row gy-1 pt-75" onsubmit="return false">
                                     <div class="col-12 col-md-6">
-                                        <label class="form-label" for="modalEditUserFirstName">Customer Name</label>
-                                        <input type="text" id="modalEditUserFirstName" name="modalEditUserFirstName" class="form-control" placeholder="John" value="Gertrude" data-msg="Please enter your first name" />
+                                        <label class="form-label" for="modalEditUserFirstName">Description</label>
+                                        <input type="text" id="description" name="description" class="form-control" placeholder="Description" value="" data-msg="Please enter your first name" />
                                     </div>
                                     <div class="col-12 col-md-6">
-                                        <label class="form-label" for="modalEditUserLastName">Company Name</label>
-                                        <input type="text" id="modalEditUserLastName" name="modalEditUserLastName" class="form-control" placeholder="Doe" value="Barton" data-msg="Please enter your last name" />
+                                        <label class="form-label" for="modalEditUserLastName">Status</label>
+                                        <input type="text" id="status" name="status" class="form-control"  data-msg="Please enter your last name" />
                                     </div>
                                   
-                                    <div class="col-12 col-md-6">
-                                        <label class="form-label" for="modalEditUserEmail">Email:</label>
-                                        <input type="text" id="modalEditUserEmail" name="modalEditUserEmail" class="form-control" value="gertrude@gmail.com" placeholder="example@domain.com" />
-                                    </div>
-                                
-                                    <div class="col-12 col-md-6">
-                                        <label class="form-label" for="modalEditUserPhone">Contact No</label>
-                                        <input type="text" id="modalEditUserPhone" name="modalEditUserPhone" class="form-control phone-number-mask" placeholder="+1 (609) 933-44-22" value="+1 (609) 933-44-22" />
-                                    </div>
-                                    
-                                    <div class="col-6">
-                                        <label class="form-label" for="modalEditUserName">Whatsapp No</label>
-                                        <input type="text" id="modalEditUserName" name="modalEditUserName" class="form-control" value="gertrude.dev" placeholder="john.doe.007" />
-                                    </div>
                                    
                                     <div class="col-12 text-center mt-2 pt-50">
                                         <button type="submit" class="btn btn-primary me-1">Submit</button>
@@ -373,6 +400,44 @@ $id=$_SESSION['id'];
                 });
             }
         })
+        
+<script>
+          $(document).ready(function(){
+          $('.view').click(function(){
+            let dnk = $(this).data('id');
+           
+            $.ajax({
+            url: 'ticket.php',
+            type: 'post',
+            data: {dnk: dnk},
+            success: function(response2){ 
+              $('.body').html(response2);
+              $('#addNewCard').modal('show'); 
+            }
+          });
+          });
+          });
+          </script>
+
+
+
+<script>
+          $(document).ready(function(){
+          $('.edit').click(function(){
+            let dnkk = $(this).data('id');
+           
+            $.ajax({
+            url: 'ticket.php',
+            type: 'post',
+            data: {dnkk: dnkk},
+            success: function(response1){ 
+              $('.body1').html(response1);
+              $('#editmodal').modal('show'); 
+            }
+          });
+          });
+          });
+          </script>
     </script>
 </body>
 <!-- END: Body-->
