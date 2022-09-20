@@ -148,19 +148,19 @@ include("config.php");
                                             </td>
                                          <td>
                       
-                                         <button type="button" data-id="<?php echo $row['id'] ?>"  class="btn btn-outline-primary view" data-bs-toggle="modal" data-bs-target="#addNewCard" >
-                    <i data-feather="eye"></i>
-                                    </button>
+                                         <a href="" type="button" data-id="<?php echo $row['id'] ?>"  class="view" data-bs-toggle="modal" data-bs-target="#addNewCard" >
+                    <i class="fa fa-eye" style="font-size:15px;margin: right 5px;"></i>
+                                            </a>
 
  
 
-                    <button type="button" data-id="<?php echo $row['id'] ?>" <?php if($status=='Closed'){ ?>style="display:none"<?php } ?>  class="btn btn-outline-primary edit" data-bs-toggle="modal" data-bs-target="#edit" >
-                                    <i data-feather="edit"></i>
-                                    </button>
+                    <a type="button" href="" data-id="<?php echo $row['id'] ?>" <?php if($status=='Closed'){ ?>style="display:none"<?php } ?>  class="edit" data-bs-toggle="modal" data-bs-target="#edit" >
+                                    <i class="fa fa-edit" style="font-size:15px;margin: right 5px;"></i>
+                                            </a>
 
                     <!-- <button type="button" data-id="<?php echo $row['id'] ?>" class="delete-row btn-sm btn-info"> -->
                     <!-- <i class="fas fa-trash"></i> -->
-                    <a href="ticket.php?delid=<?php echo $row['id']; ?>" <?php if($status=='Closed'){ ?>style="display:none"<?php } ?>><button type="button" class="btn btn-outline-primary"><i data-feather="trash"></i></button></a>
+                    <a href="ticket.php?delid=<?php echo $row['id']; ?>" <?php if($status=='Closed'){ ?>style="display:none"<?php } ?>><i class="fa fa-trash" style="font-size:15px; margin: right 80px;"></i></a>
                   
                     </button>
                   </td>
@@ -223,9 +223,7 @@ include("config.php");
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
 
-    <?php
-       include('include/footer.php');
-       ?>
+   
 
 
     <!-- BEGIN: Vendor JS-->
