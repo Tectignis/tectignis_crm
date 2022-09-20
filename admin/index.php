@@ -44,6 +44,32 @@ $id=$_SESSION['id'];
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <!-- END: Custom CSS-->
+    <style>
+a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+}
+
+a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.previous {
+  background-color: #f1f1f1;
+  color: black;
+}
+
+.next {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.round {
+  border-radius: 50%;
+}
+</style>
 
 </head>
 <!-- END: Head-->
@@ -368,6 +394,8 @@ $id=$_SESSION['id'];
                         </div>
                         <!--/ Revenue Report Card -->
                     </div>
+
+                    
 
                     <div class="row match-height">
                         <!-- Company Table Card -->
@@ -908,9 +936,18 @@ $id=$_SESSION['id'];
                             </div>
                         </div>
                         <!--/ Transaction Card -->
+
+                
                     </div>
 
-                    <div class="row" id="statistics-card">
+                    
+                </section>
+                <section>
+                <div class="col-12">
+                <a href="#" class="previous round">&#8249;</a>
+                </div>
+                <div class="row" id="statistics-card">
+                
                         <div class="col-lg-3 col-sm-6 col-12">
                             <div class="card">
                                 <div class="card-header">
@@ -971,7 +1008,11 @@ $id=$_SESSION['id'];
                                 </div>
                             </div>
                         </div>
+                       
                     </div>
+                    <div class=" col-12" style="float:right">
+                        <a href="#" class="next round">&#8250;</a>
+                        </div>
                 </section>
                 <!-- Dashboard Ecommerce ends -->
 
