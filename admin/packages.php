@@ -1,3 +1,8 @@
+<?php
+session_start();
+include("config.php");
+$id=$_SESSION['id'];
+?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
@@ -9,13 +14,15 @@
     <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Input - Vuexy - Bootstrap HTML admin template</title>
+    <title>Dashboard ecommerce - Vuexy - Bootstrap HTML admin template</title>
     <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
 
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/vendors.min.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/charts/apexcharts.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/extensions/toastr.min.css">
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
@@ -29,6 +36,9 @@
 
     <!-- BEGIN: Page CSS-->
     <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-menu.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/css/pages/dashboard-ecommerce.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/css/plugins/charts/chart-apex.css">
+    <link rel="stylesheet" type="text/css" href="app-assets/css/plugins/extensions/ext-component-toastr.css">
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
@@ -50,7 +60,7 @@
         <li class="d-flex align-items-center"><a href="#">
                 <h6 class="section-label mt-75 mb-0">Files</h6>
             </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="app-file-manager.php">
+        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="app-file-manager.html">
                 <div class="d-flex">
                     <div class="me-75"><img src="app-assets/images/icons/xls.png" alt="png" height="32"></div>
                     <div class="search-data">
@@ -58,7 +68,7 @@
                     </div>
                 </div><small class="search-data-size me-50 text-muted">&apos;17kb</small>
             </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="app-file-manager.php">
+        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="app-file-manager.html">
                 <div class="d-flex">
                     <div class="me-75"><img src="app-assets/images/icons/jpg.png" alt="png" height="32"></div>
                     <div class="search-data">
@@ -66,7 +76,7 @@
                     </div>
                 </div><small class="search-data-size me-50 text-muted">&apos;11kb</small>
             </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="app-file-manager.php">
+        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="app-file-manager.html">
                 <div class="d-flex">
                     <div class="me-75"><img src="app-assets/images/icons/pdf.png" alt="png" height="32"></div>
                     <div class="search-data">
@@ -74,7 +84,7 @@
                     </div>
                 </div><small class="search-data-size me-50 text-muted">&apos;150kb</small>
             </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="app-file-manager.php">
+        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="app-file-manager.html">
                 <div class="d-flex">
                     <div class="me-75"><img src="app-assets/images/icons/doc.png" alt="png" height="32"></div>
                     <div class="search-data">
@@ -85,7 +95,7 @@
         <li class="d-flex align-items-center"><a href="#">
                 <h6 class="section-label mt-75 mb-0">Members</h6>
             </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="app-user-view-account.php">
+        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="app-user-view-account.html">
                 <div class="d-flex align-items-center">
                     <div class="avatar me-75"><img src="app-assets/images/portrait/small/avatar-s-8.jpg" alt="png" height="32"></div>
                     <div class="search-data">
@@ -93,7 +103,7 @@
                     </div>
                 </div>
             </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="app-user-view-account.php">
+        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="app-user-view-account.html">
                 <div class="d-flex align-items-center">
                     <div class="avatar me-75"><img src="app-assets/images/portrait/small/avatar-s-1.jpg" alt="png" height="32"></div>
                     <div class="search-data">
@@ -101,7 +111,7 @@
                     </div>
                 </div>
             </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="app-user-view-account.php">
+        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="app-user-view-account.html">
                 <div class="d-flex align-items-center">
                     <div class="avatar me-75"><img src="app-assets/images/portrait/small/avatar-s-14.jpg" alt="png" height="32"></div>
                     <div class="search-data">
@@ -109,7 +119,7 @@
                     </div>
                 </div>
             </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="app-user-view-account.php">
+        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="app-user-view-account.html">
                 <div class="d-flex align-items-center">
                     <div class="avatar me-75"><img src="app-assets/images/portrait/small/avatar-s-6.jpg" alt="png" height="32"></div>
                     <div class="search-data">
@@ -130,7 +140,7 @@
     <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
         <div class="navbar-header">
             <ul class="nav navbar-nav flex-row">
-                <li class="nav-item me-auto"><a class="navbar-brand" href="html/ltr/vertical-menu-template/index.php"><span class="brand-logo">
+                <li class="nav-item me-auto"><a class="navbar-brand" href="html/ltr/vertical-menu-template/index.html"><span class="brand-logo">
                             <svg viewbox="0 0 139 95" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="24">
                                 <defs>
                                     <lineargradient id="linearGradient-1" x1="100%" y1="10.5120544%" x2="50%" y2="89.4879456%">
@@ -172,80 +182,53 @@
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper container-xxl p-0">
             <div class="content-header row">
-                <div class="content-header-left col-md-9 col-12 mb-2">
-                    <div class="row breadcrumbs-top">
-                        <div class="col-12">
-                            <h2 class="content-header-title float-start mb-0">System Setting</h2>
-                            <div class="breadcrumb-wrapper">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.php">Home</a>
-                                    </li>
-                                   
-                                    <li class="breadcrumb-item active">System Setting
-                                    </li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
-                    <div class="mb-1 breadcrumb-right">
-                        <div class="dropdown">
-                            <button class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="grid"></i></button>
-                            <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="app-todo.php"><i class="me-1" data-feather="check-square"></i><span class="align-middle">Todo</span></a><a class="dropdown-item" href="app-chat.php"><i class="me-1" data-feather="message-square"></i><span class="align-middle">Chat</span></a><a class="dropdown-item" href="app-email.php"><i class="me-1" data-feather="mail"></i><span class="align-middle">Email</span></a><a class="dropdown-item" href="app-calendar.php"><i class="me-1" data-feather="calendar"></i><span class="align-middle">Calendar</span></a></div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="content-body">
-                <!-- Tooltip validations start -->
-                <section class="tooltip-validations" id="tooltip-validation">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Logo</h4>
-                                </div>
-                                <div class="card-body">
-                                    
-                                    <form class="needs-validation" novalidate>
-                                        <div class="row g-1">
-                                            <div class="col-md-6 col-12 mb-3 position-relative">
-                                                <label for="formFile" class="form-label">Simple file input</label>
-                                                <input class="form-control" type="file" id="formFile" />
-                                               
+                <!-- Dashboard Ecommerce Starts -->
+                <section id="dashboard-ecommerce">
+                    
+
+                    <div class="row match-height">
+                        <div class="col-lg-4 col-12">
+                            <div class="row match-height">
+                                
+
+                               
+
+                                <!-- Earnings Card -->
+                                <div class="col-lg-12 col-md-6 col-12">
+                                    <div class="card earnings-card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <h4 class="card-title mb-1">Earnings</h4>
+                                                    <div class="font-small-2">This Month</div>
+                                                    <h5 class="mb-1">$4055.56</h5>
+                                                    <p class="card-text text-muted font-small-2">
+                                                        <span class="fw-bolder">68.2%</span><span> more earnings than last month.</span>
+                                                    </p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <div id="earnings-chart"></div>
+                                                </div>
                                             </div>
-                                           
                                         </div>
-                                        <button class="btn btn-primary" type="submit">Submit</button>
-                                    </form>
+                                    </div>
                                 </div>
+                                <!--/ Earnings Card -->
                             </div>
                         </div>
-                        <div class="col-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">favicon</h4>
-                                </div>
-                                <div class="card-body">
-                                    
-                                    <form class="needs-validation" novalidate>
-                                        <div class="row g-1">
-                                            <div class="col-md-6 col-12 mb-3 position-relative">
-                                                <label for="formFile" class="form-label">Simple file input</label>
-                                                <input class="form-control" type="file" id="formFile" />
-                                               
-                                            </div>
-                                           
-                                        </div>
-                                        <button class="btn btn-primary" type="submit">Submit</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+
+                        <!-- Revenue Report Card -->
+                     
+                        <!--/ Revenue Report Card -->
                     </div>
+
+                    
+
+                    
                 </section>
-                <!-- Tooltip validations end -->
+                <!-- Dashboard Ecommerce ends -->
 
             </div>
         </div>
@@ -267,6 +250,8 @@
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->
+    <script src="app-assets/vendors/js/charts/apexcharts.min.js"></script>
+    <script src="app-assets/vendors/js/extensions/toastr.min.js"></script>
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->
@@ -275,7 +260,7 @@
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->
-    <script src="app-assets/js/scripts/forms/form-tooltip-valid.js"></script>
+    <script src="app-assets/js/scripts/pages/dashboard-ecommerce.js"></script>
     <!-- END: Page JS-->
 
     <script>

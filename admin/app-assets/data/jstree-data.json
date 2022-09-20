@@ -30,7 +30,7 @@
       { "text": "app.js", "type": "js" }
     ]
   },
-  { "text": "index.php", "type": "html" },
-  { "text": "page-one.php", "type": "html" },
-  { "text": "page-two.php", "type": "html" }
+  { "text": "index.html", "type": "html" },
+  { "text": "page-one.html", "type": "html" },
+  { "text": "page-two.html", "type": "html" }
 ]

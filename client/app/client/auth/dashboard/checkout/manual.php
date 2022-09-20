@@ -13,7 +13,7 @@ $qss=mysqli_query($conn,"SELECT * FROM `client` WHERE `Client_Code`='$id'");
 $ress=mysqli_fetch_array($qss);
 ?>
 <h1>Summary</h1>
-<table>
+<!-- <table>
    
     <tr>
         <td>Firm Name</td>
@@ -31,8 +31,8 @@ $ress=mysqli_fetch_array($qss);
         <td>Price</td>
         <td><?php echo $_SESSION['price']; ?></td>
     </tr>
-<div>Your Balance payment is : <?php echo $_SESSION['price'] ?></div>
-<button id="rzp-button1">Continue</button>
+<div>Your Balance payment is : <?php echo $_SESSION['price'] ?></div> -->
+<?php echo'<button id="rzp-button1">Continue</button>'; ?>
 </body>
 </html>
 <!-- <button id="rzp-button1">Pay with Razorpay</button> -->
