@@ -5,13 +5,13 @@ $id=$_SESSION['id'];
 if(isset($_POST['submit'])){
     $title=$_POST['title'];
     $schedule=$_POST['schedule'];
-    $select_label=$_POST['select_label'];
+   
     $start_date=$_POST['start_date'];
     $end_date=$_POST['end_date'];
     $description=$_POST['description'];
     
 
-    $sql=mysqli_query($conn,"INSERT INTO `event`(`title`, `schedule`, `select_label`, `start_date`, `end_date`, `description`) VALUES ('$title','$schedule','$select_label','$start_date','$end_date','$description')");
+    $sql=mysqli_query($conn,"INSERT INTO `event`(`title`, `schedule`,  `start_date`, `end_date`, `description`) VALUES ('$title','$schedule','$start_date','$end_date','$description')");
      if($sql==1){
         echo"<script>alert('new record has been added succesfully!');php</script>";
      }
@@ -120,39 +120,27 @@ if(isset($_POST['submit'])){
                                         </button>
                                     </div>
 
-                                    <!-- <div class="card-body pb-0">
+                                     <div class="card-body pb-0">
                                         <h5 class="section-label mb-1">
-                                            <span class="align-middle">Filter</span>
+                                            <span class="align-middle">Upcoming Events</span>
                                         </h5>
+                                        <?php
+                                            $sql=mysqli_query($conn,"select * from event");
+                                          
+                                            while ($row=mysqli_fetch_array($sql)){ 
+                                        ?>
                                         <div class="form-check mb-1">
-                                            <input type="checkbox" class="form-check-input select-all" id="select-all"
-                                                checked />
-                                            <label class="form-check-label" for="select-all">schedule A Meeting</label>
+                                            
+                                            <label class="form-check-label" for="select-all"><?php echo $row['title'] ?></label>
                                         </div>
                                         <div class="calendar-events-filter">
                                             <div class="form-check form-check-danger mb-1">
-                                                <input type="checkbox" class="form-check-input input-filter"
-                                                    id="personal" data-value="personal" checked />
-                                                <label class="form-check-label" for="personal">Site Visit</label>
+                                               
+                                                <label class="form-check-label" for="personal"><?php echo $row['schedule'] ?></label>
                                             </div>
-                                            <div class="form-check form-check-primary mb-1">
-                                                <input type="checkbox" class="form-check-input input-filter"
-                                                    id="business" data-value="business" checked />
-                                                <label class="form-check-label" for="business">Monthly Rent</label>
-                                            </div>
-                                            <div class="form-check form-check-warning mb-1">
-                                                <input type="checkbox" class="form-check-input input-filter" id="family"
-                                                    data-value="family" checked />
-                                                <label class="form-check-label" for="family">Call Followup</label>
-                                            </div>
-                                            <div class="form-check form-check-success mb-1">
-                                                <input type="checkbox" class="form-check-input input-filter"
-                                                    id="holiday" data-value="holiday" checked />
-                                                <label class="form-check-label" for="holiday">Registration</label>
-                                            </div>
-
                                         </div>
-                                    </div> -->
+                                        <?php  } ?> 
+                                    </div> 
                                 </div>
                                 <div class="mt-auto">
                                     <img src="app-assets/images/pages/calendar-illustration.png"
@@ -269,7 +257,7 @@ if(isset($_POST['submit'])){
                         </div>
                         <div class="mb-1">
                             <label for="select-label" class="form-label" name="select_label">purpose</label>
-                            <input type="text" class="form-control" id="title" name="title" placeholder="Event Title"
+                            <input type="text" class="form-control" id="title" name="schedule" placeholder="Event Title"
                                 required />
                             <!-- <select class="select2 select-label form-select w-100" id="select-label"
                                 name="select_label">
