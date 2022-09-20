@@ -273,13 +273,13 @@ include("config.php");
 
  
 
-                    <button type="button" data-id="<?php echo $row['id'] ?>"  class="btn btn-outline-primary edit" data-bs-toggle="modal" data-bs-target="#edit" >
+                    <button type="button" data-id="<?php echo $row['id'] ?>" <?php if($status=='Closed'){ ?>style="display:none"<?php } ?>  class="btn btn-outline-primary edit" data-bs-toggle="modal" data-bs-target="#edit" >
                                     <i data-feather="edit"></i>
                                     </button>
 
                     <!-- <button type="button" data-id="<?php echo $row['id'] ?>" class="delete-row btn-sm btn-info"> -->
                     <!-- <i class="fas fa-trash"></i> -->
-                    <a href="ticket.php?delid=<?php echo $row['id']; ?>"><button type="button" class="btn btn-outline-primary"><i data-feather="trash"></i></button></a>
+                    <a href="ticket.php?delid=<?php echo $row['id']; ?>" <?php if($status=='Closed'){ ?>style="display:none"<?php } ?>><button type="button" class="btn btn-outline-primary"><i data-feather="trash"></i></button></a>
                   
                     </button>
                   </td>
