@@ -1,4 +1,3 @@
-<script>
 /*=========================================================================================
     File Name: chart-apex.js
     Description: Apexchart Examples
@@ -832,8 +831,8 @@ $(function () {
         show: true,
         position: 'bottom'
       },
-      labels: ["Warm", "Hot", "Cold"],
-      series: [<?php echo $leadWarmFetch. ',' .$leadHotFetch. ',' .$leadColdFetch ?>],
+      labels: ['Operational', 'Networking', 'Hiring', 'R&D'],
+      series: [85, 16, 50, 50],
       colors: [
         chartColors.donut.series1,
         chartColors.donut.series5,
@@ -916,4 +915,3 @@ $(function () {
     donutChart.render();
   }
 });
-</script>
