@@ -136,21 +136,22 @@ if(isset($_POST['submit'])){
                                             </div>
                                             
                                     </a>
-                                    <?php
-                                            $sql=mysqli_query($conn,"select * from todo");
-                                          
-                                            while ($row=mysqli_fetch_array($sql)){ 
-                                        ?>
+                                   
                                     <a href="#" class="list-group-item list-group-item-action">
                                         <i data-feather="check" class="font-medium-3 me-50"></i> <button class="accordion">Completed</button>
                                         <div class="panel">
                                                 <ul>
+                                                <?php
+                                            $sql=mysqli_query($conn,"select * from todo");
+                                          
+                                            while ($row=mysqli_fetch_array($sql)){ 
+                                        ?>
                                                     <li><?php echo $row['status'] ?></li>
-                                                   
+                                                    <?php  } ?> 
                                                 </ul>
                                         </div>
                                     </a>
-                                    <?php  } ?>
+                                   
 
 
                                 </div>
@@ -374,7 +375,24 @@ for (i = 0; i < acc.length; i++) {
         chec:test
     },
     success:function(data){
-       alert(data);
+      }
+})
+        });
+   })
+
+   $(document).ready(function(){
+    $(".getcheck").change(function(){
+            var test = new Array();
+            $("input[name='status[]']:unchecked").each(function() {
+                test.push($(this).val());
+            });
+            $.ajax({
+    url:"chechk.php",
+    method:"post",
+    data:{
+        chec1:test
+    },
+    success:function(data){
       }
 })
         });
