@@ -52,14 +52,10 @@
 <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
 
     <!-- BEGIN: Header-->
-    <?php include "include/header.php"; ?>
-    <!-- END: Header-->
-
-
-    <!-- BEGIN: Main Menu-->
-    <?php include "include/sidebar.php"; ?>
-
-    <!-- END: Main Menu-->
+    <?php
+       include('include/header.php');
+       include('include/sidebar.php');
+       ?>
 
     <!-- BEGIN: Content-->
     <div class="app-content content ">

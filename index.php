@@ -40,6 +40,10 @@
 <!-- BEGIN: Body-->
 <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
     <!-- BEGIN: Content-->
+    <?php
+       include('admin/include/header.php');
+       include('admin/include/sidebar.php');
+       ?>
     <div class="app-content content ">
         <div class="content-wrapper container-xxl p-0">
             <div class="content-body">
