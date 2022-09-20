@@ -120,7 +120,7 @@ if(isset($_POST['submit'])){
                                         </button>
                                     </div>
 
-                                    <div class="card-body pb-0">
+                                    <!-- <div class="card-body pb-0">
                                         <h5 class="section-label mb-1">
                                             <span class="align-middle">Filter</span>
                                         </h5>
@@ -152,7 +152,7 @@ if(isset($_POST['submit'])){
                                             </div>
 
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="mt-auto">
                                     <img src="app-assets/images/pages/calendar-illustration.png"
@@ -268,8 +268,10 @@ if(isset($_POST['submit'])){
                                 required />
                         </div>
                         <div class="mb-1">
-                            <label for="select-label" class="form-label" name="select_label">Label</label>
-                            <select class="select2 select-label form-select w-100" id="select-label"
+                            <label for="select-label" class="form-label" name="select_label">purpose</label>
+                            <input type="text" class="form-control" id="title" name="title" placeholder="Event Title"
+                                required />
+                            <!-- <select class="select2 select-label form-select w-100" id="select-label"
                                 name="select_label">
                                 <option data-label="primary" value="Business" >schedule A Meeting
                                 </option>
@@ -277,7 +279,7 @@ if(isset($_POST['submit'])){
                                 <option data-label="warning" value="Family" >Monthly Rent</option>
                                 <option data-label="success" value="Holiday" >Call Followup</option>
                                 <option data-label="info" value="Holiday" >Registration</option>
-                            </select>
+                            </select> -->
                         </div>
                         <div class="mb-1 position-relative">
                             <label for="start-date" class="form-label">Start Date</label>
