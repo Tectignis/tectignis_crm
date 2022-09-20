@@ -256,11 +256,9 @@ $mob=$ress['Mobile_Number'];
 
 
                         </div>
-
-                    
                 </div>
-                <div class="modal-footer" id="butt">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Pay</button>
+                <div class="modal-footer" >
+                    <div id="butt" style="font-size:25px"></div>
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
                 </div>
                 </form>
@@ -353,11 +351,6 @@ while($fetchprice=mysqli_fetch_array($price)){
                                                             <li class="list-group-item">Custom domain support</li>
                                                             <li class="list-group-item">Stripe integration</li>
                                                         </ul>
-                                                        <!-- <button type="button" class="btn btn-outline-primary mt-2 w-100 modal1"
-                                                            data-bs-toggle="modal" 
-                                                             data-id="<?php echo $fetchprice['id'] ?>">
-                                                            Upgrade
-                                                        </button> -->
                                                         <a href="#large" class="btn btn-outline-primary mt-2 w-100 modal1" data-id="<?php echo $code ?>" data-name="<?php echo $firm ?>" data-email="<?php echo $email ?>" data-phone="<?php echo $mob ?>" data-price="<?php echo $fetchprice['total_amt'] ?>" data-packageName="<?php echo $fetchprice['package_name'] ?>" data-start="<?php echo $fetchprice['created_date'] ?>" data-end="<?php echo $fetchprice['end_date'] ?>" data-leads="<?php echo $fetchprice['total_lead'] ?>"
                                                             data-bs-toggle="modal"
                                                              >
@@ -817,7 +810,7 @@ while($fetchprice=mysqli_fetch_array($price)){
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->
-    <script src="app-assets/js/scripts/pages/page-pricing.js"></script>
+    <!-- <script src="app-assets/js/scripts/pages/page-pricing.js"></script> -->
     <!-- END: Page JS-->
 
     <script>
@@ -846,10 +839,6 @@ while($fetchprice=mysqli_fetch_array($price)){
             });
 
             ResCarouselSize();
-
-
-
-
             $(window).resize(function () {
                 ResCarouselSize();
             });
@@ -937,23 +926,8 @@ while($fetchprice=mysqli_fetch_array($price)){
 
         });
     </script>
-
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
-$(document).ready(function(){
-//     $(".modal1").click(function(){
-// let modalid = $(this).data('id');
-
-//   $.ajax({
-//    url: 'form.php',
-//    type: 'post',
-//    data: {modalid: modalid},
-//    success: function(response1){ 
-//      $("#large").modal('show');
- 
-//    }
-//  });
-//     })
-
     $(document).on("click", ".modal1", function () {
        
     let id = $(this).data('id');
@@ -991,7 +965,14 @@ $(document).ready(function(){
       },
     });
   });
-})
+    </script>
+    <script>
+        $(document).on('click', '#priceSwitch', function () {
+    if ($(this).is(':checked')) {
+    let month = parseFloat($('.annual-pricing').closest(".card").find(".pricing-enterprise-value").text()) || 0;
+    $('.annual-pricing').closest(".card").find(".annual-pricing").text(month);  
+    }
+    });
     </script>
 </body>
 <!-- END: Body-->

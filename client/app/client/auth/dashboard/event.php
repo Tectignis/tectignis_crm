@@ -60,11 +60,33 @@ if(isset($_POST['submit'])){
     <link rel="stylesheet" type="text/css" href="app-assets/css/plugins/forms/pickers/form-flat-pickr.css">
     <link rel="stylesheet" type="text/css" href="app-assets/css/pages/app-calendar.css">
     <link rel="stylesheet" type="text/css" href="app-assets/css/plugins/forms/form-validation.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.5.0/fullcalendar.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.5.0/fullcalendar.css" rel="stylesheet"/>
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <!-- END: Custom CSS-->
+    <style>
+        .my-highlight {
+  color: black !important;
+  background-color: lightblue !important;
+}
+.fc-view-container{
+    height:100% !important;
+}
+.fc-left{
+    display: inline;
+}
+.fc-toolbar{
+    width:100%
+}
+.fc-event-container{
+  color:white;
+}
+    </style>
 
 </head>
 <!-- END: Head-->
@@ -98,7 +120,7 @@ if(isset($_POST['submit'])){
                                         </button>
                                     </div>
 
-                                    <div class="card-body pb-0">
+                                    <!-- <div class="card-body pb-0">
                                         <h5 class="section-label mb-1">
                                             <span class="align-middle">Filter</span>
                                         </h5>
@@ -130,7 +152,7 @@ if(isset($_POST['submit'])){
                                             </div>
 
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="mt-auto">
                                     <img src="app-assets/images/pages/calendar-illustration.png"
@@ -141,11 +163,7 @@ if(isset($_POST['submit'])){
 
                             <!-- Calendar -->
                             <div class="col position-relative">
-                                <div class="card shadow-none border-0 mb-0 rounded-0">
-                                    <div class="card-body pb-0">
-                                        <div id="calendar"></div>
-                                    </div>
-                                </div>
+                            <div id="calendar"></div>
                             </div>
                             <!-- /Calendar -->
                             <div class="body-content-overlay"></div>
@@ -250,8 +268,10 @@ if(isset($_POST['submit'])){
                                 required />
                         </div>
                         <div class="mb-1">
-                            <label for="select-label" class="form-label" name="select_label">Label</label>
-                            <select class="select2 select-label form-select w-100" id="select-label"
+                            <label for="select-label" class="form-label" name="select_label">purpose</label>
+                            <input type="text" class="form-control" id="title" name="title" placeholder="Event Title"
+                                required />
+                            <!-- <select class="select2 select-label form-select w-100" id="select-label"
                                 name="select_label">
                                 <option data-label="primary" value="Business" >schedule A Meeting
                                 </option>
@@ -259,7 +279,7 @@ if(isset($_POST['submit'])){
                                 <option data-label="warning" value="Family" >Monthly Rent</option>
                                 <option data-label="success" value="Holiday" >Call Followup</option>
                                 <option data-label="info" value="Holiday" >Registration</option>
-                            </select>
+                            </select> -->
                         </div>
                         <div class="mb-1 position-relative">
                             <label for="start-date" class="form-label">Start Date</label>
@@ -321,6 +341,49 @@ if(isset($_POST['submit'])){
             }
         })
     </script>
+    <?php
+    $eventsql=mysqli_query($conn,"select * from event");
+    ?>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.js"></script>
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.4.0/fullcalendar.css">
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.5.0/fullcalendar.js"></script>
+        <script type='text/javascript'>
+$("#calendar").fullCalendar({
+  events:[
+    <?php while($fetchevent=mysqli_fetch_array($eventsql)
+){?>
+    {title:'<?php echo $fetchevent['title'] ?>',
+     start:'<?php echo $fetchevent['start_date'] ?>',
+     end:'<?php echo $fetchevent['end_date'] ?>'
+    },
+   
+    <?php } ?>
+  ],
+
+  eventAfterAllRender : function(view) {
+
+    //Loop through all event to set the highlight and onclick url
+    $(".fc-event-container").each(function(){
+
+      // Get this day of the week number
+      var weekDayIndex = $(this).index();
+      // Get the calendar row
+      var row = $(this).closest(".fc-row");
+      // Get this date
+      var date = row.find(".fc-day-top").eq(weekDayIndex).attr("data-date");
+      // Add highlight and data-date
+      row.find(".fc-day").eq(weekDayIndex)
+        .addClass("highlight")
+        .attr("data-url","example.com/details?date="+date);
+    });
+  }
+});
+
+// Click handler
+// $(document).on("click", ".highlight", function(){
+//   alert( $(this).data("url") );
+// });
+  </script>
 </body>
 <!-- END: Body-->
 
