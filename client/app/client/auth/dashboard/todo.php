@@ -68,7 +68,31 @@ if(isset($_POST['submit'])){
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <!-- END: Custom CSS-->
+    <style>
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
 
+.active, .accordion:hover {
+  background-color: #ccc; 
+}
+
+.panel {
+  padding: 0 18px;
+  display: none;
+  background-color: white;
+  overflow: hidden;
+}
+</style>
 </head>
 <!-- END: Head-->
 
@@ -99,16 +123,36 @@ if(isset($_POST['submit'])){
                            
                             
                                 <div class="list-group list-group-filters">
+                                
                                     <a href="#" class="list-group-item list-group-item-action active">
                                         <i data-feather="mail" class="font-medium-3 me-50"></i>
-                                        <span class="align-middle"> My Task</span>
+                                        <button class="accordion"> My Task </button>
+                                            <div class="panel">
+                                                <ul>
+                                                    <li>hhhh</li>
+                                                    <li>ffff</li>
+                                                    <li>ffff</li>
+                                                </ul>
+                                            </div>
+                                            
                                     </a>
-                                   
+                                    <?php
+                                            $sql=mysqli_query($conn,"select * from todo");
+                                          
+                                            while ($row=mysqli_fetch_array($sql)){ 
+                                        ?>
                                     <a href="#" class="list-group-item list-group-item-action">
-                                        <i data-feather="check" class="font-medium-3 me-50"></i> <span
-                                            class="align-middle">Completed</span>
+                                        <i data-feather="check" class="font-medium-3 me-50"></i> <button class="accordion">Completed</button>
+                                        <div class="panel">
+                                                <ul>
+                                                    <li><?php echo $row['status'] ?></li>
+                                                   
+                                                </ul>
+                                        </div>
                                     </a>
-                               
+                                    <?php  } ?>
+
+
                                 </div>
                                
 
@@ -289,7 +333,22 @@ if(isset($_POST['submit'])){
     <!-- BEGIN: Page JS-->
     <script src="app-assets/js/scripts/pages/app-todo.js"></script>
     <!-- END: Page JS-->
+    <script>
+var acc = document.getElementsByClassName("accordion");
+var i;
 
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+</script>
     <script>
         $(window).on('load', function () {
             if (feather) {
