@@ -18,7 +18,7 @@ if(isset($_POST['add_property'])){
     // date_default_timezone_set('Asia/Kolkata');
     //   $date=date('Y-m-d H:i:s');
 
-    $sql=mysqli_query($conn,"INSERT INTO `property`(`client_name`, `mobile_no`,`apartment_type`,`area`,`type`,`status`,`description`) VALUES ('$client_name1','$mobile_no1' ,'$apartment_type1','$area1','$type1','$status','$description')");
+    $sql=mysqli_query($conn,"INSERT INTO `property`(`client_name`, `mobile_no`,`apartment_type`,`area`,`type1`,`status`,`description`) VALUES ('$client_name1','$mobile_no1' ,'$apartment_type1','$area1','$type1','$status','$description')");
      if($sql==1){
         echo"<script>alert('new record has been added succesfully!');php</script>";
      }
@@ -43,7 +43,7 @@ if(isset($_POST['cusEdit'])){
 
    
    
-    $sql="UPDATE `property` SET `client_name`='$client_name1',`mobile_no`='$mobile_no1',`apartment_type`='$apartment_type1',`area`='$area1',`status`='$status',`type`='$type1',`description`='$description' WHERE id='$id.'";
+    $sql="UPDATE `property` SET `client_name`='$client_name1',`mobile_no`='$mobile_no1',`apartment_type`='$apartment_type1',`area`='$area1',`status`='$status',`type1`='$type1',`description`='$description' WHERE id='$id.'";
 
     if (mysqli_query($conn, $sql)){
       header("location:property.php");
@@ -133,7 +133,7 @@ if(isset($_POST['cusEdit'])){
                 <section class="app-user-list">
                     <div class="row">
                           <?php
-                                $query=mysqli_query($conn,"select * from property where type='flat sell'");
+                                $query=mysqli_query($conn,"select * from property where type1='flat sell'");
                                 $count1=mysqli_num_rows($query);
                                     ?>
                         <div class="col-lg-3 col-sm-6">
@@ -152,7 +152,7 @@ if(isset($_POST['cusEdit'])){
                             </div>
                         </div>
                         <?php
-                                $query=mysqli_query($conn,"select * from property where type='Flat Rent'");
+                                $query=mysqli_query($conn,"select * from property where type1='Flat Rent'");
                                 $count2=mysqli_num_rows($query);
                                     ?>
                         <div class="col-lg-3 col-sm-6">
@@ -160,7 +160,7 @@ if(isset($_POST['cusEdit'])){
                                 <div class="card-body d-flex align-items-center justify-content-between">
                                     <div>
                                         <h3 class="fw-bolder mb-75"><?php echo $count2; ?></h3>
-                                        <span class="fw-bolder">Flat Rent</span>
+                                        <span class="fw-bolder">Flat Rent <i data-feather="trash"></i></span>
                                     </div>
                                     <div class="avatar bg-light-danger p-50">
                                         <span class="avatar-content">
@@ -171,7 +171,7 @@ if(isset($_POST['cusEdit'])){
                             </div>
                         </div>
                         <?php
-                                $query=mysqli_query($conn,"select * from property where type='Shop / Office Sell'");
+                                $query=mysqli_query($conn,"select * from property where type1='Shop / Office Sell'");
                                 $count3=mysqli_num_rows($query);
                                     ?>
                         <div class="col-lg-3 col-sm-6">
@@ -190,7 +190,7 @@ if(isset($_POST['cusEdit'])){
                             </div>
                         </div>
                         <?php
-                                $query=mysqli_query($conn,"select * from property where type='Shop / Office Rent'");
+                                $query=mysqli_query($conn,"select * from property where type1='Shop / Office Rent'");
                                 $count4=mysqli_num_rows($query);
                                     ?>
                         <div class="col-lg-3 col-sm-6">
@@ -249,7 +249,7 @@ if(isset($_POST['cusEdit'])){
                                 </div>
                                 <div class="col-md-4 user_status"><label class="form-label"
                                         for="FilterTransaction"></label>
-                                    <button class="btn btn-primary mb-0 mt-2"  id="sub" style="">Submit</button>
+                                    <button class="btn btn-primary mb-0 mt-2" type="submit"  id="sub" style="">Submit</button>
                                 </div>
                             </div>
                             <!-- <hr>     -->
@@ -276,7 +276,7 @@ if(isset($_POST['cusEdit'])){
                                         <tr>
                                             <td><?php echo $row['client_name']; ?></td>
                                             <td><?php echo $row['mobile_no']; ?></td>
-                                            <td><?php echo $row['type']; ?></td>
+                                            <td><?php echo $row['type1']; ?></td>
                                             <td><?php echo $row['apartment_type']; ?></td>
                                             <td><?php echo $row['area']; ?></td>
                                             <td style="text-align:center"><?php
@@ -548,19 +548,19 @@ if(isset($_POST['cusEdit'])){
             $(document).ready(function(){
                 $("#fetchval1").on('change',function(){
                     var value = $(this).val();
-                    alert(value);
+                    // alert(value);
 
                     $.ajax({
                         url:"fetch.php",
                         type:"POST",
-                        data:'request=' + value;
+                        data:'request=' + (value),
                         beforeSend:function(){
                             $(".tablefetch").html("<span> Working...</span>");
                         },
                         success:function(data){
                             $(".tablefetch").html(data);
                         }
-                    })
+                    });
                 });
             });
 
