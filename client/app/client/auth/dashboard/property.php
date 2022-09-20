@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 include("config.php");
@@ -18,7 +17,7 @@ if(isset($_POST['add_property'])){
     // date_default_timezone_set('Asia/Kolkata');
     //   $date=date('Y-m-d H:i:s');
 
-    $sql=mysqli_query($conn,"INSERT INTO `property`(`client_name`, `mobile_no`,`apartment_type`,`area`,`type`,`status`,`description`) VALUES ('$client_name1','$mobile_no1' ,'$apartment_type1','$area1','$type1','$status','$description')");
+    $sql=mysqli_query($conn,"INSERT INTO `property`(`client_name`, `mobile_no`,`apartment_type`,`area`,`type1`,`status`,`description`) VALUES ('$client_name1','$mobile_no1' ,'$apartment_type1','$area1','$type1','$status','$description')");
      if($sql==1){
         echo"<script>alert('new record has been added succesfully!');php</script>";
      }
@@ -43,7 +42,7 @@ if(isset($_POST['cusEdit'])){
 
    
    
-    $sql="UPDATE `property` SET `client_name`='$client_name1',`mobile_no`='$mobile_no1',`apartment_type`='$apartment_type1',`area`='$area1',`status`='$status',`type`='$type1',`description`='$description' WHERE id='$id.'";
+    $sql="UPDATE `property` SET `client_name`='$client_name1',`mobile_no`='$mobile_no1',`apartment_type`='$apartment_type1',`area`='$area1',`status`='$status',`type1`='$type1',`description`='$description' WHERE id='$id.'";
 
     if (mysqli_query($conn, $sql)){
       header("location:property.php");
@@ -132,8 +131,8 @@ if(isset($_POST['cusEdit'])){
                 <!-- users list start -->
                 <section class="app-user-list">
                     <div class="row">
-                          <?php
-                                $query=mysqli_query($conn,"select * from property where type='flat sell'");
+                        <?php
+                                $query=mysqli_query($conn,"select * from property where type1='flat sell'");
                                 $count1=mysqli_num_rows($query);
                                     ?>
                         <div class="col-lg-3 col-sm-6">
@@ -152,7 +151,7 @@ if(isset($_POST['cusEdit'])){
                             </div>
                         </div>
                         <?php
-                                $query=mysqli_query($conn,"select * from property where type='Flat Rent'");
+                                $query=mysqli_query($conn,"select * from property where type1='Flat Rent'");
                                 $count2=mysqli_num_rows($query);
                                     ?>
                         <div class="col-lg-3 col-sm-6">
@@ -160,7 +159,7 @@ if(isset($_POST['cusEdit'])){
                                 <div class="card-body d-flex align-items-center justify-content-between">
                                     <div>
                                         <h3 class="fw-bolder mb-75"><?php echo $count2; ?></h3>
-                                        <span class="fw-bolder">Flat Rent</span>
+                                        <span class="fw-bolder">Flat Rent <i data-feather="trash"></i></span>
                                     </div>
                                     <div class="avatar bg-light-danger p-50">
                                         <span class="avatar-content">
@@ -171,7 +170,7 @@ if(isset($_POST['cusEdit'])){
                             </div>
                         </div>
                         <?php
-                                $query=mysqli_query($conn,"select * from property where type='Shop / Office Sell'");
+                                $query=mysqli_query($conn,"select * from property where type1='Shop / Office Sell'");
                                 $count3=mysqli_num_rows($query);
                                     ?>
                         <div class="col-lg-3 col-sm-6">
@@ -190,7 +189,7 @@ if(isset($_POST['cusEdit'])){
                             </div>
                         </div>
                         <?php
-                                $query=mysqli_query($conn,"select * from property where type='Shop / Office Rent'");
+                                $query=mysqli_query($conn,"select * from property where type1='Shop / Office Rent'");
                                 $count4=mysqli_num_rows($query);
                                     ?>
                         <div class="col-lg-3 col-sm-6">
@@ -228,58 +227,69 @@ if(isset($_POST['cusEdit'])){
                         </div>
                         <div class="card-body border-bottom">
                             <p class="card-title mt-2">Search & Filter</h4>
-                            <div class="row">
-                                <div class="col-md-4 user_role" id="filters"><label class="form-label"
-                                        for="UserRole">Type</label><select  name="fetchval1" id="fetchval1"
-                                        class="form-select text-capitalize mb-md-0 mb-2">
-                                        <option value="" disabled selected> Select Type </option>
-                                        <option value="Flat Sell" class="text-capitalize">Flat Sell</option>
-                                        <option value="Flat Rent" class="text-capitalize">Flat Rent</option>
-                                        <option value="Shop / Office Sell" class="text-capitalize">Shop / Office Sell</option>
-                                        <option value="Shop / Office Rent" class="text-capitalize">Shop / Office Rent</option>
-                                    </select></div>
+                            <form method="post">
+                                <div class="row">
+                                   
+                                    <div class="col-md-4 user_role" id="filters"><label class="form-label"
+                                            for="UserRole">Type</label><select name="fetchval1" id="fetchval1"
+                                            class="form-select text-capitalize mb-md-0 mb-2">
+                                            <option value="" disabled selected> Select Type </option>
+                                            <option value="Flat Sell" class="text-capitalize">Flat Sell</option>
+                                            <option value="Flat Rent" class="text-capitalize">Flat Rent</option>
+                                            <option value="Shop / Office Sell" class="text-capitalize">Shop / Office
+                                                Sell</option>
+                                            <option value="Shop / Office Rent" class="text-capitalize">Shop / Office
+                                                Rent</option>
+                                        </select></div>
 
-                                <div class="col-md-4 user_status"><label class="form-label"
-                                        for="FilterTransaction">Status</label>
-                                    <select id="FilterTransaction" class="form-select text-capitalize mb-md-0 mb-2xx">
-                                        <option value="" disabled selected> Select Status </option>
-                                        <option value="Available" class="text-capitalize">Available</option>
-                                        <option value="Not Available" class="text-capitalize">Not Available</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4 user_status"><label class="form-label"
-                                        for="FilterTransaction"></label>
-                                    <button class="btn btn-primary mb-0 mt-2"  id="sub" style="">Submit</button>
-                                </div>
-                            </div>
-                            <!-- <hr>     -->
-                            <div class="row mt-1 tablefetch">
-                                <table id="example1" class="table table-bordered table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Client Name</th>
-                                            <th>Mobile No.</th>
-                                            <th>Type</th>
-                                            <th>Apartment Type</th>
-                                            <th>Area</th>
-                                            <th>Status</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    <?php
-                                            $sql=mysqli_query($conn,"select * from property");
-                                            $count=1;
-                                            while ($row=mysqli_fetch_array($sql)){ 
-                                        ?>
+                                    <div class="col-md-4 user_status"><label class="form-label"
+                                            for="FilterTransaction">Status</label>
+                                        <select id="FilterTransaction"
+                                            class="form-select text-capitalize mb-md-0 mb-2xx" name="available">
+                                            <option value="" disabled selected> Select Status </option>
+                                            <option value="Available" class="text-capitalize">Available</option>
+                                            <option value="Not Available" class="text-capitalize">Not Available</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 user_status"><label class="form-label"
+                                            for="FilterTransaction"></label>
+                                        <button class="btn btn-primary mb-0 mt-2" type="submit" name="subfilter"
+                                            id="sub" style="">Submit</button>
+                                    </div>
 
-                                        <tr>
-                                            <td><?php echo $row['client_name']; ?></td>
-                                            <td><?php echo $row['mobile_no']; ?></td>
-                                            <td><?php echo $row['type']; ?></td>
-                                            <td><?php echo $row['apartment_type']; ?></td>
-                                            <td><?php echo $row['area']; ?></td>
-                                            <td style="text-align:center"><?php
+                                </div>
+                                </form>
+                                <!-- <hr>     -->
+                                <div class="row mt-1 tablefetch">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Client Name</th>
+                                                <th>Mobile No.</th>
+                                                <th>Type</th>
+                                                <th>Apartment Type</th>
+                                                <th>Area</th>
+                                                <th>Status</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                    if(isset($_POST['subfilter'])){
+                                    $fetchval1=$_POST['fetchval1'];
+                                    $available=$_POST['available'];
+                                    $sql=mysqli_query($conn,"select * from property where type1='$fetchval1' and status='$available'");
+                                    $count=1;
+                                    while ($row=mysqli_fetch_array($sql)){ 
+                                    ?>
+
+                                            <tr>
+                                                <td><?php echo $row['client_name']; ?></td>
+                                                <td><?php echo $row['mobile_no']; ?></td>
+                                                <td><?php echo $row['type1']; ?></td>
+                                                <td><?php echo $row['apartment_type']; ?></td>
+                                                <td><?php echo $row['area']; ?></td>
+                                                <td style="text-align:center"><?php
                                                 $status=$row['status'];
                                                 if($status=='available'){
                                                     echo '<span class="badge badge-light-success">available</span>';
@@ -288,29 +298,82 @@ if(isset($_POST['cusEdit'])){
                                                     echo '<span class="badge badge-light-danger">not available</span>';
                                                 }
                                                 ?>
-                                            </td>
-                                            <td>
-                      
-
-                
-                    <button type="button" data-id="<?php echo $row['id'] ?>"  class="btn btn-outline-primary view" data-bs-toggle="modal" data-bs-target="#addNewCard" >
-                    <i data-feather="eye"></i>
-                                    </button>
-
-                                    <a href="property.php?delid=<?php echo $row['id']; ?>"><button type="button" class="btn btn-outline-primary"><i data-feather="trash"></i></button></a>
+                                                </td>
+                                                <td>
 
 
-                                    <button type="button" data-id="<?php echo $row['id'] ?>"  class="btn btn-outline-primary edit" data-bs-toggle="modal" data-bs-target="#edit" >
-                                    <i data-feather="edit"></i>
-                                    </button>
 
-                  </td>
+                                                    <button type="button" data-id="<?php echo $row['id'] ?>"
+                                                        class="btn btn-outline-primary view" data-bs-toggle="modal"
+                                                        data-bs-target="#addNewCard">
+                                                        <i data-feather="eye"></i>
+                                                    </button>
 
-                                        </tr>
-                                        <?php $count++; } ?> 
-                                    </tbody>
-                                </table>
-                            </div>
+                                                    <a href="property.php?delid=<?php echo $row['id']; ?>"><button
+                                                            type="button" class="btn btn-outline-primary"><i
+                                                                data-feather="trash"></i></button></a>
+
+
+                                                    <button type="button" data-id="<?php echo $row['id'] ?>"
+                                                        class="btn btn-outline-primary edit" data-bs-toggle="modal"
+                                                        data-bs-target="#edit">
+                                                        <i data-feather="edit"></i>
+                                                    </button>
+
+                                                </td>
+
+                                            </tr>
+                                            <?php $count++; } }else{ ?>
+                                            <?php 
+                                            $sql=mysqli_query($conn,"select * from property");
+                                            $count=1;
+                                            while ($row=mysqli_fetch_array($sql)){ 
+                                        ?>
+
+                                            <tr>
+                                                <td><?php echo $row['client_name']; ?></td>
+                                                <td><?php echo $row['mobile_no']; ?></td>
+                                                <td><?php echo $row['type1']; ?></td>
+                                                <td><?php echo $row['apartment_type']; ?></td>
+                                                <td><?php echo $row['area']; ?></td>
+                                                <td style="text-align:center"><?php
+                                                $status=$row['status'];
+                                                if($status=='available'){
+                                                    echo '<span class="badge badge-light-success">available</span>';
+                                                }
+                                                else if($status=='not available'){
+                                                    echo '<span class="badge badge-light-danger">not available</span>';
+                                                }
+                                                ?>
+                                                </td>
+                                                <td>
+
+
+
+                                                    <button type="button" data-id="<?php echo $row['id'] ?>"
+                                                        class="btn btn-outline-primary view" data-bs-toggle="modal"
+                                                        data-bs-target="#addNewCard">
+                                                        <i data-feather="eye"></i>
+                                                    </button>
+
+                                                    <a href="property.php?delid=<?php echo $row['id']; ?>"><button
+                                                            type="button" class="btn btn-outline-primary"><i
+                                                                data-feather="trash"></i></button></a>
+
+
+                                                    <button type="button" data-id="<?php echo $row['id'] ?>"
+                                                        class="btn btn-outline-primary edit" data-bs-toggle="modal"
+                                                        data-bs-target="#edit">
+                                                        <i data-feather="edit"></i>
+                                                    </button>
+
+                                                </td>
+
+                                            </tr>
+                                            <?php $count++; } } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                         </div>
 
                     </div>
@@ -342,27 +405,29 @@ if(isset($_POST['cusEdit'])){
                                 <div class="col-12 col-md-12">
                                     <label class="form-label" for="modalEditUserFirstName">Client Name</label>
                                     <input type="text" id="modalEditUserFirstName" name="client_name"
-                                        class="form-control" placeholder="Client Name" Placeholder="Title" data-msg="Title" />
+                                        class="form-control" placeholder="Client Name" Placeholder="Title"
+                                        data-msg="Title" />
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <label class="form-label" for="modalEditUserLastName">Mobile No.</label>
-                                    <input type="text" name="mobile_no" id="modalEditUserLastName" 
-                                        class="form-control" placeholder="Mobile No." data-msg="Description" />
+                                    <input type="text" name="mobile_no" id="modalEditUserLastName" class="form-control"
+                                        placeholder="Mobile No." data-msg="Description" />
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <label class="form-label" for="modalEditUserLastName">Area</label>
-                                    <input type="text" name="area" id="modalEditUserLastName" 
-                                        class="form-control" placeholder="Building Name" data-msg="Description" />
+                                    <input type="text" name="area" id="modalEditUserLastName" class="form-control"
+                                        placeholder="Building Name" data-msg="Description" />
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <label class="form-label" for="modalEditUserEmail">Type</label>
-                                    <select id="UserRole" name="type"
-                                        class="form-select text-capitalize mb-md-0 mb-2">
+                                    <select id="UserRole" name="type" class="form-select text-capitalize mb-md-0 mb-2">
                                         <option value="" disabled selected> Select Type </option>
                                         <option value="Flat Sell" class="text-capitalize">Flat Sell</option>
                                         <option value="Flat Rent" class="text-capitalize">Flat Rent</option>
-                                        <option value="Shop / Office Sell" class="text-capitalize">Shop / Office Sell</option>
-                                        <option value="Shop / Office Rent" class="text-capitalize">Shop / Office Rent</option>
+                                        <option value="Shop / Office Sell" class="text-capitalize">Shop / Office Sell
+                                        </option>
+                                        <option value="Shop / Office Rent" class="text-capitalize">Shop / Office Rent
+                                        </option>
                                     </select>
                                 </div>
                                 <div class="col-12 col-md-6">
@@ -381,65 +446,68 @@ if(isset($_POST['cusEdit'])){
                                     </select>
                                 </div>
                                 <div class="col-12 col-md-12">
-                                <label class="form-label" for="modalEditUserEmail">Description</label>
-                                <textarea  class="form-control" placeholder="description" name="description" ></textarea>
+                                    <label class="form-label" for="modalEditUserEmail">Description</label>
+                                    <textarea class="form-control" placeholder="description"
+                                        name="description"></textarea>
                                 </div>
                                 <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" name="add_property" data-bs-dismiss="modal">Add</button>
-                            <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+                                    <button type="submit" class="btn btn-primary" name="add_property"
+                                        data-bs-dismiss="modal">Add</button>
+                                    <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
                                         aria-label="Close">
                                         Close
                                     </button>
-                        </div>
+                                </div>
                             </form>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
         </div>
         <!-- Basic trigger modal end -->
 
-             <!-- view customer -->
-     <div class="modal fade" id="addNewCard" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header bg-transparent">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75" onsubmit="return false" action="cus.php">
-
-                            <div class="modal-body px-sm-5 mx-50 pb-5 body">
-
-                            </div>
-                         
-                         </form>
-                        
-                        </div>
+        <!-- view customer -->
+        <div class="modal fade" id="addNewCard" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-transparent">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                </div>
-                <!--/ view customer -->
+                    <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75" onsubmit="return false"
+                        action="cus.php">
 
-                <!-- edit customer -->
-  <div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header bg-transparent">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75" action="" method="post">
+                        <div class="modal-body px-sm-5 mx-50 pb-5 body">
 
-                            <div class="modal-body px-sm-5 mx-50 pb-5 body1">
-
-                            </div>
-                         
-                           
-                         </form>
-                        
                         </div>
-                    </div>
+
+                    </form>
+
                 </div>
-                <!--/ Edit customer -->
+            </div>
+        </div>
+        <!--/ view customer -->
+
+        <!-- edit customer -->
+        <div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-transparent">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75" action="" method="post">
+
+                        <div class="modal-body px-sm-5 mx-50 pb-5 body1">
+
+                        </div>
+
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <!--/ Edit customer -->
     </div>
     <!-- Basic Modals end -->
     <!-- END: Content-->
@@ -507,64 +575,67 @@ if(isset($_POST['cusEdit'])){
         });
     </script>
     <script>
-          $(document).ready(function(){
-          $('.view').click(function(){
-            let dnk = $(this).data('id');
-           
-            $.ajax({
-            url: 'cus.php',
-            type: 'post',
-            data: {dnk: dnk},
-            success: function(response2){ 
-              $('.body').html(response2);
-              $('#addNewCard').modal('show'); 
-            }
-          });
-          });
-          });
-          </script>
+        $(document).ready(function () {
+            $('.view').click(function () {
+                let dnk = $(this).data('id');
 
-
-
-<script>
-          $(document).ready(function(){
-          $('.edit').click(function(){
-            let dnkk = $(this).data('id');
-           
-            $.ajax({
-            url: 'cus.php',
-            type: 'post',
-            data: {dnkk: dnkk},
-            success: function(response1){ 
-              $('.body1').html(response1);
-              $('#editmodal').modal('show'); 
-            }
-          });
-          });
-          });
-          </script>
-
-<script type="text/javascript">
-            $(document).ready(function(){
-                $("#fetchval1").on('change',function(){
-                    var value = $(this).val();
-                    alert(value);
-
-                    $.ajax({
-                        url:"fetch.php",
-                        type:"POST",
-                        data:'request=' + value;
-                        beforeSend:function(){
-                            $(".tablefetch").html("<span> Working...</span>");
-                        },
-                        success:function(data){
-                            $(".tablefetch").html(data);
-                        }
-                    })
+                $.ajax({
+                    url: 'cus.php',
+                    type: 'post',
+                    data: {
+                        dnk: dnk
+                    },
+                    success: function (response2) {
+                        $('.body').html(response2);
+                        $('#addNewCard').modal('show');
+                    }
                 });
             });
+        });
+    </script>
 
-</script>
+
+
+    <script>
+        $(document).ready(function () {
+            $('.edit').click(function () {
+                let dnkk = $(this).data('id');
+
+                $.ajax({
+                    url: 'cus.php',
+                    type: 'post',
+                    data: {
+                        dnkk: dnkk
+                    },
+                    success: function (response1) {
+                        $('.body1').html(response1);
+                        $('#editmodal').modal('show');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        // $(document).ready(function () {
+        //     $("#fetchval1").on('change', function () {
+        //         var value = $(this).val();
+        //         // alert(value);
+
+        //         $.ajax({
+        //             url: "fetch.php",
+        //             type: "POST",
+        //             data: 'request=' + (value),
+        //             beforeSend: function () {
+        //                 $(".tablefetch").html("<span> Working...</span>");
+        //             },
+        //             success: function (data) {
+        //                 $(".tablefetch").html(data);
+        //             }
+        //         });
+        //     });
+        // });
+    </script>
 </body>
 <!-- END: Body-->
 

@@ -839,10 +839,6 @@ while($fetchprice=mysqli_fetch_array($price)){
             });
 
             ResCarouselSize();
-
-
-
-
             $(window).resize(function () {
                 ResCarouselSize();
             });
@@ -973,8 +969,8 @@ while($fetchprice=mysqli_fetch_array($price)){
     <script>
         $(document).on('click', '#priceSwitch', function () {
     if ($(this).is(':checked')) {
-    let month = parseFloat($(.annual-pricing).closest(".enterprise-pricing").find(".pricing-enterprise-value").val()) || 0;
-    $(.annual-pricing).closest(".enterprise-pricing").find(".annual-pricing").text(month * 12);  
+    let month = parseFloat($('.annual-pricing').closest(".card").find(".pricing-enterprise-value").text()) || 0;
+    $('.annual-pricing').closest(".card").find(".annual-pricing").text(month);  
     }
     });
     </script>
