@@ -12,29 +12,29 @@ $api = new Api($keyId, $keySecret);
 // We create an razorpay order using orders api
 // Docs: https://docs.razorpay.com/docs/orders
 
-// $id=$_POST['id'];
-// $name=$_POST['name'];
-// $email=$_POST['email'];
-// $phone=$_POST['phone'];
-// $amount=$_POST['price'];
-
-// $_SESSION['id']=$id;
-// $_SESSION['name']=$name;
-// $_SESSION['email']=$email;
-// $_SESSION['phone']=$phone;
-// $_SESSION['price']=$amount;
-
 $id=$_POST['id'];
-$name=$_POST['packagename'];
+$name=$_POST['name'];
 $email=$_POST['email'];
-$phone=$_POST['mob'];
-$amount=$_POST['amt'];
+$phone=$_POST['phone'];
+$amount=$_POST['price'];
 
 $_SESSION['id']=$id;
 $_SESSION['name']=$name;
 $_SESSION['email']=$email;
 $_SESSION['phone']=$phone;
 $_SESSION['price']=$amount;
+
+// $id=$_POST['id'];
+// $name=$_POST['packagename'];
+// $email=$_POST['email'];
+// $phone=$_POST['mob'];
+// $amount=$_POST['amt'];
+
+// $_SESSION['id']=$id;
+// $_SESSION['name']=$name;
+// $_SESSION['email']=$email;
+// $_SESSION['phone']=$phone;
+// $_SESSION['price']=$amount;
 
 
 $orderData = [
