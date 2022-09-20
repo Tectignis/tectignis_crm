@@ -36,14 +36,14 @@ if(isset($_POST['cusEdit'])){
     $mobile_no1=$_POST['mobile_no'];
     $apartment_type1=$_POST['apartment_type'];
     $area1=$_POST['area'];
-    $status='available';
-    $type1=$_POST['type'];
     $status=$_POST['status'];
+    // $status='available';
+    $type1=$_POST['typeUpdate'];
 
 
    
    
-    $sql="UPDATE `property` SET `client_name`='$client_name1',`mobile_no`='$mobile_no1',`apartment_type`='$apartment_type1',`area`='$area1',`status`='$status',`type`='$type',`description`='$description' WHERE id='$id.'";
+    $sql="UPDATE `property` SET `client_name`='$client_name1',`mobile_no`='$mobile_no1',`apartment_type`='$apartment_type1',`area`='$area1',`status`='$status',`type`='$type1',`description`='$description' WHERE id='$id.'";
 
     if (mysqli_query($conn, $sql)){
       header("location:property.php");
@@ -229,8 +229,8 @@ if(isset($_POST['cusEdit'])){
                         <div class="card-body border-bottom">
                             <p class="card-title mt-2">Search & Filter</h4>
                             <div class="row">
-                                <div class="col-md-4 user_role"><label class="form-label"
-                                        for="UserRole">Type</label><select id="UserRole"
+                                <div class="col-md-4 user_role" id="filters"><label class="form-label"
+                                        for="UserRole">Type</label><select  name="fetchval1" id="fetchval1"
                                         class="form-select text-capitalize mb-md-0 mb-2">
                                         <option value="" disabled selected> Select Type </option>
                                         <option value="Flat Sell" class="text-capitalize">Flat Sell</option>
@@ -249,11 +249,11 @@ if(isset($_POST['cusEdit'])){
                                 </div>
                                 <div class="col-md-4 user_status"><label class="form-label"
                                         for="FilterTransaction"></label>
-                                    <button class="btn btn-primary mb-0 mt-2" style="">Submit</button>
+                                    <button class="btn btn-primary mb-0 mt-2"  id="sub" style="">Submit</button>
                                 </div>
                             </div>
                             <!-- <hr>     -->
-                            <div class="row mt-1">
+                            <div class="row mt-1 tablefetch">
                                 <table id="example1" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
@@ -543,6 +543,28 @@ if(isset($_POST['cusEdit'])){
           });
           });
           </script>
+
+<script type="text/javascript">
+            $(document).ready(function(){
+                $("#fetchval1").on('change',function(){
+                    var value = $(this).val();
+                    alert(value);
+
+                    $.ajax({
+                        url:"fetch.php",
+                        type:"POST",
+                        data:'request=' + value;
+                        beforeSend:function(){
+                            $(".tablefetch").html("<span> Working...</span>");
+                        },
+                        success:function(data){
+                            $(".tablefetch").html(data);
+                        }
+                    })
+                });
+            });
+
+</script>
 </body>
 <!-- END: Body-->
 
