@@ -26,7 +26,7 @@
                                   </g>
                               </g>
                           </svg></span>
-                      <h2 class="brand-text">Client</h2>
+                      <h2 class="brand-text">Admin</h2>
                   </a></li>
               <!-- <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse"><i class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i><i class="d-none d-xl-block collapse-toggle-icon font-medium-4  text-primary" data-feather="disc" data-ticon="disc"></i></a></li> -->
           </ul>
@@ -34,7 +34,7 @@
       <div class="shadow-bottom"></div>
       <div class="main-menu-content">
           <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-              <li class=" nav-item"><a class="d-flex align-items-center" href="dashboard.php"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Dashboard</span></a></li>
+              <li class=" nav-item"><a class="d-flex align-items-center" href="index.php"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Dashboard</span></a></li>
             
               <li class=" nav-item"><a class="d-flex align-items-center" href="Support.php"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Invoice">Support</span></a>
               </li>
@@ -42,8 +42,6 @@
               </li>
              
               <li class=" nav-item"><a class="d-flex align-items-center" href="category.php"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">category</span></a>
-              </li>
-              <li class=" nav-item"><a class="d-flex align-items-center" href="system_setting.php"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">System Setting</span></a>
               </li>
               <li class=" nav-item"><a class="d-flex align-items-center" href="ticket.php"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">Ticket</span></a>
               </li>
@@ -54,17 +52,17 @@
               </li>
 
              
-              <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Invoice">Settings</span></a>
+              <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="save"></i><span class="menu-title text-truncate" data-i18n="Card">Account Settings</span></a>
                   <ul class="menu-content">
-                      <li><a class="d-flex align-items-center" href="account.php"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Account</span></a>
+                      <li><a class="d-flex align-items-center" href="admin_account.php"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">Account</span></a>
                       </li>
-                      <li><a class="d-flex align-items-center" href="security.php"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">Security</span></a>
+                      <li><a class="d-flex align-items-center" href="account_password.php"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">Security</span></a>
                       </li>
-                      <li><a class="d-flex align-items-center" href="billing&plans.php"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">Billing & Plans</span></a>
+                      <li><a class="d-flex align-items-center" href="payment_method.php"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">Payment method</span></a>
                       </li>
-                      <li><a class="d-flex align-items-center" href="notification.php"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">Notification</span></a>
+                      <li><a class="d-flex align-items-center" href="system-setting.php"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">system setting</span></a>
                       </li>
-                      <li><a class="d-flex align-items-center" href="connection.php"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">Connection</span></a>
+                      <li><a class="d-flex align-items-center" href=""><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">Email Config</span></a>
                       </li>
                   </ul>
               </li>

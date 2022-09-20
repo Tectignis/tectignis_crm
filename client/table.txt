@@ -59,3 +59,11 @@ Add this Script files in end of body
 
         });
     </script>
+
+
+        <select id="UserRole" name="status"
+            class="form-select text-capitalize mb-md-0 mb-2">
+            <option value="" disabled selected> Select Type </option>
+            <option value="available" class="text-capitalize">Available</option>
+            <option value="not available" class="text-capitalize">Not Available</option>
+        </select>
