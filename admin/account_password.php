@@ -1,3 +1,8 @@
+<?php session_start();
+
+include("config.php");
+?>
+
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
@@ -103,10 +108,15 @@
                                     <span class="fw-bold">Security</span>
                                 </a>
                             </li>
-                           
+                            <li class="nav-item">
+                                <a class="nav-link" href="system-setting.php">
+                                    <i data-feather="link" class="font-medium-3 me-50"></i>
+                                    <span class="fw-bold">System Setting</span>
+                                </a>
+                            </li>
                             <!-- connection -->
                             <li class="nav-item">
-                                <a class="nav-link" href="page-account-settings-connections.html">
+                                <a class="nav-link" href="page-account-settings-connections.php">
                                     <i data-feather="link" class="font-medium-3 me-50"></i>
                                     <span class="fw-bold">Connections</span>
                                 </a>

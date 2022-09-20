@@ -2,7 +2,7 @@
 <?php
 session_start();
 include("config.php");
-$id=$_SESSION['id'];
+// $id=$_SESSION['id'];
 if(isset($_POST['ticket'])){
     
    
@@ -154,7 +154,7 @@ if(isset($_POST['ticket'])){
                                     </thead>
                                     <tbody>
                                         <?php
-                                            $sql=mysqli_query($conn,"select * from ticket where Client_Code='$id'");
+                                            $sql=mysqli_query($conn,"select * from ticket");
                                             $count=1;
                                             while ($row=mysqli_fetch_array($sql)){ 
                                         ?>
