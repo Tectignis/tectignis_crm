@@ -1,15 +1,46 @@
 <?php session_start();
 include("config.php");
 
-if(isset($_POST['submit'])){
+if(isset($_POST['submit1'])){
+    $id=$_POST['idlogo'];
+    $logo=$_FILES['logo']['name'];
+$file_tmp = $_FILES['logo']['tmp_name']; 
+if(move_uploaded_file($file_tmp,"images/logo&icon/".$logo)){
+
+    $sql=mysqli_query($conn,"UPDATE `setting_system` SET `logo`='$logo' WHERE id='$id'");
+}
+else{
+    echo 'failed';
+}
+ 
+}
+if(isset($_POST['submit2'])){
+    $id=$_POST['idfav'];
+    $fav=$_FILES['fav']['name'];
+$file_tmp = $_FILES['fav']['tmp_name']; 
+if(move_uploaded_file($file_tmp,"images/favicon/".$fav)){
+
+    $sql=mysqli_query($conn,"UPDATE `setting_system` SET `fav`='$fav' WHERE id='$id'");
+    
+}
+else{
+    echo 'failed';
+}
+ 
+}
+if(isset($_POST['submit3'])){
     $id=$_POST['id'];
     $copyright=$_POST['copyright'];  
     $developedby=$_POST['developedby'];  
 
 
-  $sql=mysqli_query($conn,"UPDATE `setting_system` SET `copyright`='$copyright',`developedby`='$developedby' WHERE id='$id'");
+  $sql=mysqli_query($conn,"UPDATE `setting_system` SET `copyright`='$copyright',`developedby`='$developedby'");
 
- 
+  if($sql==1){	
+    header("location:setting_system.php");
+  	}else{
+		echo "<script>alert('Something went wrong');</script>";
+	}
 }
 ?>
 
@@ -142,6 +173,10 @@ if(isset($_POST['submit'])){
                         <!-- notifications -->
 
                         <section class="tooltip-validations" id="tooltip-validation">
+                        <?php
+                  $sql=mysqli_query($conn,"select * from setting_system");
+                  while($arr=mysqli_fetch_array($sql)){
+                  ?>
                     <div class="row">
                         <div class="col-6">
                             <div class="card">
@@ -150,16 +185,18 @@ if(isset($_POST['submit'])){
                                 </div>
                                 <div class="card-body">
                                     
-                                    <form class="needs-validation" novalidate>
+                                    <form method="post" class="needs-validation" enctype="multipart/form-data">
                                         <div class="row g-1">
                                             <div class="col-md-6 col-12 mb-3 position-relative">
-                                                <label for="formFile" class="form-label">Simple file input</label>
-                                                <input class="form-control" type="file" id="formFile" />
-                                               
+                                                <input type="hidden" name="idlogo" value="<?php echo $arr['id'] ?>">
+                                                <label for="formFile" class="form-label">Logo</label>
+                                                <input class="form-control" name="logo" type="file" id="formFile" />
                                             </div>
-                                           
+                                            <div class="col-md-6 col-12 mb-3 m-auto">
+                                               <img src="images/logo&icon/<?php echo $arr['logo'];?>" >
+                                            </div>
                                         </div>
-                                        <button class="btn btn-primary" type="submit">Submit</button>
+                                        <button class="btn btn-primary" type="submit" name="submit1">Submit</button>
                                     </form>
                                 </div>
                             </div>
@@ -171,25 +208,25 @@ if(isset($_POST['submit'])){
                                 </div>
                                 <div class="card-body">
                                     
-                                    <form method="post" class="needs-validation" novalidate>
+                                    <form method="post" class="needs-validation" novalidate enctype="multipart/form-data">
                                         <div class="row g-1">
                                             <div class="col-md-6 col-12 mb-3 position-relative">
-                                                <label for="formFile" class="form-label">Simple file input</label>
-                                                <input class="form-control" type="file" id="formFile" />
+                                            <input type="hidden" name="idfav" value="<?php echo $arr['id'] ?>">
+                                                <label for="formFile" class="form-label">Favicon</label>
+                                                <input class="form-control" type="file" name="fav" id="formFile" />
                                                
                                             </div>
-                                           
+                                            <div class="col-md-6 col-12 mb-3 m-auto">
+                                               <img src="images/favicon/<?php echo $arr['fav'];?>" >
+                                            </div>
                                         </div>
-                                        <button class="btn btn-primary" type="submit">Submit</button>
+                                        <button class="btn btn-primary" type="submit" name="submit2">Submit</button>
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <?php
-                  $sql=mysqli_query($conn,"select * from setting_system");
-                  while($arr=mysqli_fetch_array($sql)){
-                  ?>
+                   
                     <div class="row">
                     <div class="col-12">
                             <div class="card">
@@ -211,7 +248,7 @@ if(isset($_POST['submit'])){
                                                <input type="text" class="form-control" placeholder="Developed By..." name="developedby" value="<?php echo $arr['developedby'];?>">
                                             </div>
                                         </div>
-                                        <button class="btn btn-primary" type="submit" name="submit">Submit</button>
+                                        <button class="btn btn-primary" type="submit" name="submit3">Submit</button>
                                     </form>
                                 </div>
                             </div>
