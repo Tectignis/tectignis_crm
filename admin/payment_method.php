@@ -1,4 +1,5 @@
-<?php session_start();
+<?php 
+session_start();
 
 include("config.php");
 ?>
@@ -109,22 +110,22 @@ include("config.php");
                             <!-- billing and plans -->
                             <li class="nav-item">
                                 <a class="nav-link active" href="payment_method.php">
-                                    <i data-feather="bookmark" class="font-medium-3 me-50"></i>
+                                    <i data-feather="credit-card" class="font-medium-3 me-50"></i>
                                     <span class="fw-bold">Payment Method</span>
                                 </a>
                             </li>
                             <!-- notification -->
                             <li class="nav-item">
                                 <a class="nav-link" href="system-setting.php">
-                                    <i data-feather="bell" class="font-medium-3 me-50"></i>
+                                    <i data-feather="settings" class="font-medium-3 me-50"></i>
                                     <span class="fw-bold">System Setting</span>
                                 </a>
                             </li>
                             <!-- connection -->
                             <li class="nav-item">
-                                <a class="nav-link" href="email_config.php">
-                                    <i data-feather="link" class="font-medium-3 me-50"></i>
-                                    <span class="fw-bold">Email config</span>
+                                <a class="nav-link" href="google_analytics.php">
+                                    <i data-feather="bar-chart" class="font-medium-3 me-50"></i>
+                                    <span class="fw-bold">Google Analytics</span>
                                 </a>
                             </li>
                         </ul>
@@ -132,31 +133,38 @@ include("config.php");
                         <!-- notifications -->
 
                         <section class="tooltip-validations" id="tooltip-validation">
-                   
+                       
                     <div class="row">
+                    <?php
+                  $sql=mysqli_query($conn,"select * from payment_method");
+                  while($arr=mysqli_fetch_array($sql)){
+                  ?>
                     <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Payment Method</h4>
+                                    <h4 class="card-title">Razorpay</h4>
                                 </div>
                                 <div class="card-body">
-                                    <form class="needs-validation" novalidate>
+                                    <form method="post" action="update_paymentmethod.php" class="needs-validation" novalidate >
                                         <div class="row g-1">
                                             <div class="col-md-6 col-12 mb-3 position-relative">
-                                                <label for="" class="mb-1">Copyright</label>
-                                               <input type="text" class="form-control" placeholder="Copyright...">
+                                                <label for="" class="mb-1">API Key</label>
+                                                <input type="hidden" name="id" value="<?php echo $arr['id'];?>">
+                                               <input type="text" class="form-control" placeholder="API Key" name="api_key" value="<?php echo $arr['api_key'];?>">
                                             </div>
                                             <div class="col-md-6 col-12 mb-3 position-relative">
-                                                <label for="" class="mb-1">Developed By</label>
-                                               <input type="text" class="form-control" placeholder="Developed By...">
+                                                <label for="" class="mb-1">Secret Key</label>
+                                               <input type="text" class="form-control" placeholder="Secret Key" name="secret_key" value="<?php echo $arr['secret_key'];?>">
                                             </div>
                                         </div>
-                                        <button class="btn btn-primary" type="submit">Submit</button>
+                                        <button class="btn btn-primary" type="submit" name="submit">Submit</button>
                                     </form>
                                 </div>
                             </div>
                         </div>
+                        <?php } ?>
                     </div>
+                  
                 </section>
 
                         <!--/ notifications -->

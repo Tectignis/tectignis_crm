@@ -1,17 +1,21 @@
 <?php session_start();
-include("config.php");
 
+include("config.php");
 if(isset($_POST['submit'])){
     $id=$_POST['id'];
-    $copyright=$_POST['copyright'];  
-    $developedby=$_POST['developedby'];  
+    $analytics_code=$_POST['analytics_code'];  
 
 
-  $sql=mysqli_query($conn,"UPDATE `setting_system` SET `copyright`='$copyright',`developedby`='$developedby' WHERE id='$id'");
+  $sql=mysqli_query($conn,"UPDATE `google_analytics` SET `analytics_code`='$analytics_code' WHERE id='$id'");
 
- 
+  if($sql==1){	
+    header("location:google_analytics.php");
+  	}else{
+		echo "<script>alert('Something went wrong');</script>";
+	}
 }
 ?>
+
 
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
@@ -75,14 +79,14 @@ if(isset($_POST['submit'])){
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-start mb-0">System Setting</h2>
+                            <h2 class="content-header-title float-start mb-0">Google Analytics</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.php">Home</a>
                                     </li>
                                     <li class="breadcrumb-item"><a href="#">Account Settings</a>
                                     </li>
-                                    <li class="breadcrumb-item active">System Setting
+                                    <li class="breadcrumb-item active">Google Analytics
                                     </li>
                                 </ol>
                             </div>
@@ -125,14 +129,14 @@ if(isset($_POST['submit'])){
                             </li>
                             <!-- notification -->
                             <li class="nav-item">
-                                <a class="nav-link active" href="system-setting.php">
+                                <a class="nav-link" href="system-setting.php">
                                     <i data-feather="settings" class="font-medium-3 me-50"></i>
                                     <span class="fw-bold">System Setting</span>
                                 </a>
                             </li>
                             <!-- connection -->
                             <li class="nav-item">
-                                <a class="nav-link" href="google_analytics.php">
+                                <a class="nav-link active" href="google_analytics.php">
                                     <i data-feather="bar-chart" class="font-medium-3 me-50"></i>
                                     <span class="fw-bold">Google Analytics</span>
                                 </a>
@@ -142,74 +146,26 @@ if(isset($_POST['submit'])){
                         <!-- notifications -->
 
                         <section class="tooltip-validations" id="tooltip-validation">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Logo</h4>
-                                </div>
-                                <div class="card-body">
-                                    
-                                    <form class="needs-validation" novalidate>
-                                        <div class="row g-1">
-                                            <div class="col-md-6 col-12 mb-3 position-relative">
-                                                <label for="formFile" class="form-label">Simple file input</label>
-                                                <input class="form-control" type="file" id="formFile" />
-                                               
-                                            </div>
-                                           
-                                        </div>
-                                        <button class="btn btn-primary" type="submit">Submit</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">favicon</h4>
-                                </div>
-                                <div class="card-body">
-                                    
-                                    <form method="post" class="needs-validation" novalidate>
-                                        <div class="row g-1">
-                                            <div class="col-md-6 col-12 mb-3 position-relative">
-                                                <label for="formFile" class="form-label">Simple file input</label>
-                                                <input class="form-control" type="file" id="formFile" />
-                                               
-                                            </div>
-                                           
-                                        </div>
-                                        <button class="btn btn-primary" type="submit">Submit</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <?php
-                  $sql=mysqli_query($conn,"select * from setting_system");
+                        <?php
+                  $sql=mysqli_query($conn,"select * from google_analytics");
                   while($arr=mysqli_fetch_array($sql)){
                   ?>
                     <div class="row">
                     <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Footer</h4>
+                                    <h4 class="card-title">Google Analytics</h4>
                                 </div>
                                 <div class="card-body">
-                                    
                                     <form method="post" class="needs-validation" novalidate>
                                         <div class="row g-1">
-                                            <div class="col-md-6 col-12 mb-3 position-relative">
-                                                <label for="" class="mb-1">Copyright</label>
+                                            <div class="col-md-12 col-12 mb-3 position-relative">
+                                                <label for="" class="mb-1">Google Analytics Code</label>
                                                 <input type="hidden" name="id" value="<?php echo $arr['id'];?>">
 
-                                               <input type="text" class="form-control" placeholder="Copyright..." name="copyright" value="<?php echo $arr['copyright'];?>">
+                                                <input type="text" class="form-control" placeholder="Google Analytics Code" name="analytics_code" value="<?php echo $arr['analytics_code'];?>">
                                             </div>
-                                            <div class="col-md-6 col-12 mb-3 position-relative">
-                                                <label for="" class="mb-1">Developed By</label>
-                                               <input type="text" class="form-control" placeholder="Developed By..." name="developedby" value="<?php echo $arr['developedby'];?>">
-                                            </div>
+                                            
                                         </div>
                                         <button class="btn btn-primary" type="submit" name="submit">Submit</button>
                                     </form>
