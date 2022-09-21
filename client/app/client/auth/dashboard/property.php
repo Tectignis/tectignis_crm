@@ -303,22 +303,21 @@ if(isset($_POST['cusEdit'])){
 
 
 
-                                                    <button type="button" data-id="<?php echo $row['id'] ?>"
-                                                        class="btn btn-outline-primary view" data-bs-toggle="modal"
+                                                    <a type="button" data-id="<?php echo $row['id'] ?>"
+                                                        class=" view" href="" data-bs-toggle="modal"
                                                         data-bs-target="#addNewCard">
-                                                        <i data-feather="eye"></i>
-                                                    </button>
+                                                        <i class="far fa-eye" style="font-size:17px; style="font-size:17px;""></i>
+                                                    </a>
 
-                                                    <a href="property.php?delid=<?php echo $row['id']; ?>"><button
-                                                            type="button" class="btn btn-outline-primary"><i
-                                                                data-feather="trash"></i></button></a>
+                                                    <a href="property.php?delid=<?php echo $row['id']; ?>"
+                                                            type="button" href=""><i class="fa fa-trash-alt" style="font-size:17px; style="font-size:17px;""></i></a>
 
 
-                                                    <button type="button" data-id="<?php echo $row['id'] ?>"
-                                                        class="btn btn-outline-primary edit" data-bs-toggle="modal"
+                                                    <a type="button" data-id="<?php echo $row['id'] ?>"
+                                                        class=" edit" data-bs-toggle="modal" href=""
                                                         data-bs-target="#edit">
-                                                        <i data-feather="edit"></i>
-                                                    </button>
+                                                        <i class="far fa-edit" style="font-size:17px; style="font-size:17px;""></i>
+                                                    </a>
 
                                                 </td>
 
@@ -350,22 +349,21 @@ if(isset($_POST['cusEdit'])){
 
 
 
-                                                    <button type="button" data-id="<?php echo $row['id'] ?>"
-                                                        class="btn btn-outline-primary view" data-bs-toggle="modal"
+                                                <a type="button" data-id="<?php echo $row['id'] ?>"
+                                                        class=" view" href="" data-bs-toggle="modal"
                                                         data-bs-target="#addNewCard">
-                                                        <i data-feather="eye"></i>
-                                                    </button>
+                                                        <i class="fa fa-eye-alt" style="font-size:17px; style="font-size:17px;""></i>
+                                                    </a>
 
-                                                    <a href="property.php?delid=<?php echo $row['id']; ?>"><button
-                                                            type="button" class="btn btn-outline-primary"><i
-                                                                data-feather="trash"></i></button></a>
+                                                    <a href="property.php?delid=<?php echo $row['id']; ?>"
+                                                            type="button" href=""><i class="fa fa-trash" style="font-size:17px; style="font-size:17px;""></i></a>
 
 
-                                                    <button type="button" data-id="<?php echo $row['id'] ?>"
-                                                        class="btn btn-outline-primary edit" data-bs-toggle="modal"
+                                                    <a type="button" data-id="<?php echo $row['id'] ?>"
+                                                        class=" edit" data-bs-toggle="modal" href=""
                                                         data-bs-target="#edit">
-                                                        <i data-feather="edit"></i>
-                                                    </button>
+                                                        <i class="fa fa-edit" style="font-size:17px; style="font-size:17px;""></i>
+                                                    </a>
 
                                                 </td>
 
