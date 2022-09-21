@@ -128,10 +128,10 @@ if(isset($_POST['dnkk'])){
         <select id="UserRole" name="typeUpdate"
         class="form-select text-capitalize mb-md-0 mb-2">
         <option value="" disabled > Select Type </option>
-        <option value="Flat Sell" '.(($row['type']=='Flat Sell')?"selected":"").' class="text-capitalize">Flat Sell</option>
-        <option value="Flat Rent" '.(($row['type']=='Flat Rent')?"selected":"").' class="text-capitalize">Flat Rent</option>
-        <option value="Shop / Office Sell" '.(($row['type']=='Shop / Office Sell')?"selected":"").' class="text-capitalize">Shop / Office Sell</option>
-        <option value="Shop / Office Rent" '.(($row['type']=='Shop / Office Rent')?"selected":"").' class="text-capitalize">Shop / Office Rent</option>
+        <option value="Flat Sell" '.(($row['type1']=='Flat Sell')?"selected":"").' class="text-capitalize">Flat Sell</option>
+        <option value="Flat Rent" '.(($row['type1']=='Flat Rent')?"selected":"").' class="text-capitalize">Flat Rent</option>
+        <option value="Shop / Office Sell" '.(($row['type1']=='Shop / Office Sell')?"selected":"").' class="text-capitalize">Shop / Office Sell</option>
+        <option value="Shop / Office Rent" '.(($row['type1']=='Shop / Office Rent')?"selected":"").' class="text-capitalize">Shop / Office Rent</option>
     </select>
         </div>
       </div>
@@ -202,9 +202,9 @@ if(isset($_POST['dnkk'])){
         </div>
       </div>
     </div>
-  </div>
 </br>
-<div class="row">
+
+    <div class="row">
 <div class="col-md-12">
 <div class="form-group">
 <label for="clock_in">
@@ -219,7 +219,9 @@ if(isset($_POST['dnkk'])){
 </div>
 
 </div>
+  </div>
 </br>
+
     </div>
   </div>
   <div class="modal-footer">
