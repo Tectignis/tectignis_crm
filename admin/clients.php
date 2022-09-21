@@ -222,47 +222,48 @@ if(isset($_POST["submi"])){
                             <h1 class="mb-1">Create Clients</h1>
 
                         </div>
-                        <form id="editUserForm" class="row gy-1 pt-75" onsubmit="return false">
+                        <form id="editUserForm" action="action_clients.php" enctype="multipart/form-data" class="row gy-1 pt-75" >
                             <div class="col-12 col-md-6">
                                 <label class="form-label" for="modalEditUserFirstName">Firm Name</label>
-                                <input type="text" id="modalEditUserFirstName" name="modalEditUserFirstName"
-                                    class="form-control" placeholder="" value=""
+                                <input type="text" id="modalEditUserFirstName" name="fname" class="form-control" placeholder="" value=""
                                     data-msg="Please enter your firm name" />
                             </div>
                             <div class="col-12 col-md-6">
                                 <label class="form-label" for="modalEditUserLastName"> Name</label>
-                                <input type="text" id="modalEditUserLastName" name="modalEditUserLastName"
+                                <input type="text" id="modalEditUserLastName" name="name"
                                     class="form-control" placeholder="" value="" data-msg="Please enter your name" />
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <label class="form-label" for="modalEditUserEmail"> Email:</label>
-                                <input type="email" id="modalEditUserEmail" name="modalEditUserEmail"
+                                <input type="email" id="modalEditUserEmail" name="email"
                                     class="form-control" value="" placeholder="" />
                             </div>
                             <div class="col-12 col-md-6">
                                 <label class="form-label" for="modalEditUserEmail">Mobile No:</label>
-                                <input type="number" id="modalEditUserEmail" name="modalEditUserEmail"
-                                    class="form-control" value="" placeholder="" />
+                                <input type="number" id="modalEditUserEmail" name="number" class="form-control" value="" placeholder="" />
                             </div>
                             <div class="col-12 col-md-6">
                                 <label class="form-label" for="modalEditUserStatus">Category</label>
-                                <select id="modalEditUserStatus" name="modalEditUserStatus" class="form-select"
+                                <?php 
+                                $query=mysqli_query($conn,"select * from category");
+                                ?>
+                                <select id="modalEditUserStatus" name="category" class="form-select"
                                     aria-label="Default select example">
                                     <option selected>Real Estate</option>
-                                    <option value="1">Active</option>
-                                    <option value="2">Inactive</option>
-                                    <option value="3">Suspended</option>
+                                    <?php
+                                    while($sql=mysqli_fetch_array($query)) { ?>
+                                        <option value="<?php echo $sql['id']; ?>"> <?php echo $sql['category']; ?></option>
+                                        <?php } ?>
                                 </select>
                             </div>
                             <div class="col-12 col-md-6">
                                 <label class="form-label" for="modalEditTaxID">Image</label>
-                                <input type="text" id="modalEditTaxID" name="modalEditTaxID"
-                                    class="form-control modal-edit-tax-id" placeholder="Tax-8894" value="Tax-8894" />
+                                <input type="file" id="modalEditTaxID" name="image" class="form-control modal-edit-tax-id"/>
                             </div>
 
                             <div class="col-12 text-center mt-2 pt-50">
-                                <button type="submit" class="btn btn-primary me-1">Create</button>
+                                <button type="submit" class="btn btn-primary me-1" name="submit1">Create</button>
                                 <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
                                     aria-label="Close">
                                     Discard
@@ -285,7 +286,7 @@ if(isset($_POST["submi"])){
                         <h1 class="text-center mb-1" id="addNewCardTitle">Add New Client</h1>
 
                         <!-- form -->
-                        <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75" onsubmit="return false">
+                        <form id="addNewCardValidation"  class="row gy-1 gx-2 mt-75" >
                             <div class="col-12 col-md-6">
                                 <label class="form-label" for="modalEditUserFirstName">Firm Name</label>
                                 <input type="text" id="modalEditUserFirstName" name="modalEditUserFirstName"
@@ -311,12 +312,16 @@ if(isset($_POST["submi"])){
                             </div>
                             <div class="col-12 col-md-6">
                                 <label class="form-label" for="modalEditUserStatus">Category</label>
+                                <?php 
+                                $query=mysqli_query($conn,"select * from category");
+                                ?>
                                 <select id="modalEditUserStatus" name="modalEditUserStatus" class="form-select"
                                     aria-label="Default select example">
                                     <option selected>Real Estate</option>
-                                    <option value="1">Active</option>
-                                    <option value="2">Inactive</option>
-                                    <option value="3">Suspended</option>
+                                    <?php
+                                    while($sql=mysqli_fetch_array($query)) { ?>
+                                        <option value="<?php echo $sql['id']; ?>"> <?php echo $sql['category']; ?></option>
+                                        <?php } ?>
                                 </select>
                             </div>
 
