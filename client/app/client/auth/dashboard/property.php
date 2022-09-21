@@ -159,7 +159,7 @@ if(isset($_POST['cusEdit'])){
                                 <div class="card-body d-flex align-items-center justify-content-between">
                                     <div>
                                         <h3 class="fw-bolder mb-75"><?php echo $count2; ?></h3>
-                                        <span class="fw-bolder">Flat Rent <i data-feather="trash"></i></span>
+                                        <span class="fw-bolder">Flat Rent</span>
                                     </div>
                                     <div class="avatar bg-light-danger p-50">
                                         <span class="avatar-content">

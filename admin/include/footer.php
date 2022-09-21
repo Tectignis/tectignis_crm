@@ -10,14 +10,10 @@
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->
-    <!-- <script src="app-assets/vendors/js/charts/apexcharts.min.js"></script> -->
+    <script src="app-assets/vendors/js/charts/apexcharts.min.js"></script>
     <!-- END: Page Vendor JS-->
 
-    <!-- BEGIN: Theme JS-->
-    <script src="app-assets/js/core/app-menu.js"></script>
-    <script src="app-assets/js/core/app.js"></script>
-    
-    <!-- END: Theme JS-->
+
 
     <!-- BEGIN: Page JS-->
     <script src="app-assets/js/scripts/cards/card-statistics.js"></script>
@@ -26,14 +22,11 @@
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->
-    <!-- <script src="app-assets/vendors/js/charts/apexcharts.min.js"></script> -->
+    <script src="app-assets/vendors/js/charts/apexcharts.min.js"></script>
     <script src="app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
     <!-- END: Page Vendor JS-->
 
-    <!-- BEGIN: Theme JS-->
-    <script src="app-assets/js/core/app-menu.js"></script>
-    <script src="app-assets/js/core/app.js"></script>
-    <!-- END: Theme JS-->
+
     <script src="app-assets/vendors/js/vendors.min.js"></script>
     <!-- BEGIN Vendor JS-->
 
@@ -41,22 +34,24 @@
     <script src="app-assets/vendors/js/charts/chart.min.js"></script>
     <script src="app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
     <!-- END: Page Vendor JS-->
-
-    <!-- BEGIN: Theme JS-->
-    <script src="app-assets/js/core/app-menu.js"></script>
+        <!-- BEGIN: Theme JS-->
+        <script src="app-assets/js/core/app-menu.js"></script>
     <script src="app-assets/js/core/app.js"></script>
+    
     <!-- END: Theme JS-->
+
+
 
     <!-- BEGIN: Page JS-->
     <?php include 'app-assets/js/scripts/charts/chart-chartjs.php' ?>
     <?php include 'app-assets/js/scripts/charts/chart-apex.php' ?>
-    <!-- <script src="app-assets/js/scripts/charts/chart-chartjs.js"></script> -->
+    <script src="app-assets/js/scripts/charts/chart-chartjs.js"></script>
     <!-- END: Page JS-->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <!-- BEGIN: Page JS-->
    
-    <!-- <script src="app-assets/js/scripts/charts/chart-apex.js"></script> -->
+    <script src="app-assets/js/scripts/charts/chart-apex.js"></script>
     <script>
         $(window).on('load', function() {
             if (feather) {

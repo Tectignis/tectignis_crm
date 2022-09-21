@@ -47,7 +47,7 @@ if(isset($_POST['dnk'])){
       <div class="form-group">
         <label for="date">
         <b>  Type: </b> 
-        </label> '.$row['type'].'
+        </label> '.$row['type1'].'
       </div>
     </div>
   </div>
