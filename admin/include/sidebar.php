@@ -38,7 +38,7 @@
             
               <li class=" nav-item"><a class="d-flex align-items-center" href="Support.php"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Invoice">Support</span></a>
               </li>
-              <li class=" nav-item"><a class="d-flex align-items-center" href="Clients.php"><i data-feather="save"></i><span class="menu-title text-truncate" data-i18n="File Manager">Clients</span></a>
+              <li class=" nav-item"><a class="d-flex align-items-center" href="clients.php"><i data-feather="save"></i><span class="menu-title text-truncate" data-i18n="File Manager">Clients</span></a>
               </li>
              
               <li class=" nav-item"><a class="d-flex align-items-center" href="category.php"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">category</span></a>

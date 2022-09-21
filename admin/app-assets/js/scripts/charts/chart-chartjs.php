@@ -1018,7 +1018,7 @@ $(window).on('load', function () {
             label: function (tooltipItem, data) {
               var label = data.datasets[0].labels[tooltipItem.index] || '',
                 value = data.datasets[0].data[tooltipItem.index];
-              var output = ' ' + label + ' : ' + value + ' %';
+              var output = ' ' + label + ' : ' + value ;
               return output;
             }
           },
@@ -1032,12 +1032,13 @@ $(window).on('load', function () {
           bodyFontColor: window.colors.solid.black
         }
       },
+
       data: {
         datasets: [
           {
-            labels: ['Tablet','Desktop'],
-            data: [10,80],
-            backgroundColor: [successColorShade, window.colors.solid.primary],
+            labels: ["Activated", "Deactivated"],
+            data: [<?php echo $nactivated. ',' .$ndeactivated ?>],
+            backgroundColor: [ window.colors.solid.primary,successColorShade],
             borderWidth: 0,
             pointStyle: 'rectRounded'
           }
