@@ -34,7 +34,7 @@
       <div class="shadow-bottom"></div>
       <div class="main-menu-content">
           <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-              <li class=" nav-item"><a class="d-flex align-items-center" href="index.php"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Dashboard</span></a></li>
+              <li class=" nav-item"><a class="d-flex align-items-center" href="dashboard.php"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Dashboard</span></a></li>
             
               <li class=" nav-item"><a class="d-flex align-items-center" href="Support.php"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Invoice">Support</span></a>
               </li>
