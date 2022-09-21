@@ -1,3 +1,4 @@
+<script>
 /*=========================================================================================
     File Name: chart-apex.js
     Description: Apexchart Examples
@@ -23,7 +24,7 @@ $(function () {
         shade_200: '#06774f'
       },
       donut: {
-        series1: '#ffe700',
+        series1: '#e7651b',
         series2: '#00d4bd',
         series3: '#826bf8',
         series4: '#2b9bf4',
@@ -831,8 +832,8 @@ $(function () {
         show: true,
         position: 'bottom'
       },
-      labels: ['Operational', 'Networking', 'Hiring', 'R&D'],
-      series: [85, 16, 50, 50],
+      labels: ["Warm", "Hot", "Cold"],
+      series: [<?php echo $leadWarmFetch. ',' .$leadHotFetch. ',' .$leadColdFetch ?>],
       colors: [
         chartColors.donut.series1,
         chartColors.donut.series5,
@@ -858,15 +859,15 @@ $(function () {
                 fontSize: '1rem',
                 fontFamily: 'Montserrat',
                 formatter: function (val) {
-                  return parseInt(val) + '%';
+                  return parseInt(val);
                 }
               },
               total: {
                 show: true,
                 fontSize: '1.5rem',
-                label: 'Operational',
+                label: 'leads',
                 formatter: function (w) {
-                  return '31%';
+                  return '100';
                 }
               }
             }
@@ -915,3 +916,4 @@ $(function () {
     donutChart.render();
   }
 });
+</script>

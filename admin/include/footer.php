@@ -48,7 +48,8 @@
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->
-    <script src="app-assets/js/scripts/charts/chart-chartjs.js"></script>
+    <?php include 'app-assets/js/scripts/charts/chart-chartjs.php' ?>
+    <!-- <script src="app-assets/js/scripts/charts/chart-chartjs.js"></script> -->
     <!-- END: Page JS-->
 
     <!-- BEGIN: Page JS-->
