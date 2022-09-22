@@ -98,10 +98,6 @@ $aid=2;
                             <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item"
                                     href="app-todo.html"><i class="me-1" data-feather="check-square"></i><span
                                         class="align-middle">Todo</span></a><a class="dropdown-item"
-                                    href="app-chat.html"><i class="me-1" data-feather="message-square"></i><span
-                                        class="align-middle">Chat</span></a><a class="dropdown-item"
-                                    href="app-email.html"><i class="me-1" data-feather="mail"></i><span
-                                        class="align-middle">Email</span></a><a class="dropdown-item"
                                     href="app-calendar.html"><i class="me-1" data-feather="calendar"></i><span
                                         class="align-middle">Calendar</span></a></div>
                         </div>
@@ -160,7 +156,8 @@ $aid=2;
                                             <div>
                                                 <label for="account-upload"
                                                     class="btn btn-sm btn-primary mb-75 me-75">Upload</label>
-                                                <input type="file" id="account-upload" name="profile" accept="image/*" />
+                                                <input type="file" id="account-upload" hidden name="profile"
+                                                    accept="image/*" />
                                                 <button type="button" id="account-reset"
                                                     class="btn btn-sm btn-outline-secondary mb-75">Reset</button>
                                                 <p class="mb-0">Allowed file types: png, jpg, jpeg.</p>
@@ -175,101 +172,103 @@ $aid=2;
                   $sql=mysqli_query($conn,"select * from login where id='$aid'");
                   while($arr=mysqli_fetch_array($sql)){
                   ?>
-                                
-                                        <div class="row">
-                                            <div class="col-12 col-sm-6 mb-1">
-                                                <label class="form-label" for="accountFirstName">Full Name</label>
-                                                <input type="text" class="form-control" id="accountFirstName"
-                                                    name="fullName" placeholder="Full Name" name="fullName" value="<?php echo $arr['name'];?>"
-                                                    data-msg="Please enter first name" />
-                                            </div>
-                                            <div class="col-12 col-sm-6 mb-1">
-                                                <label class="form-label" for="accountLastName">Phone Number</label>
-                                                <input type="number" class="form-control" id="accountLastName"
-                                                    name="phone" placeholder="Phone Number" name="phone"value="<?php echo $arr['phone_number'];?>"
-                                                    data-msg="Please enter last name" />
-                                            </div>
-                                            <div class="col-12 col-sm-6 mb-1">
-                                                <label class="form-label" for="accountEmail">Email Id</label>
-                                                <input type="email" class="form-control" name="email" id="accountEmail"value="<?php echo $arr['Email'];?>"
-                                                    name="email" placeholder="Email" />
-                                            </div>
-                                            <div class="col-12 col-sm-6 mb-1">
-                                                <label class="form-label" for="accountOrganization">Organization
-                                                    Name</label>
-                                                <input type="text" class="form-control" id="accountOrganization"value="<?php echo $arr['organization_name'];?>"
-                                                    name="organization_name" placeholder="Organization name" />
-                                            </div>
-                                            <div class="col-12 col-sm-6 mb-1">
-                                                <label class="form-label" for="accountPhoneNumber">Support
-                                                    Number</label>
-                                                <input type="number" class="form-control account-number-mask"
-                                                    id="accountPhoneNumber" name="support_number"value="<?php echo $arr['support_number'];?>"
-                                                    placeholder="Phone Number" value="457 657 1237" />
-                                            </div>
-                                            <div class="col-12 col-sm-6 mb-1">
-                                                <label class="form-label" for="accountAddress">Support Email</label>
-                                                <input type="email" class="form-control" id="accountAddress"value="<?php echo $arr['support_email'];?>"
-                                                name="support_email" placeholder="Your Address" />
-                                            </div>
-                                            <div class="col-12 col-sm-6 mb-1">
-                                                <label class="form-label" for="accountState">GST NO</label>
-                                                <input type="text" class="form-control" id="accountState" name="gst_no"value="<?php echo $arr['gst_no'];?>"
-                                                placeholder="GST NO" />
-                                            </div>
-                                            <div class="col-12 col-sm-6 mb-1">
-                                                <label class="form-label" for="accountZipCode">PAN N0</label>
-                                                <input type="text" class="form-control account-zip-code"
-                                                    id="accountZipCode" name="pancard" placeholder="Pancard No"
-                                                    value="<?php echo $arr['pan_no'];?>"
-                                                    name="pancard" maxlength="6" />
-                                            </div>
-                                              <div class="col-12 col-sm-6 mb-1">
-                                                <label class="form-label" for="accountZipCode">CIN N0</label>
-                                                <input type="text" class="form-control account-zip-code"
-                                                    id="accountZipCode" name="cin" placeholder="CIN No"
-                                                    value="<?php echo $arr['cin_no'];?>"
-                                                    name="cin" maxlength="6" />
-                                            </div>
-                                             <div class="col-12 col-sm-6 mb-1">
-                                                <label class="form-label" for="accountZipCode"></label>
-                                                <input type="hidden" class="form-control account-zip-code"
-                                                    id="accountZipCode" name="id" placeholder="Pancard No"
-                                                    value="<?php echo $aid?>"
-                                                    name="pancard" maxlength="6" />
-                                            </div>
-                                           
-                                            <div class="col-12 col-sm-6 mb-1">
-                                                <label for="language" class="form-label">Bank Details</label>
-                                                <textarea class="form-control" id="exampleFormControlTextarea1"value="<?php echo $arr['bank_details'];?>"
-                                                    name="bank_details" rows="3" placeholder="Bank Details"><?php echo $arr['bank_details'];?></textarea>
-                                            </div>
-                                             <div class="col-12 col-sm-6 mb-1">
-                                                <label class="form-label" for="country">Address</label>
-                                                <textarea class="form-control" id="exampleFormControlTextarea1" value="<?php echo $arr['address'];?>"
-                                                    name="address" rows="3" placeholder="Address"><?php echo $arr['address'];?></textarea>
-                                            </div>
-                                            <div class="col-12">
-                                                <button type="submit" name="update_profile"
-                                                    class="btn btn-primary mt-1 me-1">Update changes</button>
-                                                <button type="reset"
-                                                    class="btn btn-outline-secondary mt-1">Discard</button>
-                                            </div>
+
+                                    <div class="row">
+                                        <div class="col-12 col-sm-6 mb-1">
+                                            <label class="form-label" for="accountFirstName">Full Name</label>
+                                            <input type="text" class="form-control" id="accountFirstName"
+                                                name="fullName" placeholder="Full Name" name="fullName"
+                                                value="<?php echo $arr['name'];?>" data-msg="Please enter first name" />
                                         </div>
-                                    </form>
-                                    <?php } ?>
-                                    <!--/ form -->
-                                </div>
+                                        <div class="col-12 col-sm-6 mb-1">
+                                            <label class="form-label" for="accountLastName">Phone Number</label>
+                                            <input type="number" class="form-control" id="accountLastName" name="phone"
+                                                placeholder="Phone Number" name="phone"
+                                                value="<?php echo $arr['phone_number'];?>"
+                                                data-msg="Please enter last name" />
+                                        </div>
+                                        <div class="col-12 col-sm-6 mb-1">
+                                            <label class="form-label" for="accountEmail">Email Id</label>
+                                            <input type="email" class="form-control" name="email" id="accountEmail"
+                                                value="<?php echo $arr['Email'];?>" name="email" placeholder="Email" />
+                                        </div>
+                                        <div class="col-12 col-sm-6 mb-1">
+                                            <label class="form-label" for="accountOrganization">Organization
+                                                Name</label>
+                                            <input type="text" class="form-control" id="accountOrganization"
+                                                value="<?php echo $arr['organization_name'];?>" name="organization_name"
+                                                placeholder="Organization name" />
+                                        </div>
+                                        <div class="col-12 col-sm-6 mb-1">
+                                            <label class="form-label" for="accountPhoneNumber">Support
+                                                Number</label>
+                                            <input type="number" class="form-control account-number-mask"
+                                                id="accountPhoneNumber" name="support_number"
+                                                value="<?php echo $arr['support_number'];?>" placeholder="Phone Number"
+                                                value="457 657 1237" />
+                                        </div>
+                                        <div class="col-12 col-sm-6 mb-1">
+                                            <label class="form-label" for="accountAddress">Support Email</label>
+                                            <input type="email" class="form-control" id="accountAddress"
+                                                value="<?php echo $arr['support_email'];?>" name="support_email"
+                                                placeholder="Your Address" />
+                                        </div>
+                                        <div class="col-12 col-sm-6 mb-1">
+                                            <label class="form-label" for="accountState">GST NO</label>
+                                            <input type="text" class="form-control" id="accountState" name="gst_no"
+                                                value="<?php echo $arr['gst_no'];?>" placeholder="GST NO" />
+                                        </div>
+                                        <div class="col-12 col-sm-6 mb-1">
+                                            <label class="form-label" for="accountZipCode">PAN N0</label>
+                                            <input type="text" class="form-control account-zip-code" id="accountZipCode"
+                                                name="pancard" placeholder="Pancard No"
+                                                value="<?php echo $arr['pan_no'];?>" name="pancard" maxlength="6" />
+                                        </div>
+                                        <div class="col-12 col-sm-6 mb-1">
+                                            <label class="form-label" for="accountZipCode">CIN N0</label>
+                                            <input type="text" class="form-control account-zip-code" id="accountZipCode"
+                                                name="cin" placeholder="CIN No" value="<?php echo $arr['cin_no'];?>"
+                                                name="cin" maxlength="6" />
+                                        </div>
+                                        <div class="col-12 col-sm-6 mb-1">
+                                            <label class="form-label" for="accountZipCode"></label>
+                                            <input type="hidden" class="form-control account-zip-code"
+                                                id="accountZipCode" name="id" placeholder="Pancard No"
+                                                value="<?php echo $aid?>" name="pancard" maxlength="6" />
+                                        </div>
+
+                                        <div class="col-12 col-sm-6 mb-1">
+                                            <label for="language" class="form-label">Bank Details</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1"
+                                                value="<?php echo $arr['bank_details'];?>" name="bank_details" rows="3"
+                                                placeholder="Bank Details"><?php echo $arr['bank_details'];?></textarea>
+                                        </div>
+                                        <div class="col-12 col-sm-6 mb-1">
+                                            <label class="form-label" for="country">Address</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1"
+                                                value="<?php echo $arr['address'];?>" name="address" rows="3"
+                                                placeholder="Address"><?php echo $arr['address'];?></textarea>
+                                        </div>
+                                        <div class="col-12">
+                                            <button type="submit" name="update_profile"
+                                                class="btn btn-primary mt-1 me-1">Update changes</button>
+                                            <button type="reset" class="btn btn-outline-secondary mt-1">Discard</button>
+                                        </div>
+                                    </div>
+                            </form>
+                            <?php } ?>
+                            <!--/ form -->
                         </div>
-
-                        <!-- deactivate account  -->
-
-                        <!--/ profile -->
                     </div>
-                </div>
 
+                    <!-- deactivate account  -->
+
+                    <!--/ profile -->
+                </div>
             </div>
+
         </div>
+    </div>
     </div>
     <!-- END: Content-->
 

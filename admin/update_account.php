@@ -31,21 +31,24 @@ if(isset($_POST['update_profile'])){
 }
 
 
-if(isset($_POST["change_passowrd"])){
-	$password=$_POST["password"];
-	$newpassword=$_POST["newpassword"];
 
+$d=35;
+if(isset($_POST["change_password"])){
+	$Old_password=$_POST["password"];
+	$New_password=$_POST["new_password"];
+  $Confirm_password=$_POST["confirm-new-password"];
 
-	$sql = mysqli_query($conn,"SELECT * FROM agent_details WHERE user_id='$d'") ;
+	$sql = mysqli_query($conn,"SELECT * FROM login WHERE Client_Code='$d'");
 		$row=mysqli_fetch_assoc($sql); 
-		$verify=password_verify($password,$row['password']);
+		$verify=password_verify($Old_password,$row['Password']);
 	
-	$hashpassword=password_hash($newpassword,PASSWORD_BCRYPT);
+	$hashpassword=password_hash($New_password,PASSWORD_BCRYPT);
 
 		if($verify==1){
-			$query=mysqli_query($conn,"UPDATE `agent_details` SET `password`='$hashpassword' WHERE user_id='$d'");
+			$query=mysqli_query($conn,"UPDATE `login` SET `Password`='$hashpassword' WHERE Client_Code='$d'");
       if($query){
-        echo "<script>alert('Password Changed Successfully'),window.location='index';</script>";
+        session_destroy();   // function that Destroys Session 
+        echo "<script>alert('Password Changed Successfully'),window.location='http://localhost/tectignis_CRM/admin/account_password.php';</script>";
       }
 		}
 		else{
