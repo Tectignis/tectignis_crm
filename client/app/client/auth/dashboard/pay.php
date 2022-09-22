@@ -24,18 +24,6 @@ $_SESSION['email']=$email;
 $_SESSION['phone']=$phone;
 $_SESSION['price']=$amount;
 
-// $id=$_POST['id'];
-// $name=$_POST['packagename'];
-// $email=$_POST['email'];
-// $phone=$_POST['mob'];
-// $amount=$_POST['amt'];
-
-// $_SESSION['id']=$id;
-// $_SESSION['name']=$name;
-// $_SESSION['email']=$email;
-// $_SESSION['phone']=$phone;
-// $_SESSION['price']=$amount;
-
 
 $orderData = [
     'receipt'         => 3456,

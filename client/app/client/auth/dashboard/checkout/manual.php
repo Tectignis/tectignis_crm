@@ -1,40 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-<?php
-$qss=mysqli_query($conn,"SELECT * FROM `client` WHERE `Client_Code`='$id'");
-$ress=mysqli_fetch_array($qss);
-?>
-<h1>Summary</h1>
-<!-- <table>
-   
-    <tr>
-        <td>Firm Name</td>
-        <td><?php echo $_SESSION['name']; ?></td>
-    </tr>
-    <tr>
-        <td>Email</td>
-        <td><?php echo $_SESSION['email']; ?></td>
-    </tr>
-    <tr>
-        <td>Mobile Number</td>
-        <td><?php echo $_SESSION['phone']; ?></td>
-    </tr>
-    <tr>
-        <td>Price</td>
-        <td><?php echo $_SESSION['price']; ?></td>
-    </tr>
-<div>Your Balance payment is : <?php echo $_SESSION['price'] ?></div> -->
-<?php echo'<button id="rzp-button1">Continue</button>'; ?>
-</body>
-</html>
+
+<?php echo'<button id="rzp-button1" class="btn btn-primary waves-effect waves-float waves-light">Pay</button>'; ?>
+
 <!-- <button id="rzp-button1">Pay with Razorpay</button> -->
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <form name='razorpayform' action="verify.php" method="POST">

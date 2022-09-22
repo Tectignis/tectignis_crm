@@ -1,8 +1,21 @@
-<?php 
-session_start();
+<?php session_start();
 
 include("config.php");
+if(isset($_POST['submit'])){
+    $id=$_POST['id'];
+    $analytics_code=$_POST['analytics_code'];  
+
+
+  $sql=mysqli_query($conn,"UPDATE `google_analytics` SET `analytics_code`='$analytics_code' WHERE id='$id'");
+
+  if($sql==1){	
+    header("location:google_analytics.php");
+  	}else{
+		echo "<script>alert('Something went wrong');</script>";
+	}
+}
 ?>
+
 
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
@@ -66,14 +79,14 @@ include("config.php");
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-start mb-0">Payment Method</h2>
+                            <h2 class="content-header-title float-start mb-0">Google Analytics</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.php">Home</a>
                                     </li>
                                     <li class="breadcrumb-item"><a href="#">Account Settings</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Payment Method
+                                    <li class="breadcrumb-item active">Google Analytics
                                     </li>
                                 </ol>
                             </div>
@@ -109,7 +122,7 @@ include("config.php");
                             </li>
                             <!-- billing and plans -->
                             <li class="nav-item">
-                                <a class="nav-link active" href="payment_method.php">
+                                <a class="nav-link" href="payment_method.php">
                                     <i data-feather="credit-card" class="font-medium-3 me-50"></i>
                                     <span class="fw-bold">Payment Method</span>
                                 </a>
@@ -123,7 +136,7 @@ include("config.php");
                             </li>
                             <!-- connection -->
                             <li class="nav-item">
-                                <a class="nav-link" href="google_analytics.php">
+                                <a class="nav-link active" href="google_analytics.php">
                                     <i data-feather="bar-chart" class="font-medium-3 me-50"></i>
                                     <span class="fw-bold">Google Analytics</span>
                                 </a>
@@ -133,29 +146,26 @@ include("config.php");
                         <!-- notifications -->
 
                         <section class="tooltip-validations" id="tooltip-validation">
-                       
-                    <div class="row">
-                    <?php
-                  $sql=mysqli_query($conn,"select * from payment_method");
+                        <?php
+                  $sql=mysqli_query($conn,"select * from google_analytics");
                   while($arr=mysqli_fetch_array($sql)){
                   ?>
+                    <div class="row">
                     <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">Razorpay</h4>
+                                    <h4 class="card-title">Google Analytics</h4>
                                 </div>
                                 <div class="card-body">
-                                    <form method="post" action="update_paymentmethod.php" class="needs-validation" novalidate >
+                                    <form method="post" class="needs-validation" novalidate>
                                         <div class="row g-1">
-                                            <div class="col-md-6 col-12 mb-3 position-relative">
-                                                <label for="" class="mb-1">API Key</label>
+                                            <div class="col-md-12 col-12 mb-3 position-relative">
+                                                <label for="" class="mb-1">Google Analytics Code</label>
                                                 <input type="hidden" name="id" value="<?php echo $arr['id'];?>">
-                                               <input type="text" class="form-control" placeholder="API Key" name="api_key" value="<?php echo $arr['api_key'];?>">
+
+                                                <input type="text" class="form-control" placeholder="Google Analytics Code" name="analytics_code" value="<?php echo $arr['analytics_code'];?>">
                                             </div>
-                                            <div class="col-md-6 col-12 mb-3 position-relative">
-                                                <label for="" class="mb-1">Secret Key</label>
-                                               <input type="text" class="form-control" placeholder="Secret Key" name="secret_key" value="<?php echo $arr['secret_key'];?>">
-                                            </div>
+                                            
                                         </div>
                                         <button class="btn btn-primary" type="submit" name="submit">Submit</button>
                                     </form>
@@ -163,8 +173,8 @@ include("config.php");
                             </div>
                         </div>
                         <?php } ?>
+
                     </div>
-                  
                 </section>
 
                         <!--/ notifications -->

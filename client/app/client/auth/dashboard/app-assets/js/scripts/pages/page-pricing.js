@@ -1,15 +1,5 @@
-/*=========================================================================================
-    File Name: pricing.js
-    Description: pricing page js
-    ----------------------------------------------------------------------------------------
-    Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
-    Author: PIXINVENT
-    Author URL: http://www.themeforest.net/user/pixinvent
-==========================================================================================*/
-
 $(function () {
   'use strict';
-
   // variables
   var priceSwitch = $('#priceSwitch'),
     priceStandardValue = $('.pricing-standard-value'),
@@ -25,7 +15,7 @@ $(function () {
   priceSwitch.on('change', function () {
     if ($(this).is(':checked')) {
       // for enterprise plan
-      var enterpriseMonthValue = enterpriseAnnualPlan / 12;
+      var enterpriseMonthValue = priceEnterpriseValue * 12;
       priceEnterpriseValue.html(enterpriseMonthValue);
       enterpriseAnnualPricing.removeClass('d-none').html('USD ' + enterpriseAnnualPlan + ' / year');
 
