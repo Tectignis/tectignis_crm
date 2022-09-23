@@ -173,7 +173,6 @@ $aid=2;
                                     <!--/ header section -->
 
                                     <!-- form -->
-<<<<<<< HEAD
                                   
                                 
                                         <div class="row">
@@ -255,19 +254,6 @@ $aid=2;
                                                 <button type="reset"
                                                     class="btn btn-outline-secondary mt-1">Discard</button>
                                             </div>
-=======
-                                    <?php
-                  $sql=mysqli_query($conn,"select * from login where id='$aid'");
-                  while($arr=mysqli_fetch_array($sql)){
-                  ?>
-
-                                    <div class="row">
-                                        <div class="col-12 col-sm-6 mb-1">
-                                            <label class="form-label" for="accountFirstName">Full Name</label>
-                                            <input type="text" class="form-control" id="accountFirstName"
-                                                name="fullName" placeholder="Full Name" name="fullName"
-                                                value="<?php echo $arr['name'];?>" data-msg="Please enter first name" />
->>>>>>> 1ecc30f4e4ea253b699e0b9057b5a7ad1ee3de5d
                                         </div>
                                         <div class="col-12 col-sm-6 mb-1">
                                             <label class="form-label" for="accountLastName">Phone Number</label>
