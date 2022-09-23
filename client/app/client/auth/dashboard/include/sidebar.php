@@ -134,7 +134,7 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
               <li class="nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="home"></i><span
                           class="menu-title text-truncate" data-i18n="Dashboards">Package</span></a>
                   <ul class="menu-content">
-                      <li><a class=" <?php echo $page == 'packages-title1.php' ? 'active':'' ?> d-flex align-items-center" href="packages-title1.php"><i
+                      <li class="<?php echo $page == 'packages-title1.php' ? 'active':'' ?> nav-item"><a class="d-flex align-items-center" href="packages-title1.php"><i
                                   data-feather="circle"></i><span class="menu-item text-truncate"
                                   data-i18n="Analytics">Package Name</span></a>
                       </li>
@@ -153,16 +153,16 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
                           data-feather="check-square"></i><span class="menu-title text-truncate"
                           data-i18n="Dashboards">Quotation</span></a>
                   <ul class="menu-content">
-                      <li ><a class=" <?php echo $page == 'cus.php' ? 'active':'' ?>d-flex align-items-center" href="cus.php"><i data-feather="circle"></i><span
+                      <li class="<?php echo $page == 'cus.php' ? 'active':'' ?> nav-item"> <a class=" d-flex align-items-center" href="cus.php"><i data-feather="circle"></i><span
                                   class="menu-item text-truncate" data-i18n="Analytics">Customer</span></a>
                       </li>
-                      <li><a class=" <?php echo $page == 'quotation.php' ? 'active':'' ?>d-flex align-items-center" href="quotation.php"><i data-feather="circle"></i><span
+                      <li class="<?php echo $page == 'quotation.php' ? 'active':'' ?> nav-item"><a class=" d-flex align-items-center" href="quotation.php"><i data-feather="circle"></i><span
                                   class="menu-item text-truncate" data-i18n="Analytics">Quotation</span></a>
                       </li>
-                      <li><a class=" <?php echo $page == 'report.php' ? 'active':'' ?>d-flex align-items-center" href="report.php"><i data-feather="circle"></i><span
+                      <li class="<?php echo $page == 'report.php' ? 'active':'' ?> nav-item"><a class="d-flex align-items-center" href="report.php"><i data-feather="circle"></i><span
                                   class="menu-item text-truncate" data-i18n="Analytics">Report</span></a>
                       </li>
-                      <li><a class=" <?php echo $page == 'sales.php' ? 'active':'' ?>d-flex align-items-center" href="sales.php"><i data-feather="circle"></i><span
+                      <li class="<?php echo $page == 'sales.php' ? 'active':'' ?> nav-item"><a class="d-flex align-items-center" href="sales.php"><i data-feather="circle"></i><span
                                   class="menu-item text-truncate" data-i18n="Analytics">Sales</span></a>
                       </li>
                   </ul>
@@ -179,17 +179,17 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
               <li class="nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="pie-chart"></i><span
                           class="menu-title text-truncate" data-i18n="Charts">Account Setting</span></a>
                   <ul class="menu-content">
-                      <li><a class="<?php echo $page == 'account.php' ? 'active':'' ?>d-flex align-items-center" href="account.php"><i data-feather="circle"></i><span
+                      <li  class="  <?php echo $page == 'account.php' ? 'active':'' ?> nav-item"><a class="d-flex align-items-center" href="account.php"><i data-feather="circle"></i><span
                                   class="menu-item text-truncate" data-i18n="Apex">Account</span></a>
                       </li>
-                      <li><a class="<?php echo $page == 'security.php' ? 'active':'' ?>d-flex align-items-center" href="security.php"><i data-feather="circle"></i><span
+                      <li class=" <?php echo $page == 'security.php' ? 'active':'' ?>  nav-item"><a class="d-flex align-items-center" href="security.php"><i data-feather="circle"></i><span
                                   class="menu-item text-truncate" data-i18n="Chartjs">Security</span></a>
                       </li>
-                      <li><a class="<?php echo $page == 'billing&plans.php' ? 'active':'' ?>d-flex align-items-center" href="billing&plans.php"><i
+                      <li class="<?php echo $page == 'billing&plans.php' ? 'active':'' ?> nav-item"> <a class="d-flex align-items-center" href="billing&plans.php"><i
                                   data-feather="circle"></i><span class="menu-item text-truncate"
                                   data-i18n="Chartjs">Billing & Plan</span></a>
                       </li>
-                      <li><a class="<?php echo $page == 'connection.php' ? 'active':'' ?>d-flex align-items-center" href="connection.php"><i data-feather="circle"></i><span
+                      <li class="<?php echo $page == 'connection.php' ? 'active':'' ?> nav-item"> <a class="d-flex align-items-center" href="connection.php"><i data-feather="circle"></i><span
                                   class="menu-item text-truncate" data-i18n="Chartjs">Connection</span></a>
                       </li>
                   </ul>
