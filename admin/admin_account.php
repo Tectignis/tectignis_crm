@@ -142,6 +142,10 @@ $aid=2;
                         </ul>
 
                         <!-- profile -->
+                        <?php
+                  $sql=mysqli_query($conn,"select * from login where id='$aid'");
+                  while($arr=mysqli_fetch_array($sql)){
+                  ?>
                         <div class="card">
                             <div class="card-header border-bottom">
                                 <h4 class="card-title">Profile Details</h4>
@@ -151,13 +155,14 @@ $aid=2;
                                     <!-- header section -->
                                     <div class="d-flex col-12 col-sm-6 mb-1">
                                         <a href="#" class="me-25">
-                                            <img src="app-assets/images/portrait/small/avatar-s-11.jpg"
+                                        <img src="images/logo&icon/<?php echo $arr['profile'];?>" 
                                                 id="account-upload-img" class="uploadedAvatar rounded me-50"
                                                 alt="profile image" height="100" width="100" />
                                         </a>
                                         <!-- upload and reset button -->
                                         <div class="d-flex align-items-end mt-75 ms-1">
                                             <div>
+                                            <input type="hidden" name="profile" value="<?php echo $arr['id'] ?>">
                                                 <label for="account-upload"
                                                     class="btn btn-sm btn-primary mb-75 me-75">Upload</label>
                                                 <input type="file" id="account-upload" name="profile" accept="image/*" />
@@ -171,10 +176,7 @@ $aid=2;
                                     <!--/ header section -->
 
                                     <!-- form -->
-                                    <?php
-                  $sql=mysqli_query($conn,"select * from login where id='$aid'");
-                  while($arr=mysqli_fetch_array($sql)){
-                  ?>
+                                  
                                 
                                         <div class="row">
                                             <div class="col-12 col-sm-6 mb-1">

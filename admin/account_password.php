@@ -1,6 +1,19 @@
 <?php session_start();
 
 include("config.php");
+if(isset($_POST['submit'])){
+    $id=$_POST['id'];
+    $new_password=$_POST['new_password'];  
+
+
+  $sql=mysqli_query($conn,"UPDATE `security` SET `new_password`='$new_password'");
+
+  if($sql==1){	
+    header("location:security.php");
+  	}else{
+		echo "<script>alert('Something went wrong');</script>";
+	}
+}
 ?>
 
 <!DOCTYPE html>
@@ -124,19 +137,23 @@ include("config.php");
                         </ul>
 
                         <!-- security -->
-
                         <div class="card">
                             <div class="card-header border-bottom">
                                 <h4 class="card-title">Change Password</h4>
                             </div>
                             <div class="card-body pt-1">
                                 <!-- form -->
-                                <form class="validate-form">
+                                <form class="validate-form" method="post">
+                                    <?php
+                              $sql=mysqli_query($conn,"select * from security");
+                              while($arr=mysqli_fetch_array($sql)){
+                              ?>
+                            
                                     <div class="row">
                                         <div class="col-12 col-sm-6 mb-1">
                                             <label class="form-label" for="account-old-password">Current password</label>
                                             <div class="input-group form-password-toggle input-group-merge">
-                                                <input type="password" class="form-control" id="account-old-password" name="password" placeholder="Enter current password" data-msg="Please current password" />
+                                                <input type="password" class="form-control" id="account-old-password" name="password"  placeholder="Enter current password" data-msg="Please current password" />
                                                 <div class="input-group-text cursor-pointer">
                                                     <i data-feather="eye"></i>
                                                 </div>
@@ -147,7 +164,8 @@ include("config.php");
                                         <div class="col-12 col-sm-6 mb-1">
                                             <label class="form-label" for="account-new-password">New Password</label>
                                             <div class="input-group form-password-toggle input-group-merge">
-                                                <input type="password" id="account-new-password" name="new-password" class="form-control" placeholder="Enter new password" />
+                                            <input type="hidden" name="id" value="<?php echo $arr['id'];?>">
+                                                <input type="password" id="account-new-password" name="new_password" class="form-control" value="<?php echo $arr['new_password'];?>" placeholder="Enter new password" />
                                                 <div class="input-group-text cursor-pointer">
                                                     <i data-feather="eye"></i>
                                                 </div>
@@ -169,15 +187,16 @@ include("config.php");
                                             </ul>
                                         </div>
                                         <div class="col-12">
-                                            <button type="submit" class="btn btn-primary me-1 mt-1">Save changes</button>
+                                            <button type="submit" class="btn btn-primary me-1 mt-1" name="submit">Save changes</button>
                                             <button type="reset" class="btn btn-outline-secondary mt-1">Discard</button>
                                         </div>
                                     </div>
+                                    <?php } ?>
                                 </form>
                                 <!--/ form -->
                             </div>
                         </div>
-
+                       
                         <!-- two-step verification -->
                         <div class="card">
                             <div class="card-header border-bottom">
