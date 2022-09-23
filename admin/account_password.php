@@ -163,8 +163,8 @@ if(isset($_POST['submit'])){
                                     <div class="row">
                                         <div class="col-12 col-sm-6 mb-1">
                                             <label class="form-label" for="account-new-password">New Password</label>
-                                            <div class="input-group form-password-toggle input-group-merge">
                                             <input type="hidden" name="id" value="<?php echo $arr['id'];?>">
+                                            <div class="input-group form-password-toggle input-group-merge">
                                                 <input type="password" id="account-new-password" name="new_password" class="form-control" value="<?php echo $arr['new_password'];?>" placeholder="Enter new password" />
                                                 <div class="input-group-text cursor-pointer">
                                                     <i data-feather="eye"></i>
