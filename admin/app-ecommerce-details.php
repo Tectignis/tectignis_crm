@@ -121,10 +121,9 @@
                                 </div>
                                 <div class="col-12 col-md-7">
                                     <h4>Apple Watch Series 5</h4>
-                                    <span class="card-text item-company">By <a href="#"
-                                            class="company-name">Apple</a></span>
+                                   
                                     <div class="ecommerce-details-price d-flex flex-wrap mt-1">
-                                        <button class="btn btn-outline-primary">Edit</button>
+                                        <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#update">Edit Profile</button>
                                     </div>
                                     <hr />
                                     <div class="product-color-options">
@@ -329,6 +328,47 @@
         </div>
     </div>
     <!-- END: Content-->
+
+
+                    <!-- Edit User Modal -->
+                    <div class="modal fade" id="update" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-edit-user">
+                        <div class="modal-content">
+                            <div class="modal-header bg-transparent">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body pb-5 px-sm-5 pt-50">
+                                <div class="text-center mb-2">
+                                    <h1 class="mb-1">Update Details</h1>
+
+                                </div>
+                                <form id="editUserForm" class="row gy-1 pt-75" onsubmit="return false">
+                                    <div class="col-12">
+                                        <label class="form-label" for="modalEditUserFirstName">Mobile No.</label>
+                                        <input type="text" id="modalEditUserFirstName" name="modalEditUserFirstName"
+                                            class="form-control" placeholder="mobile no" value="mobile no"
+                                            data-msg="Please enter your first name" />
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label" for="modalEditUserLastName">Email</label>
+                                        <input type="text" id="modalEditUserLastName" name="modalEditUserLastName"
+                                            class="form-control" placeholder="email" value="email"
+                                            data-msg="Please enter your last name" />
+                                    </div>
+                                    <div class="col-12 text-center mt-2 pt-50">
+                                        <button type="submit" class="btn btn-primary me-1">Save</button>
+                                        <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+                                            aria-label="Close">
+                                            Discard
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/ Edit User Modal -->
 
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
