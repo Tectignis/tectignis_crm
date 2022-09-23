@@ -6,6 +6,22 @@ include("config.php");
 
 if(isset($_POST['update_profile'])){
     $id=$_POST['id'];
+    $profile=$_FILES['profile']['name'];
+$file_tmp = $_FILES['profile']['tmp_name']; 
+if(move_uploaded_file($file_tmp,"images/logo&icon/".$profile)){
+
+    $sql=mysqli_query($conn,"UPDATE `login` SET `profile`='$profile' WHERE id='$id'");
+}
+if($sql==1){	
+  header("location:admin_account.php");
+  }else{
+    echo 'failed';
+}
+ 
+}
+
+if(isset($_POST['update_profile'])){
+    $id=$_POST['id'];
     $name=$_POST['fullName'];  
   $phone=$_POST['phone'];  
   $email=$_POST['email'];
@@ -21,7 +37,7 @@ if(isset($_POST['update_profile'])){
     $bank_details=$_POST['bank_details'];
      $profile=$_POST['profile'];
 
-  $sql=mysqli_query($conn,"UPDATE `login` SET `name`='$name',`Email`='$email',`profile`='$profile',`organization_name`='$organization_name',`support_email`='$support_email',`support_number`='$support_number',`address`='$address',`gst_no`='$gst_no',`pan_no`='$pancard',`cin_no`='$cin',`bank_details`='$bank_details',`phone_number`='$phone' WHERE id='$id'");
+  $sql=mysqli_query($conn,"UPDATE `login` SET `name`='$name',`Email`='$email',`organization_name`='$organization_name',`support_email`='$support_email',`support_number`='$support_number',`address`='$address',`gst_no`='$gst_no',`pan_no`='$pancard',`cin_no`='$cin',`bank_details`='$bank_details',`phone_number`='$phone' WHERE id='$id'");
   
 	if($sql==1){	
     header("location:admin_account.php");

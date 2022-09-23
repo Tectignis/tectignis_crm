@@ -170,7 +170,7 @@ if(isset($_POST['submit3'])){
                             </li>
                         </ul>
 
-                        <!-- notifications -->
+                        <!-- notifications --> 
 
                         <section class="tooltip-validations" id="tooltip-validation">
                         <?php
