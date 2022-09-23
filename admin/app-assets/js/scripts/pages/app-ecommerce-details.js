@@ -58,9 +58,9 @@ $(function () {
         addToCart = $this.find('.add-to-cart');
       if (addToCart.length > 0) {
         e.preventDefault();
-        addToCart.text('View In Cart').removeClass('add-to-cart').addClass('view-in-cart');
+        addToCart.text('Downloaded').removeClass('add-to-cart').addClass('view-in-cart');
         $this.attr('href', checkout);
-        toastr['success']('', 'Added Item In Your Cart 🛒', {
+        toastr['success']('', 'Downloaded Successfully...!', {
           closeButton: true,
           tapToDismiss: false,
           rtl: isRtl

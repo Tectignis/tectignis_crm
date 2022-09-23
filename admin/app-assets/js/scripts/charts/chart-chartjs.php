@@ -1,12 +1,4 @@
-/*=========================================================================================
-    File Name: chart-chartjs.js
-    Description: Chartjs Examples
-    ----------------------------------------------------------------------------------------
-    Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
-    Author: PIXINVENT
-    Author URL: http://www.themeforest.net/user/pixinvent
-==========================================================================================*/
-
+<script>
 $(window).on('load', function () {
   'use strict';
 
@@ -1026,7 +1018,7 @@ $(window).on('load', function () {
             label: function (tooltipItem, data) {
               var label = data.datasets[0].labels[tooltipItem.index] || '',
                 value = data.datasets[0].data[tooltipItem.index];
-              var output = ' ' + label + ' : ' + value + ' %';
+              var output = ' ' + label + ' : ' + value ;
               return output;
             }
           },
@@ -1040,12 +1032,13 @@ $(window).on('load', function () {
           bodyFontColor: window.colors.solid.black
         }
       },
+
       data: {
         datasets: [
           {
-            labels: ['Tablet', 'Mobile', 'Desktop'],
-            data: [10, 10, 80],
-            backgroundColor: [successColorShade, warningLightColor, window.colors.solid.primary],
+            labels: ["Activated", "Deactivated"],
+            data: [<?php echo $nactivated. ',' .$ndeactivated ?>],
+            backgroundColor: [ window.colors.solid.primary,successColorShade],
             borderWidth: 0,
             pointStyle: 'rectRounded'
           }
@@ -1493,3 +1486,4 @@ $(window).on('load', function () {
     });
   }
 });
+</script>

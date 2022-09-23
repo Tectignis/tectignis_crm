@@ -1,8 +1,8 @@
 
 <?php
 session_start();
-include("/opt/lampp/htdocs/tectignis_crm/client/app/client/auth/dashboard/config.php");
-// $d=$_SESSION['id'];
+include("config.php");
+$d=35;
 if(isset($_POST["submitt"])){
 	$Old_password=$_POST["oldpassword"];
 	$New_password=$_POST["newpassword"];
@@ -18,7 +18,7 @@ if(isset($_POST["submitt"])){
 			$query=mysqli_query($conn,"UPDATE `client` SET `password`='$hashpassword' WHERE Client_Code='$d'");
       if($query){
         session_destroy();   // function that Destroys Session 
-        echo "<script>alert('Password Changed Successfully'),window.location='login.php';</script>";
+        echo "<script>alert('Password Changed Successfully'),window.location='http://localhost/tectignis_CRM/client/auth/path/login.php';</script>";
       }
 		}
 		else{
@@ -119,7 +119,7 @@ if(isset($_POST["submitt"])){
                                 <h4 class="card-title mb-1">Reset Password 🔒</h4>
                                 <p class="card-text mb-2">Your new password must be different from previously used passwords</p>
 
-                                <form class="auth-reset-password-form mt-2" action="auth-login-basic.html" method="POST">
+                                <form class="auth-reset-password-form mt-2" method="POST">
                                     <div class="mb-1">
                                         <div class="d-flex justify-content-between">
                                             <label class="form-label" for="reset-password-new">Old Password</label>

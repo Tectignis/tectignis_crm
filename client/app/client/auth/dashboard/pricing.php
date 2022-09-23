@@ -9,87 +9,6 @@ $email=$ress['Email'];
 $mob=$ress['Mobile_Number'];
 
 
-// include('razconf.php');
-// include('razorpay-php/Razorpay.php');
-// use Razorpay\Api\Api;
-// use Razorpay\Api\Errors\SignatureVerificationError;
-
-// $api = new Api($keyId, $keySecret);
-
-// $id=$_POST['id'];
-// $name=$_POST['packagename'];
-// $email=$_POST['email'];
-// $phone=$_POST['mob'];
-// $amount=$_POST['amt'];
-
-// $_SESSION['id']=$id;
-// $_SESSION['name']=$name;
-// $_SESSION['email']=$email;
-// $_SESSION['phone']=$phone;
-// $_SESSION['price']=$amount;
-
-
-// $orderData = [
-//     'receipt'         => 3456,
-//     'amount'          => $amount * 100, // 2000 rupees in paise
-//     'currency'        => 'INR',
-//     'payment_capture' => 1 // auto capture
-// ];
-
-// $razorpayOrder = $api->order->create($orderData);
-
-// $razorpayOrderId = $razorpayOrder['id'];
-
-// $_SESSION['razorpay_order_id'] = $razorpayOrderId;
-
-// $displayAmount = $amount = $orderData['amount'];
-
-// if ($displayCurrency !== 'INR')
-// {
-//     $url = "https://api.fixer.io/latest?symbols=$displayCurrency&base=INR";
-//     $exchange = json_decode(file_get_contents($url), true);
-
-//     $displayAmount = $exchange['rates'][$displayCurrency] * $amount / 100;
-// }
-
-// $checkout='manual';
-
-// if(isset($_GET['checkout']) and in_array($_GET['checkout'],['automatic', 'manual'], true))
-// {
-//     $checkout = $_GET['checkout'];
-// }
-
-// $data = [
-//     "key"               => $keyId,
-//     "amount"            => $amount,
-//     "name"              => "Tectignis",
-//     "description"       => "Live Transaction",
-//     "image"             => "https://realestate.tectignis.in/admin/dist/img/avatar1.jpeg",
-//     "prefill"           => [
-//     "name"              => $name,
-//     "email"             => $email,
-//     "contact"           => $phone,
-//     ],
-//     "notes"             => [
-//     "address"           => "Hello World",
-//     "merchant_order_id" => "12312321",
-//     ],
-//     "theme"             => [
-//     "color"             => "#F37254"
-//     ],
-//     "order_id"          => $razorpayOrderId,
-// ];
-
-// if ($displayCurrency !== 'INR')
-// {
-//     $data['display_currency']  = $displayCurrency;
-//     $data['display_amount']    = $displayAmount;
-// }
-
-// $json = json_encode($data);
-
-// require("checkout/{$checkout}.php");
-
 ?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
@@ -308,16 +227,15 @@ $mob=$ress['Mobile_Number'];
                                 data-interval="1000">
                                 <div class="MultiCarousel-inner">
                                     <?php
-$price=mysqli_query($conn,"select * from package");
-while($fetchprice=mysqli_fetch_array($price)){
-?>
+                                    $price=mysqli_query($conn,"select * from package");
+                                    while($fetchprice=mysqli_fetch_array($price)){
+                                    ?>
                                     <div class="item">
                                         <!-- enterprise plan -->
 
                                         <div class="pad15">
                                             <form action="" method="post">
-                                                <input type="hidden" value="<?php echo $fetchprice['total_amt'] ?>"
-                                                    name="amt">
+                                                <input type="hidden" value="<?php echo $fetchprice['total_amt'] ?>" name="amt">
                                                 <input type="hidden" value="<?php echo $fetchprice['package_name'] ?>"
                                                     name="packagename">
                                                 <input type="hidden" value="<?php echo $code ?>" name="id">
@@ -341,7 +259,7 @@ while($fetchprice=mysqli_fetch_array($price)){
                                                                 <sub
                                                                     class="pricing-duration text-body font-medium-1 fw-bold">/month</sub>
                                                             </div>
-                                                            <small class="annual-pricing d-none text-muted"></small>
+                                                            <small class="annual-pricing d-none text-muted"><?php echo $fetchprice['yearly_amt'] ?> / Year</small>
                                                         </div>
                                                         <ul class="list-group list-group-circle text-start">
                                                             <li class="list-group-item">PayPal payments</li>
@@ -967,12 +885,17 @@ while($fetchprice=mysqli_fetch_array($price)){
   });
     </script>
     <script>
-        $(document).on('click', '#priceSwitch', function () {
-    if ($(this).is(':checked')) {
-    let month = parseFloat($('.annual-pricing').closest(".card").find(".pricing-enterprise-value").text()) || 0;
-    $('.annual-pricing').closest(".card").find(".annual-pricing").text(month);  
-    }
-    });
+//         $(document).on('click', '#priceSwitch', function () {
+//     if ($(this).is(':checked')) {
+//         // $(".annual-pricing").removeClass('d-none').html('USD ' + enterpriseAnnualPlan + ' / year');
+//         $(".annual-pricing").function(){
+//     let month = parseFloat($('.annual-pricing').closest(".card").find(".pricing-enterprise-value").text()) || 0;
+//     $('.annual-pricing').closest(".card").find(".annual-pricing").text(month);  
+//     $('.pricing-enterprise-year').css('display','block');
+//     $('.pricing-enterprise-value').css('display','none');
+//     }
+// }
+//     });
     </script>
 </body>
 <!-- END: Body-->
