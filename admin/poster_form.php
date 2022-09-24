@@ -3,8 +3,33 @@
 include("config.php");
 ?>
 
+<?php
+if(isset($_POST['submit'])){
+    $title=$_POST['title'];
+    $category=$_POST['category'];
+    $image=$_FILES['image']['name'];
 
+    $extension=substr($image,strlen( $image)-4,strlen( $image)); 
+    $all_extension = array(".jpg","jpeg",".png","gif");
+    if(!in_array($extension,$all_extension)){
+    $msg="Invalid format. Only jpg / jpeg/ png /gif format allowed";
+        } 
+    else{
+    $image=md5($image).$extension;
+    $dnk=$_FILES['image']['tmp_name'];
+    $loc="app-assets/images/".$image;
+    move_uploaded_file($dnk,$loc);
+        }
+	$sql = mysqli_query($conn,"INSERT INTO `poster`(`title`,`image`,`category`) VALUES ('$title','$image','$category')") ;
+  if($sql==1){
+    echo "<script>alert('Register successfully'),window.location='poster_form.php';</script>";
+  }else{
+    echo "<script>alert('something went wrong');</script>";
+  }
 
+  }
+
+?>
 
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
@@ -85,20 +110,42 @@ include("config.php");
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                               
                                 <div class="card-body">
-                                    <form class="form">
+                                <form class="form" method="post" enctype="multipart/form-data">
                                         <div class="row">
+
+                                        <div class="col-md-6 col-12">
+                                        <div class="mb-1">
+                                        <label class="form-label" for="basicSelect">Category</label>
+                                        <select class="form-select" id="basicSelect" name="category">
+                                        <option selected="selected">select</option>
+                                                        <?php
+                                                   $query=mysqli_query($conn,"select * from category");
+                                                            while($sql=mysqli_fetch_array($query))
+                                                            {
+                                                              ?>
+
+                                                        <option value="<?php echo $sql['category']; ?>">
+                                                        <?php echo $sql['category']; ?></option>
+                                                        <?php }  ?>
+                                                    </select>
+                                    </div>
+                                            </div>
+
+
+
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-1">
                                                     <label class="form-label" for="first-name-column">Title</label>
                                                     <input type="text" id="first-name-column" class="form-control" placeholder="Title" name="title" />
                                                 </div>
                                             </div>
+
                                             <div class="col-md-6 col-12">
                                                 <div class="mb-1">
                                                     <label class="form-label" for="last-name-column">Image</label>
-                                                    <input type="file" id="last-name-column" class="form-control" placeholder="Last Name" name="image" />
+                                                    <input class="form-control" type='file' name="image" accept='image/*'  onchange="readURL(this)" ></p>
+                                                    <img src="" alt="No Image" id="img" style='height:150px;'>
                                                 </div>
                                             </div>
                                           
@@ -156,6 +203,20 @@ include("config.php");
             }
         })
     </script>
+
+<script>
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+    
+      var reader = new FileReader();
+      reader.onload = function (e) { 
+        document.querySelector("#img").setAttribute("src",e.target.result);
+      };
+
+      reader.readAsDataURL(input.files[0]); 
+    }
+  }
+  </script>
 </body>
 <!-- END: Body-->
 

@@ -52,6 +52,8 @@ $page=substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],"/")+1);
                 </li>
                 <li class="  <?php echo $page == 'property.php' ? 'active':'' ?> nav-item"><a class="d-flex align-items-center" href="property.php"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">Property</span></a>
                 </li>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="app-ecommerce-wishlist.php"><i data-feather="save"></i><span class="menu-title text-truncate" data-i18n="File Manager">Digital Poster</span></a>
+              </li>
                 </li>
                
                 <li class="  <?php echo $page == 'property.php' ? 'active':'' ?> nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Invoice">Account Setting</span></a>
