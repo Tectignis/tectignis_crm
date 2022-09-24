@@ -1,4 +1,7 @@
 <?php session_start();
+
+
+
 include("config.php");
 
 if(isset($_POST['update_profile'])){
@@ -18,7 +21,7 @@ if(isset($_POST['update_profile'])){
     $bank_details=$_POST['bank_details'];
      $profile=$_POST['profile'];
 
-  $sql=mysqli_query($conn,"UPDATE `login` SET `name`='$name',`Email`='$email',`profile`='$profile',`organization_name`='$organization_name',`support_email`='$support_email',`support_number`='$support_number',`address`='$address',`gst_no`='$gst_no',`pan_no`='$pancard',`cin_no`='$cin',`bank_details`='$bank_details',`phone_number`='$phone' WHERE id='$id'");
+  $sql=mysqli_query($conn,"UPDATE `login` SET `name`='$name',`Email`='$email',`organization_name`='$organization_name',`support_email`='$support_email',`support_number`='$support_number',`address`='$address',`gst_no`='$gst_no',`pan_no`='$pancard',`cin_no`='$cin',`bank_details`='$bank_details',`phone_number`='$phone' WHERE id='$id'");
   
 	if($sql==1){	
     header("location:admin_account.php");
@@ -27,36 +30,27 @@ if(isset($_POST['update_profile'])){
 	}
 }
 
-if(isset($_POST['submit'])){
-  $id=$_POST['id'];
-  $api_key=$_POST['api_key'];  
-$secret_key=$_POST['secret_key'];  
-
-$sql=mysqli_query($conn,"UPDATE `payment_method` SET `api_key`='$api_key',`secret_key`='$secret_key' WHERE id='$id'");
-
-if($sql==1){	
-  header("location:payment_method.php");
-  }else{
-  echo "<script>alert('Something went wrong');</script>";
-}
-}
 
 if(isset($_POST["change_passowrd"])){
-  $password=mysqli_real_escape_string($conn,$_POST['password']);
-  $newpassword=mysqli_real_escape_string($conn,$_POST['new_password']);
-  $nPassword1=filter_var($new_panewpasswordssword,FILTER_SANITIZE_STRING);
-  $hashpassword=password_hash($newpassword,PASSWORD_BCRYPT);
+	$password=$_POST["password"];
+	$newpassword=$_POST["newpassword"];
 
+$d=35;
+if(isset($_POST["change_password"])){
+	$Old_password=$_POST["password"];
+	$New_password=$_POST["new_password"];
+  $Confirm_password=$_POST["confirm-new-password"];
 
-	$sql = mysqli_query($conn,"SELECT * FROM login ") ;
+	$sql = mysqli_query($conn,"SELECT * FROM agent_details WHERE user_id='$d'") ;
 		$row=mysqli_fetch_assoc($sql); 
 		$verify=password_verify($password,$row['password']);
 	
+	$hashpassword=password_hash($newpassword,PASSWORD_BCRYPT);
 
 		if($verify==1){
-			$query=mysqli_query($conn,"UPDATE `login` SET `Password`='$hashpassword'");
+			$query=mysqli_query($conn,"UPDATE `login` SET `Password`='$hashpassword' WHERE Client_Code='$d'");
       if($query){
-        echo "<script>alert('Password Changed Successfully'),window.location='account_password';</script>";
+        echo "<script>alert('Password Changed Successfully'),window.location='index';</script>";
       }
 		}
 		else{

@@ -87,7 +87,6 @@ include("config.php");
                         </ul>
 
                         <!-- security -->
-
                         <div class="card">
                             <div class="card-header border-bottom">
                                 <h4 class="card-title">Change Password</h4>
@@ -145,11 +144,12 @@ include("config.php");
                                             <button type="reset" class="btn btn-outline-secondary mt-1">Discard</button>
                                         </div>
                                     </div>
+                                   
                                 </form>
                                 <!--/ form -->
                             </div>
                         </div>
-
+                       
                         <!-- two-step verification -->
                         <div class="card">
                             <div class="card-header border-bottom">

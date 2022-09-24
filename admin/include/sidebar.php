@@ -18,7 +18,8 @@
               </li>
               <li class=" nav-item"><a class="d-flex align-items-center" href="clients.php"><i data-feather="save"></i><span class="menu-title text-truncate" data-i18n="File Manager">Clients</span></a>
               </li>
-             
+              
+
               <li class=" nav-item"><a class="d-flex align-items-center" href="category.php"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">category</span></a>
               </li>
               <li class=" nav-item"><a class="d-flex align-items-center" href="ticket.php"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">Ticket</span></a>
