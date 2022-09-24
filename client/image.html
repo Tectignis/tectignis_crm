@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .desc {
+            margin-top: -70px;
+  text-align: center;
+}
+.outer, .wrap, .html2canvas, .image_text {
+
+  display: inline-block;
+  vertical-align: top;
+}
+.wrap {
+  text-align: center;
+}
+#imagewrap {
+  background-color: white;
+}
+#wow {
+  color: red;
+  display: block;
+  transform: translate(0px, -12px) rotate(-10deg);
+}
+    </style>
+
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<div class="outer">
+  <p>DOM-rendered</p>
+  <p>&nbsp;</p>
+  <div id="imagewrap" class="wrap" style="border-style: solid;">
+    <img src="app/client/auth/dashboard/app-assets/images/slider/10.jpg" id="img_prev" width="170" />
+    <h3 class="desc">Something <br /><span style="color: blue;">Inspirational</span></h3>
+    <span id="wow">WOW!</span>
+  </div>
+</div>
+<div id="canvasWrapper" class="outer">
+  <p>Canvas-rendered (try right-click, save image as!)</p>
+  <p>Or, <a id="downloadLink" download="cat.png">Click Here to Download!</a>
+</div>
+
+<script>
+    window.onload = function() {
+  html2canvas(document.getElementById("imagewrap"), {
+    onrendered: function(canvas) {
+      canvas.className = "html2canvas";
+      document.getElementById("canvasWrapper").appendChild(canvas);
+      var image = canvas.toDataURL("image/png");
+      document.getElementById("downloadLink").href = image;
+    },
+    useCORS: true
+  });
+}
+</script>
+</body>
+
+</html>
