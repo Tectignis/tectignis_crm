@@ -47,6 +47,18 @@
         .RadioImg {
             width: 100px;
         }
+        #imgContainer{
+            background-image: url(app-assets/images/pages/eCommerce/8.png);
+    background-repeat: no-repeat;    
+    height: 100%;
+    width: 100%; /* may not be necessary */
+        }
+        #mainImg,
+        #mainImg h2,
+        #mainImg div h2
+        {
+            color:#fff !important;
+        }
     </style>
 
 </head>
@@ -114,55 +126,71 @@
                             <div class="row my-2">
                                 <div
                                     class="col-12 col-md-5 d-flex align-items-center justify-content-center mb-2 mb-md-0">
-                                    <div class="d-flex align-items-center justify-content-center">
-                                        <img src="app-assets/images/pages/eCommerce/1.png" class="img-fluid product-img"
-                                            alt="product image" />
+                                    <div class="d-flex align-items-center justify-content-center" id="imgContainer">
+                                        <!-- <img src="app-assets/images/pages/eCommerce/4.png" id="mainImg" class="img-fluid product-img"
+                                            alt="product image" /> -->
+                                            <div id="mainImg">fthrthxrthrt</div>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-7">
                                     <h4>Apple Watch Series 5</h4>
-                                   
+
                                     <div class="ecommerce-details-price d-flex flex-wrap mt-1">
-                                        <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#update">Edit Profile</button>
+                                        <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
+                                            data-bs-target="#update">Edit Profile</button>
                                     </div>
                                     <hr />
                                     <div class="product-color-options">
                                         <h6>Colors</h6>
-                                        <ul class="list-unstyled mb-0">
-                                            <li class="d-inline-block selected">
-                                                <div class="color-option b-primary">
+                                        <ul class="list-unstyled mb-0 ">
+                                            <li class="d-inline-block selected change">
+                                                <div class="color-option b-primary change">
                                                     <!-- <div class="filloption bg-primary"></div> -->
-                                                    <img src="app-assets/images/pages/eCommerce/4.png"
-                                                        class="img-fluid RadioImg" alt="product image" />
+                                                    <!-- <img src="app-assets/images/pages/eCommerce/4.png"
+                                                        class="img-fluid RadioImg"  alt="product image" /> -->
+                                                        <div><h2>head 1</h2></div>
+
+                                                </div>
+                                            </li>
+                                            <li class="d-inline-block ">
+                                                <div class="color-option b-primary">
+                                                    <!-- <div class="filloption bg-success"></div> -->
+                                                    <!-- <img src="app-assets/images/pages/eCommerce/6.png"
+                                                        class="img-fluid RadioImg"  alt="product image" /> -->
+                                                        <div><h2>head 2</h2></div>
 
                                                 </div>
                                             </li>
                                             <li class="d-inline-block">
                                                 <div class="color-option b-primary">
-                                                    <!-- <div class="filloption bg-success"></div> -->
-                                                    <img src="app-assets/images/pages/eCommerce/6.png"
-                                                        class="img-fluid RadioImg" alt="product image" />
-                                                </div>
-                                            </li>
-                                            <li class="d-inline-block">
-                                                <div class="color-option b-primary">
                                                     <!-- <div class="filloption bg-danger"></div> -->
-                                                    <img src="app-assets/images/pages/eCommerce/7.png"
-                                                        class="img-fluid RadioImg" alt="product image" />
+                                                    <!-- <img src="app-assets/images/pages/eCommerce/7.png"
+                                                        class="img-fluid RadioImg" alt="product image" /> -->
+                                                        <div><h2>head 3</h2></div>
+
                                                 </div>
                                             </li>
                                             <li class="d-inline-block">
                                                 <div class="color-option b-primary">
                                                     <!-- <div class="filloption bg-warning"></div> -->
-                                                    <img src="app-assets/images/pages/eCommerce/9.png"
-                                                        class="img-fluid RadioImg" alt="product image" />
+                                                    <!-- <img src="app-assets/images/pages/eCommerce/9.png"
+                                                        class="img-fluid RadioImg" alt="product image" /> -->
+                                                        <div><h2>head 4</h2></div>
                                                 </div>
                                             </li>
                                             <li class="d-inline-block">
                                                 <div class="color-option b-primary">
                                                     <!-- <div class="filloption bg-info"></div> -->
-                                                    <img src="app-assets/images/pages/eCommerce/1.png"
-                                                        class="img-fluid RadioImg" alt="product image" />
+                                                    <!-- <img src="app-assets/images/pages/eCommerce/1.png"
+                                                        class="img-fluid RadioImg" alt="product image" /> -->
+                                                        <div>
+                                                            <div class="row">
+                                                                <div class="col-6 text-start"><h2>head 5</h2></div>
+                                                                <div class="col-6 text-end"><h2>head 5</h2></div>
+                                                            </div>
+                                                        </div>
+                                                        
+
                                                 </div>
                                             </li>
                                             <li class="d-inline-block">
@@ -204,81 +232,6 @@
                                         </ul>
                                     </div>
                                     <hr />
-                                    <div class="swiper-responsive-breakpoints swiper-container px-4 py-2">
-                                        <ul class="list-unstyled mb-0 swiper-wrapper">
-                                            <li class="d-inline-block selected swiper-slide">
-                                                <div class="color-option b-primary">
-                                                    <!-- <div class="filloption bg-info"></div> -->
-                                                    <img src="app-assets/images/pages/eCommerce/5.png"
-                                                        class="img-fluid RadioImg" alt="product image" />
-                                                </div>
-                                            </li>
-                                            <li class="d-inline-block swiper-slide">
-                                                <div class="color-option b-primary">
-                                                    <!-- <div class="filloption bg-info"></div> -->
-                                                    <img src="app-assets/images/pages/eCommerce/5.png"
-                                                        class="img-fluid RadioImg" alt="product image" />
-                                                </div>
-                                            </li>
-                                            <li class="d-inline-block swiper-slide">
-                                                <div class="color-option b-primary">
-                                                    <!-- <div class="filloption bg-info"></div> -->
-                                                    <img src="app-assets/images/pages/eCommerce/5.png"
-                                                        class="img-fluid RadioImg" alt="product image" />
-                                                </div>
-                                            </li>
-                                            <li class="d-inline-block swiper-slide">
-                                                <div class="color-option b-primary">
-                                                    <!-- <div class="filloption bg-info"></div> -->
-                                                    <img src="app-assets/images/pages/eCommerce/5.png"
-                                                        class="img-fluid RadioImg" alt="product image" />
-                                                </div>
-                                            </li>
-                                            <li class="d-inline-block swiper-slide">
-                                                <div class="color-option b-primary">
-                                                    <!-- <div class="filloption bg-info"></div> -->
-                                                    <img src="app-assets/images/pages/eCommerce/5.png"
-                                                        class="img-fluid RadioImg" alt="product image" />
-                                                </div>
-                                            </li>
-                                            <li class="d-inline-block swiper-slide">
-                                                <div class="color-option b-primary">
-                                                    <!-- <div class="filloption bg-info"></div> -->
-                                                    <img src="app-assets/images/pages/eCommerce/5.png"
-                                                        class="img-fluid RadioImg" alt="product image" />
-                                                </div>
-                                            </li>
-                                            <li class="d-inline-block swiper-slide">
-                                                <div class="color-option b-primary">
-                                                    <!-- <div class="filloption bg-info"></div> -->
-                                                    <img src="app-assets/images/pages/eCommerce/5.png"
-                                                        class="img-fluid RadioImg" alt="product image" />
-                                                </div>
-                                            </li>
-                                            <li class="d-inline-block swiper-slide">
-                                                <div class="color-option b-primary">
-                                                    <!-- <div class="filloption bg-info"></div> -->
-                                                    <img src="app-assets/images/pages/eCommerce/5.png"
-                                                        class="img-fluid RadioImg" alt="product image" />
-                                                </div>
-                                            </li>
-                                            <!-- <div class="swiper-slide">
-                                                <a href="#">
-        
-                                                    <div class="img-container w-50 mx-auto py-50">
-                                                        <img src="app-assets/images/elements/macbook-pro.png" class="img-fluid"
-                                                            alt="image" />
-                                                    </div>
-        
-                                                </a>
-                                               </div> -->
-
-                                        </ul>
-                                        <!-- Add Arrows -->
-                                        <div class="swiper-button-next"></div>
-                                        <div class="swiper-button-prev"></div>
-                                    </div>
-                                    <hr />
                                     <div class="d-flex flex-column flex-sm-row pt-1">
                                         <a href="#" class="btn btn-primary btn-cart me-0 me-sm-1 mb-1 mb-sm-0">
                                             <i data-feather="download" class="me-50"></i>
@@ -310,16 +263,6 @@
                             </div>
                         </div>
                         <!-- Product Details ends -->
-
-                        <!-- Related Products starts -->
-                        <div class="card-body">
-                            <div class="mt-4 mb-2 text-center">
-                                <h4>Related Products</h4>
-                                <p class="card-text">People also search for this items</p>
-                            </div>
-
-                        </div>
-                        <!-- Related Products ends -->
                     </div>
                 </section>
                 <!-- app e-commerce details end -->
@@ -330,51 +273,48 @@
     <!-- END: Content-->
 
 
-                    <!-- Edit User Modal -->
-                    <div class="modal fade" id="update" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-edit-user">
-                        <div class="modal-content">
-                            <div class="modal-header bg-transparent">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body pb-5 px-sm-5 pt-50">
-                                <div class="text-center mb-2">
-                                    <h1 class="mb-1">Update Details</h1>
-
-                                </div>
-                                <form id="editUserForm" class="row gy-1 pt-75" onsubmit="return false">
-                                    <div class="col-12">
-                                        <label class="form-label" for="modalEditUserFirstName">Mobile No.</label>
-                                        <input type="text" id="modalEditUserFirstName" name="modalEditUserFirstName"
-                                            class="form-control" placeholder="mobile no" value="mobile no"
-                                            data-msg="Please enter your first name" />
-                                    </div>
-                                    <div class="col-12">
-                                        <label class="form-label" for="modalEditUserLastName">Email</label>
-                                        <input type="text" id="modalEditUserLastName" name="modalEditUserLastName"
-                                            class="form-control" placeholder="email" value="email"
-                                            data-msg="Please enter your last name" />
-                                    </div>
-                                    <div class="col-12 text-center mt-2 pt-50">
-                                        <button type="submit" class="btn btn-primary me-1">Save</button>
-                                        <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
-                                            aria-label="Close">
-                                            Discard
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Edit User Modal -->
+    <div class="modal fade" id="update" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-edit-user">
+            <div class="modal-content">
+                <div class="modal-header bg-transparent">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <!--/ Edit User Modal -->
+                <div class="modal-body pb-5 px-sm-5 pt-50">
+                    <div class="text-center mb-2">
+                        <h1 class="mb-1">Update Details</h1>
+
+                    </div>
+                    <form id="editUserForm" class="row gy-1 pt-75" onsubmit="return false">
+                        <div class="col-12">
+                            <label class="form-label" for="modalEditUserFirstName">Mobile No.</label>
+                            <input type="text" id="modalEditUserFirstName" name="modalEditUserFirstName"
+                                class="form-control" placeholder="mobile no" value="" data-msg="enter your mobile no" />
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label" for="modalEditUserLastName">Email</label>
+                            <input type="text" id="modalEditUserLastName" name="modalEditUserLastName"
+                                class="form-control" placeholder="email" value="" data-msg="Please enter email" />
+                        </div>
+                        <div class="col-12 text-center mt-2 pt-50">
+                            <button type="submit" class="btn btn-primary me-1">Save</button>
+                            <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+                                aria-label="Close">
+                                Discard
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/ Edit User Modal -->
 
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
 
     <!-- BEGIN: Footer-->
-   <?php include "include/footer.php" ?>
+    <?php include "include/footer.php" ?>
     <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
     <!-- END: Footer-->
 
@@ -407,8 +347,22 @@
                     height: 14
                 });
             }
-        })
+        })  
     </script>
+    <script>
+        // var imgs = document.getElementById('selectImg').getAttribute('src');
+
+        // console.log(imgs);
+        // var mainImg = document.getElementById('mainImg').src = `${imgs}`;
+        // // mainImg.location.reload();
+        // function showImage() {
+        //   console.log(this.src);
+        // }
+    </script>
+    <script>
+
+    </script>
+    
 </body>
 <!-- END: Body-->
 
