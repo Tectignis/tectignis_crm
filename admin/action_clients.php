@@ -1,126 +1,6 @@
 <?php
 session_start();
 include("config.php");
-?>
-
-<?php
-//client delete
-    if(isset($_GET['del_id'])){
-        $delid = $_GET['del_id'];
-        $sql = mysqli_query($conn,"DELETE FROM client WHERE Client_Code = '$delid'");
-        if($sql){
-          header ("location:clients.php"); 
-         
-        }
-        else{ echo "<script>alert('Failed to Delete')</script>"; }
-      }
-?>
-
-<?php
-//client edit fetch
-  if(isset($_POST['dnk'])){
-    $id=$_POST['dnk'];
-         $sql=mysqli_query($conn,"select category.*,client.* from category inner join client on category.id=client.category where Client_Code='".$id."'");
-              
-           $row=mysqli_fetch_array($sql)
-           ?>
-                        <div class="row">
-                        <div class="col-6">
-                                <div class="form-group">
-                                    <label for="inputName">Firm Name</label>
-                                    <input type="hidden" name="id" value="<?php echo $id ?>">
-                                    <input type="text" name="updatefname" value="<?php echo $row['Firm_Name']; ?>" class="form-control" id="inputfname"
-                                        placeholder="Enter Name">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="inputName">Name</label>
-                                    <input type="hidden" name="id" value="<?php echo $id ?>">
-                                    <input type="text" name="updateName" value="<?php echo $row['Authorized_Name']; ?>" class="form-control" id="inputName"
-                                        placeholder="Enter Name">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="inputEmail">Email</label>
-                                    <input type="email" name="updateEmail"  value="<?php echo $row['Email']; ?>" class="form-control" id="inputEmail"
-                                        placeholder="Enter Email" readonly>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label for="inputPass">Mobile Number</label>
-                                    <input type="text" minlength="10" maxlength="10" class="form-control" value="<?php echo $row['Mobile_Number']; ?>" name="number" id="number" placeholder="Mobile Number" required>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                <label>Category</label>
-                                    <select class="form-control" value="<?php echo $row['category']; ?>" name="category" id="inputcategory">
-                                        <option selected value="<?php echo $row['id']; ?>"><?php echo $row['category']; ?></option>
-    
-                                        <?php 
-                   $query=mysqli_query($conn,"select * from category");
-                    while($sql=mysqli_fetch_array($query))
-                    {
-                      ?>
-
-                         <option value="<?php echo $sql['id']; ?>"> <?php echo $sql['category']; ?></option>
-                         <?php } ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6" style="display: flex;">
-                            <a href="clinet_details.php" target="_blank">
-               <?php
-                  if($row['image']==""){
-                 echo '<img src="../admin/dist/img/avatar1.jpeg" alt="User Image" class="img-fluid rounded-circle  card-avatar" style="width:100px;height:100px;">';
-                 }else{
-
-                ?>
-                <img alt="user-image" class="img-fluid rounded-circle card-avatar" src="../admin/dist/img/<?php echo $row['image'] ?>" style="height:100px;width:100px;">
-                <?php } ?>
-                </a>
-                             <div class="form-group">
-                                    <label for="inputPass">Image</label>
-                                    <input type="file" name="image" class="form-control" id="inputimg"
-                                        placeholder="image">
-                                </div>
-                            </div>
-                        
-                        </div>
-                        <?php  } ?>
-
-<?php
-if(isset($_POST["resetpass"])){
-  $id=$_POST["resetpass"];
-	echo '
-  <div class="row">
-                            <div class="col-12">
-                            <input type="hidden" name="id" value="'.$id.'">
-                                <div class="form-group">
-                                    <label for="inputPass">Password</label>
-                                    <input type="password" name="resetPass" class="form-control" id="resetPass"
-                                        placeholder="Enter Password">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="inputConfirmPass">Confirm Password</label>
-                                    <input type="password" name="confirmResetPass" class="form-control"
-                                        id="confirmResetPass" placeholder="Re-enter Password">
-                                </div>
-                            </div>
-                        </div>
-  ';
-	
-	}
-?>     
-
-
-<?php
-//clients POST & Email->Password
 
 if(isset($_POST['submit1'])){
     $fname=$_POST['fname'];
@@ -128,12 +8,15 @@ if(isset($_POST['submit1'])){
     $Email=$_POST['email'];
     $Mobile_Number=$_POST['number'];
     $Category=$_POST['category'];
+    $file=$_FILES['image']['name'];
+    $filetmp=$_FILES['image']['tmp_name'];
+    move_uploaded_file($filetmp,"images/clientImage/".$file);
 date_default_timezone_set('Asia/Kolkata');
 $Date = date('y-m-d h:i:s');
 $Password= rand(100000, 999999);
 $hashPassword=password_hash($Password,PASSWORD_BCRYPT);
 
-$from = 'Enquiry <naiduvedant@gmail.com>' . "\r\n";
+$from = 'Enquiry <snehal7039@gmail.com>' . "\r\n";
 $sendTo = 'Enquiry <'.$Email.'>';
 $subject = 'Your New Password';
 // $fields = array( 'name' => 'name' );
@@ -194,7 +77,7 @@ foreach($_POST as $key => $value){
 }
 if( mail($sendTo,$subject,$emailText, "From:" .$from)){
 
-    $sql=mysqli_query($conn,"INSERT INTO `client`( `Firm_Name`, `Authorized_Name`, `Email`, `Mobile_Number`, `Category`, `Password`,  `Date`, `Status`) VALUES ('$fname','$name','$Email','$Mobile_Number','$Category','$hashPassword','$Date','Activated')");
+    $sql=mysqli_query($conn,"INSERT INTO `client`( `Firm_Name`, `Authorized_Name`, `Email`, `Mobile_Number`, `Category`, `Password`,  `Date`, `Status`,`image`) VALUES ('$fname','$name','$Email','$Mobile_Number','$Category','$hashPassword','$Date','Activated','$file')");
 
     if($sql==1){
         echo '<script>alert("data successfully submitted");</script>';
@@ -204,7 +87,7 @@ if( mail($sendTo,$subject,$emailText, "From:" .$from)){
     }
  
 }else{
-  echo "eeee $sendTo $subject $emailText $from";
+  echo "something went wrong";
 }
 }
 catch(\Exception $e){
@@ -212,6 +95,178 @@ echo "not done";
 }
 }
 }
+
+
+
+if(isset($_POST['updateclient'])){
+  $updatefname=$_POST['updatefname'];
+  $name=$_POST['updateName'];
+  $email=$_POST['updateEmail'];
+  $category=$_POST['category'];
+  $image=$_POST['imagehidden'];
+  $id=$_POST['id'];
+  $imagefile='avatar-s-9.jpg';
+  $file=$_FILES['image']['name'];
+  $tmp=$_FILES['image']['tmp_name'];
+if(empty($_FILES['image']['tmp_name']) && ($_POST['imagehidden']) && ($_POST['id'])){
+  $sql=mysqli_query($conn,"UPDATE `client` SET `Firm_Name`='$updatefname',`Authorized_Name`='$name',`Email`='$email',`Category`='$category',`image`='$image' where Client_Code='$id'");
+  if($sql){
+      echo "<script>alert('gfh1')</script>";
+      header("location:clients.php");
+  }
+  else{
+      echo "<script>alert('error1')</script>";
+      header("location:clients.php");
+  }
+}
+else if(!empty($_FILES['image']['tmp_name'] && ($_POST['imagehidden']) || !empty($_FILES['image']['tmp_name']) && (empty($_POST['imagehidden'])))){
+  move_uploaded_file($tmp,"images/clientImage/".$file);
+  $sql=mysqli_query($conn,"UPDATE `client` SET `Firm_Name`='$updatefname',`Authorized_Name`='$name',`Email`='$email',`Category`='$category',`image`='$file' where Client_Code='$id'");
+  if($sql){
+      echo "<script>alert('gfh2')</script>";
+      header("location:clients.php");
+  }
+  else{
+      echo "<script>alert('error2')</script>";
+      header("location:clients.php");
+  }
+}
+else{
+  echo "<script>alert('e')</script>";
+  header("location:clients.php");
+}
+
+}
+?>
+
+<?php
+//client delete
+    if(isset($_GET['del_id'])){
+        $delid = $_GET['del_id'];
+        $sql = mysqli_query($conn,"DELETE FROM client WHERE Client_Code = '$delid'");
+        if($sql){
+          header ("location:clients.php"); 
+         
+        }
+        else{ echo "<script>alert('Failed to Delete')</script>"; }
+      }
+?>
+
+<?php
+//client edit fetch
+  if(isset($_POST['dnk'])){
+    $id=$_POST['dnk'];
+         $sql=mysqli_query($conn,"select category.*,client.* from category inner join client on category.id=client.category where Client_Code='".$id."'");
+              
+           $row=mysqli_fetch_array($sql)
+           ?>
+<div class="row">
+  <div class="col-6">
+    <div class="form-group mb-2">
+      <label for="inputName" class="form-label">Firm Name</label>
+      <input type="hidden" name="id" value="<?php echo $id ?>">
+      <input type="text" name="updatefname" value="<?php echo $row['Firm_Name']; ?>" class="form-control"
+        id="inputfname" placeholder="Enter Name">
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="form-group mb-2">
+      <label for="inputName" class="form-label">Name</label>
+      <input type="hidden" name="id" value="<?php echo $id ?>">
+      <input type="text" name="updateName" value="<?php echo $row['Authorized_Name']; ?>" class="form-control"
+        id="inputName" placeholder="Enter Name">
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="form-group mb-2">
+      <label for="inputEmail" class="form-label">Email</label>
+      <input type="email" name="updateEmail" value="<?php echo $row['Email']; ?>" class="form-control" id="inputEmail"
+        placeholder="Enter Email" readonly>
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="form-group mb-2">
+      <label for="inputPass" class="form-label">Mobile Number</label>
+      <input type="text" minlength="10" maxlength="10" class="form-control" value="<?php echo $row['Mobile_Number']; ?>"
+        name="number" id="number" placeholder="Mobile Number" required>
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="form-group mb-2">
+      <label class="form-label">Category</label>
+      <select class="form-control" value="<?php echo $row['category']; ?>" name="category" id="inputcategory">
+        <option selected value="<?php echo $row['id']; ?>"><?php echo $row['category']; ?></option>
+
+        <?php 
+                   $query=mysqli_query($conn,"select * from category");
+                    while($sql=mysqli_fetch_array($query))
+                    {
+                      ?>
+
+        <option value="<?php echo $sql['id']; ?>"> <?php echo $sql['category']; ?></option>
+        <?php } ?>
+      </select>
+    </div>
+  </div>
+  <div class="col-6" style="display: flex;">
+      <?php
+                  if($row['image']==""){
+                 echo '<img src="app-assets/images/portrait/small/avatar-s-9.jpg" alt="Profile Picture" width="50" height="50" class="mt-2"/>';
+                 }else{
+
+                ?>
+      <img alt="user-image" class="img-fluid rounded-circle card-avatar mt-2"
+        src="images/clientImage/<?php echo $row['image'] ?>" width="100" height="100">
+
+      <?php } ?>
+    <div class="form-group mb-2">
+    <input type="hidden" name="imagehidden" value="<?php echo $row['image'] ?>">
+      <label for="inputPass" class="form-label">Image</label>
+      <input type="file" name="image" class="form-control" id="inputimg" placeholder="image">
+    </div>
+  </div>
+  <div class="col-12 text-center mt-2 pt-50">
+                                    <button type="submit" class="btn btn-primary me-1" name="updateclient">Update</button>
+                                    <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+                                        aria-label="Close">
+                                        Discard
+                                    </button>
+                                </div>
+
+</div>
+<?php  } ?>
+
+<?php
+if(isset($_POST["resetpass"])){
+  $id=$_POST["resetpass"];
+	echo '
+  <div class="row">
+                            <div class="col-12">
+                            <input type="hidden" name="id" value="'.$id.'">
+                                <div class="form-group mt-2">
+                                    <label for="inputPass">Password</label>
+                                    <input type="password" name="resetPass" class="form-control" id="resetPass"
+                                        placeholder="Enter Password">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group mt-2">
+                                    <label for="inputConfirmPass">Confirm Password</label>
+                                    <input type="password" name="confirmResetPass" class="form-control"
+                                        id="confirmResetPass" placeholder="Re-enter Password">
+                                </div>
+                            </div>
+                        </div>
+  ';
+	
+	}
+?>
+
+
+<?php
+//clients POST & Email->Password
+
+
 
 if(isset($_POST['assignId'])){
   $qpackage=mysqli_query($conn,"select * from package_assign where id='".$_POST['assignId']."'");
@@ -225,14 +280,14 @@ if(isset($_POST['assignId'])){
                 <input type="text" class="form-control" value="'.$fpackage['total_amt'].'"  id="totalamt" name="totalamt" readonly>
               </div>
             </div>
-             <div class="form-group row">
+             <div class="form-group row mt-2">
               <label for="payment" class="col-sm-3 col-form-label">Balance</label>
               <div class="col-sm-9">
               <input type="hidden" value="'.$fpackage['balance'].'" id="bal" >
                 <input type="text" class="form-control" value="'.$fpackage['balance'].'" id="balance" name="balance" readonly>
               </div>
             </div>
-            <div class="form-group row">
+            <div class="form-group row mt-2">
             <label for="account_name" class="col-sm-3 col-form-label">Account Name</label>
             <div class="col-sm-9">
               <select class="form-control" name="account_name" id="account_name">
@@ -242,7 +297,7 @@ if(isset($_POST['assignId'])){
               </select>
             </div>
             </div>
-            <div class="form-group row">
+            <div class="form-group row mt-2">
             <label for="paymentmode" class="col-sm-3 col-form-label">Payment Mode</label>
             <div class="col-sm-9">
               <select name="paymentmode" id="paymentmode" class="form-control">
@@ -252,19 +307,39 @@ if(isset($_POST['assignId'])){
               </select>
             </div>
             </div>
-            <div class="form-group row">
+            <div class="form-group row mt-2">
               <label for="payment" class="col-sm-3 col-form-label">Payment</label>
               <div class="col-sm-9">
                 <input type="text" class="form-control" value="" id="payment" name="payment">
               </div>
             </div>
-            <div class="form-group row">
+            <!--discount-->
+            <div class="form-group row mt-2">
+              <label for="month3" class="col-sm-3 col-form-label">3 Month discount</label>
+              <div class="col-sm-9">
+                <input type="number" class="form-control" value="" id="month3" name="month3">
+              </div>
+            </div>
+            <div class="form-group row mt-2">
+              <label for="month6" class="col-sm-3 col-form-label">6 Month discount</label>
+              <div class="col-sm-9">
+                <input type="number" class="form-control" value="" id="month6" name="month6">
+              </div>
+            </div>
+            <div class="form-group row mt-2">
+              <label for="year" class="col-sm-3 col-form-label">Year discount</label>
+              <div class="col-sm-9">
+                <input type="number" class="form-control" value="" id="year" name="year1">
+              </div>
+            </div>
+            <!--discount-->
+            <div class="form-group row mt-2">
             <label for="transaction" class="col-sm-3 col-form-label">Date of Transaction</label>
             <div class="col-sm-9">
               <input type="datetime-local" class="form-control" value=""  id="transaction" name="transaction">
             </div>
             </div>
-            <div class="form-group row">
+            <div class="form-group row mt-2">
             <label for="due_date" class="col-sm-3 col-form-label">Date of Transaction</label>
             <div class="col-sm-9">
               <input type="datetime-local" class="form-control" value=""  id="due_date" name="due_date">
@@ -322,113 +397,108 @@ if(isset($_POST['packa'])){
   $firm_name=$_POST['firm_name'];
   echo '
             <div class="packageresult">
-            <div class="card">
-                    <div class="row" style="margin:10px;">
-                        <div class="col-md-3 col-sm-6">
-                            <div class="card comp-card">
-                                <div class="card-body bg-success">
-                                    <div class="row align-items-center">
-                                        <div class="col">
-                                            <h6 class="m-b-20">Total Lead</h6> '; 
+            <section id="dashboard-ecommerce">
+                        <div class="row" id="leads">
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="card">
+                                    <div class="card-body d-flex align-items-center justify-content-between">
+                                        <div>';
                                             $query=mysqli_query($conn,"select * from lead where Firm_Name='$firm_name' and package='$package'");
                                             $count1=mysqli_num_rows($query);
                                             
-                                           echo' <h3>'.$count1.'</h3>
-                                                         </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-rocket bg-success text-white"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="card comp-card">
-                                <div class="card-body bg-warning">
-                                    <div class="row align-items-center">
-                                        <div class="col">
-                                            <h6 class="m-b-20">Hot</h6>';
+                                           echo' <h3 class="fw-bolder mb-75">'. $count1.'</h3>
+                                           <span>Total Lead</span>
+                                       </div>
+                                       <div class="avatar bg-light-primary p-50">
+                                           <span class="avatar-content">
+                                           <i class="far fa-user" aria-hidden="true"></i>
+                                           </span>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="col-lg-3 col-sm-6">
+                               <div class="card">
+                                   <div class="card-body d-flex align-items-center justify-content-between">
+                                       <div>';
                                             
                                             $query=mysqli_query($conn,"select * from lead where nature='Hot' and package='$package'");
                                             $count1=mysqli_num_rows($query);
                                            
-                                           echo' <h3>'.$count1.'</h3>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-rocket bg-warning text-white"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="card comp-card">
-                                <div class="card-body bg-info">
-                                    <div class="row align-items-center">
-                                        <div class="col">
-                                            <h6 class="m-b-20">Cold</h6>';
+                                           echo' <h3 class="fw-bolder mb-75">'.$count1.'</h3>
+                                           <span>Hot</span>
+                                       </div>
+                                       <div class="avatar bg-light-danger p-50">
+                                           <span class="avatar-content">
+                                           <i class="fas fa-user-plus" aria-hidden="true"></i>
+                                           </span>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="col-lg-3 col-sm-6">
+                               <div class="card">
+                                   <div class="card-body d-flex align-items-center justify-content-between">
+                                       <div>';
                                             
                                             $query=mysqli_query($conn,"select * from lead where nature='Cold' and package='$package'");
                                             $count1=mysqli_num_rows($query);
                                            
-                                           echo' <h3>'.$count1.'</h3>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-rocket bg-info text-white"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="card comp-card">
-                                <div class="card-body bg-danger">
-                                    <div class="row align-items-center">
-                                        <div class="col">
-                                            <h6 class="m-b-20">Warm</h6>';
+                                           echo'<h3 class="fw-bolder mb-75">'. $count1 .'</h3>
+                                           <span>Cold</span>
+                                       </div>
+                                       <div class="avatar bg-light-success p-50">
+                                           <span class="avatar-content">
+                                           <i class="fas fa-user-check" aria-hidden="true"></i>
+                                           </span>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="col-lg-3 col-sm-6">
+                               <div class="card">
+                                   <div class="card-body d-flex align-items-center justify-content-between">
+                                       <div>';
                                            
                                                 $query=mysqli_query($conn,"select * from lead where nature='Warm' and package='$package'");
                                                 $count1=mysqli_num_rows($query);
                                                 
-                                                echo '<h3>'.$count1.'</h3>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-rocket bg-danger text-white"></i>
+                                                echo '<h3 class="fw-bolder mb-75">'. $count1.'</h3>
+                                                <span>Warm</span>
+                                            </div>
+                                            <div class="avatar bg-light-warning p-50">
+                                                <span class="avatar-content">
+                                                <i class="fas fa-user-times" aria-hidden="true"></i>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    </div>
+                        </section>
                     <!-- Main row -->
                     <!-- <div class="row"> -->
+                    <section id="basic-datatable">
+                    <div class="row">
                         <div class="col-12">
-                        <div class="card">
-                            <div class="card-header">
-                              <h3 class="card-title">Leads</h3>
-                              <button type="button" class="btn btn-primary float-right " data-toggle="modal" data-target="#exampleModal" style="margin-right: 5px;">+ Add Lead</button>
-                            </div>
-                            <!-- /.card-header -->
+                            <div class="card">
                             <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
                             <thead>
-                            <tr>
-                                <th>Sr No.</th>
-                                <th>Package</th>
-                                <th>Client Name</th>
-                                <th>Client Mobile No.</th>
-                                <th>Requirment</th>
-                                <th>Created On</th>
-                                <th>Action</th>
-                            </tr>
+                                <tr>
+                                    <th>Sr No.</th>
+                                    <th>Package</th>
+                                    <th>Client Name</th>
+                                    <th>Client Mobile No.</th>
+                                    <th>Requirment</th>
+                                    <th>Created On</th>
+                                    <th>Action</th>
+                                </tr>
                             </thead>';
-                            
-                            
                            
                             $sql=mysqli_query($conn,"select *, lead.Mobile_Number as mob from lead inner join client on lead.Firm_Name=client.Client_Code where Client_Code='$firm_name' and lead.package='$package'");
                             $count=1;
-                           echo ' <tbody id="leads" class="packresult">';
+                           echo ' <tbody class="packresult">';
                              while ($row=mysqli_fetch_array($sql)){ 
 
                            
@@ -447,13 +517,236 @@ if(isset($_POST['packa'])){
                             echo '</tbody>
                             </table>
                             </div>
-                            <!-- /.card-body -->
-                          </div>
+                            </div>
+                            </div>
                         </div>
-                    <!-- </div> -->
+                        </section>
+                        </div>';
+}
+
+?>
+
+<?php
+if(isset($_POST['fetch'])){
+    $fetch=$_POST['fetch'];
+    $id=$_POST['leadid'];
+  
+ if($fetch == 'Last Week'){
+    echo '<div class="col-lg-3 col-sm-6">
+    <div class="card">
+        <div class="card-body d-flex align-items-center justify-content-between">
+            <div>';
+                $query=mysqli_query($conn,"select * from lead where Firm_Name='$id' and  date(Created_On)=date(now())");
+                $count1=mysqli_num_rows($query);
+                
+              echo '<h3 class="fw-bolder mb-75">'. $count1.'</h3>
+                <span>Total Lead</span>
+            </div>
+            <div class="avatar bg-light-primary p-50">
+                <span class="avatar-content">
+                <i class="far fa-user" aria-hidden="true"></i>
+                </span>
+            </div>
+        </div>
+    </div>
 </div>
-                    <!-- /.row (main row) -->
-                </div>';
+<div class="col-lg-3 col-sm-6">
+    <div class="card">
+        <div class="card-body d-flex align-items-center justify-content-between">
+            <div>';
+                $query=mysqli_query($conn,"select * from lead where nature='Hot' and  date(Created_On)=date(now())");
+                $count1=mysqli_num_rows($query);
+               echo' <h3 class="fw-bolder mb-75">'.$count1.'</h3>
+                <span>Hot</span>
+            </div>
+            <div class="avatar bg-light-danger p-50">
+                <span class="avatar-content">
+                <i class="fas fa-user-plus" aria-hidden="true"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-3 col-sm-6">
+    <div class="card">
+        <div class="card-body d-flex align-items-center justify-content-between">
+            <div>';
+                $query=mysqli_query($conn,"select * from lead where nature='Cold' and  date(Created_On)=date(now())");
+                $count1=mysqli_num_rows($query);
+              echo'  <h3 class="fw-bolder mb-75">'. $count1.'</h3>
+                <span>Cold</span>
+            </div>
+            <div class="avatar bg-light-success p-50">
+                <span class="avatar-content">
+                <i class="fas fa-user-check" aria-hidden="true"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-3 col-sm-6">
+    <div class="card">
+        <div class="card-body d-flex align-items-center justify-content-between">
+            <div>';
+                    $query=mysqli_query($conn,"select * from lead where nature='Warm' and  date(Created_On)=date(now())");
+                    $count1=mysqli_num_rows($query);
+               echo' <h3 class="fw-bolder mb-75">'. $count1.'</h3>
+                <span>Warm</span>
+            </div>
+            <div class="avatar bg-light-warning p-50">
+                <span class="avatar-content">
+                <i class="fas fa-user-times" aria-hidden="true"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>';
+
+ }
+else if($fetch == 'Monthly'){
+    echo '<div class="col-lg-3 col-sm-6">
+    <div class="card">
+        <div class="card-body d-flex align-items-center justify-content-between">
+            <div>';
+                $query=mysqli_query($conn,"select * from lead where Firm_Name='$id' and  Created_On > DATE_SUB(NOW(), INTERVAL 1 MONTH)");
+                $count1=mysqli_num_rows($query);
+                
+              echo '<h3 class="fw-bolder mb-75">'. $count1.'</h3>
+                <span>Total Lead</span>
+            </div>
+            <div class="avatar bg-light-primary p-50">
+                <span class="avatar-content">
+                <i class="far fa-user" aria-hidden="true"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-3 col-sm-6">
+    <div class="card">
+        <div class="card-body d-flex align-items-center justify-content-between">
+            <div>';
+                $query=mysqli_query($conn,"select * from lead where nature='Hot' and  Created_On > DATE_SUB(NOW(), INTERVAL 1 MONTH)");
+                $count1=mysqli_num_rows($query);
+               echo' <h3 class="fw-bolder mb-75">'.$count1.'</h3>
+                <span>Hot</span>
+            </div>
+            <div class="avatar bg-light-danger p-50">
+                <span class="avatar-content">
+                <i class="fas fa-user-plus" aria-hidden="true"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-3 col-sm-6">
+    <div class="card">
+        <div class="card-body d-flex align-items-center justify-content-between">
+            <div>';
+                $query=mysqli_query($conn,"select * from lead where nature='Cold' and  Created_On > DATE_SUB(NOW(), INTERVAL 1 MONTH)");
+                $count1=mysqli_num_rows($query);
+              echo'  <h3 class="fw-bolder mb-75">'. $count1.'</h3>
+                <span>Cold</span>
+            </div>
+            <div class="avatar bg-light-success p-50">
+                <span class="avatar-content">
+                <i class="fas fa-user-check" aria-hidden="true"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-3 col-sm-6">
+    <div class="card">
+        <div class="card-body d-flex align-items-center justify-content-between">
+            <div>';
+                    $query=mysqli_query($conn,"select * from lead where nature='Warm'  and  Created_On > DATE_SUB(NOW(), INTERVAL 1 MONTH)");
+                    $count1=mysqli_num_rows($query);
+               echo' <h3 class="fw-bolder mb-75">'. $count1.'</h3>
+                <span>Warm</span>
+            </div>
+            <div class="avatar bg-light-warning p-50">
+                <span class="avatar-content">
+                <i class="fas fa-user-times" aria-hidden="true"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>';
+  
+}
+else if($fetch == '3 Month'){
+    echo '<div class="col-lg-3 col-sm-6">
+    <div class="card">
+        <div class="card-body d-flex align-items-center justify-content-between">
+            <div>';
+                $query=mysqli_query($conn,"select * from lead where Firm_Name='$id' and  Created_On >= DATE(NOW()) - INTERVAL 3 MONTH");
+                $count1=mysqli_num_rows($query);
+                
+              echo '<h3 class="fw-bolder mb-75">'. $count1.'</h3>
+                <span>Total Lead</span>
+            </div>
+            <div class="avatar bg-light-primary p-50">
+                <span class="avatar-content">
+                <i class="far fa-user" aria-hidden="true"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-3 col-sm-6">
+    <div class="card">
+        <div class="card-body d-flex align-items-center justify-content-between">
+            <div>';
+                $query=mysqli_query($conn,"select * from lead where nature='Hot' and  Created_On >= DATE(NOW()) - INTERVAL 3 MONTH");
+                $count1=mysqli_num_rows($query);
+               echo' <h3 class="fw-bolder mb-75">'.$count1.'</h3>
+                <span>Hot</span>
+            </div>
+            <div class="avatar bg-light-danger p-50">
+                <span class="avatar-content">
+                <i class="fas fa-user-plus" aria-hidden="true"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-3 col-sm-6">
+    <div class="card">
+        <div class="card-body d-flex align-items-center justify-content-between">
+            <div>';
+                $query=mysqli_query($conn,"select * from lead where nature='Cold' and  Created_On >= DATE(NOW()) - INTERVAL 3 MONTH");
+                $count1=mysqli_num_rows($query);
+              echo'  <h3 class="fw-bolder mb-75">'. $count1.'</h3>
+                <span>Cold</span>
+            </div>
+            <div class="avatar bg-light-success p-50">
+                <span class="avatar-content">
+                <i class="fas fa-user-check" aria-hidden="true"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-3 col-sm-6">
+    <div class="card">
+        <div class="card-body d-flex align-items-center justify-content-between">
+            <div>';
+                    $query=mysqli_query($conn,"select * from lead where nature='Warm' and  Created_On >= DATE(NOW()) - INTERVAL 3 MONTH");
+                    $count1=mysqli_num_rows($query);
+               echo' <h3 class="fw-bolder mb-75">'. $count1.'</h3>
+                <span>Warm</span>
+            </div>
+            <div class="avatar bg-light-warning p-50">
+                <span class="avatar-content">
+                <i class="fas fa-user-times" aria-hidden="true"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>';
+
+}
 }
 
 ?>

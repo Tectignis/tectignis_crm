@@ -170,4 +170,72 @@ if(isset($_POST['dnk'])){
   </div>
   ';
   }
+
+  if(isset($_POST['ticketid'])){
+    $id=$_POST['ticketid'];
+	
+	echo '  <div class="form-group">
+    <input type="hidden" value='.$id.' name="id">
+    <label class="form-label mb-1">Status</label>
+      <select class="form-control select2" name="category" style="width: 100%;">
+        <option selected="selected">Open</option>
+        <option>Hold On</option>
+        <option>Inprocess</option>
+        <option>Closed</option>
+      </select>
+</div>
+<div class="form-group mt-2">
+<label class="form-label mb-1">Comment</label>
+      <textarea class="form-control" name="comment" id="comment" placeholder="Comment"></textarea>
+</div>
+
+</div> ';
+}
   ?>
+
+<?php
+  if(isset($_POST['cateid'])){
+    $id=$_POST['cateid'];
+         $sql=mysqli_query($conn,"select * from category where id='".$id."'");
+              
+           while ($row=mysqli_fetch_array($sql)){ 
+           ?>
+                       
+                                <div class="form-group mt-2">
+                                    <label for="inputCategory">Category</label>
+                                    <input type="hidden" name="id" value="<?php echo $id ?>">
+                                    <input type="text" name="updateCategory" value="<?php echo $row['category']; ?>" class="form-control mt-1" id="inputRoles"
+                                        placeholder="Enter Category">
+                                </div>
+                          
+                        <?php } } ?>
+
+                        <?php
+                        if(isset($_POST['submitt'])){
+                          $category=$_POST['category'];
+                         
+                          $sql=mysqli_query($conn,"INSERT INTO `category`(`category`) VALUES ('$category')");
+                          if($sql){
+                              echo "<script>alert('category Added Successfully');</script>";
+                              echo "<script>window.location.href='category.php';</script>";
+                          }
+                          else{
+                              echo "<script>alert('category Not Added');</script>";
+                              echo "<script>window.location.href='category.php';</script>";
+                          }
+                          
+                      
+                         
+                      }
+                      
+                      
+                      if(isset($_GET['del_id'])){
+                          $delid = $_GET['del_id'];
+                          $sql = mysqli_query($conn,"DELETE FROM category WHERE id = '$delid'");
+                          if($sql){
+                            header ("location:category.php"); 
+                          }
+                          else{ echo "<script>alert('Failed to Delete')</script>"; }
+                        }
+                        
+                        ?>

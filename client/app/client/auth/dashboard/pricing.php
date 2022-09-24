@@ -269,8 +269,7 @@ $mob=$ress['Mobile_Number'];
                                                             <li class="list-group-item">Custom domain support</li>
                                                             <li class="list-group-item">Stripe integration</li>
                                                         </ul>
-                                                        <a href="#large" class="btn btn-outline-primary mt-2 w-100 modal1" data-id="<?php echo $code ?>" data-name="<?php echo $firm ?>" data-email="<?php echo $email ?>" data-phone="<?php echo $mob ?>" data-price="<?php echo $fetchprice['total_amt'] ?>" data-packageName="<?php echo $fetchprice['package_name'] ?>" data-start="<?php echo $fetchprice['created_date'] ?>" data-end="<?php echo $fetchprice['end_date'] ?>" data-leads="<?php echo $fetchprice['total_lead'] ?>"
-                                                            data-bs-toggle="modal"
+                                                        <a href="ui?id=<?php echo $fetchprice['id'] ?>" class="btn btn-outline-primary mt-2 w-100 " 
                                                              >
                                                             Upgrade
 </a>

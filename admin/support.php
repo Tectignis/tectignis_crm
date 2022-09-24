@@ -1,136 +1,58 @@
+<?php
+include("config.php");
+if(isset($_GET['delid'])){
+    $id=mysqli_real_escape_string($conn,$_GET['delid']);
+    $sql=mysqli_query($conn,"delete from support where id='$id'");
+    if($sql=1){
+        header("location:support.php");
+    }
+    }
+  
+    if(isset($_POST['compsubmit'])){
+      $compid=$_POST['id'];
+      $status=$_POST['category'];
+      $descr=$_POST['comment'];
+      $sql=mysqli_query($conn,"UPDATE `support` SET `status`='".$status."',`Comment`='".$descr."' WHERE id='".$compid."'");
+      if($sql==1){
+      }else{
+        echo "Something went wrong";
+      }
+    }
+?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
-    <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
-    <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
-    <meta name="author" content="PIXINVENT">
-    <title>Bootstrap Tables - Vuexy - Bootstrap HTML admin template</title>
-    <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
-    <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
+    <title>View Clients</title>
+    <!-- DataTables -->
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <style>
+        .badge-success {
+            background-color: #28a745;
+        }
 
-    <!-- BEGIN: Vendor CSS-->
-    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/vendors.min.css">
-    <!-- END: Vendor CSS-->
+        .badge-danger {
+            background-color: #dc3545;
+        }
 
-    <!-- BEGIN: Theme CSS-->
-    <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap-extended.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/css/colors.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/css/components.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/css/themes/dark-layout.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/css/themes/bordered-layout.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/css/themes/semi-dark-layout.css">
+        .badge-warning {
+            background-color: #ffc107;
+        }
 
-    <!-- BEGIN: Page CSS-->
-    <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-menu.css">
-    <!-- END: Page CSS-->
+        .badge-secondary {
+            background-color: #6c757d;
+        }
 
-    <!-- BEGIN: Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <!-- END: Custom CSS-->
-
-</head>
-<!-- END: Head-->
-
-<!-- BEGIN: Body-->
-
-<body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
-
-    <!-- BEGIN: Header-->
-    <?php
-       include('include/header.php');
-       ?>
-    <ul class="main-search-list-defaultlist d-none">
-        <li class="d-flex align-items-center"><a href="#">
-                <h6 class="section-label mt-75 mb-0">Files</h6>
-            </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="app-file-manager.html">
-                <div class="d-flex">
-                    <div class="me-75"><img src="app-assets/images/icons/xls.png" alt="png" height="32"></div>
-                    <div class="search-data">
-                        <p class="search-data-title mb-0">Two new item submitted</p><small class="text-muted">Marketing Manager</small>
-                    </div>
-                </div><small class="search-data-size me-50 text-muted">&apos;17kb</small>
-            </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="app-file-manager.html">
-                <div class="d-flex">
-                    <div class="me-75"><img src="app-assets/images/icons/jpg.png" alt="png" height="32"></div>
-                    <div class="search-data">
-                        <p class="search-data-title mb-0">52 JPG file Generated</p><small class="text-muted">FontEnd Developer</small>
-                    </div>
-                </div><small class="search-data-size me-50 text-muted">&apos;11kb</small>
-            </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="app-file-manager.html">
-                <div class="d-flex">
-                    <div class="me-75"><img src="app-assets/images/icons/pdf.png" alt="png" height="32"></div>
-                    <div class="search-data">
-                        <p class="search-data-title mb-0">25 PDF File Uploaded</p><small class="text-muted">Digital Marketing Manager</small>
-                    </div>
-                </div><small class="search-data-size me-50 text-muted">&apos;150kb</small>
-            </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="app-file-manager.html">
-                <div class="d-flex">
-                    <div class="me-75"><img src="app-assets/images/icons/doc.png" alt="png" height="32"></div>
-                    <div class="search-data">
-                        <p class="search-data-title mb-0">Anna_Strong.doc</p><small class="text-muted">Web Designer</small>
-                    </div>
-                </div><small class="search-data-size me-50 text-muted">&apos;256kb</small>
-            </a></li>
-        <li class="d-flex align-items-center"><a href="#">
-                <h6 class="section-label mt-75 mb-0">Members</h6>
-            </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="app-user-view-account.html">
-                <div class="d-flex align-items-center">
-                    <div class="avatar me-75"><img src="app-assets/images/portrait/small/avatar-s-8.jpg" alt="png" height="32"></div>
-                    <div class="search-data">
-                        <p class="search-data-title mb-0">John Doe</p><small class="text-muted">UI designer</small>
-                    </div>
-                </div>
-            </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="app-user-view-account.html">
-                <div class="d-flex align-items-center">
-                    <div class="avatar me-75"><img src="app-assets/images/portrait/small/avatar-s-1.jpg" alt="png" height="32"></div>
-                    <div class="search-data">
-                        <p class="search-data-title mb-0">Michal Clark</p><small class="text-muted">FontEnd Developer</small>
-                    </div>
-                </div>
-            </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="app-user-view-account.html">
-                <div class="d-flex align-items-center">
-                    <div class="avatar me-75"><img src="app-assets/images/portrait/small/avatar-s-14.jpg" alt="png" height="32"></div>
-                    <div class="search-data">
-                        <p class="search-data-title mb-0">Milena Gibson</p><small class="text-muted">Digital Marketing Manager</small>
-                    </div>
-                </div>
-            </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="app-user-view-account.html">
-                <div class="d-flex align-items-center">
-                    <div class="avatar me-75"><img src="app-assets/images/portrait/small/avatar-s-6.jpg" alt="png" height="32"></div>
-                    <div class="search-data">
-                        <p class="search-data-title mb-0">Anna Strong</p><small class="text-muted">Web Designer</small>
-                    </div>
-                </div>
-            </a></li>
-    </ul>
-    <ul class="main-search-list-defaultlist-other-list d-none">
-        <li class="auto-suggestion justify-content-between"><a class="d-flex align-items-center justify-content-between w-100 py-50">
-                <div class="d-flex justify-content-start"><span class="me-75" data-feather="alert-circle"></span><span>No results found.</span></div>
-            </a></li>
-    </ul>
-    <!-- END: Header-->
-
-
-    <!-- BEGIN: Main Menu-->
-        <?php
-       include('include/sidebar.php');
-       ?>
-    <!-- END: Main Menu-->
+        .btn.btn-icon {
+            padding: 0.515rem 0.446rem !important;
+        }
+    </style>
+    <?php include "include/header.php"; ?>
+    <?php include "include/sidebar.php"; ?>
 
     <!-- BEGIN: Content-->
     <div class="app-content content ">
@@ -153,7 +75,7 @@
                         </div>
                     </div>
                 </div>
-               
+
             </div>
             <div class="content-body">
                 <!-- Basic Tables start -->
@@ -162,109 +84,102 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">Ticket</h4>
-                                
+
                             </div>
-                           
-                            <div class="table-responsive">
-                            <table class="datatables-basic table">
-                            <thead>
-                                        <tr>
-                                           
-                                            <th>Sr.No</th>
-                                            <th>Ticket No</th>
-                                            <th>Firm Name</th>
-                                            <th>Client Name</th>
-                                            <th>Mobile No</th>
-                                            <th>Email</th>
-                                            <th>Description</th>
-                                            <th>Created On</th>
-                                            <th>Status</th>
-                                            <th>Action</th>
-                                            
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                      
-                                        <tr>
-                                          <td>tg</td>
-                                          <td>dgfgd</td>
-                                          <td>dgfg</td>
-                                          <td>dgfg</td>
-                                          <td>gd</td>
-                                          <td>dfgfg</td>
-                                          <td>dgfg</td>
-                                          <td>gd</td>
-                                          <td>dfgfg</td>
-                                         <td>
-                      
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Ticket No.</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
+                                                <th>Firm Name</th>
+                                                <th>Client Name</th>
+                                                <th>Mobile</th>
+                                                <th>Email</th>
+                                                <th>Description</th>
+                                                <th>Created On</th>
 
-                 <button type="button" id="view" data-id="<?php echo $row['id'] ?>"class="delete-row btn-sm btn-info">
-                    <i class="fas fa-eye"></i>
-                    </button>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $sql=mysqli_query($conn,"select * from support");
+                                            $count=1;
+                                        while ($row=mysqli_fetch_array($sql)){ 
+                                ?>
+                                            <tr>
+                                                <td><?php echo $row['ticket_no']; ?></td>
 
+                                                <td style="text-align:center">
 
-                    <button type="button" class="delete-row btn-sm btn-info">
-                    <i class="fas fa-edit"></i>
-                    </button>
+                                                    <?php
+                                                $status=$row['status'];
+                                                if($status=='0'){
+                                                    echo '<span class="badge badge-success badge-pill">Open</span>';
+                                                }
+                                                else if($status=='Open'){
+                                                    echo '<span class="badge badge-success">Open</span>';
+                                                }
+                                                else if($status=='Inprocess'){
+                                                    echo '<span class="badge badge-danger">In Proccess</span>';
+                                                }else if($status=='Hold'){
+                                                   echo '<span class="badge badge-warning">Hold On</span>';
+                                                }else if($status=='Closed'){
+                                                    echo '<span class="badge badge-secondary">Closed</span>';
+                                                }
+                                                ?></td>
 
-                    <button type="button" class="delete-row btn-sm btn-info">
-                    <i class="fab fa-trash"></i>
-                  
-                    </button>
+                                                <td style="text-align:center">
+                                                    <button class="btn btn-primary btn-rounded btn-icon setting "
+                                                        data-id='<?php echo $row['id']; ?> '><i
+                                                            class="fas fa-wrench"></i></button>
+                                                    <a href="support.php?delid=<?php echo $row['id']; ?>"><button
+                                                            type="button" class="btn btn-danger btn-rounded btn-icon">
+                                                            <i class="fas fa-trash"></i> </button></a> </td>
+                                                <td><?php echo $row['firm_name']; ?></td>
+                                                <td><?php echo $row['client_name']; ?></td>
+                                                <td><?php echo $row['mobile']; ?></td>
+                                                <td><?php echo $row['email']; ?></td>
+                                                <td><?php echo $row['description']; ?></td>
+                                                <td><?php $s = $row['date'];$date = strtotime($s);echo date('d-M-Y ', $date);?>
+                                                </td>
 
-                   
-                  </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                            </tr>
+                                            <?php $count++; } ?>
+
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- Basic Tables end -->
 
-               <!-- Edit User Modal -->
-               <div class="modal fade" id="editUser" tabindex="-1" aria-hidden="true">
+                <!-- Edit User Modal -->
+                <div class="modal fade closemaual" id="dnkModal5" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog modal-lg modal-dialog-centered modal-edit-user">
                         <div class="modal-content">
                             <div class="modal-header bg-transparent">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
                             <div class="modal-body pb-5 px-sm-5 pt-50">
                                 <div class="text-center mb-2">
                                     <h1 class="mb-1">Customer Details</h1>
-                                    
+
                                 </div>
-                                <form id="editUserForm" class="row gy-1 pt-75" onsubmit="return false">
-                                    <div class="col-12 col-md-6">
-                                        <label class="form-label" for="modalEditUserFirstName">Customer Name</label>
-                                        <input type="text" id="modalEditUserFirstName" name="modalEditUserFirstName" class="form-control" placeholder="John" value="Gertrude" data-msg="Please enter your first name" />
+                                <form method="post">
+                                    <div class="body5">
                                     </div>
-                                    <div class="col-12 col-md-6">
-                                        <label class="form-label" for="modalEditUserLastName">Company Name</label>
-                                        <input type="text" id="modalEditUserLastName" name="modalEditUserLastName" class="form-control" placeholder="Doe" value="Barton" data-msg="Please enter your last name" />
-                                    </div>
-                                  
-                                    <div class="col-12 col-md-6">
-                                        <label class="form-label" for="modalEditUserEmail">Email:</label>
-                                        <input type="text" id="modalEditUserEmail" name="modalEditUserEmail" class="form-control" value="gertrude@gmail.com" placeholder="example@domain.com" />
-                                    </div>
-                                
-                                    <div class="col-12 col-md-6">
-                                        <label class="form-label" for="modalEditUserPhone">Contact No</label>
-                                        <input type="text" id="modalEditUserPhone" name="modalEditUserPhone" class="form-control phone-number-mask" placeholder="+1 (609) 933-44-22" value="+1 (609) 933-44-22" />
-                                    </div>
-                                    
-                                    <div class="col-6">
-                                        <label class="form-label" for="modalEditUserName">Whatsapp No</label>
-                                        <input type="text" id="modalEditUserName" name="modalEditUserName" class="form-control" value="gertrude.dev" placeholder="john.doe.007" />
-                                    </div>
-                                   
-                                    <div class="col-12 text-center mt-2 pt-50">
-                                        <button type="submit" class="btn btn-primary me-1">Submit</button>
-                                        <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">
-                                            Discard
-                                        </button>
+
+                                    <div class="modal-footer">
+                                        <button type="close" class="btn btn-default" data-dismiss="modal" name="close"
+                                            id="close">Close</button>
+                                        <button type="submit" class="btn btn-primary" name="compsubmit" id="submit">
+                                            Submit</button>
                                     </div>
                                 </form>
                             </div>
@@ -273,7 +188,7 @@
                 </div>
                 <!--/ Edit User Modal -->
 
-            
+
 
 
             </div>
@@ -287,38 +202,54 @@
     <?php
        include('include/footer.php');
        ?>
-
-
-    <!-- BEGIN: Vendor JS-->
-    <script src="app-assets/vendors/js/vendors.min.js"></script>
-    <!-- BEGIN Vendor JS-->
-
-    <!-- BEGIN: Page Vendor JS-->
-    <!-- END: Page Vendor JS-->
-
-    <!-- BEGIN: Theme JS-->
-    <script src="app-assets/js/core/app-menu.js"></script>
-    <script src="app-assets/js/core/app.js"></script>
-    <!-- END: Theme JS-->
-
-    <!-- BEGIN: Page JS-->
-
-    <!-- BEGIN: Page JS-->
-    <script src="app-assets/js/scripts/tables/table-datatables-basic.js"></script>
-    <!-- END: Page JS-->
-    <!-- END: Page JS-->
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="plugins/jszip/jszip.min.js"></script>
+    <script src="plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <script src="app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
 
     <script>
-        $(window).on('load', function() {
-            if (feather) {
-                feather.replace({
-                    width: 14,
-                    height: 14
-                });
-            }
-        })
+        $(function () {
+            $("#example1").DataTable({
+                "responsive": true,
+                "lengthChange": true,
+                "autoWidth": false,
+                "buttons": ["csv", "excel", "pdf", "print"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+        });
     </script>
-</body>
-<!-- END: Body-->
+    <script>
+        $(document).ready(function () {
+            $('.setting').click(function () {
+                let ticketid = $(this).data('id');
+                $('#dnkModal5').modal('show');
+                $.ajax({
+                    url: 'ticket.update.php',
+                    type: 'post',
+                    data: {
+                        ticketid: ticketid
+                    },
+                    success: function (response5) {
+                        $('.body5').html(response5);
+
+                    }
+                });
+            });
+
+
+        });
+    </script>
+
+    </body>
+    <!-- END: Body-->
 
 </html>

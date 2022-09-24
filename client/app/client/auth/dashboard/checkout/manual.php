@@ -1,5 +1,5 @@
 
-<?php echo'<button id="rzp-button1" class="btn btn-primary waves-effect waves-float waves-light">Pay</button>'; ?>
+<?php echo'<button id="rzp-button1" class="btn btn-outline-primary waves-effect waves-float waves-light">Pay Now</button>'; ?>
 
 <!-- <button id="rzp-button1">Pay with Razorpay</button> -->
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>

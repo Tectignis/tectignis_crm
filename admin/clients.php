@@ -8,15 +8,7 @@ if(isset($_GET['declient'])){
     $id=$_GET['declient'];
     $sql=mysqli_query($conn,"update client set Status='Activated' where Client_Code='$id'");
 };
-if(isset ($_POST['update'])){
-    $name=$_POST['updateName'];
-    $email=$_POST['updateEmail'];
-    $category=$_POST['category'];
-    $image=$_POST['image'];
-    $id=$_POST['id'];
 
-    $sql=mysqli_query($conn,"UPDATE `client` SET `Authorized_Name`='$name',`Email`='$email',`Category`='$category',`image`='$image' where Client_Code='$id'"); 
-}
 
 if(isset($_POST["submi"])){
     $id=$_POST['id'];
@@ -39,13 +31,7 @@ if(isset($_POST["submi"])){
 <!-- BEGIN: Head-->
 
 <head>
-<title>Clients</title>
-<?php
-    $logosql=mysqli_query($conn,'select * from system_setting');
-    $fetchlogo=mysqli_fetch_array($logosql);
-    ?>
-    <link rel="icon" type="image/png" sizes="32x32" href="dist/img/logo/<?php echo $fetchlogo['favicon'] ?>">
-
+    <title>Clients</title>
     <style>
         .drownMenu {
             position: absolute !important;
@@ -130,17 +116,29 @@ if(isset($_POST["submi"])){
                                     </svg></button>
                                 <ul role="menu" tabindex="-1" class="dropdown-menu dorpMenuul"
                                     aria-labelledby="__BVID__652__BV_toggle_" style="">
-                                    <li role="presentation"><a role="menuitem" href="view_clients/<?php echo $row['Client_Code'] ?>" target="_self" class="dropdown-item"> <i data-feather='eye'></i> View </a></li>
-                                    <li role="presentation"><button type="button" class="dropdown-item w-100" data-bs-toggle="modal"
-                                    data-bs-target="#addNewCard"><i data-feather='edit'></i> Edit </button></li>
-                                    <li role="presentation"><button class="dropdown-item w-100 delbtn" type="button" onclick="deleteBtn()" data-id="=<?php echo $row['Client_Code']; ?>"><i data-feather='trash-2'></i> Delete</button></li>
-                                    <li role="presentation"><a role="menuitem" href="#" target="_self" class="dropdown-item"><i data-feather='key'></i> Reset Password </a></li>
+                                    <li role="presentation"><a role="menuitem"
+                                            href="view_clients/<?php echo $row['Client_Code'] ?>" target="_self"
+                                            class="dropdown-item"> <i data-feather='eye'></i> View </a></li>
+                                    <li role="presentation"><button type="button" class="dropdown-item w-100 usereditid"
+                                            data-bs-toggle="modal" data-id="<?php echo $row['Client_Code'] ?>"><i
+                                                data-feather='edit'></i> Edit </button></li>
+                                    <li role="presentation"><button class="dropdown-item w-100 delbtn" type="button"
+                                            onclick="deleteBtn()" data-id="=<?php echo $row['Client_Code']; ?>"><i
+                                                data-feather='trash-2'></i> Delete</button></li>
+                                    <li role="presentation"><button class="dropdown-item rpassword" type="button"
+                                            data-toggle="modal" data-id="<?php echo $row['Client_Code']; ?>"><i
+                                                data-feather='key'></i> Reset Password</button></li>
+
                                     <?php
                                     if($row['Status']=='Activated'){ ?>
-                                    <li role="presentation"><a role="menuitem" href="#" target="_self" class="dropdown-item"><i data-feather='toggle-right'></i> Deactivated </a>
+                                    <li role="presentation"><a role="menuitem"
+                                            href="clients?client=<?php echo $row['Client_Code'] ?>" target="_self"
+                                            class="dropdown-item"><i data-feather='toggle-right'></i> Deactivated </a>
                                     </li>
                                     <?php } else{ ?>
-                                    <li role="presentation"><a role="menuitem" href="#" target="_self" class="dropdown-item"><i data-feather='toggle-left'></i> Activated </a></li>
+                                    <li role="presentation"><a role="menuitem"
+                                            href="clients?declient=<?php echo $row['Client_Code'] ?>" target="_self"
+                                            class="dropdown-item"><i data-feather='toggle-left'></i> Activated </a></li>
                                     <?php } ?>
                                 </ul>
                             </div>
@@ -149,14 +147,16 @@ if(isset($_POST["submi"])){
                             <div class="card-body">
                                 <div class="profile-image-wrapper">
                                     <div class="profile-image">
-                                        <div class="avatar"> <a href="view_clients/<?php echo $row['Client_Code'] ?>" target="_blank">
-                                            <?php
+                                        <div class="avatar"> <a href="view_clients/<?php echo $row['Client_Code'] ?>"
+                                                target="_blank">
+                                                <?php
                                                     if($row['image']==""){
                                          echo '<img src="app-assets/images/portrait/small/avatar-s-9.jpg" alt="Profile Picture" />';
                                                     }else{  ?>
-                                            <img src="app-assets/images/portrait/small/avatar-s-9.jpg" alt="Profile Picture" />
-                                            <?php } ?>
-                                                    </a>
+                                                <img src="images/clientImage/<?php echo $row['image'] ?>"
+                                                    alt="Profile Picture" />
+                                                <?php } ?>
+                                            </a>
                                         </div>
 
                                     </div>
@@ -185,7 +185,7 @@ if(isset($_POST["submi"])){
                         </div>
                     </div>
                     <?php } ?>
-                 
+
                     <!--/ Profile Card -->
                     <!-- edit user  -->
                     <div class="col-md-4">
@@ -222,26 +222,28 @@ if(isset($_POST["submi"])){
                             <h1 class="mb-1">Create Clients</h1>
 
                         </div>
-                        <form id="editUserForm" action="action_clients.php" enctype="multipart/form-data" class="row gy-1 pt-75" >
+                        <form id="editUserForm" action="action_clients.php" enctype="multipart/form-data" method="post"
+                            class="row gy-1 pt-75">
                             <div class="col-12 col-md-6">
                                 <label class="form-label" for="modalEditUserFirstName">Firm Name</label>
-                                <input type="text" id="modalEditUserFirstName" name="fname" class="form-control" placeholder="" value=""
-                                    data-msg="Please enter your firm name" />
+                                <input type="text" id="modalEditUserFirstName" name="fname" class="form-control"
+                                    placeholder="" value="" data-msg="Please enter your firm name" />
                             </div>
                             <div class="col-12 col-md-6">
                                 <label class="form-label" for="modalEditUserLastName"> Name</label>
-                                <input type="text" id="modalEditUserLastName" name="name"
-                                    class="form-control" placeholder="" value="" data-msg="Please enter your name" />
+                                <input type="text" id="modalEditUserLastName" name="name" class="form-control"
+                                    placeholder="" value="" data-msg="Please enter your name" />
                             </div>
 
                             <div class="col-12 col-md-6">
                                 <label class="form-label" for="modalEditUserEmail"> Email:</label>
-                                <input type="email" id="modalEditUserEmail" name="email"
-                                    class="form-control" value="" placeholder="" />
+                                <input type="email" id="modalEditUserEmail" name="email" class="form-control" value=""
+                                    placeholder="" />
                             </div>
                             <div class="col-12 col-md-6">
                                 <label class="form-label" for="modalEditUserEmail">Mobile No:</label>
-                                <input type="number" id="modalEditUserEmail" name="number" class="form-control" value="" placeholder="" />
+                                <input type="number" id="modalEditUserEmail" name="number" class="form-control" value=""
+                                    placeholder="" />
                             </div>
                             <div class="col-12 col-md-6">
                                 <label class="form-label" for="modalEditUserStatus">Category</label>
@@ -253,13 +255,14 @@ if(isset($_POST["submi"])){
                                     <option selected>Real Estate</option>
                                     <?php
                                     while($sql=mysqli_fetch_array($query)) { ?>
-                                        <option value="<?php echo $sql['id']; ?>"> <?php echo $sql['category']; ?></option>
-                                        <?php } ?>
+                                    <option value="<?php echo $sql['id']; ?>"> <?php echo $sql['category']; ?></option>
+                                    <?php } ?>
                                 </select>
                             </div>
                             <div class="col-12 col-md-6">
                                 <label class="form-label" for="modalEditTaxID">Image</label>
-                                <input type="file" id="modalEditTaxID" name="image" class="form-control modal-edit-tax-id"/>
+                                <input type="file" id="modalEditTaxID" name="image"
+                                    class="form-control modal-edit-tax-id" />
                             </div>
 
                             <div class="col-12 text-center mt-2 pt-50">
@@ -276,61 +279,20 @@ if(isset($_POST["submi"])){
         </div>
         <!--/ Edit User Modal -->
         <!-- add new card modal  -->
-        <div class="modal fade" id="addNewCard" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
+        <div class="modal fade" id="editmodalshow" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header bg-transparent">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body px-sm-5 mx-50 pb-5">
-                        <h1 class="text-center mb-1" id="addNewCardTitle">Add New Client</h1>
+                    <h1 class="text-center mb-1" id="addNewCardTitle">Add New Client</h1>
+                    <div class="modal-body px-sm-5 mx-50 pb-5 ">
+
 
                         <!-- form -->
-                        <form id="addNewCardValidation"  class="row gy-1 gx-2 mt-75" >
-                            <div class="col-12 col-md-6">
-                                <label class="form-label" for="modalEditUserFirstName">Firm Name</label>
-                                <input type="text" id="modalEditUserFirstName" name="modalEditUserFirstName"
-                                    class="form-control" placeholder="Firm Name" value=""
-                                    data-msg="Please enter your firm name" />
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <label class="form-label" for="modalEditUserLastName"> Name</label>
-                                <input type="text" id="modalEditUserLastName" name="modalEditUserLastName"
-                                    class="form-control" placeholder="Name" value=""
-                                    data-msg="Please enter your name" />
-                            </div>
+                        <form id="" action="action_clients.php" method="post" enctype="multipart/form-data">
+                            <div class="row gy-1 gx-2 mt-75 body1">
 
-                            <div class="col-12 col-md-6">
-                                <label class="form-label" for="modalEditUserEmail"> Email:</label>
-                                <input type="email" id="modalEditUserEmail" name="modalEditUserEmail"
-                                    class="form-control" value="" placeholder="Email" />
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <label class="form-label" for="modalEditUserEmail">Mobile No:</label>
-                                <input type="number" id="modalEditUserEmail" name="modalEditUserEmail"
-                                    class="form-control" value="" placeholder="Mobile No" />
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <label class="form-label" for="modalEditUserStatus">Category</label>
-                                <?php 
-                                $query=mysqli_query($conn,"select * from category");
-                                ?>
-                                <select id="modalEditUserStatus" name="modalEditUserStatus" class="form-select"
-                                    aria-label="Default select example">
-                                    <option selected>Real Estate</option>
-                                    <?php
-                                    while($sql=mysqli_fetch_array($query)) { ?>
-                                        <option value="<?php echo $sql['id']; ?>"> <?php echo $sql['category']; ?></option>
-                                        <?php } ?>
-                                </select>
-                            </div>
-
-                            <div class="col-12 text-center">
-                                <button type="submit" class="btn btn-primary me-1 mt-1">Add</button>
-                                <button type="reset" class="btn btn-outline-secondary mt-1" data-bs-dismiss="modal"
-                                    aria-label="Close">
-                                    Cancel
-                                </button>
                             </div>
                         </form>
                     </div>
@@ -338,26 +300,48 @@ if(isset($_POST["submi"])){
             </div>
         </div>
         <!--/ add new card modal  -->
+        <!--reset password-->
+        <div class="modal fade" id="resetUserPass" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-transparent">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <h1 class="text-center mb-1" id="addNewCardTitle">Add New Client</h1>
+                    <div class="modal-body px-sm-5 mx-50 pb-5 ">
+
+
+                        <!-- form -->
+                        <form id="addNewCardValidation" method="post">
+                            <div class="row gy-1 gx-2 mt-75 body2">
+
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-center mt-2 pt-50">
+                                    <button type="submit" class="btn btn-primary me-1" name="submi"
+                                        id="submi">Create</button>
+                                    <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+                                        aria-label="Close">
+                                        Discard
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--reset password-->
         <!-- BEGIN: Footer-->
         <?php
        include('include/footer.php');
        ?>
         <!-- END: Footer-->
-        
-              <!-- BEGIN: Page JS-->
+
+        <!-- BEGIN: Page JS-->
         <script src="app-assets/js/scripts/cards/card-advance.js"></script>
         <!-- END: Page JS-->
 
-        <script>
-            $(window).on('load', function () {
-                if (feather) {
-                    feather.replace({
-                        width: 14,
-                        height: 14
-                    });
-                }
-            })
-        </script>
         <script>
             $(".chart-dropdown").click(function () {
                 $(this).toggleClass('show');
@@ -365,48 +349,96 @@ if(isset($_POST["submi"])){
 
             function deleteBtn() {
 
-        swal({
-            title: "Are You Sure...?",
-            text: "This action can not be undone. Do you want to continue?",
-            icon: "warning",
-            buttons: ["No", "Yes"],
-        });
+                swal({
+                    title: "Are You Sure...?",
+                    text: "This action can not be undone. Do you want to continue?",
+                    icon: "warning",
+                    buttons: ["No", "Yes"],
+                });
 
-        mobile_err = true;
+                mobile_err = true;
 
-        mobile_check();
+                mobile_check();
 
-        if (mobile_err = true) {
-            return true;
-        } else {
-            return false;
-        }
-        }
+                if (mobile_err = true) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
         </script>
         <script>
-            $(document).ready(function(){
-                $('.delbtn').click(function(e){
+            $(document).ready(function () {
+                $('.delbtn').click(function (e) {
                     e.preventDefault();
                     let del_id = $(this).data('id');
                     swal({
-                        title: "Are you sure?",
-                        text: "Once deleted, you will not be able to recover this imaginary file!",
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true,
-                    })
-                    .then((willDelete) => {
-                        if (willDelete) {
-                            swal("Poof! Your imaginary file has been deleted!", {
-                                icon: "success",
-                            });
-                            window.location.href = "action_clients.php?del_id"+del_id;
-                        } else {
-                            swal("Your imaginary file is safe!");
+                            title: "Are you sure?",
+                            text: "Once deleted, you will not be able to recover this imaginary file!",
+                            icon: "warning",
+                            buttons: true,
+                            dangerMode: true,
+                        })
+                        .then((willDelete) => {
+                            if (willDelete) {
+                                swal("Poof! Your imaginary file has been deleted!", {
+                                    icon: "success",
+                                });
+                                window.location.href = "action_clients.php?del_id" + del_id;
+                            } else {
+                                swal("Your imaginary file is safe!");
+                            }
+                        });
+                })
+            });
+
+            $(document).ready(function () {
+                $('.usereditid').click(function () {
+                    let dnk = $(this).data('id');
+
+                    $.ajax({
+                        url: 'action_clients.php',
+                        type: 'post',
+                        data: {
+                            dnk: dnk
+                        },
+                        success: function (response1) {
+                            $('.body1').html(response1);
+                            $('#editmodalshow').modal('show');
                         }
                     });
-                    })
                 });
+
+                $('.rpassword').click(function () {
+                    let resetpass = $(this).data('id');
+
+                    $.ajax({
+                        url: 'action_clients.php',
+                        type: 'post',
+                        data: {
+                            resetpass: resetpass
+                        },
+                        success: function (response1) {
+                            $('.body2').html(response1);
+                            $('#resetUserPass').modal('show');
+                        }
+                    });
+                });
+
+            });
+        </script>
+        <script type="text/javascript">
+            $(function () {
+                $("#submi").click(function () {
+                    var password = $("#resetPass").val();
+                    var confirmPassword = $("#confirmResetPass").val();
+                    if (password != confirmPassword) {
+                        alert("Passwords do not match.");
+                        return false;
+                    }
+                    return true;
+                });
+            });
         </script>
         </body>
         <!-- END: Body-->

@@ -41,6 +41,7 @@
     <!-- END: Theme JS-->
 
 
+    <script src="app-assets/js/scripts/tables/table-datatables-basic.js"></script>
 
     <!-- BEGIN: Page JS-->
     <?php include 'app-assets/js/scripts/charts/chart-chartjs.php' ?>
