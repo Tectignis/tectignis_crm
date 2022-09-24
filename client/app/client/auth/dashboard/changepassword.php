@@ -77,6 +77,13 @@ if(isset($_POST["submitt"])){
 
 <body class="vertical-layout vertical-menu-modern blank-page navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="blank-page">
     <!-- BEGIN: Content-->
+    <?php include "include/header.php" ?>
+    <!-- END: Header-->
+
+
+    <!-- BEGIN: Main Menu-->
+    <?php include "include/sidebar.php" ?>
+    <!-- END: Main Menu-->
     <div class="app-content content ">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>

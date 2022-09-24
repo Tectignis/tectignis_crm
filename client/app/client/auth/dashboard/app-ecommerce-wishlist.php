@@ -135,13 +135,14 @@ include("config.php");
                                         ?>
                         <div class="col-md-3 col-lg-3 col-sm-3">
                         <div class="card">
-                        <a href="card-basic.php">
-                                <img class="card-img-top" src="app-assets/images/slider/04.jpg" alt="Card image cap" />
+                        <a href="card-basic.php?id=<?php echo $row['id']; ?>">
+                                <img class="card-img-top" src="app-assets/images/slider/04.jpg" alt="Card image cap"/>
                                             </a>
+
                                 <div class="card-body">
-                                    <a href="card-basic.php" style="color:black;"><?php echo $row['category']; ?></a>
+                                <a href="card-basic.php?id=<?php echo $row['id']; ?>" style="color:black;">
+                                    <?php echo $row['category']; ?></a>
                                    
-                                    
                                 </div>
                             </div>
                         </div>

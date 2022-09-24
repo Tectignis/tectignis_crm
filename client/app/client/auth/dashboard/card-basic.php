@@ -88,58 +88,25 @@ include("config.php");
                 <!-- Examples -->
                 <section id="card-demo-example">
                     <div class="row match-height">
+                    <?php
+                    $id=$_GET['id'];
+                                            $sql=mysqli_query($conn,"select * from poster where id='$id'");
+                                           
+                                            while ($row=mysqli_fetch_array($sql)){ 
+                                        ?>
                         <div class="col-md-6 col-lg-3">
                             <div class="card">
-                                <img class="card-img-top" src="app-assets/images/slider/04.jpg" alt="Card image cap" />
-                                <div class="card-body">
-                                    <h4 class="card-title">Card title</h4>
-                                    <p class="card-text">
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                    </p>
-                                    
-                                </div>
+                                <img src="../../../../../admin/app-assets/images/<?php echo $row['image']; ?>">
+                                  
+                                <!-- <div class="card-body">
+                                    <h4 class="card-title"><?php echo $row['title']; ?></h4>
+                                  
+                                </div> -->
                             </div>
                         </div>
 
-                        <div class="col-md-6 col-lg-3">
-                            <div class="card">
-                                <img class="card-img-top" src="app-assets/images/slider/04.jpg" alt="Card image cap" />
-                                <div class="card-body">
-                                    <h4 class="card-title">Card title</h4>
-                                    <p class="card-text">
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                    </p>
-                                    
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 col-lg-3">
-                            <div class="card">
-                                <img class="card-img-top" src="app-assets/images/slider/04.jpg" alt="Card image cap" />
-                                <div class="card-body">
-                                    <h4 class="card-title">Card title</h4>
-                                    <p class="card-text">
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                    </p>
-                                    
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 col-lg-3">
-                            <div class="card">
-                                <img class="card-img-top" src="app-assets/images/slider/04.jpg" alt="Card image cap" />
-                                <div class="card-body">
-                                    <h4 class="card-title">Card title</h4>
-                                    <p class="card-text">
-                                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                                    </p>
-                                    
-                                </div>
-                            </div>
-                        </div>
                        
+                        <?php } ?>
                     </div>
                 </section>
                 <!-- Examples -->
