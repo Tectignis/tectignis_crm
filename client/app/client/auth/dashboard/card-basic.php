@@ -98,11 +98,10 @@ include("config.php");
                             <div class="card">
                                 <img src="../../../../../admin/app-assets/images/<?php echo $row['image']; ?>">
                                   
-                                <div class="card-body">
+                                <!-- <div class="card-body">
                                     <h4 class="card-title"><?php echo $row['title']; ?></h4>
-                                    
-                                    
-                                </div>
+                                  
+                                </div> -->
                             </div>
                         </div>
 
