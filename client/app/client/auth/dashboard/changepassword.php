@@ -2,7 +2,7 @@
 <?php
 session_start();
 include("config.php");
-// $d=$_SESSION['id'];
+$d=$_SESSION['id'];
 if(isset($_POST["submitt"])){
 	$Old_password=$_POST["oldpassword"];
 	$New_password=$_POST["newpassword"];
