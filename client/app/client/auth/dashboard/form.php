@@ -1,4 +1,0 @@
-<button type="button" class="btn btn-outline-primary mt-2 w-100" data-id="<?php echo $code ?>" data-name="<?php echo $firm ?>" data-email="<?php echo $email ?>" data-phone="<?php echo $mob ?>" data-price="<?php echo $fetchprice['total_amt'] ?>" data-packageName="<?php echo $fetchprice['package_name'] ?>" data-start="<?php echo $fetchprice['created_date'] ?>" data-end="<?php echo $fetchprice['end_date'] ?>" data-leads="<?php echo $fetchprice['total_lead'] ?>"
-                                                            data-bs-toggle="modal" data-bs-target="#large">
-                                                            Upgrade
-                                                        </button>
