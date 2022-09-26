@@ -1,7 +1,6 @@
 <?php
 session_start();
 include("config.php");
-// $id=$_SESSION['id'];
 if(isset($_POST['add_property'])){
     
     $description=$_POST['description'];

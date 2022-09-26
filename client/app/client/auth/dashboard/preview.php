@@ -1,7 +1,7 @@
 <?php
-// session_start();
+session_start();
 include("config.php");
-// $id=$_SESSION['id'];
+
 ?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">

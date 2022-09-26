@@ -1,13 +1,7 @@
 <?php
 session_start();
-include("config.php"); 
-$id=$_SESSION['id'];
-
-// $uid = $_SESSION['aname'];
-if(!isset($_SESSION['id']))
-{
-  header("location:log_client.php");
-}
+include("config.php");
+$uid = $_SESSION['aname'];
 
 if(isset($_GET['delid'])){
     $id=mysqli_real_escape_string($conn,$_GET['delid']);

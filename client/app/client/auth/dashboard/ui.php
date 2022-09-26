@@ -1,12 +1,14 @@
 <?php
+session_start();
 include("config.php");
-$id=$_GET['id'];
-$fetchsql=mysqli_query($conn,"select * from client WHERE `Client_Code`='35'");
+$getid=$_GET['id'];
+$id=$_SESSION['id'];
+$firm=$_SESSION['fname'];
+$fetchsql=mysqli_query($conn,"select * from client WHERE `Client_Code`='$id'");
 $ress=mysqli_fetch_array($fetchsql);
-$code=$ress['Client_Code'];
-$firm=$ress['Firm_Name'];
 $email=$ress['Email'];
 $mob=$ress['Mobile_Number'];
+
 ?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
@@ -89,7 +91,7 @@ $mob=$ress['Mobile_Number'];
                         <!-- User Sidebar -->
                         <div class="col-xl-3 col-lg-3 col-md-3 order-1 order-md-0">
                             <?php
-                            $threesql=mysqli_query($conn,"select * from package_assign inner join package where package.id='$id'");
+                            $threesql=mysqli_query($conn,"select * from package_assign inner join package where package.id='$getid'");
                             $threefetch=mysqli_fetch_array($threesql);
                             ?>
                             <div class="card border-primary">
@@ -132,7 +134,7 @@ $mob=$ress['Mobile_Number'];
                         <!-- User Sidebar -->
                         <div class="col-xl-3 col-lg-3 col-md-3 order-1 order-md-0">
                             <?php
-                            $sixsql=mysqli_query($conn,"select * from package_assign inner join package where package.id='$id'");
+                            $sixsql=mysqli_query($conn,"select * from package_assign inner join package where package.id='$getid'");
                             $sixfetch=mysqli_fetch_array($sixsql);
                             ?>
                             <div class="card border-primary">
@@ -183,7 +185,7 @@ $mob=$ress['Mobile_Number'];
                         <!-- User Sidebar -->
                         <div class="col-xl-3 col-lg-3 col-md-3 order-1 order-md-0">
                             <?php
-                            $twelvesql=mysqli_query($conn,"select * from package_assign inner join package where package.id='$id'");
+                            $twelvesql=mysqli_query($conn,"select * from package_assign inner join package where package.id='$getid'");
                             $twelvefetch=mysqli_fetch_array($twelvesql);
                             ?>
                             <div class="card border-primary">
@@ -235,7 +237,7 @@ $mob=$ress['Mobile_Number'];
                         <!-- User Sidebar -->
                         <div class="col-xl-3 col-lg-3 col-md-3 order-1 order-md-0">
                             <?php
-                            $yearsql=mysqli_query($conn,"select * from package_assign inner join package where package.id='$id'");
+                            $yearsql=mysqli_query($conn,"select * from package_assign inner join package where package.id='$getid'");
                             $yearfetch=mysqli_fetch_array($yearsql);
                             ?>
                             <div class="card border-primary">

@@ -1,4 +1,11 @@
    <!-- BEGIN: Header-->
+   <?php
+   $id=$_SESSION['id'];
+   if(!isset($_SESSION['id']))
+   {
+     header("location:../../../../auth/path/login.php");
+   }
+   ?>
    <nav class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-light navbar-shadow container-xxl">
         <div class="navbar-container d-flex content">
             <div class="bookmark-wrapper d-flex align-items-center">

@@ -1,12 +1,7 @@
 <?php
 session_start();
-include("config.php");
-$fetchsql=mysqli_query($conn,"select * from client WHERE `Client_Code`='35'");
-$ress=mysqli_fetch_array($fetchsql);
-$code=$ress['Client_Code'];
-$firm=$ress['Firm_Name'];
-$email=$ress['Email'];
-$mob=$ress['Mobile_Number'];
+   include("config.php");
+
 
 
 ?>
@@ -238,7 +233,7 @@ $mob=$ress['Mobile_Number'];
                                                 <input type="hidden" value="<?php echo $fetchprice['total_amt'] ?>" name="amt">
                                                 <input type="hidden" value="<?php echo $fetchprice['package_name'] ?>"
                                                     name="packagename">
-                                                <input type="hidden" value="<?php echo $code ?>" name="id">
+                                                <input type="hidden" value="<?php echo $id ?>" name="id">
                                                 <input type="hidden" value="<?php echo $firm ?>" name="firm">
                                                 <input type="hidden" value="<?php echo $email ?>" name="email">
                                                 <input type="hidden" value="<?php echo $mob ?>" name="mob">

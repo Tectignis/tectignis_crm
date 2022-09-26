@@ -1,7 +1,6 @@
 <?php
 session_start();
 include("config.php");
-// $id=$_SESSION['id'];
 if(isset($_POST['submit'])){
     $todo=$_POST['todo'];
     $status=$_POST['status'];

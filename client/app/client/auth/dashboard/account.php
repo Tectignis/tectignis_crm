@@ -1,6 +1,7 @@
 <?php
+session_start();
 include("config.php");
-$cid=35;
+// $id=35;
 ?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
@@ -85,7 +86,7 @@ $cid=35;
                                 <div class="card-body">
                                 <?php
             
-            $sql=mysqli_query($conn,"select * from client where Client_Code='$cid'");
+            $sql=mysqli_query($conn,"select * from client where Client_Code='$id'");
                 
          $row=mysqli_fetch_array($sql)
         ?>

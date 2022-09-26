@@ -15,9 +15,10 @@ if(mysqli_num_rows($sql)>0){
    $_SESSION['aname']=$row['Authorized_Name'];
      $_SESSION['id']=$row['Client_Code'];
      $_SESSION['fname']=$row['Firm_Name'];
-        header("location:index.php");
+     header('location:../../app/client/auth/dashboard/index.php');
     }else{
         echo "<script>alert('Password is incorrect');</script>";
+       
     }
 }
 else{
@@ -55,32 +56,32 @@ $date = date('d-m-y h:i:s');
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
     <title>Login Page - Vuexy - Bootstrap HTML admin template</title>
-    <link rel="apple-touch-icon" href="../app-assets/images/ico/apple-icon-120.png">
+    <link rel="apple-touch-icon" href="../../app/client/auth/dashboard/app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="../app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
 
     <!-- BEGIN: Vendor CSS-->
-    <link rel="stylesheet" type="text/css" href="../app-assets/vendors/css/vendors.min.css">
+    <link rel="stylesheet" type="text/css" href="../../app/client/auth/dashboard/app-assets/vendors/css/vendors.min.css">
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
     
-    <link rel="stylesheet" type="text/css" href="../app-assets/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="../app-assets/css/bootstrap-extended.css">
-    <link rel="stylesheet" type="text/css" href="../app-assets/css/colors.css">
-    <link rel="stylesheet" type="text/css" href="../app-assets/css/components.css">
-    <link rel="stylesheet" type="text/css" href="../app-assets/css/themes/dark-layout.css">
-    <link rel="stylesheet" type="text/css" href="../app-assets/css/themes/bordered-layout.css">
-    <link rel="stylesheet" type="text/css" href="../app-assets/css/themes/semi-dark-layout.css">
+    <link rel="stylesheet" type="text/css" href="../../app/client/auth/dashboard/app-assets/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../../app/client/auth/dashboard/app-assets/css/bootstrap-extended.css">
+    <link rel="stylesheet" type="text/css" href="../../app/client/auth/dashboard/app-assets/css/colors.css">
+    <link rel="stylesheet" type="text/css" href="../../app/client/auth/dashboard/app-assets/css/components.css">
+    <link rel="stylesheet" type="text/css" href="../../app/client/auth/dashboard/app-assets/css/themes/dark-layout.css">
+    <link rel="stylesheet" type="text/css" href="../../app/client/auth/dashboard/app-assets/css/themes/bordered-layout.css">
+    <link rel="stylesheet" type="text/css" href="../../app/client/auth/dashboard/app-assets/css/themes/semi-dark-layout.css">
 
     <!-- BEGIN: Page CSS-->
-    <link rel="stylesheet" type="text/css" href="../app-assets/css/core/menu/menu-types/vertical-menu.css">
-    <link rel="stylesheet" type="text/css" href="../app-assets/css/plugins/forms/form-validation.css">
-    <link rel="stylesheet" type="text/css" href="../app-assets/css/pages/authentication.css">
+    <link rel="stylesheet" type="text/css" href="../../app/client/auth/dashboard/app-assets/css/core/menu/menu-types/vertical-menu.css">
+    <link rel="stylesheet" type="text/css" href="../../app/client/auth/dashboard/app-assets/css/plugins/forms/form-validation.css">
+    <link rel="stylesheet" type="text/css" href="../../app/client/auth/dashboard/app-assets/css/pages/authentication.css">
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../app/client/auth/dashboard/assets/css/style.css">
     <!-- END: Custom CSS-->
 
 </head>
@@ -128,7 +129,7 @@ $date = date('d-m-y h:i:s');
                         <!-- /Brand logo-->
                         <!-- Left Text-->
                         <div class="d-none d-lg-flex col-lg-8 align-items-center p-5">
-                            <div class="w-100 d-lg-flex align-items-center justify-content-center px-5"><img class="img-fluid" src="../app-assets/images/pages/login-v2.svg" alt="Login V2" /></div>
+                            <div class="w-100 d-lg-flex align-items-center justify-content-center px-5"><img class="img-fluid" src="../../app/client/auth/dashboard/app-assets/images/pages/login-v2.svg" alt="Login V2" /></div>
                         </div>
                         <!-- /Left Text-->
                         <!-- Login-->

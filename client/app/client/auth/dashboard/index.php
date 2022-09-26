@@ -2,6 +2,7 @@
 session_start();
 include("config.php");
 
+
 $id=$_SESSION['id'];
 $leadHot=mysqli_query($conn,"select * from lead where nature='Hot' and Firm_Name='$id'");
 $leadHotFetch=mysqli_num_rows($leadHot);

@@ -1,17 +1,9 @@
 <?php
 session_start();
-include("config.php"); 
+include("config.php");
 
-$id=$_SESSION['id'];
 $packageId=$_GET['packageId'];
-// $uid = $_SESSION['aname'];
-echo $packageId;
-echo $packageId;
-echo $packageId;
-if(!isset($_SESSION['id']))
-{
-  header("location:clientlogin.php");
-}
+
 //lead delete
 if(isset($_GET['delid'])){
     $id=mysqli_real_escape_string($conn,$_GET['delid']);
