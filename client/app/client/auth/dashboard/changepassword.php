@@ -18,7 +18,7 @@ if(isset($_POST["submitt"])){
 			$query=mysqli_query($conn,"UPDATE `client` SET `password`='$hashpassword' WHERE Client_Code='$d'");
       if($query){
         session_destroy();   // function that Destroys Session 
-        echo "<script>alert('Password Changed Successfully'),window.location='login.php';</script>";
+        echo "<script>alert('Password Changed Successfully'),window.location='../../../../auth/path/login.php';</script>";
       }
 		}
 		else{
@@ -27,6 +27,8 @@ if(isset($_POST["submitt"])){
 	
 	}
 ?>
+
+
 
 
 
