@@ -18,7 +18,7 @@ if(isset($_POST["submitt"])){
 			$query=mysqli_query($conn,"UPDATE `client` SET `password`='$hashpassword' WHERE Client_Code='$d'");
       if($query){
         session_destroy();   // function that Destroys Session 
-        echo "<script>alert('Password Changed Successfully'),window.location='login.php';</script>";
+        echo "<script>alert('Password Changed Successfully'),window.location='http://localhost/tectignis_CRM/client/auth/path/login.php';</script>";
       }
 		}
 		else{
@@ -77,6 +77,13 @@ if(isset($_POST["submitt"])){
 
 <body class="vertical-layout vertical-menu-modern blank-page navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="blank-page">
     <!-- BEGIN: Content-->
+    <?php include "include/header.php" ?>
+    <!-- END: Header-->
+
+
+    <!-- BEGIN: Main Menu-->
+    <?php include "include/sidebar.php" ?>
+    <!-- END: Main Menu-->
     <div class="app-content content ">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
@@ -119,7 +126,7 @@ if(isset($_POST["submitt"])){
                                 <h4 class="card-title mb-1">Reset Password 🔒</h4>
                                 <p class="card-text mb-2">Your new password must be different from previously used passwords</p>
 
-                                <form class="auth-reset-password-form mt-2" action="auth-login-basic.html" method="POST">
+                                <form class="auth-reset-password-form mt-2" method="POST">
                                     <div class="mb-1">
                                         <div class="d-flex justify-content-between">
                                             <label class="form-label" for="reset-password-new">Old Password</label>

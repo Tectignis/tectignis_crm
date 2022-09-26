@@ -1,6 +1,6 @@
 <?php session_start();
-
 include("config.php");
+
 ?>
 
 <!DOCTYPE html>
@@ -8,55 +8,11 @@ include("config.php");
 <!-- BEGIN: Head-->
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
-    <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
-    <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
-    <meta name="author" content="PIXINVENT">
-    <title>Security - Vuexy - Bootstrap HTML admin template</title>
-    <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
-    <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
-
-    <!-- BEGIN: Vendor CSS-->
-    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/vendors.min.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/forms/select/select2.min.css">
-    <!-- END: Vendor CSS-->
-
-    <!-- BEGIN: Theme CSS-->
-    <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/css/bootstrap-extended.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/css/colors.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/css/components.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/css/themes/dark-layout.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/css/themes/bordered-layout.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/css/themes/semi-dark-layout.css">
-
-    <!-- BEGIN: Page CSS-->
-    <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-menu.css">
-    <link rel="stylesheet" type="text/css" href="app-assets/css/plugins/forms/form-validation.css">
-    <!-- END: Page CSS-->
-
-    <!-- BEGIN: Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <!-- END: Custom CSS-->
-
-</head>
-<!-- END: Head-->
-
-<!-- BEGIN: Body-->
-
-<body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
-
+<title>Password</title>
     <!-- BEGIN: Header-->
-   <?php include "include/header.php"; ?>
-    <!-- END: Header-->
-
-
-    <!-- BEGIN: Main Menu-->
-     <?php include "include/header.php"; ?>
-    <!-- END: Main Menu-->
+   <?php include "include/header.php";?>
+   <?php include "include/sidebar.php"; ?>
+       <!-- END: Header-->
 
     <!-- BEGIN: Content-->
     <div class="app-content content ">
@@ -108,6 +64,13 @@ include("config.php");
                                     <span class="fw-bold">Security</span>
                                 </a>
                             </li>
+                             <!-- billing and plans -->
+                             <li class="nav-item">
+                                <a class="nav-link" href="payment_method.php">
+                                    <i data-feather="credit-card" class="font-medium-3 me-50"></i>
+                                    <span class="fw-bold">Payment Method</span>
+                                </a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="system-setting.php">
                                     <i data-feather="link" class="font-medium-3 me-50"></i>
@@ -116,49 +79,57 @@ include("config.php");
                             </li>
                             <!-- connection -->
                             <li class="nav-item">
-                                <a class="nav-link" href="page-account-settings-connections.php">
-                                    <i data-feather="link" class="font-medium-3 me-50"></i>
-                                    <span class="fw-bold">Connections</span>
+                                <a class="nav-link" href="google_analytics.php">
+                                    <i data-feather="bar-chart" class="font-medium-3 me-50"></i>
+                                    <span class="fw-bold">Google Analytics</span>
                                 </a>
                             </li>
                         </ul>
 
                         <!-- security -->
-
                         <div class="card">
                             <div class="card-header border-bottom">
                                 <h4 class="card-title">Change Password</h4>
                             </div>
                             <div class="card-body pt-1">
                                 <!-- form -->
-                                <form class="validate-form">
+                                
+                                <form class="form-validation" method="post" onsubmit="return validate();">
                                     <div class="row">
                                         <div class="col-12 col-sm-6 mb-1">
                                             <label class="form-label" for="account-old-password">Current password</label>
                                             <div class="input-group form-password-toggle input-group-merge">
-                                                <input type="password" class="form-control" id="account-old-password" name="password" placeholder="Enter current password" data-msg="Please current password" />
+                                                <input type="password" class="form-control" id="account-old-password" name="password" placeholder="Enter current password" data-msg="Please current password" required/>
                                                 <div class="input-group-text cursor-pointer">
                                                     <i data-feather="eye"></i>
                                                 </div>
+                                               
                                             </div>
+                                            <span style="color:red;">
+                                            <?php if(isset($curr)){
+                                                echo $curr;
+                                            } ?>
+                                                </span>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-12 col-sm-6 mb-1">
-                                            <label class="form-label" for="account-new-password">New Password</label>
+                                            <label class="form-label" for="resetPass">New Password</label>
                                             <div class="input-group form-password-toggle input-group-merge">
-                                                <input type="password" id="account-new-password" name="new-password" class="form-control" placeholder="Enter new password" />
+                                                <input type="password" id="resetPass" name="new_password" class="form-control" placeholder="Enter new password" required minlength="8" maxlength="10"/>
                                                 <div class="input-group-text cursor-pointer">
                                                     <i data-feather="eye"></i>
                                                 </div>
+                                                <span id="spanpass" style="color:red;"></span>
                                             </div>
                                         </div>
                                         <div class="col-12 col-sm-6 mb-1">
-                                            <label class="form-label" for="account-retype-new-password">Retype New Password</label>
+                                            <label class="form-label" for="aconfirmResetPass">Retype New Password</label>
                                             <div class="input-group form-password-toggle input-group-merge">
-                                                <input type="password" class="form-control" id="account-retype-new-password" name="confirm-new-password" placeholder="Confirm your new password" />
+                                                <input type="password" class="form-control" id="confirmResetPass" name="confirm_password" placeholder="Confirm your new password" required/>
                                                 <div class="input-group-text cursor-pointer"><i data-feather="eye"></i></div>
                                             </div>
+                                            <span style="color:red;" id="cpassw"></span>
                                         </div>
                                         <div class="col-12">
                                             <p class="fw-bolder">Password requirements:</p>
@@ -169,15 +140,16 @@ include("config.php");
                                             </ul>
                                         </div>
                                         <div class="col-12">
-                                            <button type="submit" class="btn btn-primary me-1 mt-1">Save changes</button>
+                                            <button type="submit" class="btn btn-primary me-1 mt-1" name="change_passowrd" id="submi">Save changes</button>
                                             <button type="reset" class="btn btn-outline-secondary mt-1">Discard</button>
                                         </div>
                                     </div>
+                                   
                                 </form>
                                 <!--/ form -->
                             </div>
                         </div>
-
+                       
                         <!-- two-step verification -->
                         <div class="card">
                             <div class="card-header border-bottom">
@@ -197,14 +169,13 @@ include("config.php");
                         <!-- / two-step verification -->
 
                         <!-- create API key -->
-                        <div class="card">
+                        <!-- <div class="card">
                             <div class="card-header pb-0">
                                 <h4 class="card-title">Create an API Key</h4>
                             </div>
                             <div class="row">
                                 <div class="col-md-5 order-md-0 order-1">
                                     <div class="card-body">
-                                        <!-- form -->
                                         <form id="createApiForm" class="validate-form" onsubmit="return false">
                                             <div class="mb-2">
                                                 <label for="ApiKeyType" class="form-label">Choose the Api key type you want to create</label>
@@ -234,11 +205,11 @@ include("config.php");
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- / create API key -->
 
                         <!-- api key list -->
-                        <div class="card">
+                        <!-- <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">API Key List & Access</h4>
                             </div>
@@ -342,7 +313,7 @@ include("config.php");
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- / api key list -->
 
                         <!-- recent device -->
@@ -545,49 +516,37 @@ include("config.php");
         </div>
     </div>
     <!-- END: Content-->
-
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
 
     <!-- BEGIN: Footer-->
-    <footer class="footer footer-static footer-light">
-        <p class="clearfix mb-0"><span class="float-md-start d-block d-md-inline-block mt-25">COPYRIGHT &copy; 2021<a class="ms-25" href="https://1.envato.market/pixinvent_portfolio" target="_blank">Pixinvent</a><span class="d-none d-sm-inline-block">, All rights Reserved</span></span><span class="float-md-end d-none d-md-block">Hand-crafted & Made with<i data-feather="heart"></i></span></p>
-    </footer>
-    <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
+    <?php include "include/footer.php"; ?>
     <!-- END: Footer-->
-
-
-    <!-- BEGIN: Vendor JS-->
-    <script src="app-assets/vendors/js/vendors.min.js"></script>
-    <!-- BEGIN Vendor JS-->
-
-    <!-- BEGIN: Page Vendor JS-->
     <script src="app-assets/vendors/js/forms/select/select2.full.min.js"></script>
     <script src="app-assets/vendors/js/forms/validation/jquery.validate.min.js"></script>
     <script src="app-assets/vendors/js/forms/cleave/cleave.min.js"></script>
     <script src="app-assets/vendors/js/forms/cleave/addons/cleave-phone.us.js"></script>
     <!-- END: Page Vendor JS-->
 
-    <!-- BEGIN: Theme JS-->
-    <script src="app-assets/js/core/app-menu.js"></script>
-    <script src="app-assets/js/core/app.js"></script>
-    <!-- END: Theme JS-->
-
     <!-- BEGIN: Page JS-->
     <script src="app-assets/js/scripts/pages/modal-two-factor-auth.js"></script>
     <script src="app-assets/js/scripts/pages/page-account-settings-security.js"></script>
+    <script src="assets/js/valid.js"></script>
     <!-- END: Page JS-->
-
-    <script>
-        $(window).on('load', function() {
-            if (feather) {
-                feather.replace({
-                    width: 14,
-                    height: 14
+<script>
+    $(function () {
+                $("#submi").click(function () {
+                    var password = $("#resetPass").val();
+                    var confirmPassword = $("#confirmResetPass").val();
+                    if (password != confirmPassword) {
+                        alert("Passwords do not match.");
+                        return false;
+                    }
+                    return true;
                 });
-            }
-        })
-    </script>
+            });
+</script>
+
 </body>
 <!-- END: Body-->
 

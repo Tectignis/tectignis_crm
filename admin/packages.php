@@ -4,7 +4,7 @@ include("config.php");
 $id=$_SESSION['id'];
 ?>
 <!DOCTYPE html>
-<html class="loading" lang="en" data-textdirection="ltr">
+<html class="loading " lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
 
 <head>

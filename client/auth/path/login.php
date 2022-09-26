@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("/opt/lampp/htdocs/tectignis_crm/client/app/client/auth/dashboard/config.php");
+include("../../app/client/auth/dashboard/config.php");
 if(isset($_POST['login'])){
 $Email=$_POST['emailid'];
 $Password1=$_POST['password'];

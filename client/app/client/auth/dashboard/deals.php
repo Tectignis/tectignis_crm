@@ -1,4 +1,22 @@
+<?php
+session_start();
+include("config.php"); 
+$id=$_SESSION['id'];
 
+// $uid = $_SESSION['aname'];
+if(!isset($_SESSION['id']))
+{
+  header("location:log_client.php");
+}
+
+if(isset($_GET['delid'])){
+    $id=mysqli_real_escape_string($conn,$_GET['delid']);
+    $sql=mysqli_query($conn,"delete from lead where id='$id'");
+    if($sql=1){
+        header("location:deals.php");
+    }
+    }
+?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
@@ -20,7 +38,7 @@
 
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/vendors.min.css">
-        <!-- DataTables -->
+    <!-- DataTables -->
     <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
@@ -35,7 +53,7 @@
     <link rel="stylesheet" type="text/css" href="app-assets/css/themes/dark-layout.css">
     <link rel="stylesheet" type="text/css" href="app-assets/css/themes/bordered-layout.css">
     <link rel="stylesheet" type="text/css" href="app-assets/css/themes/semi-dark-layout.css">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
     <!-- BEGIN: Page CSS-->
     <link rel="stylesheet" type="text/css" href="app-assets/css/core/menu/menu-types/vertical-menu.css">
     <!-- END: Page CSS-->
@@ -75,29 +93,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
-                    <div class="mb-1 breadcrumb-right">
-                        <div class="dropdown">
-                            <button class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" type="button"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                    data-feather="grid"></i></button>
-                            <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item"
-                                    href="app-todo.html"><i class="me-1" data-feather="check-square"></i><span
-                                        class="align-middle">Todo</span></a><a class="dropdown-item"
-                                    href="app-chat.html"><i class="me-1" data-feather="message-square"></i><span
-                                        class="align-middle">Chat</span></a><a class="dropdown-item"
-                                    href="app-email.html"><i class="me-1" data-feather="mail"></i><span
-                                        class="align-middle">Email</span></a><a class="dropdown-item"
-                                    href="app-calendar.html"><i class="me-1" data-feather="calendar"></i><span
-                                        class="align-middle">Calendar</span></a></div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
             <div class="content-body">
 
 
-            <div class="row">
+                <div class="row">
                     <div class="col-12">
 
                         <!-- /.card -->
@@ -105,53 +106,41 @@
                         <div class="card">
                             <div class="card-header border-bottom p-1">
                                 <div class="head-label">
-                                    <h6 class="mb-0">List of Client</h6>
+                                    <h6 class="mb-0">List of Deal</h6>
                                 </div>
-                                <div class="dt-action-buttons text-end">
-                                    <a href="ticketform.php" button type="button" class="btn btn-primary float-right"
-                                    style="margin-right: 5px;">
-                                    + Add Ticket
-                                </a>
-                                </div>
+                                
                             </div>
-                            <!-- <div class="card-header">
-                                <h5 class="card-title">List of Client</h5>
-                                <a href="ticketform.php" button type="button" class="btn btn-primary float-right"
-                                    style="margin-right: 5px;">
-                                    + Add Ticket
-                                </a>
-                            </div> -->
-                            <!-- /.card-header -->
+
                             <div class="card-body">
                                 <table id="example1" class="table table-bordered table-striped">
-                                <thead>
-                  <tr>
-                    <th>Sr no.</th>
-                    
-                    <th>Client Name</th>
-                    <th>Client Mobile Number</th>
-                    <th>Requirement</th>
-                    <th>Created On</th>
-                    
-                    <th>Status</th>
-                    <th>Action</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <?php
+                                    <thead>
+                                        <tr>
+                                            <th>Sr no.</th>
+
+                                            <th>Client Name</th>
+                                            <th>Client Mobile Number</th>
+                                            <th>Requirement</th>
+                                            <th>Created On</th>
+
+                                            <th>Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
                      $sql=mysqli_query($conn,"select lead.*, client.* from lead inner join client on client.Client_Code=lead.Firm_Name where lead.deal='1' and Client_Code='$id'");
                      $count=1;
                          while($arr=mysqli_fetch_array($sql)){
           ?>
-            <tr>
-                <td><?php echo $count;?></td>
-               
-                <td><?php echo $arr['Client_Name']; ?></td>
-                <td><?php echo $arr['Mobile_Number']; ?></td>
-                <td><?php echo $arr['Requirement']; ?></td>
-                <td><?php echo $arr['Created_On']; ?></td>
-                
-                <td><?php 
+                                        <tr>
+                                            <td><?php echo $count;?></td>
+
+                                            <td><?php echo $arr['Client_Name']; ?></td>
+                                            <td><?php echo $arr['Mobile_Number']; ?></td>
+                                            <td><?php echo $arr['Requirement']; ?></td>
+                                            <td><?php echo $arr['Created_On']; ?></td>
+
+                                            <td><?php 
                 
                 $status_deal=$arr['status_deal']; 
                if($status_deal=='Open'){
@@ -171,17 +160,23 @@
             }
                 
                 ?>
-                
-            </td>
-                    <td style="text-align:center">
-                     
-                     <button class="btn btn-sm btn-primary dnkediti" data-id='<?php echo $arr['id']; ?>'><i class="fas fa-eye"></i></button>
-                     
-                     <a href="deal.php?delid=<?php echo $arr['id']; ?>"><button type="button"  onclick="return confirm('Are you sure you want to delete this item')" class="btn btn-danger btn-rounded btn-icon"  style="color: aliceblue"> <i class="fas fa-trash"></i> </button></a>
-                     </td>
-                  </tr>
-                  <?php $count++; } ?>
-                 
+
+                                            </td>
+                                            <td style="text-align:center">
+
+                                                <button class="btn btn-sm btn-primary dnkediti"
+                                                    data-id='<?php echo $arr['id']; ?>'><i
+                                                        class="fas fa-eye"></i></button>
+
+                                                <a href="deals.php?delid=<?php echo $arr['id']; ?>"><button type="button"
+                                                        onclick="return confirm('Are you sure you want to delete this item')"
+                                                        class="btn btn-danger btn-rounded btn-icon"
+                                                        style="color: aliceblue"> <i class="fas fa-trash"></i>
+                                                    </button></a>
+                                            </td>
+                                        </tr>
+                                        <?php $count++; } ?>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -193,7 +188,7 @@
                 </div>
                 <!-- /.row -->
                 <!-- Basic table -->
-               
+
                 <!--/ Basic table -->
 
 
@@ -207,61 +202,127 @@
     <div class="drag-target"></div>
     <?php include "include/footer.php"; ?>
 
+    <div class="modal fade" id="dnkModal1">
+        <div class="modal-dialog">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Update Leads</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close">×</button>
+                        </div>
+                    <form method="post" action="dealmodal.php">
+
+                        
+                        <div class="modal-body">
+                            <div class=" body1">
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                        <button type="reset" class="btn btn-outline-secondary"
+                                        data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary" name="save">Save</button>
+        </div>
+                    </form>
+                </div>
+
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        </div>
+
+        <!-- BEGIN: Vendor JS-->
+        <script src="app-assets/vendors/js/vendors.min.js"></script>
+        <!-- BEGIN Vendor JS-->
+
+        <!-- BEGIN: Page Vendor JS-->
+        <!-- DataTables  & Plugins -->
+        <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+        <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+        <script src="plugins/jszip/jszip.min.js"></script>
+        <script src="plugins/pdfmake/pdfmake.min.js"></script>
+        <script src="plugins/pdfmake/vfs_fonts.js"></script>
+        <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+        <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+        <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+        <script src="app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
+        <!-- END: Page Vendor JS-->
+
+        <!-- BEGIN: Theme JS-->
+        <script src="app-assets/js/core/app-menu.js"></script>
+        <script src="app-assets/js/core/app.js"></script>
+        <!-- END: Theme JS-->
+
+        <!-- BEGIN: Page JS-->
+        <!-- <script src="app-assets/js/scripts/tables/table-datatables-basic.js"></script> -->
+        <!-- END: Page JS-->
+        <script>
+            $(function () {
+                $("#example1").DataTable({
+                    "responsive": true,
+                    "lengthChange": true,
+                    "autoWidth": false,
+                    "buttons": ["copy", "csv", "excel", "pdf", "print"]
+                }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+            });
+        </script>
 
 
+        <script>
+            $(window).on('load', function () {
+                if (feather) {
+                    feather.replace({
+                        width: 14,
+                        height: 14
+                    });
+                }
+            })
+        </script>
+        <script>
+            $(document).ready(function () {
+                $('.dnkediti').click(function () {
+                    let dealsta = $(this).data('id');
 
-    <!-- BEGIN: Vendor JS-->
-    <script src="app-assets/vendors/js/vendors.min.js"></script>
-    <!-- BEGIN Vendor JS-->
-
-    <!-- BEGIN: Page Vendor JS-->
-    <!-- DataTables  & Plugins -->
-    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-    <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-    <script src="plugins/jszip/jszip.min.js"></script>
-    <script src="plugins/pdfmake/pdfmake.min.js"></script>
-    <script src="plugins/pdfmake/vfs_fonts.js"></script>
-    <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-    <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
-    <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-    <script src="app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
-    <!-- END: Page Vendor JS-->
-
-    <!-- BEGIN: Theme JS-->
-    <script src="app-assets/js/core/app-menu.js"></script>
-    <script src="app-assets/js/core/app.js"></script>
-    <!-- END: Theme JS-->
-
-    <!-- BEGIN: Page JS-->
-    <!-- <script src="app-assets/js/scripts/tables/table-datatables-basic.js"></script> -->
-    <!-- END: Page JS-->
-    <script>
-        $(function () {
-            $("#example1").DataTable({
-                "responsive": true,
-                "lengthChange": true,
-                "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-
-        });
-    </script>
-    
-
-    <script>
-        $(window).on('load', function () {
-            if (feather) {
-                feather.replace({
-                    width: 14,
-                    height: 14
+                    $.ajax({
+                        url: 'actionTableLead.php',
+                        type: 'post',
+                        data: {
+                            dealsta: dealsta
+                        },
+                        success: function (response1) {
+                            $('.body1').html(response1);
+                            $('#dnkModal1').modal('show');
+                        }
+                    });
                 });
-            }
-        })
-    </script>
+            });
+        </script>
+        <script>
+            $(document).ready(function () {
+                $('.dnkediti1').click(function () {
+                    let dnkidno1 = $(this).data('id');
+
+                    $.ajax({
+                        url: 'actionTableLead.php',
+                        type: 'post',
+                        data: {
+                            dnkidno1: dnkidno1
+                        },
+                        success: function (response1) {
+                            $('.body2').html(response1);
+                            $('#dnkModal2').modal('show');
+                        }
+                    });
+                });
+            });
+        </script>
 </body>
 <!-- END: Body-->
 
