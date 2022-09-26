@@ -2,7 +2,7 @@
 <?php
 session_start();
 include("config.php");
-
+$d=$_SESSION['id'];
 if(isset($_POST["submitt"])){
 	$Old_password=$_POST["oldpassword"];
 	$New_password=$_POST["newpassword"];
@@ -18,7 +18,7 @@ if(isset($_POST["submitt"])){
 			$query=mysqli_query($conn,"UPDATE `client` SET `password`='$hashpassword' WHERE Client_Code='$id'");
       if($query){
         session_destroy();   // function that Destroys Session 
-        echo "<script>alert('Password Changed Successfully'),window.location='http://localhost/tectignis_CRM/client/auth/path/login.php';</script>";
+        echo "<script>alert('Password Changed Successfully'),window.location='../../../../auth/path/login.php';</script>";
       }
 		}
 		else{
@@ -27,6 +27,8 @@ if(isset($_POST["submitt"])){
 	
 	}
 ?>
+
+
 
 
 
