@@ -1,7 +1,7 @@
 
 <?php
 session_start();
-include("/opt/lampp/htdocs/tectignis_crm/client/app/client/auth/dashboard/config.php");
+include("config.php");
 // $d=$_SESSION['id'];
 if(isset($_POST["submitt"])){
 	$Old_password=$_POST["oldpassword"];
