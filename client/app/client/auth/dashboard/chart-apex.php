@@ -1,12 +1,4 @@
-/*=========================================================================================
-    File Name: chart-apex.js
-    Description: Apexchart Examples
-    ----------------------------------------------------------------------------------------
-    Item Name: Vuexy  - Vuejs, HTML & Laravel Admin Dashboard Template
-    Author: PIXINVENT
-    Author URL: http://www.themeforest.net/user/pixinvent
-==========================================================================================*/
-
+<script>
 $(function () {
   'use strict';
 
@@ -831,18 +823,17 @@ $(function () {
         show: true,
         position: 'bottom'
       },
-      labels: ['Operational', 'Networking', 'Hiring', 'R&D'],
-      series: [85, 16, 50, 50],
+      labels: ["Warm", "Hot", "Cold"],
+      series: [<?php echo $leadWarmFetch. ',' .$leadHotFetch. ',' .$leadColdFetch ?>],
       colors: [
         chartColors.donut.series1,
         chartColors.donut.series5,
         chartColors.donut.series3,
-        chartColors.donut.series2
       ],
       dataLabels: {
         enabled: true,
         formatter: function (val, opt) {
-          return parseInt(val) + '%';
+          return parseInt(val);
         }
       },
       plotOptions: {
@@ -864,9 +855,9 @@ $(function () {
               total: {
                 show: true,
                 fontSize: '1.5rem',
-                label: 'Operational',
+                label: 'Lead',
                 formatter: function (w) {
-                  return '31%';
+                  return 'Status';
                 }
               }
             }
@@ -915,3 +906,4 @@ $(function () {
     donutChart.render();
   }
 });
+</script>

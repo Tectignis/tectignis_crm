@@ -91,12 +91,12 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper container-xxl p-0">
-           
+
             <div class="row match-height" id="dashboard-ecommerce">
                 <!-- Medal Card -->
-                <div class="col-xl-4 col-md-6 col-12">
+                <!-- <div class="col-xl-4 col-md-6 col-12">
                     <div class="card card-congratulation-medal">
-                                        <?php
+                        <?php
                                 
                                 $sql=mysqli_query($conn,"select * from client");  
                                 $row=mysqli_fetch_array($sql)
@@ -105,9 +105,9 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
                             <h5>Welcome 🎉 <?php echo $row['Authorized_Name'] ?></h5>
                             <p class="card-text font-small-3">You have won gold medal</p>
                             <?php
-              $query=mysqli_query($conn,"select * from package_assign where firm_id='$id'");
-               $count1=mysqli_num_rows($query);
-                ?>
+                            $query=mysqli_query($conn,"select * from package_assign where firm_id='$id'");
+                            $count1=mysqli_num_rows($query);
+                                ?>
                             <h3 class="mb-75 mt-2 pt-50">
                                 <a href="#"><?php echo $count1; ?></a>
                             </h3>
@@ -115,31 +115,32 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
                             <img src="app-assets/images/illustration/badge.svg" class="congratulation-medal"
                                 alt="Medal Pic" />
                         </div>
-                            
+
                     </div>
-                </div>
+                </div> -->
                 <!--/ Medal Card -->
 
                 <!-- Statistics Card -->
-                <div class="col-xl-8 col-md-6 col-12">
+                <div class="col-xl-12 col-md-12 col-12">
                     <div class="card card-statistics">
                         <div class="card-header">
                             <h4 class="card-title">Statistics</h4>
                             <div class="dropdown chart-dropdown">
-                            <form onclick="getdata(this.value)">
-                            <input type="hidden" id="leadid" value="<?php echo $id;?>">
-                                        <button class="btn btn-sm border-0 dropdown-toggle p-50" type="button" id="dropdownItem4" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Select
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownItem4">
-                                        
-                                            <a class="dropdown-item" href="#">Today </a>
-                                            <a class="dropdown-item" href="#">Last Week</a>
-                                            <a class="dropdown-item" href="#">Monthly</a>
-                                            <a class="dropdown-item" href="#">3 Month</a>
-                                        </div>
-                                        </form>
+                                <form onclick="getdata(this.value)">
+                                    <input type="hidden" id="leadid" value="<?php echo $id;?>">
+                                    <button class="btn btn-sm border-0 dropdown-toggle p-50" type="button"
+                                        id="dropdownItem4" data-bs-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        Select
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownItem4">
+                                        <a class="dropdown-item" href="#">Today </a>
+                                        <a class="dropdown-item" href="#">Last Week</a>
+                                        <a class="dropdown-item" href="#">Monthly</a>
+                                        <a class="dropdown-item" href="#">3 Month</a>
                                     </div>
+                                </form>
+                            </div>
                         </div>
                         <div class="card-body statistics-body">
 
@@ -317,10 +318,9 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
                                 <div class="d-flex align-items-center">
                                     <i data-feather="monitor" class="font-medium-2 text-primary"></i>
                                     <span class="fw-bold ms-75 me-25">Booked</span>
-                                    <span>- 80%</span>
                                 </div>
                                 <div>
-                                    <span>2%</span>
+                                    <span><?php echo $leadBookedFetch ?></span>
                                     <i data-feather="arrow-up" class="text-success"></i>
                                 </div>
                             </div>
@@ -328,10 +328,9 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
                                 <div class="d-flex align-items-center">
                                     <i data-feather="tablet" class="font-medium-2 text-warning"></i>
                                     <span class="fw-bold ms-75 me-25">Lead Closed</span>
-                                    <span>- 10%</span>
                                 </div>
                                 <div>
-                                    <span>8%</span>
+                                    <span><?php echo $leadLeadClosedFetch ?></span>
                                     <i data-feather="arrow-up" class="text-success"></i>
                                 </div>
                             </div>
@@ -339,10 +338,9 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
                                 <div class="d-flex align-items-center">
                                     <i data-feather="tablet" class="font-medium-2 text-success"></i>
                                     <span class="fw-bold ms-75 me-25">Site View</span>
-                                    <span>- 10%</span>
                                 </div>
                                 <div>
-                                    <span>-5%</span>
+                                    <span><?php echo $leadSiteViewFetch ?></span>
                                     <i data-feather="arrow-down" class="text-danger"></i>
                                 </div>
                             </div>
@@ -370,50 +368,24 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
                         </div>
                     </div>
                 </div>
-                <script>
-                    var areaChartData = {
-                        labels: [ < ? php
-                            while ($areafetch = mysqli_fetch_array($leadDate)) {
-                                echo '"'.$areafetch['Month'].
-                                '",';
-                            } ? >
-                        ],
-                        datasets: [{
-                                label: 'Leads',
-                                backgroundColor: 'rgba(60,141,188,0.9)',
-                                borderColor: 'rgba(60,141,188,0.8)',
-                                pointRadius: false,
-                                pointColor: '#3b8bba',
-                                pointStrokeColor: 'rgba(60,141,188,1)',
-                                pointHighlightFill: '#fff',
-                                pointHighlightStroke: 'rgba(60,141,188,1)',
-                                data: [ < ? php
-                                    while ($areafetch = mysqli_fetch_array($leadDate1)) {
-                                        echo $areafetch['Number_of_registered_users'].
-                                        ',';
-                                    } ? >
-                                ]
-                            },
-                            {
-                                label: 'Tickets',
-                                backgroundColor: 'rgba(210, 214, 222, 1)',
-                                borderColor: 'rgba(210, 214, 222, 1)',
-                                pointRadius: false,
-                                pointColor: 'rgba(210, 214, 222, 1)',
-                                pointStrokeColor: '#c1c7d1',
-                                pointHighlightFill: '#fff',
-                                pointHighlightStroke: 'rgba(220,220,220,1)',
-                                data: [ < ? php
-                                    while ($areafetch = mysqli_fetch_array($ticketDate2)) {
-                                        echo $areafetch['Number_of_registered_users'].
-                                        ',';
-                                    } ? >
-                                ]
-                            },
-                        ]
-                    }
-                </script>
 
+                <div class="col-lg-6 col-md-6 col-12">
+                    <div class="card">
+                        <div
+                            class=" card-header d-flex flex-md-row flex-column justify-content-md-between justify-content-start align-items-md-center align-items-start ">
+                            <h4 class="card-title">Calendar</h4>
+                            <div class="d-flex align-items-center mt-md-0 mt-1">
+                                <i class="font-medium-2" data-feather="calendar"></i>
+                                <input type="text" class="form-control flat-picker bg-transparent border-0 shadow-none"
+                                    placeholder="YYYY-MM-DD" />
+                            </div>
+                        </div>
+                        <div class="card-body">
+                        <div id="caleandar"></div> 
+                        </div>
+                    </div>
+                </div>
+              
             </div>
 
 
@@ -455,12 +427,14 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
 
     <!-- BEGIN: Page JS-->
     <script src="app-assets/js/scripts/pages/dashboard-ecommerce.js"></script>
-    <script src="app-assets/js/scripts/charts/chart-chartjs.js"></script>
+    <?php include('chart.php'); ?>
     <script src="app-assets/js/scripts/charts/chart-apex.js"></script>
     <script src="app-assets/js/scripts/pages/app-calendar-events.js"></script>
     <script src="app-assets/js/scripts/pages/app-calendar.js"></script>
     <!-- END: Page JS-->
 
+    <?php include('chart-apex.php'); ?>
+    
     <script>
         $(window).on('load', function () {
             if (feather) {
@@ -470,6 +444,22 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
                 });
             }
         })
+    </script>
+    <script type="text/javascript" src="cal/js/caleandar.js"></script>
+    <script>
+      let events = [
+        <?php while($leadCalendarFetch=mysqli_fetch_array($leadCalendar)){ 
+          $year= date('Y', strtotime($leadCalendarFetch['sitevisit_date']));
+          $month= date('m', strtotime($leadCalendarFetch['sitevisit_date']));
+          $month1=$month-1;
+          $date= date('d', strtotime($leadCalendarFetch['sitevisit_date']));
+          ?>
+  {'Date': new Date(<?php echo $year. "," .$month1. "," .$date ?>), 'Title': '<?php echo $leadCalendarFetch['Requirement'] ?>'},
+  <?php } ?>
+];
+let settings = {};
+let element = document.getElementById('caleandar');
+caleandar(element, events, settings);
     </script>
 </body>
 <!-- END: Body-->
