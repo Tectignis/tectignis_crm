@@ -178,10 +178,10 @@ if(isset($_POST['dnk'])){
     <input type="hidden" value='.$id.' name="id">
     <label class="form-label mb-1">Status</label>
       <select class="form-control select2" name="category" style="width: 100%;">
-        <option selected="selected">Open</option>
-        <option>Hold On</option>
-        <option>Inprocess</option>
-        <option>Closed</option>
+        <option selected="selected" value="Open">Open</option>
+        <option value="Hold On">Hold On</option>
+        <option value="Inprocess">Inprocess</option>
+        <option value="Closed">Closed</option>
       </select>
 </div>
 <div class="form-group mt-2">
