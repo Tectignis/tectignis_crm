@@ -4,6 +4,7 @@ if(isset($_GET['delid'])){
     $id=mysqli_real_escape_string($conn,$_GET['delid']);
     $sql=mysqli_query($conn,"delete from support where id='$id'");
     if($sql=1){
+        echo "<script>alert('Data deleted successfully');</script>";
         header("location:support.php");
     }
     }
@@ -14,6 +15,7 @@ if(isset($_GET['delid'])){
       $descr=$_POST['comment'];
       $sql=mysqli_query($conn,"UPDATE `support` SET `status`='".$status."',`Comment`='".$descr."' WHERE id='".$compid."'");
       if($sql==1){
+        echo "<script>alert('Updated Successfully');</script>";
       }else{
         echo "Something went wrong";
       }
@@ -135,7 +137,7 @@ if(isset($_GET['delid'])){
                                                     <button class="btn btn-primary btn-rounded btn-icon setting "
                                                         data-id='<?php echo $row['id']; ?> '><i
                                                             class="fas fa-wrench"></i></button>
-                                                    <a href="support.php?delid=<?php echo $row['id']; ?>"><button
+                                                    <a href="support.php?delid=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure you want to delete this item?');"><button
                                                             type="button" class="btn btn-danger btn-rounded btn-icon">
                                                             <i class="fas fa-trash"></i> </button></a> </td>
                                                 <td><?php echo $row['firm_name']; ?></td>
