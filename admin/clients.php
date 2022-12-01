@@ -234,15 +234,14 @@ if(isset($_POST["submi"])){
                                 <input type="text" id="modalEditUserLastName" name="name" class="form-control"
                                     placeholder="" value="" data-msg="Please enter your name" />
                             </div>
-
-                            <div class="col-12 col-md-6">
-                                <label class="form-label" for="modalEditUserEmail"> Password</label>
-                                <input type="password" id="modalEditUserEmail" name="pass" class="form-control" value=""
-                                    placeholder="" />
-                            </div>
                             <div class="col-12 col-md-6">
                                 <label class="form-label" for="modalEditUserEmail"> Email</label>
                                 <input type="email" id="modalEditUserEmail" name="email" class="form-control" value=""
+                                    placeholder="" />
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="modalEditUserEmail"> Password</label>
+                                <input type="password" id="modalEditUserEmail" name="pass" class="form-control" value=""
                                     placeholder="" />
                             </div>
                             <div class="col-12 col-md-6">
