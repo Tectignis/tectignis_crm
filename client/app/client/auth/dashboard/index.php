@@ -75,6 +75,19 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <!-- END: Custom CSS-->
+    <link rel="stylesheet" href="cal/css/demo.css"/>
+    <link rel="stylesheet" href="cal/css/theme1.css"/>
+    <style>
+        .cld-main {
+    width: 100%;
+}
+.cld-number {
+    padding: 0;
+}
+.cld-datetime{
+    margin-bottom:10%;
+}
+    </style>
 
 </head>
 
@@ -126,7 +139,7 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
                         <div class="card-header">
                             <h4 class="card-title">Statistics</h4>
                             <div class="dropdown chart-dropdown">
-                                <form onclick="getdata(this.value)">
+                                <form >
                                     <input type="hidden" id="leadid" value="<?php echo $id;?>">
                                     <button class="btn btn-sm border-0 dropdown-toggle p-50" type="button"
                                         id="dropdownItem4" data-bs-toggle="dropdown" aria-haspopup="true"
@@ -134,17 +147,17 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
                                         Select
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownItem4">
-                                        <a class="dropdown-item" href="#">Today </a>
-                                        <a class="dropdown-item" href="#">Last Week</a>
-                                        <a class="dropdown-item" href="#">Monthly</a>
-                                        <a class="dropdown-item" href="#">3 Month</a>
+                                        <a class="dropdown-item tlmt Today" href="#">Today</a>
+                                        <a class="dropdown-item tlmt Last Week" href="#">Last Week</a>
+                                        <a class="dropdown-item tlmt Monthly" href="#">Monthly</a>
+                                        <a class="dropdown-item tlmt 3 Month" href="#">3 Month</a>
                                     </div>
                                 </form>
                             </div>
                         </div>
                         <div class="card-body statistics-body">
 
-                            <div class="row">
+                            <div class="row" id="leads">
                                 <?php
                                 $query=mysqli_query($conn,"select * from lead where status_deal='Open' and Firm_Name='$id'");
                                 $count1=mysqli_num_rows($query);
@@ -192,7 +205,7 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
                                         </div>
                                         <div class="my-auto">
                                             <h4 class="fw-bolder mb-0"><?php echo $count1; ?></h4>
-                                            <p class="card-text font-small-3 mb-0">Follow up</p>
+                                            <p class="card-text font-small-3 mb-0">Closed Leads</p>
                                         </div>
                                     </div>
                                 </div>
@@ -205,7 +218,7 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
                                         </div>
                                         <div class="my-auto">
                                             <h4 class="fw-bolder mb-0"><?php echo $leadBookedFetch; ?></h4>
-                                            <p class="card-text font-small-3 mb-0">Total Deals</p>
+                                            <p class="card-text font-small-3 mb-0">Total Booked</p>
                                         </div>
                                     </div>
                                 </div>
@@ -364,8 +377,37 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
                             </div>
                         </div>
                         <div class="card-body">
-                            <div id="column-chart"></div>
+                        <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                         </div>
+                        <script>
+      var areaChartData = {
+      labels  : [<?php while($areafetch=mysqli_fetch_array($leadDate)){echo '"'.$areafetch['Month'].'",';} ?>],
+      datasets: [
+        {
+          label               : 'Leads',
+          backgroundColor     : 'rgba(60,141,188,0.9)',
+          borderColor         : 'rgba(60,141,188,0.8)',
+          pointRadius          : false,
+          pointColor          : '#3b8bba',
+          pointStrokeColor    : 'rgba(60,141,188,1)',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(60,141,188,1)',
+          data                : [<?php while($areafetch=mysqli_fetch_array($leadDate1)){echo $areafetch['Number_of_registered_users'].',';} ?>]
+        },
+        {
+          label               : 'Tickets',
+          backgroundColor     : 'rgba(210, 214, 222, 1)',
+          borderColor         : 'rgba(210, 214, 222, 1)',
+          pointRadius         : false,
+          pointColor          : 'rgba(210, 214, 222, 1)',
+          pointStrokeColor    : '#c1c7d1',
+          pointHighlightFill  : '#fff',
+          pointHighlightStroke: 'rgba(220,220,220,1)',
+          data                : [<?php while($areafetch=mysqli_fetch_array($ticketDate2)){echo $areafetch['Number_of_registered_users'].',';} ?>]
+        },
+      ]
+    }
+     </script> 
                     </div>
                 </div>
 
@@ -374,14 +416,9 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
                         <div
                             class=" card-header d-flex flex-md-row flex-column justify-content-md-between justify-content-start align-items-md-center align-items-start ">
                             <h4 class="card-title">Calendar</h4>
-                            <div class="d-flex align-items-center mt-md-0 mt-1">
-                                <i class="font-medium-2" data-feather="calendar"></i>
-                                <input type="text" class="form-control flat-picker bg-transparent border-0 shadow-none"
-                                    placeholder="YYYY-MM-DD" />
-                            </div>
                         </div>
                         <div class="card-body">
-                        <div id="caleandar"></div> 
+                        <div id="caleandars"></div> 
                         </div>
                     </div>
                 </div>
@@ -429,8 +466,6 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
     <script src="app-assets/js/scripts/pages/dashboard-ecommerce.js"></script>
     <?php include('chart.php'); ?>
     <script src="app-assets/js/scripts/charts/chart-apex.js"></script>
-    <script src="app-assets/js/scripts/pages/app-calendar-events.js"></script>
-    <script src="app-assets/js/scripts/pages/app-calendar.js"></script>
     <!-- END: Page JS-->
 
     <?php include('chart-apex.php'); ?>
@@ -458,8 +493,54 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
   <?php } ?>
 ];
 let settings = {};
-let element = document.getElementById('caleandar');
+let element = document.getElementById('caleandars');
 caleandar(element, events, settings);
+    </script>
+    <script>
+        //- BAR CHART -
+    //-------------
+    var barChartCanvas = $('#barChart').get(0).getContext('2d')
+    var barChartData = $.extend(true, {}, areaChartData)
+    var temp0 = areaChartData.datasets[0]
+    var temp1 = areaChartData.datasets[1]
+    barChartData.datasets[0] = temp1
+    barChartData.datasets[1] = temp0
+
+    var barChartOptions = {
+      responsive              : true,
+      maintainAspectRatio     : false,
+      datasetFill             : false
+    }
+
+    new Chart(barChartCanvas, {
+      type: 'bar',
+      data: barChartData,
+      options: barChartOptions
+    })
+
+    </script>
+    <script>
+        $(document).ready(function(){
+
+       
+ $('.tlmt').click(function() {
+    let fetch=$(this).text();
+    // let Last_Week=$(".Last_Week").val();
+    // let Monthly=$(".Monthly").val();
+    // let threeMonth=$(".threeMonth").val();
+    let leadid=$("#leadid").val();
+    $.ajax({
+      url:"action_index.php",
+      method:"POST",
+      data:{fetch:fetch,
+        leadid:leadid
+       },
+      success:function(data){
+        $('#leads').html(data);
+      }
+    });
+  });
+})
     </script>
 </body>
 <!-- END: Body-->
