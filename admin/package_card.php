@@ -29,11 +29,12 @@ if(isset($_POST['Assign'])){
   $account_name=$_POST['account_name'];
     $paymentmode=$_POST['paymentmode'];
     $transaction=$_POST['transaction'];
+    $trans_no=$_POST['trans_no'];
     $due_date=$_POST['due_date'];
   date_default_timezone_set('Asia/Kolkata');
   $date=date('Y-m-d h:i:s a');
  
-  $qsend=mysqli_query($conn,"INSERT INTO `package_assign`(`firm_id`, `lead_id`, `total_amt`, `first_payment`, `balance`,`assign_date`,`account_name`,`payment_mode`,`transaction_date`,`due_date`,`title`) VALUES ('$assignto','$leadid','$totalamt','$payment','$balance','$date','$account_name','$paymentmode','$transaction','$due_date','$title')");
+  $qsend=mysqli_query($conn,"INSERT INTO `package_assign`(`firm_id`, `lead_id`, `total_amt`, `first_payment`, `balance`,`assign_date`,`account_name`,`payment_mode`,`transaction_date`,`due_date`,`title`,`trans_no`) VALUES ('$assignto','$leadid','$totalamt','$payment','$balance','$date','$account_name','$paymentmode','$transaction','$due_date','$title','$trans_no')");
   if($qsend==1){
     header("location:package.php");
 }
@@ -97,8 +98,8 @@ if(isset($_POST['Assign'])){
                                 <i data-feather="user" class="font-large-2 mb-1"></i>
                                 <h5 class="card-title"><?php echo $fpackage['package_name']; ?>
                                 </h5>
-                                <p class="card-text"><?php echo $fpackage['total_lead']; ?> Leads</p>
-                                <h6 class="card-title"><i class="fa fa-inr" aria-hidden="true"></i> <?php echo $fpackage['total_amt']; ?>
+                                <!-- <p class="card-text"><?php echo $fpackage['total_lead']; ?> Leads</p> -->
+                                <h6 class="card-title"><i class="fas fa-rupee-sign"></i> <?php echo $fpackage['total_amt']; ?>
                                 </h6>
                                 <!-- modal trigger button -->
                                 <a href="#editUser<?php echo $fpackage['id']; ?>" class="btn btn-primary"data-bs-toggle="modal" data-bs-target="#editUser<?php echo $fpackage['id']; ?>">Assign</a>
@@ -127,8 +128,20 @@ if(isset($_POST['Assign'])){
                 </div>
                 <div class="modal-body pb-5 px-sm-5 pt-50">
                     <div class="text-center mb-2">
-                        <h1 class="mb-1">Assign</h1>
+                        <h1 class="mb-1" style="text-decoration: underline;color: black;">Assign</h1>
                         
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-6">
+                            <div class="text-center">
+                                <h5 style="text-transform:capitalize;font-size: 20px;color: darkgray;font-weight: 800;"> <?= $fpackage['package_name']; ?></h5>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-center">
+                                <h5 style="text-transform:capitalize;font-size: 20px;color: darkgray;font-weight: 800;"><i class="fas fa-rupee-sign"></i> <?= $fpackage['total_amt']; ?></h5>
+                            </div>
+                        </div>
                     </div>
                     <form id="editUserForm" class="row gy-1 pt-75" method="post" action="package_card.php">
                         <div class="col-12 col-md-6">
@@ -144,14 +157,14 @@ if(isset($_POST['Assign'])){
                                 <?php } ?>
                             </select>
                         </div>
-                        
-                        <div class="col-12 col-md-6">
+                        <input type="hidden" value="<?php echo $fpackage['id']; ?>" name="leadid" >
+                        <!-- <div class="col-12 col-md-6">
                             <label class="form-label" for="lead">Leads</label>
-                            <input type="hidden" value="<?php echo $fpackage['id']; ?>" name="leadid" >
+                            
                             <input type="text" value="<?php echo $fpackage['total_lead']; ?>" class="form-control" name="lead" id="lead " readonly>
-                        </div>
+                        </div> -->
                         <div class="col-12 col-md-6">
-                            <label class="form-label" for="modalEditUserStatus">Account Name</label>
+                            <label class="form-label" for="modalEditUserStatus">Payment To</label>
                             <select class="form-select" name="account_name" id="account_name">
                                 <option value="Tectignis It Solution Pvt. Ltd">Tectignis It Solution Pvt. Ltd</option>
                                 <option value="Cash">Sachin Enterprises</option>
@@ -162,26 +175,30 @@ if(isset($_POST['Assign'])){
                             <label class="form-label" for="paymentmode">Payment Mode</label>
                             <select name="paymentmode" id="paymentmode" class="form-select">
                                 <option value="Cash">Cash</option>
-                                <option value="Imps">Imps</option>
-                                <option value="Gpay">Gpay</option>
+                                <option value="Imps/NEFT">Imps/NEFT</option>
+                                <option value="Gpay/UPI">Gpay/UPI</option>
                             </select>
                         </div>
                         <div class="col-12 col-md-6">
-                            <label class="form-label" for="modalEditUserPhone">Payment</label>
+                            <label class="form-label" for="modalEditUserPhone">Payment Received</label>
                             <input type="hidden" value="<?php echo $fpackage['total_amt']; ?>"  id="totalamt<?php echo $fpackage['id']; ?>" name="totalamt">
                            <input type="text" class="form-control " id="payment<?php echo $fpackage['id']; ?>" name="payment">
                         </div>
                         <div class="col-12 col-md-6">
                             <label class="form-label" for="modalEditUserPhone">Balance</label>
-                            <input type="text" name="balance" class="form-control bal" id="balance<?php echo $fpackage['id']; ?>" >
+                            <input type="text" name="balance" class="form-control bal" id="balance<?php echo $fpackage['id']; ?>" readonly>
                         </div>
                         <div class="col-12 col-md-6">
                             <label class="form-label" for="modalEditUserPhone">Date Of Transaction</label>
                             <input type="datetime-local" class="form-control" value=""  id="transaction" name="transaction">
                         </div>
                         <div class="col-12 col-md-6">
-                            <label class="form-label" for="modalEditUserPhone">Balance</label>
+                            <label class="form-label" for="modalEditUserPhone">Due Date</label>
                             <input type="datetime-local" class="form-control" value=""  id="due_date" name="due_date">
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <label class="form-label" for="modalEditUserPhone">Transaction Number</label>
+                            <input type="tel" class="form-control" value=""  id="due_date" name="trans_no">
                         </div>
                         <div class="col-12 text-center mt-2 pt-50">
                             <button type="submit" name="Assign" class="btn btn-primary me-1">Submit</button>
@@ -216,32 +233,32 @@ if(isset($_POST['Assign'])){
                    
 
                     <!-- form -->
-                    <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75" onsubmit="return false">
+                    <form id="addNewCardValidation" method="post" class="row gy-1 gx-2 mt-75" >
                         <div class="col-12">
                             <label class="form-label" for="modalAddCardNumber">Package Name</label>
                             <div class="input-group input-group-merge">
-                            <input type="text" class="form-control" name="name" id="name" placeholder="Package Name" required>
+                            <input type="text" class="form-control" name="name" id="name" placeholder="Package Name" required style="border-right:1px solid #d8d6de">
                   <span id="namespan" class="mb-4"></span>
                                 </span>
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <label class="form-label" for="modalAddCardName">Total Leads</label>
                             <input type="number"  class="form-control Tlead" name="Tlead" id="Tlead" placeholder="Total Leads" required>
                   <span id="numberspan" class="mb-4"></span>
-                        </div>
+                        </div> -->
 
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <label class="form-label" for="modalAddCardName">Per Leads Amt</label>
                             <input type="number" class="form-control Plead" name="Plead" id="Plead" placeholder="Per Leads Amt" required>
                   <span id="cnamespan" class="mb-4"></span>
-                        </div>
+                        </div> -->
 
                         <div class="col-12">
                             <label class="form-label" for="modalAddCardNumber">Total Amount</label>
                             <div class="input-group input-group-merge">
-                            <input type="text" class="form-control Tamt" name="tamt" id="Tamt" readonly>
+                            <input type="text" class="form-control Tamt" name="tamt" id="Tamt" style="border-right:1px solid #d8d6de">
                                     <span class="add-card-type"></span>
                                 </span>
                             </div>
