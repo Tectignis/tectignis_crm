@@ -16,7 +16,7 @@ include("config.php");
     <meta name="keywords"
         content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Dashboard ecommerce - Vuexy - Bootstrap HTML admin template</title>
+    <title>Package Card</title>
     <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
@@ -80,14 +80,14 @@ include("config.php");
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-start mb-0">Basic Card</h2>
+                            <h2 class="content-header-title float-start mb-0">Package Card</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html">Home</a>
                                     </li>
                                     <li class="breadcrumb-item"><a href="#">Card</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Basic Card
+                                    <li class="breadcrumb-item active">Package Card
                                     </li>
                                 </ol>
                             </div>

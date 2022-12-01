@@ -28,7 +28,7 @@ if(isset($_POST['update'])){
 <!-- BEGIN: Head-->
 
 <head>
-    <title>View Clients</title>
+    <title>Package Table</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
     <?php include "include/header.php"; ?>
     <?php include "include/sidebar.php"; ?>
@@ -46,12 +46,12 @@ if(isset($_POST['update'])){
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-start mb-0">Support Table</h2>
+                            <h2 class="content-header-title float-start mb-0">Package Table</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Support Table
+                                    <li class="breadcrumb-item active">Package Table
                                     </li>
                                 </ol>
                             </div>

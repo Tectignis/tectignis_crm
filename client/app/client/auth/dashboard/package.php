@@ -69,7 +69,7 @@ if(isset($_GET['delid'])){
     <meta name="keywords"
         content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>DataTables - Vuexy - Bootstrap HTML admin template</title>
+    <title>Leads</title>
     <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
@@ -136,12 +136,12 @@ if(isset($_GET['delid'])){
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-start mb-0">Monika</h2>
+                            <h2 class="content-header-title float-start mb-0">Leads</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="index.html">Clients</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="#">Client Details</a>
+                                    <li class="breadcrumb-item"><a href="#">Leads</a>
                                     </li>
                                 </ol>
                             </div>
