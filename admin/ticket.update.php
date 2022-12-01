@@ -35,10 +35,10 @@ if(isset($_POST['dnkk'])){
             </label>
             <div class="input-group">
             <select class="select2 form-select" name="status" id="select2-basic"">
-            <option value="Open">Open</option>
-            <option value="Hold">Hold On</option>
-            <option value="Inprocess">In Progress</option>
-            <option value="Closed">Closed</option>
+            <option value="Open" ';?><?php if($row['status']=='Open'){ echo 'selected'; } echo '>Open</option>
+            <option value="Hold" ';?><?php if($row['status']=='Hold'){ echo 'selected'; } echo ' >Hold On</option>
+            <option value="Inprocess" ';?><?php  if($row['status']=='Inprocess'){ echo 'selected'; }echo ' >In Progress</option>
+            <option value="Closed" ';?><?php if($row['status']=='Closed'){ echo 'selected'; } echo ' >Closed</option>
         </select>
             </div>
           </div>
@@ -105,17 +105,7 @@ if(isset($_POST['dnk'])){
    </div>
  </div>
  </div>
-</br>
-      <div class="row">
-       <div class="col-md-12">
-          <div class="form-group">
-            <label for="clock_in">
-            <b> Description : </b> 
-            </label> '.$row['Description'].'
-          </div>
-        </div>
-        </div>        
-      
+
         </br>
       <div class="row">
       <div class="col-md-12">
@@ -164,7 +154,17 @@ if(isset($_POST['dnk'])){
       </div>
     </div>
   </div>
-  
+  </br>
+      <div class="row">
+       <div class="col-md-12">
+          <div class="form-group">
+            <label for="clock_in">
+            <b> Description : </b> 
+            </label> '.$row['Description'].'
+          </div>
+        </div>
+        </div>        
+      
 
     </div>
   </div>

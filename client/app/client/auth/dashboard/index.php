@@ -21,6 +21,11 @@ $leadDate1=mysqli_query($conn,'SELECT Created_On, (DATE_FORMAT(Created_On,"%M"))
 $ticketDate2=mysqli_query($conn,'SELECT date, (DATE_FORMAT(date,"%M")) AS "Month", COUNT(*) AS Number_of_registered_users FROM ticket WHERE year(date)= year(date) and Client_Code='.$id.' GROUP BY (DATE_FORMAT(date,"%M")) ORDER BY "Month" ASC');
 $leadnature=mysqli_query($conn,"select Created_On from lead where nature='Site View' and Firm_Name='$id'");
 $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
+
+// $packageId=$_GET['packageId'];
+// $qcardpackage=mysqli_query($conn,"select *,package_assign.id as id from lead inner join package_assign on lead.package=package_assign.title inner join package on package_assign.lead_id=package.id where package_assign.firm_id='$id' and package_assign.id='$packageId'");
+
+// if(mysqli_num_rows($qcardpackage)>0){
 ?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
@@ -546,3 +551,7 @@ caleandar(element, events, settings);
 <!-- END: Body-->
 
 </html>
+<?php 
+// }
+// echo '<div style="font-size: xxx-large;text-align: center;color: blue;">No Any Lead</div>';
+?>

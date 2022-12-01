@@ -51,8 +51,8 @@ if(isset($_GET['delid'])){
 
   $packageId=$_GET['packageId'];
  $qcardpackage=mysqli_query($conn,"select *,package_assign.id as id from lead inner join package_assign on lead.package=package_assign.title inner join package on package_assign.lead_id=package.id where package_assign.firm_id='$id' and package_assign.id='$packageId'");
-$fcardpackage=mysqli_fetch_array($qcardpackage);
-$title= $fcardpackage['title'];
+ 
+ 
 
 ?>
 <!DOCTYPE html>
@@ -122,7 +122,13 @@ $title= $fcardpackage['title'];
     <?php include "include/header.php"; ?>
     <?php include "include/sidebar.php"; ?>
     <!-- BEGIN: Content-->
+    
     <div class="app-content content ">
+    <?php
+    if(mysqli_num_rows($qcardpackage)>0){
+        $fcardpackage=mysqli_fetch_array($qcardpackage);
+        $title= $fcardpackage['title'];
+    ?>
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper container-xxl p-0">
@@ -143,8 +149,8 @@ $title= $fcardpackage['title'];
                     </div>
                 </div>
                 <div class="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
-
-                    <?php
+                <?php
+                if($fcardpackage['balance']!=0){
                 $qnotification=mysqli_query($conn,"SELECT * , package, count(package) as count, DATEDIFF(due_date, NOW()) AS date_diff FROM lead inner join package_assign on package_assign.title=lead.package  where package_assign.id='$packageId' and firm_id='$id' group by lead_id HAVING COUNT(lead_id) > 0");
                 $fnotification=mysqli_fetch_array($qnotification);
                
@@ -155,14 +161,17 @@ $title= $fcardpackage['title'];
                 if($calculateRemainingLead<=10){
                   echo '<span style="font-size:17px;margin:18px;" class="badge badge-info">You have only'. $calculateRemainingLead.' leads</span>';
                 }
+            }else{
+
+            }
                 ?>
                 </div>
             </div>
             <div class="content-body">
                 <?php 
-      date_default_timezone_set('Asia/Kolkata');
-if((date('Y-m-d , h:i:s')) <= ($fcardpackage['due_date'])){
-?>
+                    date_default_timezone_set('Asia/Kolkata');
+                if((date('Y-m-d , h:i:s')) <= ($fcardpackage['due_date'])){
+                ?>
                 <section id="dashboard-ecommerce">
                     <div class="row">
                         <div class="col-md-3">
@@ -526,16 +535,16 @@ if((date('Y-m-d , h:i:s')) <= ($fcardpackage['due_date'])){
                     </div>
                 </section>
                 <?php }
-else{
-    echo "<div style=' text-align: center;
-    height: 100%;
-    position: relative;
-    top: 50%;
-    color: mediumvioletred;
-    font-size: xxx-large;
-    font-weight: bolder;'>Please Pay</div>";
-}
-?>
+            else{
+                echo "<div style=' text-align: center;
+                height: 100%;
+                position: relative;
+                top: 50%;
+                color: mediumvioletred;
+                font-size: xxx-large;
+                font-weight: bolder;'>Please Pay</div>";
+            }
+            ?>
 
             </div>
             <?php 
@@ -717,9 +726,12 @@ else{
             <?php } ?>
 
         </div>
+        <?php }
+echo '<div style="font-size: xxx-large;text-align: center;color: blue;">No Any Lead</div>';
+?>
     </div>
     <!-- END: Content-->
-
+   
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
     <?php include "include/footer.php"; ?>

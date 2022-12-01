@@ -355,7 +355,8 @@ if(isset($_POST['assignId'])){
               alert("Payment is greater than balance");
               $("#payment").val("");
               $("#balance").val(total);}
-            $("#balance").val(balance);
+              else{
+            $("#balance").val(balance);}
           });
         });
         </script>

@@ -106,11 +106,11 @@ include("config.php");
                                         <th>Sr no.</th>
                                             <th>Ticket No.</th>
                                             <!-- <th>Client Code</th> -->
-                                            <th>Description</th>
                                             <th>Subject</th>
                                             <!-- <th>Comment</th> -->
                                             <!-- <th>Date</th> -->
                                             <th>Status</th>
+                                            <th>Description</th>
                                             <th>Action</th>
                                             
                                         </tr>
@@ -126,7 +126,6 @@ include("config.php");
                                              <td><?php echo $count;?></td>
                                             <td><?php echo $row['ticket_no']; ?></td>
                                             <!-- <td><?php echo $row['Client_Code']; ?></td> -->
-                                            <td><?php echo $row['Description']; ?></td>
                                             <td><?php echo $row['Subject']; ?></td>
                                             <!-- <td><?php echo $row['Comment']; ?></td> -->
                                             <!-- <td><?php echo $row['date']; ?></td> -->
@@ -146,6 +145,7 @@ include("config.php");
                                                 }
                                                 ?>
                                             </td>
+                                            <td><?php echo $row['Description']; ?></td>
                                          <td>
                       
                                          <a href="" type="button" data-id="<?php echo $row['id'] ?>"  class="view" data-bs-toggle="modal" data-bs-target="#addNewCard" >

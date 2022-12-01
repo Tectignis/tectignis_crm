@@ -26,6 +26,7 @@ include("config.php");
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/vendors.min.css">
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/charts/apexcharts.css">
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/extensions/toastr.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
@@ -99,22 +100,25 @@ include("config.php");
                 <!-- Examples -->
                 <section id="card-demo-example">
                     <div class="row">
-                        <?php $qsidepackage=mysqli_query($conn,"select *,package_assign.id as id from package inner join package_assign on package.id=package_assign.lead_id where package_assign.firm_id='35'");
-              while($fsidepackage=mysqli_fetch_array($qsidepackage)){ ?>
+                        <?php 
+                        $firm_id_check=$_SESSION['id'];
+                        $qsidepackage=mysqli_query($conn,"select *,package_assign.id as id from package inner join package_assign on package.id=package_assign.lead_id where package_assign.firm_id='$firm_id_check'");
+                        while($fsidepackage=mysqli_fetch_array($qsidepackage)){ ?>
                         <div class="col-lg-4 col-md-6 col-4">
                             <div class="card earnings-card">
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-5">
-                                            <h4 class="card-title mb-1"><a class="d-flex align-items-center" href="package/<?php echo $fsidepackage['id'] ?>"><?php echo $fsidepackage['title'] ?></span></a></h4>
-                                            <div class="font-small-2">This Month</div>
-                                            <h5 class="mb-1">$4055.56</h5>
-                                            <p class="card-text text-muted font-small-2">
-                                                <span class="fw-bolder">68.2%</span><span> more earnings than last
-                                                    month.</span>
-                                            </p>
+                                        <div class="col-md-12">
+                                            <h1 class="card-title mb-1" style="font-size:2.6rem"><a class="d-flex align-items-center" href="package/<?php echo $fsidepackage['id'] ?>"><span style="text-transform:capitalize" ><?php echo $fsidepackage['title'] ?></span></a></h1>
+                                            <h5 class="font-small-4">Leads Received - <span><?php 
+                                            $pac=$fsidepackage['title'];
+                                            $leadsql=mysqli_query($conn,"select * from lead inner join package_assign on lead.package=package_assign.title where lead.Firm_Name='$firm_id_check' and lead.package='$pac'");
+                                            $countlead=mysqli_num_rows($leadsql);
+                                            echo $countlead ?></span></h5>
+                                            <h5 class="font-small-4">Total Cash - <span><i class="fas fa-rupee-sign"></i> <?php echo $fsidepackage['total_amt'] ?></span></h5>
+                                            <h5 class="font-small-4">Payment Received - <span><i class="fas fa-rupee-sign"></i> <?php echo $fsidepackage['first_payment'] ?></span></h5>
                                         </div>
-                                        <div class="col-md-7">
+                                        <!-- <div class="col-md-7">
                                             <canvas id="myChart<?php echo $fsidepackage['id'] ?>"></canvas>
                                             <script type="text/javascript">
                                                 window.onload = function () { 
@@ -168,7 +172,7 @@ include("config.php");
 
 
 
-                                        </div>
+                                        </div> -->
 
                                     </div>
                                 </div>

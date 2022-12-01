@@ -12,7 +12,7 @@ if(isset($_GET['del_id'])){
 <!-- BEGIN: Head-->
 
 <head>
-    <base href="http://localhost/tectignis_crm/admin/" />
+    <base href="http://localhost:8000/tectignis_crm/admin/" />
     <title>View Clients</title>
     <!-- DataTables -->
     <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
@@ -30,7 +30,8 @@ if(isset($_GET['del_id'])){
     box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;
         }
     </style>
-    <?php include "include/header.php"; ?>
+    <?php 
+    include "include/header.php"; ?>
     <?php include "include/sidebar.php"; ?>
     <!-- BEGIN: Content-->
     <div class="app-content content ">
@@ -251,7 +252,16 @@ if(isset($_GET['del_id'])){
                                 <div class="form-group">
                                     <label class="form-label">Package</label>
                                     <input type="hidden" value="<?php echo $id; ?>" id="firm_name" name="firm_name">
-                                    <input type="text" value="" class="form-control" name="package" id="package">
+                                    <!-- <input type="text" value="" class="form-control" name="package" id="package"> -->
+                                    <select class="form-control" name="package" >
+                                        <option value="" id="package" selected></option>
+                                        <?php 
+                                $qpackageselect=mysqli_query($conn,"SELECT * FROM package_assign WHERE firm_id='$id'");
+                                while($row=mysqli_fetch_array($qpackageselect)){ ?>
+                                <option value="<?php echo $row['title'] ?>"><?php echo $row['title'] ?></option>
+                                <?php }
+                                 ?>
+                                    </select>
                                 </div>
                                 <!-- /.form-group -->
                                 <div class="form-group">
@@ -380,6 +390,7 @@ if(isset($_GET['del_id'])){
 
         function package(val) {
             $("#package").val(val);
+            $("#package").html(val);
             let firm_name = $("#leadid").val();
             $.ajax({
                 url: "action_clients.php",

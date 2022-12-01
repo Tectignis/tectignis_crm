@@ -181,7 +181,7 @@ if(isset($_POST['Assign'])){
                         </div>
                         <div class="col-12 col-md-6">
                             <label class="form-label" for="modalEditUserPhone">Payment Received</label>
-                            <input type="hidden" value="<?php echo $fpackage['total_amt']; ?>"  id="totalamt<?php echo $fpackage['id']; ?>" name="totalamt">
+                            <input type="hidden" value="<?= $fpackage['total_amt']; ?>"  id="totalamt<?php echo $fpackage['id']; ?>" name="totalamt">
                            <input type="text" class="form-control " id="payment<?php echo $fpackage['id']; ?>" name="payment">
                         </div>
                         <div class="col-12 col-md-6">
@@ -215,6 +215,22 @@ if(isset($_POST['Assign'])){
                 let balance=totalamt-payment;
                 $("#balance<?php echo $fpackage['id']; ?>").val(balance);
             });
+        </script>
+        <script>
+        $(document).ready(function(){
+          $("#payment<?php echo $fpackage['id']; ?>").keyup(function(){
+            let total = $("#totalamt<?php echo $fpackage['id']; ?>").val();
+            let payment = $("#payment<?php echo $fpackage['id']; ?>").val();
+            let balance = total - payment;
+            if(balance < 0){
+              alert("Payment is greater than balance");
+              $("#payment<?php echo $fpackage['id']; ?>").val("");
+              $("#balance<?php echo $fpackage['id']; ?>").val("");
+        }else{
+            $("#balance<?php echo $fpackage['id']; ?>").val(balance);
+        }
+          });
+        });
         </script>
             </div>
         </div>
@@ -284,7 +300,6 @@ if(isset($_POST['Assign'])){
 
     <!-- BEGIN: Page JS-->
     <script src="app-assets/js/scripts/cards/card-advance.js"></script>
-    <script>
         <script>
    let  validenqName;
 
@@ -360,7 +375,20 @@ $(document).ready(function(){
             });
         });
     </script>
-    </script>
+            <script>
+        $(document).ready(function(){
+          $("#payment").keyup(function(){
+            let total = $("#bal").val();
+            let payment = $("#payment").val();
+            let balance = total - payment;
+            if(balance < 0){
+              alert("Payment is greater than balance");
+              $("#payment").val("");
+              $("#balance").val(total);}
+            $("#balance").val(balance);
+          });
+        });
+        </script>
     <!-- END: Page JS-->
 </body>
 <!-- END: Body-->

@@ -67,7 +67,7 @@ if(isset($_POST['update'])){
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">Ticket</h4>
-
+  
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
@@ -76,12 +76,13 @@ if(isset($_POST['update'])){
                                             <tr>
                                                 <th>Sr no.</th>
                                                 <th>Firm Name</th>
-                                                <!-- <th>Lead</th> -->
+                                                <th>Package Name</th>
+                                                <th>Package Title</th>
                                                 <th>Total Amt</th>
                                                 <th>Payment</th>
                                                 <th>Balance</th>
-                                                <th>Date</th>
                                                 <th>Action</th>
+                                                <th>Date</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -94,17 +95,19 @@ if(isset($_POST['update'])){
                                             <tr>
                                                 <td><?php echo $count;?></td>
                                                 <td><?php echo $row['Firm_Name']; ?></td>
-                                                <!-- <td><?= $row['total_lead']; ?></td> -->
+                                                <td><?= $row['package_name']; ?></td>
+                                                <td><?= $row['title']; ?></td>
                                                 <td><?php echo $row['total_amt']; ?></td>
                                                 <td><?php echo $row['first_payment']; ?></td>
                                                 <td><?php echo $row['balance']; ?></td>
-                                                <td><?php echo $row['assign_date']; ?></td>
+                                                
                                                 <td style="text-align:center">
                                                     <button type="button"
                                                         class="btn btn-primary btn-rounded assidnmodal btn-icon"
                                                         style="color: aliceblue" data-id="<?php echo $row['id']; ?>"> <i
                                                             class="fas fa-edit"></i> </button>
                                                 </td>
+                                                <td><?php echo $row['assign_date']; ?></td>
                                             </tr>
                                             <?php $count++; } ?>
 
