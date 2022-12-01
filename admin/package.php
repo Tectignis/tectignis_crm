@@ -76,7 +76,7 @@ if(isset($_POST['update'])){
                                             <tr>
                                                 <th>Sr no.</th>
                                                 <th>Firm Name</th>
-                                                <th>Lead</th>
+                                                <!-- <th>Lead</th> -->
                                                 <th>Total Amt</th>
                                                 <th>Payment</th>
                                                 <th>Balance</th>
@@ -94,7 +94,7 @@ if(isset($_POST['update'])){
                                             <tr>
                                                 <td><?php echo $count;?></td>
                                                 <td><?php echo $row['Firm_Name']; ?></td>
-                                                <td><?php echo $row['total_lead']; ?></td>
+                                                <!-- <td><?= $row['total_lead']; ?></td> -->
                                                 <td><?php echo $row['total_amt']; ?></td>
                                                 <td><?php echo $row['first_payment']; ?></td>
                                                 <td><?php echo $row['balance']; ?></td>
