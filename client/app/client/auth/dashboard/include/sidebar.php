@@ -48,37 +48,18 @@
                     </ul> -->
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="tickets.php"><i data-feather="save"></i><span class="menu-title text-truncate" data-i18n="File Manager">Tickets</span></a>
+                </li>               
+                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">Payment</span></a>
                 </li>
-               
-                <li class=" nav-item"><a class="d-flex align-items-center" href="deals.php"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">Deals</span></a>
-                </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="event.php"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">Events</span></a>
-                </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="pricing.php"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">Pricing</span></a>
-                </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="property.php"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">Property</span></a>
-                </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="app-ecommerce-wishlist.php"><i data-feather="save"></i><span class="menu-title text-truncate" data-i18n="File Manager">Digital Poster</span></a>
-              </li>
-                </li>
-               
-                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Invoice">Account Setting</span></a>
+                </li>              
+                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="file-text">
+                 </i><span class="menu-title text-truncate" data-i18n="Invoice">Setting</span></a>
                     <ul class="menu-content">
-                        <li><a class="d-flex align-items-center" href="account.php"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Account</span></a>
+                        <li><a class="d-flex align-items-center" href="profile.php"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Profile</span></a>
                         </li>
-                        <li><a class="d-flex align-items-center" href="security.php"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">Security</span></a>
-                        </li>
-                        <li><a class="d-flex align-items-center" href="billing&plans.php"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">Billing & Plans</span></a>
-                        </li>
-                        <li><a class="d-flex align-items-center" href="notification.php"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">Notification</span></a>
-                        </li>
-                        <li><a class="d-flex align-items-center" href="connection.php"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">Connection</span></a>
+                        <li><a class="d-flex align-items-center" href="security.php"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">Change Password</span></a>
                         </li>
                     </ul>
-                </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="quotation.php"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">Quotation</span></a>
-                </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="../../../../auth/path/logout.php"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">Logout</span></a>
                 </li>
             </ul>
         </div>

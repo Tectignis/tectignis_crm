@@ -311,7 +311,7 @@ if(isset($_POST["submi"])){
                     <div class="modal-header bg-transparent">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <h1 class="text-center mb-1" id="addNewCardTitle">Add New Client</h1>
+                    <h1 class="text-center mb-1" id="addNewCardTitle">Reset Password</h1>
                     <div class="modal-body px-sm-5 mx-50 pb-5 ">
 
 
