@@ -3,22 +3,21 @@ session_start();
 include("config.php");
 
 $d=$_SESSION['id'];
-if(isset($_POST["submit"])){
-	$Old_password=$_POST["currentpassword"];
-	$New_password=$_POST["newpassword"];
-    $Confirm_password=$_POST["confirmpassword"];
+if(isset($_POST['submitbutton'])){
+	$current_password=$_POST['currentpassword'];
+	$new_password=$_POST['newpassword'];
 
-	$sql = mysqli_query($conn,"SELECT * FROM adminlogin WHERE id='$d'") ;
+	$sql = mysqli_query($conn,"SELECT * FROM client WHERE Client_Code='$d'") ;
 		$row=mysqli_fetch_assoc($sql); 
-		$verify=password_verify($Old_password,$row['password']);
+		$verify=password_verify($current_password,$row['Password']);
 	
-	$hashpassword=password_hash($New_password,PASSWORD_BCRYPT);
+	$hashpassword=password_hash($new_password,PASSWORD_BCRYPT);
 
 		if($verify==1){
-			$query=mysqli_query($conn,"UPDATE `adminlogin` SET `password`='$hashpassword' WHERE id='$d'");
+			$query=mysqli_query($conn,"UPDATE `client` SET `Password`='$hashpassword' WHERE Client_Code='$d'");
       if($query){
         session_destroy();   // function that Destroys Session 
-        echo "<script>alert('Password Changed Successfully'),window.location='auth-admin-login.php';</script>";
+        echo "<script>alert('Password Changed Successfully'),window.location='../../../../auth/path/login.php';</script>";
       }
 		}
 		else{
@@ -101,7 +100,7 @@ if(isset($_POST["submit"])){
                             <div class="card">
                                 <h4 class="card-header">Change Password</h4>
                                 <div class="card-body">
-                                    <form id="formChangePassword" method="POST" onsubmit="return false">
+                                    <form id="formChangePassword" method="post" >
                                         <!-- <div class="alert alert-warning mb-2" role="alert">
                                             <h6 class="alert-heading">Ensure that these requirements are met</h6>
                                             <div class="alert-body fw-normal">Minimum 8 characters long, uppercase & symbol</div>
@@ -133,7 +132,7 @@ if(isset($_POST["submit"])){
                                                 </div>
                                             </div>
                                             <div>
-                                                <button type="submit" name="submit" id="submit" class="btn btn-primary me-2">Change Password</button>
+                                                <button type="submit" name="submitbutton" id="submit" class="btn btn-primary me-2">Change Password</button>
                                             </div>
                                         </div>
                                     </form>
