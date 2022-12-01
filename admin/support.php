@@ -68,7 +68,7 @@ if(isset($_GET['delid'])){
                             <h2 class="content-header-title float-start mb-0">Support Table</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a>
+                                    <li class="breadcrumb-item"><a href="index.php">Home</a>
                                     </li>
                                     <li class="breadcrumb-item active">Support Table
                                     </li>
@@ -93,15 +93,15 @@ if(isset($_GET['delid'])){
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Ticket No.</th>
-                                                <th>Status</th>
-                                                <th>Action</th>
+                                                <th>Ticket No.</th>   
                                                 <th>Firm Name</th>
                                                 <th>Client Name</th>
                                                 <th>Mobile</th>
                                                 <th>Email</th>
                                                 <th>Description</th>
                                                 <th>Created On</th>
+                                                <th>Status</th>
+                                                <th>Action</th>
 
                                             </tr>
                                         </thead>
@@ -113,33 +113,6 @@ if(isset($_GET['delid'])){
                                 ?>
                                             <tr>
                                                 <td><?php echo $row['ticket_no']; ?></td>
-
-                                                <td style="text-align:center">
-
-                                                    <?php
-                                                $status=$row['status'];
-                                                if($status=='0'){
-                                                    echo '<span class="badge badge-success badge-pill">Open</span>';
-                                                }
-                                                else if($status=='Open'){
-                                                    echo '<span class="badge badge-success">Open</span>';
-                                                }
-                                                else if($status=='Inprocess'){
-                                                    echo '<span class="badge badge-danger">In Proccess</span>';
-                                                }else if($status=='Hold On'){
-                                                   echo '<span class="badge badge-warning">Hold On</span>';
-                                                }else if($status=='Closed'){
-                                                    echo '<span class="badge badge-secondary">Closed</span>';
-                                                }
-                                                ?></td>
-
-                                                <td style="text-align:center">
-                                                    <button class="btn btn-primary btn-rounded btn-icon setting "
-                                                        data-id='<?php echo $row['id']; ?> '><i
-                                                            class="fas fa-wrench"></i></button>
-                                                    <a href="support.php?delid=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure you want to delete this item?');"><button
-                                                            type="button" class="btn btn-danger btn-rounded btn-icon">
-                                                            <i class="fas fa-trash"></i> </button></a> </td>
                                                 <td><?php echo $row['firm_name']; ?></td>
                                                 <td><?php echo $row['client_name']; ?></td>
                                                 <td><?php echo $row['mobile']; ?></td>
@@ -147,6 +120,33 @@ if(isset($_GET['delid'])){
                                                 <td><?php echo $row['description']; ?></td>
                                                 <td><?php $s = $row['date'];$date = strtotime($s);echo date('d-M-Y ', $date);?>
                                                 </td>
+                                                <td style="text-align:center">
+                                                      <?php
+                                                    $status=$row['status'];
+                                                    if($status=='0'){
+                                                    echo '<span class="badge badge-success badge-pill">Open</span>';
+                                                    }
+                                                    else if($status=='Open'){
+                                                    echo '<span class="badge badge-success">Open</span>';
+                                                    }
+                                                    else if($status=='Inprocess'){
+                                                    echo '<span class="badge badge-danger">In Proccess</span>';
+                                                    }else if($status=='Hold On'){
+                                                    echo '<span class="badge badge-warning">Hold On</span>';
+                                                    }else if($status=='Closed'){
+                                                    echo '<span class="badge badge-secondary">Closed</span>';
+                                                    }
+                                                    ?>
+                                                </td>
+
+                                                <td style="text-align:center">
+                                                    <button class="btn btn-primary btn-rounded btn-icon setting "
+                                                        data-id='<?php echo $row['id']; ?> '><i
+                                                            class="fas fa-wrench"></i></button>
+                                                    <a href="support.php?delid=<?php echo $row['id']; ?>"
+                                                        onclick="return confirm('Are you sure you want to delete this item?');"><button
+                                                            type="button" class="btn btn-danger btn-rounded btn-icon">
+                                                            <i class="fas fa-trash"></i> </button></a> </td>
 
                                             </tr>
                                             <?php $count++; } ?>

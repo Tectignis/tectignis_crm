@@ -198,7 +198,7 @@ if(isset($_POST["submi"])){
 
                                 <!-- modal trigger button -->
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#editUser">Show</button>
+                                    data-bs-target="#editUser">Add</button>
                             </div>
                         </div>
                     </div>
@@ -236,12 +236,17 @@ if(isset($_POST["submi"])){
                             </div>
 
                             <div class="col-12 col-md-6">
-                                <label class="form-label" for="modalEditUserEmail"> Email:</label>
+                                <label class="form-label" for="modalEditUserEmail"> Password</label>
+                                <input type="password" id="modalEditUserEmail" name="email" class="form-control" value=""
+                                    placeholder="" />
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="modalEditUserEmail"> Email</label>
                                 <input type="email" id="modalEditUserEmail" name="email" class="form-control" value=""
                                     placeholder="" />
                             </div>
                             <div class="col-12 col-md-6">
-                                <label class="form-label" for="modalEditUserEmail">Mobile No:</label>
+                                <label class="form-label" for="modalEditUserEmail">Mobile No.</label>
                                 <input type="number" id="modalEditUserEmail" name="number" class="form-control" value=""
                                     placeholder="" />
                             </div>
