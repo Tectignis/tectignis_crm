@@ -124,7 +124,7 @@ if(isset($_GET['delid'])){
                                                 }
                                                 else if($status=='Inprocess'){
                                                     echo '<span class="badge badge-danger">In Proccess</span>';
-                                                }else if($status=='Hold'){
+                                                }else if($status=='Hold On'){
                                                    echo '<span class="badge badge-warning">Hold On</span>';
                                                 }else if($status=='Closed'){
                                                     echo '<span class="badge badge-secondary">Closed</span>';
