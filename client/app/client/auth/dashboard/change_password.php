@@ -1,7 +1,33 @@
 <?php
 session_start();
 include("config.php");
+
+$d=$_SESSION['id'];
+if(isset($_POST["submit"])){
+	$Old_password=$_POST["currentpassword"];
+	$New_password=$_POST["newpassword"];
+    $Confirm_password=$_POST["confirmpassword"];
+
+	$sql = mysqli_query($conn,"SELECT * FROM adminlogin WHERE id='$d'") ;
+		$row=mysqli_fetch_assoc($sql); 
+		$verify=password_verify($Old_password,$row['password']);
+	
+	$hashpassword=password_hash($New_password,PASSWORD_BCRYPT);
+
+		if($verify==1){
+			$query=mysqli_query($conn,"UPDATE `adminlogin` SET `password`='$hashpassword' WHERE id='$d'");
+      if($query){
+        session_destroy();   // function that Destroys Session 
+        echo "<script>alert('Password Changed Successfully'),window.location='auth-admin-login.php';</script>";
+      }
+		}
+		else{
+			echo"<script>alert('Invalid Password');</script>";
+		}
+	
+	}
 ?>
+
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
@@ -13,7 +39,7 @@ include("config.php");
     <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>User View - Security - Vuexy - Bootstrap HTML admin template</title>
+    <title>User View - Change Password - Vuexy - Bootstrap HTML admin template</title>
     <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
     <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
@@ -81,33 +107,33 @@ include("config.php");
                                             <div class="alert-body fw-normal">Minimum 8 characters long, uppercase & symbol</div>
                                         </div> -->
                                         <div class="row">
-                                        <div class="mb-2 col-md-6 form-password-toggle">
-                                                <label class="form-label" for="newPassword">Current Password</label>
+                                        <div class="mb-2 col-md-12 form-password-toggle">
+                                                <label class="form-label" for="currentPassword">Current Password</label>
                                                 <div class="input-group input-group-merge form-password-toggle">
-                                                    <input class="form-control" type="password" id="newPassword" name="newPassword" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
+                                                    <input class="form-control" type="password" id="currentpassword" name="currentpassword" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
                                                     <span class="input-group-text cursor-pointer">
                                                         <i data-feather="eye"></i>
                                                     </span>
                                                 </div>
                                             </div>
-                                            <div class="mb-1 col-md-6 form-password-toggle">
+                                            <div class="mb-1 col-md-12 form-password-toggle">
                                                 <label class="form-label" for="newPassword">New Password</label>
                                                 <div class="input-group input-group-merge form-password-toggle">
-                                                    <input class="form-control" type="password" id="newPassword" name="newPassword" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
+                                                    <input class="form-control" type="password" id="newpassword" name="newpassword" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
                                                     <span class="input-group-text cursor-pointer">
                                                         <i data-feather="eye"></i>
                                                     </span>
                                                 </div>
                                             </div>
-                                            <div class="mb-1 col-md-6 form-password-toggle">
+                                            <div class="mb-1 col-md-12 form-password-toggle">
                                                 <label class="form-label" for="confirmPassword">Confirm New Password</label>
                                                 <div class="input-group input-group-merge">
-                                                    <input class="form-control" type="password" name="confirmPassword" id="confirmPassword" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
+                                                    <input class="form-control" type="password" name="confirmpassword" id="confirmpassword" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" />
                                                     <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
                                                 </div>
                                             </div>
                                             <div>
-                                                <button type="submit" class="btn btn-primary me-2">Change Password</button>
+                                                <button type="submit" name="submit" id="submit" class="btn btn-primary me-2">Change Password</button>
                                             </div>
                                         </div>
                                     </form>

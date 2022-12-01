@@ -57,7 +57,7 @@
                     <ul class="menu-content">
                         <li><a class="d-flex align-items-center" href="profile.php"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Profile</span></a>
                         </li>
-                        <li><a class="d-flex align-items-center" href="security.php"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">Change Password</span></a>
+                        <li><a class="d-flex align-items-center" href="change_password.php"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">Change Password</span></a>
                         </li>
                     </ul>
                 </li>
