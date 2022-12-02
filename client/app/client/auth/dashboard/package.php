@@ -164,14 +164,14 @@ $packageId=$_GET['packageId'];
                
                 if($fnotification['date_diff']<=5){
                     if($fnotification['date_diff']>=0){
-                  echo '<span style="font-size:17px;margin:18px;" class="badge badge-danger">Only '.$fnotification['date_diff'].' days left</span>';
+                  echo '<span style="font-size:17px;margin-left: -26px;" class="badge badge-danger">Only '.$fnotification['date_diff'].' days left payment due</span>';
                     }else{
-                        echo '<span style="font-size:17px;margin:18px;" class="badge badge-danger">Expire</span>';
+                        echo '<span style="font-size:17px;margin-left: -26px;" class="badge badge-danger">Expire</span>';
                     }
                 }
                 $calculateRemainingLead=$fcardpackage['total_lead']-$fnotification['count'];
                 if($calculateRemainingLead<=10){
-                  echo '<span style="font-size:17px;margin:18px;" class="badge badge-info">You have only'. $calculateRemainingLead.' leads</span>';
+                  echo '<span style="font-size:17px;margin-left: -26px;" class="badge badge-info">You have only'. $calculateRemainingLead.' leads</span>';
                 }
             }else{
 
@@ -639,16 +639,17 @@ $packageId=$_GET['packageId'];
                                                     <input type="hidden" name="idclient" value="<?php echo $arr['id'] ?>">
                                                     <select class="form-control" name="nature" style="width: 100%;"
                                                         onclick="drop<?php echo $arr['id']; ?>()">
-                                                        <option selected="selected"
+                                                        <option value="">Select</option>
+                                                        <!-- <option selected="selected"
                                                             value="<?php echo $arr['nature']; ?>">
                                                             <?php echo $arr['nature']; ?>
-                                                        </option>
-                                                        <option value="Hot">Hot</option>
-                                                        <option value="Cold">Cold</option>
-                                                        <option value="Warm">Warm</option>
-                                                        <option value="Deal Closed">Deal Closed</option>
-                                                        <option value="Site Visit"
-                                                            id="dropdown<?php echo $arr['id']; ?>">Site Visit</option>
+                                                        </option> -->
+                                                        <option value="Hot" <?php if($arr['nature'] == 'Hot'){ echo 'selected';} ?>>Hot</option>
+                                                        <option value="Cold" <?php if($arr['nature'] == 'Cold') { echo 'selected';} ?>>Cold</option>
+                                                        <option value="Warm" <?php if($arr['nature'] == 'Warm') { echo 'selected';} ?>>Warm</option>
+                                                        <option value="Deal Closed" <?php if($arr['nature'] == 'Deal Closed') { echo 'selected';} ?>>Deal Closed</option>
+                                                        <!-- <option value="Site Visit"
+                                                            id="dropdown<?php echo $arr['id']; ?>">Site Visit</option> -->
                                                     </select>
                                                 </div>
                                             </div>
