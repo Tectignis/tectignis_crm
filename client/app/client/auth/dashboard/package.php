@@ -43,7 +43,6 @@ $packageId=$_GET['packageId'];
       }
       if($sql==1){
           echo "Saved!", "data successfully submitted", "success";
-          header("location:lead.php");
       }else {
           echo '<script>alert("oops...somthing went wrong");</script>';
       }
