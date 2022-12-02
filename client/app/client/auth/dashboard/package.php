@@ -5,14 +5,14 @@ include("config.php");
 $packageId=$_GET['packageId'];
 
 //lead delete
-if(isset($_GET['delid'])){
-    $id=mysqli_real_escape_string($conn,$_GET['delid']);
-    $sql=mysqli_query($conn,"delete from lead where id='$id'");
-    if($sql=1){
-        header("Location: package/".$packageId);
-        exit;
-    }
-    }
+// if(isset($_GET['delid'])){
+//     $id=mysqli_real_escape_string($conn,$_GET['delid']);
+//     $sql=mysqli_query($conn,"delete from lead where id='$id'");
+//     if($sql=1){
+//         header("Location: package/".$packageId);
+//         exit;
+//     }
+//     }
 
     if(isset($_GET['gen'])){
       $id=mysqli_real_escape_string($conn,$_GET['gen']);
@@ -315,7 +315,7 @@ if(isset($_GET['delid'])){
                                                         style="color: aliceblue"> <i class="fas fa-pen"></i>
                                                         </button>
 
-                                                        <a href="package?delid=<?php echo $frow['id']; ?>"><button
+                                                        <!-- <a href="package?delid=<?php echo $frow['id']; ?>"><button
                                                                 type="button"
                                                                 onclick="return confirm('Are you sure you want to delete this item')"
                                                                 class="btn btn-danger btn-rounded btn-icon"
@@ -323,7 +323,7 @@ if(isset($_GET['delid'])){
                                                             </button></a>
                                                         <a href="package?gen=<?php echo $frow['id'];?>">
                                                             <button class="btn btn-warning" name="submit">Deals</button>
-                                                        </a>
+                                                        </a> -->
                                                 </td>
                                             </tr>
                                             <?php $count++; } ?>
@@ -475,7 +475,7 @@ if(isset($_GET['delid'])){
                                                         style="color: aliceblue"> <i class="fas fa-pen"></i>
                                                         </button></a>
 
-                                                        <a href="package?delid=<?php echo $frow['id']; ?>"><button
+                                                        <!-- <a href="package?delid=<?php echo $frow['id']; ?>"><button
                                                                 type="button"
                                                                 onclick="return confirm('Are you sure you want to delete this item')"
                                                                 class="btn btn-danger btn-rounded btn-icon"
@@ -483,7 +483,7 @@ if(isset($_GET['delid'])){
                                                             </button></a>
                                                         <a href="package?gen=<?php echo $frow['id'];?>">
                                                             <button class="btn btn-warning" name="submit">Deals</button>
-                                                        </a>
+                                                        </a> -->
                                                 </td>
                                             </tr>
                                             <?php $count++; } ?>
@@ -814,25 +814,25 @@ echo '<div style="font-size: xxx-large;text-align: center;color: blue;">No Any L
         }
     </script>
     <script>
-          function get_fb(){
-            let package_id=<?php echo $packageId ?>;
-            let leadid= "<?php echo $title ?>";
-            let feedback = $.ajax({
-                type: "POST",
-                data: {package_id:package_id,
-                  leadid:leadid
-                },
-                url: "actionTableLead.php",
-                async: false,
-                success :function (feedback){
-                $('#display').html(feedback);
-                }
-            })
-        }
-        get_fb(); // This will run on page load
-        setInterval(function(){
-          get_fb(); // this will run after every 5 seconds
-        }, 10000);
+        //   function get_fb(){
+        //     let package_id=<?php echo $packageId ?>;
+        //     let leadid= "<?php echo $title ?>";
+        //     let feedback = $.ajax({
+        //         type: "POST",
+        //         data: {package_id:package_id,
+        //           leadid:leadid
+        //         },
+        //         url: "actionTableLead.php",
+        //         async: false,
+        //         success :function (feedback){
+        //         $('#display').html(feedback);
+        //         }
+        //     })
+        // }
+        // get_fb(); // This will run on page load
+        // setInterval(function(){
+        //   get_fb(); // this will run after every 5 seconds
+        // }, 10000);
     </script>
 </body>
 <!-- END: Body-->
