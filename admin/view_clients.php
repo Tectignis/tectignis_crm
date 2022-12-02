@@ -215,7 +215,7 @@ if(isset($_GET['del_id'])){
                                                     <div class="btn-group" role="group"
                                                         aria-label="Basic outlined example">
                                                         <button type="button" onclick="deleteBtn()"
-                                                            class="btn btn-sm btn-danger m-1 delbtn"
+                                                            class="btn btn-sm btn-danger m-1 delbtn" 
                                                             data-id="=<?php echo $row['id']; ?>"><i
                                                                 data-feather='trash-2'></i></button>
                                                     </div>
