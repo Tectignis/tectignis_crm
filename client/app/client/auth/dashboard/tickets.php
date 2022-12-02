@@ -146,9 +146,10 @@ if(isset($_POST['ticket'])){
                                         <tr>
                                             <th>Sr no.</th>
                                             <th>Ticket No.</th>
-                                            <th>Description</th>
+                                            
                                             <th>Subject</th>
                                             <th>Status</th>
+                                            <th>Description</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -160,7 +161,7 @@ if(isset($_POST['ticket'])){
                                         <tr>
                                             <td><?php echo $count;?></td>
                                             <td><?php echo $row['ticket_no']; ?></td>
-                                            <td><?php echo $row['Description']; ?></td>
+                                            
                                             <td><?php echo $row['Subject']; ?></td>
                                             <td style="text-align:center">
                                             <?php
@@ -177,6 +178,7 @@ if(isset($_POST['ticket'])){
                                                 }
                                                 ?>
                                             </td>
+                                            <td><?php echo $row['Description']; ?></td>
                                         </tr>
                                         <?php $count++; } ?>
                                     </tbody>
