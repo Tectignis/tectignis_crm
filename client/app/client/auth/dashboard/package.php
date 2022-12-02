@@ -155,7 +155,11 @@ if(isset($_GET['delid'])){
                 $fnotification=mysqli_fetch_array($qnotification);
                
                 if($fnotification['date_diff']<=5){
+                    if($fnotification['date_diff']>=0){
                   echo '<span style="font-size:17px;margin:18px;" class="badge badge-danger">Only '.$fnotification['date_diff'].' days left</span>';
+                    }else{
+                        echo '<span style="font-size:17px;margin:18px;" class="badge badge-danger">Expire</span>';
+                    }
                 }
                 $calculateRemainingLead=$fcardpackage['total_lead']-$fnotification['count'];
                 if($calculateRemainingLead<=10){
@@ -726,8 +730,9 @@ if(isset($_GET['delid'])){
             <?php } ?>
 
         </div>
-        <?php }
-echo '<div style="font-size: xxx-large;text-align: center;color: blue;">No Any Lead</div>';
+        <?php }else{
+echo '<div style="font-size: xxx-large;text-align: center;color: blue;">No Any Lead</div>'; 
+        }
 ?>
     </div>
     <!-- END: Content-->
