@@ -15,6 +15,7 @@ if(mysqli_num_rows($sql)>0){
    $_SESSION['aname']=$row['Authorized_Name'];
      $_SESSION['id']=$row['Client_Code'];
      $_SESSION['fname']=$row['Firm_Name'];
+     $_SESSION['image']=$row['image'];
      header('location:../../app/client/auth/dashboard/index.php');
     }else{
         echo "<script>alert('Password is incorrect');</script>";
