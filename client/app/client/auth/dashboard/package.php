@@ -477,7 +477,7 @@ $packageId=$_GET['packageId'];
                                         <tbody id="display">
 
                                             <?php
-                                        $qsql=mysqli_query($conn,"select *,lead.id as id, lead.Mobile_Number from lead inner join client on client.Client_Code=lead.Firm_Name inner join package_assign on package_assign.title=lead.package where lead.deal=0 and package_assign.id='$packageId' and client.Client_Code='$id' and lead.package='$title';");
+                                        $qsql=mysqli_query($conn,"select *,lead.id as id, lead.Mobile_Number from lead inner join client on client.Client_Code=lead.Firm_Name inner join package_assign on package_assign.title=lead.package where package_assign.id='$packageId' and client.Client_Code='$id' and lead.package='$title';");
                                         $count=1;
                                         while ($frow=mysqli_fetch_array($qsql)){ 
                                       ?>
@@ -592,7 +592,7 @@ $packageId=$_GET['packageId'];
 
             </div>
             <?php 
-                 $qclientsql=mysqli_query($conn,"select lead.*, client.*, lead.Mobile_Number from lead inner join client on client.Client_Code=lead.Firm_Name where lead.deal=0 and Client_Code='$id'");
+                 $qclientsql=mysqli_query($conn,"select lead.*, client.*, lead.Mobile_Number from lead inner join client on client.Client_Code=lead.Firm_Name where Client_Code='$id'");
                  while ($arr=mysqli_fetch_array($qclientsql)){ 
                 ?>
             <div class="modal fade" id="m<?php echo $arr['id'] ?>">
