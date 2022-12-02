@@ -157,14 +157,14 @@ $packageId=$_GET['packageId'];
                
                 if($fnotification['date_diff']<=5){
                     if($fnotification['date_diff']>=0){
-                  echo '<span style="font-size:17px;margin:18px;" class="badge badge-danger">Only '.$fnotification['date_diff'].' days left</span>';
+                  echo '<span style="font-size:17px;margin-left: -26px;" class="badge badge-danger">Only '.$fnotification['date_diff'].' days left payment due</span>';
                     }else{
-                        echo '<span style="font-size:17px;margin:18px;" class="badge badge-danger">Expire</span>';
+                        echo '<span style="font-size:17px;margin-left: -26px;" class="badge badge-danger">Expire</span>';
                     }
                 }
                 $calculateRemainingLead=$fcardpackage['total_lead']-$fnotification['count'];
                 if($calculateRemainingLead<=10){
-                  echo '<span style="font-size:17px;margin:18px;" class="badge badge-info">You have only'. $calculateRemainingLead.' leads</span>';
+                  echo '<span style="font-size:17px;margin-left: -26px;" class="badge badge-info">You have only'. $calculateRemainingLead.' leads</span>';
                 }
             }else{
 
