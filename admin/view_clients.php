@@ -252,16 +252,16 @@ if(isset($_GET['del_id'])){
                                 <div class="form-group">
                                     <label class="form-label">Package</label>
                                     <input type="hidden" value="<?php echo $id; ?>" id="firm_name" name="firm_name">
-                                    <!-- <input type="text" value="" class="form-control" name="package" id="package"> -->
-                                    <select class="form-control" name="package" >
-                                        <option value="" id="package" selected></option>
+                                    <input type="text" value="" class="form-control" name="package" id="package">
+                                    <!-- <select class="form-control" name="package" >
+                                        <option value="" id="package" ></option>
                                         <?php 
                                 $qpackageselect=mysqli_query($conn,"SELECT * FROM package_assign WHERE firm_id='$id'");
                                 while($row=mysqli_fetch_array($qpackageselect)){ ?>
                                 <option value="<?php echo $row['title'] ?>"><?php echo $row['title'] ?></option>
                                 <?php }
                                  ?>
-                                    </select>
+                                    </select> -->
                                 </div>
                                 <!-- /.form-group -->
                                 <div class="form-group">
@@ -389,6 +389,7 @@ if(isset($_GET['del_id'])){
         }
 
         function package(val) {
+            
             $("#package").val(val);
             $("#package").html(val);
             let firm_name = $("#leadid").val();

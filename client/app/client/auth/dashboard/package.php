@@ -41,8 +41,10 @@ $packageId=$_GET['packageId'];
     //   }else{
     //    $sql1=mysqli_query($conn,"INSERT INTO `remarks`(`remark`,`lead_id`,`date_time`) VALUES ('$remark','$id','$date')");
     //   }
+    // $baseurl= "https://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
       if($sql==1){
           echo "Saved!", "data successfully submitted", "success";
+          header('location:'.$packageId);
       }else {
           echo '<script>alert("oops...somthing went wrong");</script>';
       }
@@ -59,7 +61,7 @@ $packageId=$_GET['packageId'];
 <!-- BEGIN: Head-->
 
 <head>
-    <base href="http://localhost/tectignis_crm/client/app/client/auth/dashboard/">
+    <base href="http://localhost:8000/tectignis_crm/client/app/client/auth/dashboard/">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
@@ -70,7 +72,7 @@ $packageId=$_GET['packageId'];
     <meta name="author" content="PIXINVENT">
     <title>Leads</title>
     <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
-    <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
+    
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
         rel="stylesheet">
 
@@ -110,6 +112,11 @@ $packageId=$_GET['packageId'];
             background: #ffff !important;
         }
     </style>
+    <?php
+    $logosql=mysqli_query($conn,'select * from setting_system');
+    $fetchlogo=mysqli_fetch_array($logosql);
+    ?>
+      <link rel="shortcut icon" type="image/x-icon" href="../../../../../admin/images/favicon/<?php echo $fetchlogo['fav'] ?>">
 </head>
 <!-- END: Head-->
 

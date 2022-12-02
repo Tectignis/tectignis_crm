@@ -42,7 +42,7 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
     <meta name="author" content="PIXINVENT">
     <title>Dashboard ecommerce - Vuexy - Bootstrap HTML admin template</title>
     <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
-    <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
+  
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
         rel="stylesheet">
 
@@ -82,6 +82,11 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
     <!-- END: Custom CSS-->
     <link rel="stylesheet" href="cal/css/demo.css"/>
     <link rel="stylesheet" href="cal/css/theme1.css"/>
+    <?php
+    $logosql=mysqli_query($conn,'select * from setting_system');
+    $fetchlogo=mysqli_fetch_array($logosql);
+    ?>
+      <link rel="shortcut icon" type="image/x-icon" href="../../../../../admin/images/favicon/<?php echo $fetchlogo['fav'] ?>">
     <style>
         .cld-main {
     width: 100%;
