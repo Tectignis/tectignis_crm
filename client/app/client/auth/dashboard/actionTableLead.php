@@ -6,7 +6,7 @@ $id=$_SESSION['id'];
 if(isset($_POST['package_id'])){
   $packageId=$_POST['package_id'];
 $lead_id=$_POST['leadid'];
-$empQuery = "select *,lead.id as id, lead.Mobile_Number from lead inner join client on client.Client_Code=lead.Firm_Name inner join package_assign on package_assign.title=lead.package where lead.deal=0 and package_assign.id='$packageId' and client.Client_Code='$id' and lead.package='$lead_id';";
+$empQuery = "select *,lead.id as id, lead.Mobile_Number from lead inner join client on client.Client_Code=lead.Firm_Name inner join package_assign on package_assign.title=lead.package where package_assign.id='$packageId' and client.Client_Code='$id' and lead.package='$lead_id';";
 $empRecords = mysqli_query($conn, $empQuery);
 $count=1;
 while ($row=mysqli_fetch_array($empRecords)){
@@ -19,21 +19,26 @@ echo '
                         <td>'. $row['Requirement'] .'</td>
                         <td>'. $row['Created_On'] .'</td>
                         <td>'. $row['social_media'] .'</td>
-                        <td>'.  $row['nature'] .'</td>
+                        <td>'; ?> <?php $status=$row['nature'];
+                        if($status=='Hot'){
+                            echo '<span class="badge badge-light-danger">Hot</span>';
+                        }
+                        else if($status=='Cold'){
+                            echo '<span class="badge badge-light-primary">Cold</span>';
+                        }else if($status=='Deal Closed'){
+                           echo '<span class="badge badge-light-dark">Deal Closed</span>';
+                        }else if($status=='Warm'){
+                            echo '<span class="badge badge-light-success">Warm</span>';
+                        } ?><?php echo '</td>
                         <td style="text-align:center">
 
                           <button type="button" class="btn btn-primary btn-rounded btn-icon usereditid"
-                            data-bs-toggle="modal" data-bs-target="#m'. $row['id'] .'" data-id='. $row['id'].' style="color: aliceblue"> <i
+                            data-bs-toggle="modal" data-bs-target="#m'. $row['id'] .'" data-id='. $row['id']; ?> <?php
+                            if($status=='Deal Closed'){
+                            echo 'style="display:none;"'; }else{ echo 'style="color: aliceblue"'; } ?> <?php echo '> <i
                               class="fas fa-pen"></i>
                           </button>
 
-                          <a href="package?delid='. $row['id'].'"><button type="button"
-                              onclick="return confirm("Are you sure you want to delete this item")"
-                              class="btn btn-danger btn-rounded btn-icon" style="color: aliceblue"><i
-                                class="fas fa-trash"></i> </button></a>
-                          <a href="package?gen='.$row['id'] .'">
-                            <button class="btn btn-warning" name="submit">Deals</button>
-                          </a>
                         </td>
                       </tr>';
                       $count++; }
@@ -56,7 +61,7 @@ echo '
             echo '<h3 class="fw-bolder mb-75">'. $count1 .'</h3>
             <span>Total Lead</span>
         </div>
-        <div class="avatar bg-light-primary p-50">
+        <div class="avatar bg-light-warning p-50">
             <span class="avatar-content">
             <i class="far fa-user" aria-hidden="true"></i>
             </span>
@@ -90,7 +95,7 @@ echo '
            echo ' <h3 class="fw-bolder mb-75">'.$count1.'</h3>
             <span>Cold</span>
         </div>
-        <div class="avatar bg-light-success p-50">
+        <div class="avatar bg-light-primary p-50">
             <span class="avatar-content">
             <i class="fas fa-user-check" aria-hidden="true"></i>
             </span>
@@ -107,7 +112,7 @@ echo '
             echo '<h3 class="fw-bolder mb-75">'.$count1.'</h3>
             <span>Warm</span>
         </div>
-        <div class="avatar bg-light-warning p-50">
+        <div class="avatar bg-light-success p-50">
             <span class="avatar-content">
             <i class="fas fa-user-times" aria-hidden="true"></i>
             </span>
@@ -128,7 +133,7 @@ else if($fetch == 'Monthly'){
             echo '<h3 class="fw-bolder mb-75">'. $count1 .'</h3>
             <span>Total Lead</span>
         </div>
-        <div class="avatar bg-light-primary p-50">
+        <div class="avatar bg-light-warning p-50">
             <span class="avatar-content">
             <i class="far fa-user" aria-hidden="true"></i>
             </span>
@@ -162,7 +167,7 @@ else if($fetch == 'Monthly'){
            echo ' <h3 class="fw-bolder mb-75">'.$count1.'</h3>
             <span>Cold</span>
         </div>
-        <div class="avatar bg-light-success p-50">
+        <div class="avatar bg-light-primary p-50">
             <span class="avatar-content">
             <i class="fas fa-user-check" aria-hidden="true"></i>
             </span>
@@ -179,7 +184,7 @@ else if($fetch == 'Monthly'){
             echo '<h3 class="fw-bolder mb-75">'.$count1.'</h3>
             <span>Warm</span>
         </div>
-        <div class="avatar bg-light-warning p-50">
+        <div class="avatar bg-light-success p-50">
             <span class="avatar-content">
             <i class="fas fa-user-times" aria-hidden="true"></i>
             </span>
@@ -200,7 +205,7 @@ else if($fetch == '3 Month'){
                 echo '<h3 class="fw-bolder mb-75">'. $count1 .'</h3>
                 <span>Total Lead</span>
             </div>
-            <div class="avatar bg-light-primary p-50">
+            <div class="avatar bg-light-warning p-50">
                 <span class="avatar-content">
                 <i class="far fa-user" aria-hidden="true"></i>
                 </span>
@@ -234,7 +239,7 @@ else if($fetch == '3 Month'){
                echo ' <h3 class="fw-bolder mb-75">'.$count1.'</h3>
                 <span>Cold</span>
             </div>
-            <div class="avatar bg-light-success p-50">
+            <div class="avatar bg-light-primary p-50">
                 <span class="avatar-content">
                 <i class="fas fa-user-check" aria-hidden="true"></i>
                 </span>
@@ -251,7 +256,7 @@ else if($fetch == '3 Month'){
                 echo '<h3 class="fw-bolder mb-75">'.$count1.'</h3>
                 <span>Warm</span>
             </div>
-            <div class="avatar bg-light-warning p-50">
+            <div class="avatar bg-light-success p-50">
                 <span class="avatar-content">
                 <i class="fas fa-user-times" aria-hidden="true"></i>
                 </span>

@@ -210,7 +210,7 @@ $packageId=$_GET['packageId'];
                                         <h3 class="fw-bolder mb-75"><?php echo $count1; ?></h3>
                                         <span>Total Lead</span>
                                     </div>
-                                    <div class="avatar bg-light-primary p-50">
+                                    <div class="avatar bg-light-warning p-50">
                                         <span class="avatar-content">
                                         <i class="far fa-user" aria-hidden="true"></i>
                                         </span>
@@ -248,7 +248,7 @@ $packageId=$_GET['packageId'];
                                         <h3 class="fw-bolder mb-75"><?php echo $count1; ?></h3>
                                         <span>Cold</span>
                                     </div>
-                                    <div class="avatar bg-light-success p-50">
+                                    <div class="avatar bg-light-primary p-50">
                                         <span class="avatar-content">
                                         <i class="fas fa-user-check" aria-hidden="true"></i>
                                         </span>
@@ -267,7 +267,7 @@ $packageId=$_GET['packageId'];
                                         <h3 class="fw-bolder mb-75"><?php echo $count1; ?></h3>
                                         <span>Warm</span>
                                     </div>
-                                    <div class="avatar bg-light-warning p-50">
+                                    <div class="avatar bg-light-success p-50">
                                         <span class="avatar-content">
                                         <i class="fas fa-user-times" aria-hidden="true"></i>
                                         </span>
@@ -302,7 +302,7 @@ $packageId=$_GET['packageId'];
 
                                             <?php
                      
-                          $qsql=mysqli_query($conn,"select *,lead.id as id, lead.Mobile_Number from lead inner join client on client.Client_Code=lead.Firm_Name inner join package_assign on package_assign.title=lead.package where lead.deal=0 and package_assign.id='$packageId' and client.Client_Code='$id' and lead.package='$title';");
+                          $qsql=mysqli_query($conn,"select *,lead.id as id, lead.Mobile_Number from lead inner join client on client.Client_Code=lead.Firm_Name inner join package_assign on package_assign.title=lead.package where package_assign.id='$packageId' and client.Client_Code='$id' and lead.package='$title';");
                           $count=1;
                         while ($frow=mysqli_fetch_array($qsql)){ 
                                       ?>
@@ -856,25 +856,25 @@ echo '<div style="font-size: xxx-large;text-align: center;color: blue;">No Any L
         }
     </script>
     <script>
-        //   function get_fb(){
-        //     let package_id=<?php echo $packageId ?>;
-        //     let leadid= "<?php echo $title ?>";
-        //     let feedback = $.ajax({
-        //         type: "POST",
-        //         data: {package_id:package_id,
-        //           leadid:leadid
-        //         },
-        //         url: "actionTableLead.php",
-        //         async: false,
-        //         success :function (feedback){
-        //         $('#display').html(feedback);
-        //         }
-        //     })
-        // }
-        // get_fb(); // This will run on page load
-        // setInterval(function(){
-        //   get_fb(); // this will run after every 5 seconds
-        // }, 10000);
+          function get_fb(){
+            let package_id=<?php echo $packageId ?>;
+            let leadid= "<?php echo $title ?>";
+            let feedback = $.ajax({
+                type: "POST",
+                data: {package_id:package_id,
+                  leadid:leadid
+                },
+                url: "actionTableLead.php",
+                async: false,
+                success :function (feedback){
+                $('#display').html(feedback);
+                }
+            })
+        }
+        get_fb(); // This will run on page load
+        setInterval(function(){
+          get_fb(); // this will run after every 5 seconds
+        }, 10000);
     </script>
 </body>
 <!-- END: Body-->
