@@ -459,7 +459,7 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
     <script src="app-assets/vendors/js/charts/chart.min.js"></script>
     <script src="app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
     <script src="app-assets/vendors/js/charts/apexcharts.min.js"></script>
-    <script src="app-assets/vendors/js/extensions/toastr.min.js"></script>
+    <!-- <script src="app-assets/vendors/js/extensions/toastr.min.js"></script> -->
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->
