@@ -314,13 +314,27 @@ $packageId=$_GET['packageId'];
                                                 <td><?php echo $frow['Requirement']; ?></td>
                                                 <td><?php echo $frow['Created_On']; ?></td>
                                                 <td><?php echo $frow['social_media']; ?></td>
-                                                <td><?php echo $frow['nature']; ?></td>
+                                                <td><?php
+                                                $status=$frow['nature'];
+                                                if($status=='Hot'){
+                                                    echo '<span class="badge badge-light-danger">Hot</span>';
+                                                }
+                                                else if($status=='Cold'){
+                                                    echo '<span class="badge badge-light-primary">Cold</span>';
+                                                }else if($status=='Deal Closed'){
+                                                   echo '<span class="badge badge-light-dark">Deal Closed</span>';
+                                                }else if($status=='Warm'){
+                                                    echo '<span class="badge badge-light-success">Warm</span>';
+                                                }
+                                                ?>    </td>
                                                 <td style="text-align:center">
 
                                                     <button
                                                         class="btn btn-primary btn-rounded btn-icon usereditid"
                                                         data-bs-toggle="modal" data-bs-target="#m<?php echo $frow['id'] ?>" data-id='<?php echo $frow['id']; ?>'
-                                                        style="color: aliceblue"> <i class="fas fa-pen"></i>
+                                                         <?php
+                                                if($status=='Deal Closed'){
+                                                echo 'style="display:none;"'; }else{ echo 'style="color: aliceblue"'; } ?>> <i class="fas fa-pen" ></i>
                                                         </button>
 
                                                         <!-- <a href="package?delid=<?php echo $frow['id']; ?>"><button
@@ -474,15 +488,33 @@ $packageId=$_GET['packageId'];
                                                 <td><?php echo $frow['Requirement']; ?></td>
                                                 <td><?php echo $frow['Created_On']; ?></td>
                                                 <td><?php echo $frow['social_media']; ?></td>
-                                                <td><?php echo $frow['nature']; ?></td>
+                                                <td>
+                                                <?php
+                                                $status=$frow['nature'];
+                                                if($status=='Hot'){
+                                                    echo '<span class="badge badge-light-danger">Hot</span>';
+                                                }
+                                                else if($status=='Cold'){
+                                                    echo '<span class="badge badge-light-primary">Cold</span>';
+                                                }else if($status=='Deal Closed'){
+                                                   echo '<span class="badge badge-light-dark">Deal Closed</span>';
+                                                }else if($status=='Warm'){
+                                                    echo '<span class="badge badge-light-success">Warm</span>';
+                                                }
+                                                ?>    
+                                                </td>
                                                 <td style="text-align:center">
 
+                                                
                                                     <a href="#m<?php echo $frow['id'] ?>"
                                                         class="btn btn-primary btn-rounded btn-icon usereditid"
                                                         data-toggle="modal" data-target="" data-id='<?php echo $frow['id']; ?>'
-                                                        style="color: aliceblue"> <i class="fas fa-pen"></i>
+                                                        <?php
+                                                if($status=='Deal Closed'){
+                                                echo 'style="display:none;"'; }else{ echo 'style="color: aliceblue"'; } ?>> <i class="fas fa-pen" ></i>
                                                         </button></a>
 
+                                                        
                                                         <!-- <a href="package?delid=<?php echo $frow['id']; ?>"><button
                                                                 type="button"
                                                                 onclick="return confirm('Are you sure you want to delete this item')"

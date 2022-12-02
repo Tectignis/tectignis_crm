@@ -112,13 +112,13 @@ include("config.php");
                                     <div class="row">
                                         <div class="col-md-12">
                                             <h1 class="card-title mb-1" style="font-size:2.6rem"><a class="d-flex align-items-center" href="package/<?php echo $fsidepackage['id'] ?>"><span style="text-transform:capitalize" ><?php echo $fsidepackage['title'] ?></span></a></h1>
-                                            <h5 class="font-small-4">Leads Received - <span><?php 
+                                            <h5 class="font-small-4">Leads Received - <span style="color:black;"><b><?php 
                                             $pac=$fsidepackage['title'];
                                             $leadsql=mysqli_query($conn,"select * from lead inner join package_assign on lead.package=package_assign.title where lead.Firm_Name='$firm_id_check' and lead.package='$pac'");
                                             $countlead=mysqli_num_rows($leadsql);
-                                            echo $countlead ?></span></h5>
-                                            <h5 class="font-small-4">Total Cash - <span><i class="fas fa-rupee-sign"></i> <?php echo $fsidepackage['total_amt'] ?></span></h5>
-                                            <h5 class="font-small-4">Payment Received - <span><i class="fas fa-rupee-sign"></i> <?php echo $fsidepackage['first_payment'] ?></span></h5>
+                                            echo $countlead ?></b></span></h5>
+                                            <h5 class="font-small-4">Total Cash - <span style="color:black;"><b><i class="fas fa-rupee-sign"></i> <?php echo $fsidepackage['total_amt'] ?></b></span></h5>
+                                            <h5 class="font-small-4">Payment Received - <span style="color:black;"><b><i class="fas fa-rupee-sign"></i> <?php echo $fsidepackage['first_payment'] ?></span></b></h5>
                                         </div>
                                         <!-- <div class="col-md-7">
                                             <canvas id="myChart<?php echo $fsidepackage['id'] ?>"></canvas>
