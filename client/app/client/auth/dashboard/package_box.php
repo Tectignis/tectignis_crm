@@ -83,11 +83,9 @@ include("config.php");
                             <h2 class="content-header-title float-start mb-0">Package Card</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a>
+                                    <li class="breadcrumb-item"><a href="index.php">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="#">Card</a>
-                                    </li>
-                                    <li class="breadcrumb-item active">Package Card
+                                    <li class="breadcrumb-item active">Packages
                                     </li>
                                 </ol>
                             </div>

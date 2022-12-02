@@ -25,21 +25,15 @@ $packageId=$_GET['packageId'];
     mysqli_query($conn,"update lead set status=1 where Firm_Name=$id");   
     
     if(isset($_POST['update'])){
-      $id=$_POST['dnk'];
       $nature=$_POST['nature'];
        $remark=$_POST['remark'];
-      $remainder_date=$_POST['remainder_date'];
-      $sitevisit_date=$_POST['sitevisit_date'];
-      $id=$_POST['id'];
-    date_default_timezone_set('Asia/Kolkata');
-    $date=date("Y-m-d h:i:s");
   
-      $sql=mysqli_query($conn,"UPDATE `lead` SET `nature`='$nature',`remainder_date`='$remainder_date',`sitevisit_date`='$sitevisit_date' WHERE id='$id'");
+      $sql=mysqli_query($conn,"UPDATE `lead` SET `nature`='$nature', WHERE id='$id'");
       $qcheckremark=mysqli_query($conn,"select * from remarks where lead_id='$id'");
       if(mysqli_num_rows($qcheckremark)>0){
-          $sql1=mysqli_query($conn,"update remarks set remark='$remark' , date_time='$date' where lead_id='$id'");
+          $sql1=mysqli_query($conn,"update remarks set remark='$remark' where lead_id='$id'");
       }else{
-       $sql1=mysqli_query($conn,"INSERT INTO `remarks`(`remark`,`lead_id`,`date_time`) VALUES ('$remark','$id','$date')");
+       $sql1=mysqli_query($conn,"INSERT INTO `remarks`(`remark`,`lead_id`) VALUES ('$remark','$id')");
       }
       if($sql==1){
           echo "Saved!", "data successfully submitted", "success";
@@ -59,7 +53,7 @@ $packageId=$_GET['packageId'];
 <!-- BEGIN: Head-->
 
 <head>
-    <base href="http://localhost:8000/tectignis_crm/client/app/client/auth/dashboard/">
+    <base href="http://localhost/tectignis_crm/client/app/client/auth/dashboard/">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
@@ -138,7 +132,9 @@ $packageId=$_GET['packageId'];
                             <h2 class="content-header-title float-start mb-0">Leads</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Packages</a>
+                                <li class="breadcrumb-item"><a href="index.php">Home</a>
+                                    </li>
+                                    <li class="breadcrumb-item"><a href="package_box.php">Packages</a>
                                     </li>
                                     <li class="breadcrumb-item"><a href="#">Leads</a>
                                     </li>
@@ -555,7 +551,7 @@ $packageId=$_GET['packageId'];
                  while ($arr=mysqli_fetch_array($qclientsql)){ 
                 ?>
             <div class="modal fade" id="m<?php echo $arr['id'] ?>">
-                <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-dialog modal-md" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Update Leads</h5>
@@ -565,34 +561,9 @@ $packageId=$_GET['packageId'];
                         <form method="post" action="">
                             <div class="modal-body body2">
                                 <div class="row">
-                                    <div class="col-8">
+                                    <div class="col-12">
                                         <div class="row">
-                                            <div class="col-6">
-                                                <div class="form-group mt-2">
-                                                    <label for="inputName">Client Name : </label>
-                                                    <?php echo $arr['Client_Name']; ?>
-                                                    <input type="hidden" name="id" value="<?php echo $arr['id'] ?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="form-group mt-2">
-                                                    <label for="inputEmail">Mobile Number : </label>
-                                                    <?php echo $arr['Mobile_Number']; ?>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="form-group mt-2">
-                                                    <label>Source : </label>
-                                                    <?php echo $arr['social_media']; ?>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="form-group mt-2">
-                                                    <label for="inputEmail">Requirement : </label>
-                                                    <?php echo $arr['Requirement']; ?>
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
+                                            <div class="col-6 col-12">
                                                 <div class="form-group mt-2">
                                                     <label>Nature</label>
                                                     <select class="form-control" name="nature" style="width: 100%;"
@@ -631,7 +602,7 @@ $packageId=$_GET['packageId'];
                                             $qremark=mysqli_query($conn,"select * from remarks where lead_id='$leadId'");
                                             $fremark=mysqli_fetch_array($qremark);
                                             ?>
-                                            <div class="col-6">
+                                            <div class="col-6 col-12">
                                                 <div class="form-group mt-2">
                                                     <label for="inputEmail">Remark : </label></br>
                                                     <?php  if(mysqli_num_rows($qremark)>0){ ?>
@@ -643,76 +614,7 @@ $packageId=$_GET['packageId'];
                                                     <?php } ?>
                                                 </div>
                                             </div>
-                                            <div class="col-6">
-                                                <div class="form-group mt-2">
-                                                    <input type="checkbox" id="myCheck<?php echo $arr['id'] ?>" name=""
-                                                        value="remainder"
-                                                        onclick="myFunction<?php echo $arr['id'] ?>()">
-                                                    <label for="Remainder">Remainder </label>
-
-                                                    <div class="col-12 text" id="text<?php echo $arr['id'] ?>"
-                                                        style="display:none">
-                                                        <div class="form-group">
-                                                            <?php
-                                                            if($arr['remainder_date']=='0000-00-00 00:00:00'){
-                                                            ?>
-                                                            <label>date : </label>
-                                                            <input class="form-control" type="datetime-local"
-                                                                name="remainder_date">
-                                                            <?php }else{ ?>
-                                                            <label>date : </label>
-                                                            <input class="form-control" type="text"
-                                                                value="<?php echo $arr['remainder_date']; ?>"
-                                                                name="remainder_date">
-                                                            <?php } ?>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <script>
-                                                    function drop<?= $arr['id']; ?> () {
-                                                        var select = document.getElementById(
-                                                            "dropdown<?php echo $arr['id']; ?>");
-                                                        var text = document.getElementById(
-                                                            "textt<?php echo $arr['id']; ?>");
-                                                        if (select.selected == true) {
-                                                            text.style.display = "block";
-                                                        } else {
-                                                            text.style.display = "none";
-                                                        }
-                                                    }
-                                                </script>
-                                                <script>
-                                                    function myFunction<?= $arr['id'] ?> () {
-                                                        let checkBox = document.getElementById(
-                                                            "myCheck<?php echo $arr['id'] ?>");
-                                                        let text = document.getElementById(
-                                                            "text<?php echo $arr['id'] ?>");
-                                                        if (checkBox.checked == true) {
-                                                            text.style.display = "block";
-                                                        } else {
-                                                            text.style.display = "none";
-                                                        }
-                                                    }
-                                                </script>
-                                            </div>
                                         </div>
-                                    </div>
-
-                                    <div class="col-4">
-                                        <div class="vl"></div>
-                                        <ul class="sessions" style="overflow:scroll;height:300px">
-                                            <?php
-                                            $lead_id=$arr['id'];
-                                            $sql1=mysqli_query($conn,"select * from remarks where lead_id='$lead_id' order by id desc; ");
-                                            while ($arr=mysqli_fetch_array($sql1)){ 
-                                            
-                                            ?>
-
-                                            <li>
-                                                <div class="time"><?php echo $arr['date_time']; ?></div>
-                                                <p><?php echo $arr['remark']; ?></p>
-                                            </li>
-                                            <?php } ?>
                                     </div>
                                 </div>
                             </div>
