@@ -573,7 +573,7 @@ $packageId=$_GET['packageId'];
                                                 <div class="form-group mt-2">
                                                     <label for="inputName">Client Name : </label>
                                                     <?php echo $arr['Client_Name']; ?>
-                                                    <input type="hidden" name="idclient" value="<?php echo $arr['id'] ?>">
+                                                   
                                                 </div>
                                             </div>
                                             <div class="col-6">
@@ -597,6 +597,7 @@ $packageId=$_GET['packageId'];
                                             <div class="col-12">
                                                 <div class="form-group mt-2">
                                                     <label>Nature</label>
+                                                    <input type="hidden" name="idclient" value="<?php echo $arr['id'] ?>">
                                                     <select class="form-control" name="nature" style="width: 100%;"
                                                         onclick="drop<?php echo $arr['id']; ?>()">
                                                         <option selected="selected"
