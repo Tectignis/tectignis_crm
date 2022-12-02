@@ -600,16 +600,17 @@ $packageId=$_GET['packageId'];
                                                     <input type="hidden" name="idclient" value="<?php echo $arr['id'] ?>">
                                                     <select class="form-control" name="nature" style="width: 100%;"
                                                         onclick="drop<?php echo $arr['id']; ?>()">
-                                                        <option selected="selected"
+                                                        <option value="">Select</option>
+                                                        <!-- <option selected="selected"
                                                             value="<?php echo $arr['nature']; ?>">
                                                             <?php echo $arr['nature']; ?>
-                                                        </option>
-                                                        <option value="Hot">Hot</option>
-                                                        <option value="Cold">Cold</option>
-                                                        <option value="Warm">Warm</option>
-                                                        <option value="Deal Closed">Deal Closed</option>
-                                                        <option value="Site Visit"
-                                                            id="dropdown<?php echo $arr['id']; ?>">Site Visit</option>
+                                                        </option> -->
+                                                        <option value="Hot" <?php if($arr['nature'] == 'Hot'){ echo 'selected';} ?>>Hot</option>
+                                                        <option value="Cold" <?php if($arr['nature'] == 'Cold') { echo 'selected';} ?>>Cold</option>
+                                                        <option value="Warm" <?php if($arr['nature'] == 'Warm') { echo 'selected';} ?>>Warm</option>
+                                                        <option value="Deal Closed" <?php if($arr['nature'] == 'Deal Closed') { echo 'selected';} ?>>Deal Closed</option>
+                                                        <!-- <option value="Site Visit"
+                                                            id="dropdown<?php echo $arr['id']; ?>">Site Visit</option> -->
                                                     </select>
                                                 </div>
                                             </div>
