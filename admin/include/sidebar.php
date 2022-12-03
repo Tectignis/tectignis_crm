@@ -4,7 +4,7 @@
       <div class="navbar-header">
           <ul class="nav navbar-nav flex-row">
               <li class="nav-item me-auto"><a class="navbar-brand" href="html/ltr/vertical-menu-template/index.html"><span class="brand-logo">
-                         <img src="images/favicon/<?php echo $fetchlogo['logo'] ?>"></span>
+              <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"></span>
                       <h2 class="brand-text">Admin</h2>
                   </a></li>
           </ul>

@@ -156,7 +156,7 @@ if(isset($_POST['submit3'])){
                                                 <input class="form-control" name="logo" type="file" id="formFile" />
                                             </div>
                                             <div class="col-md-6 col-12 mb-3 m-auto">
-                                               <img src="images/logo&icon/<?php echo $arr['logo'];?>" >
+                                               <img src="images/logo&icon/<?php echo $arr['logo'];?>" style="width: 33px;">
                                             </div>
                                         </div>
                                         <button class="btn btn-primary" type="submit" name="submit1">Submit</button>

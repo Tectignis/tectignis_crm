@@ -230,7 +230,7 @@ $ndeactivated=mysqli_num_rows($qdeactivated);
                     <div class="row">
                         <!-- Donut Chart Starts-->
                         <div class="col-xl-6 col-12">
-                            <div class="card">
+                            <div class="card" style="padding-bottom: 24px;">
                                 <div class="card-header flex-column align-items-start">
                                     <h4 class="card-title mb-75">Lead Status</h4>
                                     
@@ -252,21 +252,17 @@ $ndeactivated=mysqli_num_rows($qdeactivated);
                                         <div class="d-flex align-items-center">
                                             <i data-feather="monitor" class="font-medium-2 text-primary"></i>
                                             <span class="fw-bold ms-75 me-25">Activated</span>
-                                        </div>
-                                        <div>
                                             <span><?php echo $nactivated ?></span>
                                             <i data-feather="arrow-up" class="text-success"></i>
                                         </div>
-                                    </div>
-                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex justify-content-between">
                                         <div class="d-flex align-items-center">
                                             <i data-feather="tablet" class="font-medium-2 text-success"></i>
                                             <span class="fw-bold ms-75 me-25">Deactivated</span>
-                                        </div>
-                                        <div>
                                             <span><?php echo $ndeactivated ?></span>
                                             <i data-feather="arrow-down" class="text-danger"></i>
                                         </div>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
