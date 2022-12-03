@@ -147,8 +147,7 @@ if(isset($_POST["submi"])){
                             <div class="card-body">
                                 <div class="profile-image-wrapper">
                                     <div class="profile-image">
-                                        <div class="avatar"> <a href="view_clients/<?php echo $row['Client_Code'] ?>"
-                                                target="_blank">
+                                        <div class="avatar"> <a href="view_clients/<?php echo $row['Client_Code'] ?>">
                                                 <?php
                                                     if($row['image']==""){
                                          echo '<img src="app-assets/images/portrait/small/avatar-s-9.jpg" alt="Profile Picture" />';
@@ -289,7 +288,7 @@ if(isset($_POST["submi"])){
                     <div class="modal-header bg-transparent">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <h1 class="text-center mb-1" id="addNewCardTitle">Add New Client</h1>
+                    <h1 class="text-center mb-1" id="addNewCardTitle">Edit Client</h1>
                     <div class="modal-body px-sm-5 mx-50 pb-5 ">
 
 
