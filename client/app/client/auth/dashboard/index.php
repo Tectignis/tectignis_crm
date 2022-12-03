@@ -2,6 +2,9 @@
 session_start();
 include("config.php");
 
+if(!isset($_SESSION['id'])){
+    header('location:../../../../auth/path/login.php');
+}
 
 $id=$_SESSION['id'];
 $leadHot=mysqli_query($conn,"select * from lead where nature='Hot' and Firm_Name='$id'");
