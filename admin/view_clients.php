@@ -12,7 +12,7 @@ if(isset($_GET['del_id'])){
 <!-- BEGIN: Head-->
 
 <head>
-    <base href="http://localhost:8000/tectignis_crm/admin/" />
+    <base href="http://localhost/tectignis_crm/admin/" />
     <title>View Clients</title>
     <!-- DataTables -->
     <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
@@ -42,12 +42,14 @@ if(isset($_GET['del_id'])){
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-start mb-0">Monika</h2>
+                            <h2 class="content-header-title float-start mb-0">View Client</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Clients</a>
+                                <li class="breadcrumb-item"><a href="dashboard.php">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="#">Client Details</a>
+                                    <li class="breadcrumb-item"><a href="clients.php">Clients</a>
+                                    </li>
+                                    <li class="breadcrumb-item active">Client Details</a>
                                     </li>
                                 </ol>
                             </div>
@@ -246,7 +248,7 @@ if(isset($_GET['del_id'])){
                 </div>
                 <h1 class="text-center mb-1" id="addNewCardTitle">Add New Client</h1>
                 <div class="modal-body">
-                    <form method="post" class="add-new-record modal-content pt-0">
+                    <form method="post" class="add-new-record pt-0">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
