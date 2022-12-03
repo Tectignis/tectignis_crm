@@ -213,7 +213,7 @@ if(isset($_POST['ticket'])){
                         <div class="col-12">
                             <label class="form-label" for="modalAddCardNumber">Subject</label>
                             <div class="input-group input-group-merge">
-                                <input id="modalAddCardNumber" name="subject" class="form-control add-credit-card-mask" type="text" placeholder="......." aria-describedby="modalAddCard2" data-msg="Please enter your credit card number" />
+                                <input id="modalAddCardNumber" name="subject" class="form-control add-credit-card-mask" type="text" placeholder="......." aria-describedby="modalAddCard2" data-msg="Please enter your credit card number" required/>
                                 <span class="input-group-text cursor-pointer p-25" id="modalAddCard2">
                                     <span class="add-card-type"></span>
                                 </span>
@@ -222,7 +222,7 @@ if(isset($_POST['ticket'])){
                         <div class="col-12">
                             <label class="form-label" for="modalAddCardNumber">Description</label>
                             <div class="input-group input-group-merge">
-                                <input id="modalAddCardNumber" name="description" class="form-control add-credit-card-mask" type="text" placeholder="......." aria-describedby="modalAddCard2" data-msg="Please enter your credit card number" />
+                                <input id="modalAddCardNumber" name="description" class="form-control add-credit-card-mask" type="text" placeholder="......." aria-describedby="modalAddCard2" data-msg="Please enter your credit card number" required/>
                                 <span class="input-group-text cursor-pointer p-25" id="modalAddCard2">
                                     <span class="add-card-type"></span>
                                 </span>

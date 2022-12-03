@@ -29,7 +29,6 @@ if(!isset($_SESSION['id'])){
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/vendors.min.css">
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/charts/apexcharts.css">
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/extensions/toastr.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->

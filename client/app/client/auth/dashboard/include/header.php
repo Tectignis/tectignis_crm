@@ -6,6 +6,7 @@
      header("location:../../../../auth/path/login.php");
    }
    ?>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
 
 
    <nav
