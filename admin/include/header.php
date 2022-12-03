@@ -150,7 +150,7 @@
                         <!-- <a class="dropdown-item" href="page-profile.html"><i class="me-50" data-feather="user"></i> Profile</a> -->
                         <div class="dropdown-divider"></div><a class="dropdown-item" href="system-setting.php"><i class="me-50" data-feather="settings"></i> Settings</a>
                         <!-- <a class="dropdown-item" href="page-pricing.html"><i class="me-50" data-feather="credit-card"></i> Pricing</a> -->
-                        <a class="dropdown-item" href="client_logout.php"><i class="me-50" data-feather="power"></i> Logout</a>
+                        <a class="dropdown-item" href="auth-login-basic.php"><i class="me-50" data-feather="power"></i> Logout</a>
                     </div>
                 </li>
             </ul>
