@@ -383,11 +383,11 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
                             class=" card-header d-flex flex-md-row flex-column justify-content-md-between justify-content-start align-items-md-center align-items-start ">
                             <h4 class="card-title">Lead Status
                                 Monthly Lead and Ticket</h4>
-                            <div class="d-flex align-items-center mt-md-0 mt-1">
+                            <!-- <div class="d-flex align-items-center mt-md-0 mt-1">
                                 <i class="font-medium-2" data-feather="calendar"></i>
                                 <input type="text" class="form-control flat-picker bg-transparent border-0 shadow-none"
                                     placeholder="YYYY-MM-DD" />
-                            </div>
+                            </div> -->
                         </div>
                         <div class="card-body">
                         <canvas id="barChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>

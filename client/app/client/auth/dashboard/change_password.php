@@ -1,6 +1,9 @@
 <?php
 session_start();
 include("config.php");
+if(!isset($_SESSION['id'])){
+    header('location:../../../../auth/path/login.php');
+}
 
 $d=$_SESSION['id'];
 if(isset($_POST['submitbutton'])){

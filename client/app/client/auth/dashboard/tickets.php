@@ -2,6 +2,10 @@
 <?php
 session_start();
 include("config.php");
+if(!isset($_SESSION['id'])){
+    header('location:../../../../auth/path/login.php');
+}
+$id=$_SESSION['id'];
 if(isset($_POST['ticket'])){
     
    
@@ -91,30 +95,12 @@ if(isset($_POST['ticket'])){
                             <h2 class="content-header-title float-start mb-0">Tickets</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Clients</a>
+                                    <li class="breadcrumb-item"><a href="index.html">Home</a>
                                     </li>
                                     <li class="breadcrumb-item"><a href="#">Ticket</a>
                                     </li>
                                 </ol>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
-                    <div class="mb-1 breadcrumb-right">
-                        <div class="dropdown">
-                            <button class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" type="button"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                    data-feather="grid"></i></button>
-                            <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item"
-                                    href="app-todo.html"><i class="me-1" data-feather="check-square"></i><span
-                                        class="align-middle">Todo</span></a><a class="dropdown-item"
-                                    href="app-chat.html"><i class="me-1" data-feather="message-square"></i><span
-                                        class="align-middle">Chat</span></a><a class="dropdown-item"
-                                    href="app-email.html"><i class="me-1" data-feather="mail"></i><span
-                                        class="align-middle">Email</span></a><a class="dropdown-item"
-                                    href="app-calendar.html"><i class="me-1" data-feather="calendar"></i><span
-                                        class="align-middle">Calendar</span></a></div>
                         </div>
                     </div>
                 </div>
@@ -130,7 +116,7 @@ if(isset($_POST['ticket'])){
                         <div class="card">
                             <div class="card-header border-bottom p-1">
                                 <div class="head-label">
-                                    <h6 class="mb-0">List of Client</h6>
+                                    <h6 class="mb-0">List of Ticket</h6>
                                 </div>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNewCard">
                                 Add Ticket
@@ -150,10 +136,11 @@ if(isset($_POST['ticket'])){
                                         <tr>
                                             <th>Sr no.</th>
                                             <th>Ticket No.</th>
-                                            
+                                            <th>Date & Time</th>
                                             <th>Subject</th>
-                                            <th>Status</th>
                                             <th>Description</th>
+                                            <th>Status</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -165,8 +152,9 @@ if(isset($_POST['ticket'])){
                                         <tr>
                                             <td><?php echo $count;?></td>
                                             <td><?php echo $row['ticket_no']; ?></td>
-                                            
+                                            <td><?php echo $row['date']; ?></td>
                                             <td><?php echo $row['Subject']; ?></td>
+                                            <td><?php echo $row['Description']; ?></td>
                                             <td style="text-align:center">
                                             <?php
                                                 $status=$row['status'];
@@ -182,7 +170,7 @@ if(isset($_POST['ticket'])){
                                                 }
                                                 ?>
                                             </td>
-                                            <td><?php echo $row['Description']; ?></td>
+
                                         </tr>
                                         <?php $count++; } ?>
                                     </tbody>
@@ -217,7 +205,7 @@ if(isset($_POST['ticket'])){
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body px-sm-5 mx-50 pb-5">
-                    <h1 class="text-center mb-1" id="addNewCardTitle">Create Category</h1>
+                    <h1 class="text-center mb-1" id="addNewCardTitle">Add Ticket</h1>
                    
 
                     <!-- form -->

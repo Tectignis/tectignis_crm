@@ -1,10 +1,7 @@
 <?php
 session_start();
 include("config.php");
-// $id=$_SESSION['id'];
-
-
-
+$id=$_SESSION['id'];
 
   if(isset($_GET['delid'])){
     $id=mysqli_real_escape_string($conn,$_GET['delid']);
@@ -14,7 +11,6 @@ include("config.php");
     }
     }
 ?>
-
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
@@ -23,17 +19,24 @@ include("config.php");
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
-    <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
-    <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="description"
+        content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords"
+        content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Bootstrap Tables - Vuexy - Bootstrap HTML admin template</title>
+    <title>Ticket</title>
     <link rel="apple-touch-icon" href="app-assets/images/ico/apple-icon-120.png">
-    <link rel="shortcut icon" type="image/x-icon" href="app-assets/images/ico/favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="app-assets\fonts\font-awesome\css\font-awesome.css">
 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
+        rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="app-assets\fonts\font-awesome\css\font-awesome.css">
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="app-assets/vendors/css/vendors.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <!-- END: Page CSS-->
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
@@ -52,19 +55,22 @@ include("config.php");
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <!-- END: Custom CSS-->
-
+    <?php
+    $logosql=mysqli_query($conn,'select * from setting_system');
+    $fetchlogo=mysqli_fetch_array($logosql);
+    ?>
+    <link rel="shortcut icon" type="image/x-icon"
+        href="../../../../../admin/images/favicon/<?php echo $fetchlogo['fav'] ?>">
 </head>
 <!-- END: Head-->
 
 <!-- BEGIN: Body-->
 
-<body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="">
+<body class="vertical-layout vertical-menu-modern  navbar-floating footer-static  " data-open="click"
+    data-menu="vertical-menu-modern" data-col="">
 
-    <!-- BEGIN: Header-->
     <?php include "include/header.php"; ?>
     <?php include "include/sidebar.php"; ?>
-    
-
     <!-- BEGIN: Content-->
     <div class="app-content content ">
         <div class="content-overlay"></div>
@@ -77,61 +83,58 @@ include("config.php");
                             <h2 class="content-header-title float-start mb-0">Ticket Table</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.php">Home</a>
+                                    <li class="breadcrumb-item"><a href="index.html">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Ticket Table
+                                    <li class="breadcrumb-item"><a href="#">Ticket Table</a>
                                     </li>
                                 </ol>
                             </div>
                         </div>
                     </div>
                 </div>
-               
             </div>
             <div class="content-body">
-                <!-- Basic Tables start -->
-                <div class="row" id="basic-table">
+
+
+                <div class="row">
                     <div class="col-12">
+
+                        <!-- /.card -->
+
                         <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Ticket</h4>
-                                
+                            <div class="card-header border-bottom p-2">
+                                <div class="head-label">
+                                    <h6 class="mb-0">Ticket Table</h6>
+                                </div>
                             </div>
-                           
-                            <div class="table-responsive">
-                            <table class="datatables-basic table">
-                            <thead>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
                                         <tr>
-                                           
-                                        <th>Sr no.</th>
+                                            <th>Sr no.</th>
                                             <th>Ticket No.</th>
-                                            <!-- <th>Client Code</th> -->
+                                            <!-- <th>Date & Time</th> -->
                                             <th>Subject</th>
-                                            <!-- <th>Comment</th> -->
-                                            <!-- <th>Date</th> -->
-                                            <th>Status</th>
                                             <th>Description</th>
+                                            <th>Status</th>
                                             <th>Action</th>
-                                            
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php
-                                    
+                                        <?php
                                             $sql=mysqli_query($conn,"select * from ticket");
                                             $count=1;
                                             while ($row=mysqli_fetch_array($sql)){ 
                                         ?>
                                         <tr>
-                                             <td><?php echo $count;?></td>
+                                            <td><?php echo $count;?></td>
                                             <td><?php echo $row['ticket_no']; ?></td>
-                                            <!-- <td><?php echo $row['Client_Code']; ?></td> -->
-                                            <td><?php echo $row['Subject']; ?></td>
-                                            <!-- <td><?php echo $row['Comment']; ?></td> -->
                                             <!-- <td><?php echo $row['date']; ?></td> -->
-
+                                            <td><?php echo $row['Subject']; ?></td>
+                                            <td><?php echo $row['Description']; ?></td>
                                             <td style="text-align:center">
-                                            <?php
+                                                <?php
                                                 $status=$row['status'];
                                                 if($status=='Open'){
                                                     echo '<span class="badge badge-light-danger">Open</span>';
@@ -145,35 +148,57 @@ include("config.php");
                                                 }
                                                 ?>
                                             </td>
-                                            <td><?php echo $row['Description']; ?></td>
-                                         <td>
-                      
-                                         <a href="" type="button" data-id="<?php echo $row['id'] ?>"  class="view" data-bs-toggle="modal" data-bs-target="#addNewCard" >
-                    <i class="fa fa-eye" style="font-size:15px;margin: right 5px;"></i>
-                                            </a>
+                                            <td>
 
- 
+                                                <a href="" type="button" data-id="<?php echo $row['id'] ?>" class="view"
+                                                    data-bs-toggle="modal" data-bs-target="#addNewCard">
+                                                    <i class="fa fa-eye" style="font-size:15px;margin: right 5px;"></i>
+                                                </a>
 
-                    <a type="button" href="" data-id="<?php echo $row['id'] ?>" <?php if($status=='Closed'){ ?>style="display:none"<?php } ?>  class="edit" data-bs-toggle="modal" data-bs-target="#edit" >
-                                    <i class="fa fa-edit" style="font-size:15px;margin: right 5px;"></i>
-                                            </a>
 
-                    <!-- <button type="button" data-id="<?php echo $row['id'] ?>" class="delete-row btn-sm btn-info"> -->
-                    <!-- <i class="fas fa-trash"></i> -->
-                    <a href="ticket.php?delid=<?php echo $row['id']; ?>" <?php if($status=='Closed'){ ?>style="display:none"<?php } ?>><i class="fa fa-trash" style="font-size:15px; margin: right 80px;"></i></a>
-                  
-                    </button>
-                  </td>
+
+                                                <a type="button" href="" data-id="<?php echo $row['id'] ?>"
+                                                    <?php if($status=='Closed'){ ?>style="display:none" <?php } ?>
+                                                    class="edit" data-bs-toggle="modal" data-bs-target="#edit">
+                                                    <i class="fa fa-edit" style="font-size:15px;margin: right 5px;"></i>
+                                                </a>
+
+                                                <!-- <button type="button" data-id="<?php echo $row['id'] ?>" class="delete-row btn-sm btn-info"> -->
+                                                <!-- <i class="fas fa-trash"></i> -->
+                                                <a href="ticket.php?delid=<?php echo $row['id']; ?>"
+                                                    <?php if($status=='Closed'){ ?>style="display:none" <?php } ?> onclick="return confirm('Are you sure You wamt to delete');" ><i
+                                                        class="fa fa-trash"
+                                                        style="font-size:15px; margin: right 80px;"></i></a>
+
+                                                </button>
+                                            </td>
                                         </tr>
+                                        <?php $count++; } ?>
                                     </tbody>
-                                    <?php $count++; } ?>
                                 </table>
                             </div>
+                            <!-- /.card-body -->
                         </div>
+                        <!-- /.card -->
                     </div>
+                    <!-- /.col -->
                 </div>
-                <!-- Basic Tables end -->
-                <div class="modal fade" id="addNewCard" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
+                <!-- /.row -->
+                <!-- Basic table -->
+
+                <!--/ Basic table -->
+
+
+
+            </div>
+        </div>
+    </div>
+    <!-- END: Content-->
+
+    <div class="sidenav-overlay"></div>
+    <div class="drag-target"></div>
+    <?php include "include/footer.php"; ?>
+    <div class="modal fade" id="addNewCard" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header bg-transparent">
@@ -216,14 +241,6 @@ include("config.php");
 
 
             </div>
-        </div>
-    </div>
-    <!-- END: Content-->
-
-    <div class="sidenav-overlay"></div>
-    <div class="drag-target"></div>
-
-   
 
 
     <!-- BEGIN: Vendor JS-->
@@ -231,6 +248,20 @@ include("config.php");
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->
+    <!-- DataTables  & Plugins -->
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="plugins/jszip/jszip.min.js"></script>
+    <script src="plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <script src="app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->
@@ -239,64 +270,9 @@ include("config.php");
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->
-
-    <!-- BEGIN: Page JS-->
-    <script src="app-assets/js/scripts/tables/table-datatables-basic.js"></script>
-
+    <!-- <script src="app-assets/js/scripts/tables/table-datatables-basic.js"></script> -->
     <!-- END: Page JS-->
-    <script src="app-assets/js/scripts/forms/form-select2.js"></script>
-
-    <!-- END: Page JS-->
-
     <script>
-        $(window).on('load', function() {
-            if (feather) {
-                feather.replace({
-                    width: 14,
-                    height: 14
-                });
-            }
-        })
-        </script>
-        <script>
-          $(document).ready(function(){
-          $('.view').click(function(){
-            let dnk = $(this).data('id');
-           
-            $.ajax({
-            url: 'ticket.update.php',
-            type: 'post',
-            data: {dnk: dnk},
-            success: function(response2){ 
-              $('.body').html(response2);
-              $('#addNewCard').modal('show'); 
-            }
-          });
-          });
-          });
-          </script>
-
-
-
-<script>
-          $(document).ready(function(){
-          $('.edit').click(function(){
-            let dnkk = $(this).data('id');
-           
-            $.ajax({
-            url: 'ticket.update.php',
-            type: 'post',
-            data: {dnkk: dnkk},
-            success: function(response1){ 
-              $('.body1').html(response1);
-              $('#editmodal').modal('show'); 
-            }
-          });
-          });
-          });
-          </script>
-          
-          <script>
         $(function () {
             $("#example1").DataTable({
                 "responsive": true,
@@ -305,6 +281,59 @@ include("config.php");
                 "buttons": ["copy", "csv", "excel", "pdf", "print"]
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
+        });
+    </script>
+
+
+    <script>
+        $(window).on('load', function () {
+            if (feather) {
+                feather.replace({
+                    width: 14,
+                    height: 14
+                });
+            }
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.view').click(function () {
+                let dnk = $(this).data('id');
+
+                $.ajax({
+                    url: 'ticket.update.php',
+                    type: 'post',
+                    data: {
+                        dnk: dnk
+                    },
+                    success: function (response2) {
+                        $('.body').html(response2);
+                        $('#addNewCard').modal('show');
+                    }
+                });
+            });
+        });
+    </script>
+
+
+
+    <script>
+        $(document).ready(function () {
+            $('.edit').click(function () {
+                let dnkk = $(this).data('id');
+
+                $.ajax({
+                    url: 'ticket.update.php',
+                    type: 'post',
+                    data: {
+                        dnkk: dnkk
+                    },
+                    success: function (response1) {
+                        $('.body1').html(response1);
+                        $('#editmodal').modal('show');
+                    }
+                });
+            });
         });
     </script>
 </body>
