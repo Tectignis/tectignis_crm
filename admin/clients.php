@@ -67,7 +67,7 @@ if(isset($_POST["submi"])){
                             <h2 class="content-header-title float-start mb-0">Manage Clients</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.php">Home</a>
+                                    <li class="breadcrumb-item"><a href="dashboard.php">Home</a>
                                     </li>
 
                                     <li class="breadcrumb-item active">Manage Clients
@@ -144,7 +144,7 @@ if(isset($_POST["submi"])){
                             </div>
                             <img src="app-assets/images/banner/banner-12.jpg" class="img-fluid card-img-top"
                                 alt="Profile Cover Photo" />
-                            <div class="card-body">
+                            <div class="card-body" <?php  if($row['Status']=='Deactivated'){ echo 'style="background:#e1e5ea;" ';  } ?> >
                                 <div class="profile-image-wrapper">
                                     <div class="profile-image">
                                         <div class="avatar"> <a href="view_clients/<?php echo $row['Client_Code'] ?>">
@@ -377,19 +377,19 @@ if(isset($_POST["submi"])){
                     let del_id = $(this).data('id');
                     swal({
                             title: "Are you sure?",
-                            text: "Once deleted, you will not be able to recover this imaginary file!",
+                            text: "Once deleted, you will not be able to recover this file!",
                             icon: "warning",
                             buttons: true,
                             dangerMode: true,
                         })
                         .then((willDelete) => {
                             if (willDelete) {
-                                swal("Poof! Your imaginary file has been deleted!", {
+                                swal("Poof! Your file has been deleted!", {
                                     icon: "success",
                                 });
                                 window.location.href = "action_clients.php?del_id" + del_id;
                             } else {
-                                swal("Your imaginary file is safe!");
+                                swal("Your file is safe!");
                             }
                         });
                 })

@@ -80,12 +80,12 @@ $id=$_SESSION['id'];
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-start mb-0">Ticket Table</h2>
+                            <h2 class="content-header-title float-start mb-0">Ticket</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a>
+                                    <li class="breadcrumb-item"><a href="dashboard.php">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="#">Ticket Table</a>
+                                    <li class="breadcrumb-item">Ticket
                                     </li>
                                 </ol>
                             </div>
@@ -314,8 +314,6 @@ $id=$_SESSION['id'];
             });
         });
     </script>
-
-
 
     <script>
         $(document).ready(function () {

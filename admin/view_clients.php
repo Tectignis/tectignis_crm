@@ -50,7 +50,7 @@ if(isset($_GET['del_id'])){
                                     </li>
                                     <li class="breadcrumb-item"><a href="clients.php">Clients</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Client Details</a>
+                                    <li class="breadcrumb-item active">Client Details
                                     </li>
                                 </ol>
                             </div>
@@ -342,19 +342,19 @@ if(isset($_GET['del_id'])){
                 let client_id=<?= $id ?>;
                 swal({
                         title: "Are you sure?",
-                        text: "Once deleted, you will not be able to recover this imaginary file!",
+                        text: "Once deleted, you will not be able to recover this file!",
                         icon: "warning",
                         buttons: true,
                         dangerMode: true,
                     })
                     .then((willDelete) => {
                         if (willDelete) {
-                            swal("Poof! Your imaginary file has been deleted!", {
+                            swal("Poof! Your file has been deleted!", {
                                 icon: "success",
                             });
                             window.location.href = "view_clients.php?del_id" + del_id + "&client_id=" + client_id;
                         } else {
-                            swal("Your imaginary file is safe!");
+                            swal("Your file is safe!");
                         }
                     });
             })
