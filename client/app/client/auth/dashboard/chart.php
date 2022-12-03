@@ -282,9 +282,9 @@ $(window).on('load', function () {
       data: {
         datasets: [
           {
-            labels: ["Booked", "Lead closed", "Site View"],
-            data: [<?php echo $leadBookedFetch. ',' .$leadLeadClosedFetch. ',' .$leadSiteViewFetch ?>],
-            backgroundColor: [successColorShade, warningLightColor, window.colors.solid.primary],
+            labels: ["Booked", "Lead closed"],
+            data: [<?php echo $leadBookedFetch. ',' .$leadLeadClosedFetch ?>],
+            backgroundColor: [successColorShade, warningLightColor],
             borderWidth: 0,
             pointStyle: 'rectRounded'
           }

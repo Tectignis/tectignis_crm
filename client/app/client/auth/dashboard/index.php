@@ -360,7 +360,7 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
                                     <i data-feather="arrow-up" class="text-success"></i>
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-between">
+                            <!-- <div class="d-flex justify-content-between">
                                 <div class="d-flex align-items-center">
                                     <i data-feather="tablet" class="font-medium-2 text-success"></i>
                                     <span class="fw-bold ms-75 me-25">Site View</span>
@@ -369,7 +369,7 @@ $leadCalendar=mysqli_query($conn,"SELECT * FROM `lead` WHERE Firm_Name='$id'");
                                     <span><?php echo $leadSiteViewFetch ?></span>
                                     <i data-feather="arrow-down" class="text-danger"></i>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
