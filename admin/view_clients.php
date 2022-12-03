@@ -3,8 +3,9 @@ include("config.php");
 $id=$_GET['view'];
 if(isset($_GET['del_id'])){
     $delid = $_GET['del_id'];
-    $sql = mysqli_query($conn,"DELETE FROM lead WHERE id = '$delid'");
-    header ('location:clients.php');
+    $client_id=$_GET['client_id'];
+    // $sql = mysqli_query($conn,"DELETE FROM lead WHERE id = '$delid'");
+    header ('location:view_clients/'.$client_id);
   }
 ?>
 <!DOCTYPE html>
@@ -338,6 +339,7 @@ if(isset($_GET['del_id'])){
             $('.delbtn').click(function (e) {
                 e.preventDefault();
                 let del_id = $(this).data('id');
+                let client_id=<?= $id ?>;
                 swal({
                         title: "Are you sure?",
                         text: "Once deleted, you will not be able to recover this imaginary file!",
@@ -350,7 +352,7 @@ if(isset($_GET['del_id'])){
                             swal("Poof! Your imaginary file has been deleted!", {
                                 icon: "success",
                             });
-                            window.location.href = "view_clients.php?del_id" + del_id;
+                            window.location.href = "view_clients.php?del_id" + del_id + "&client_id=" + client_id;
                         } else {
                             swal("Your imaginary file is safe!");
                         }
