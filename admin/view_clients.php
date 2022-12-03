@@ -270,7 +270,7 @@ if(isset($_GET['del_id'])){
                                     <label class="form-label">Client Mobile Number</label>
                                     <input type="tel" 
                                         class="form-control number" minlength="10" maxlength="10" name="number"
-                                        id="number " placeholder="Mobile Number" required>
+                                        id="number" placeholder="Mobile Number" required>
                                     <span id="numberspan" class="mb-4"></span>
                                 </div>
                                 <!-- /.form-group -->
@@ -399,12 +399,16 @@ if(isset($_GET['del_id'])){
                 let number = $("#number").val();
                 let cname = $("#cname").val();
                 let Rname = $("#Rname").val();
+                let numbarspan=$("#numberspan").html();
                 let social_media = $("#social_media").val();
                 let sub = $("#sub").val();
                 if(firm_name=='' || package=='' || number=='' || cname=='' || Rname=='' || social_media==''){
                     alert('Please fill all fields');
                 }
                 else{
+                    if(numbarspan != ''){
+                        alert('please enter valid mobile number');
+                    }else{
                 $.ajax({
                     type: "POST",
                     url: "action_clients.php",
@@ -424,20 +428,25 @@ if(isset($_GET['del_id'])){
                     }
                 });
             }
+            }
             });
         });
+        let odnkname;
+
         $(document).ready(function(){
             $(".number").keyup(function(){
                 num_check();
             });
             function num_check(){
+                odnkname="no";
                 let txt=$(".number").val();
                 let text=/^\d{10}$/;
                 if(!text.test(txt)){
                     $("#numberspan").show().html('please enter valid mobile number').css('color','red').focus();
                 }
                 else{
-                    $("#numberspan").hide();
+                    odnkname="yes";
+                    $("#numberspan").hide().html('');
                 }
             }
         })
