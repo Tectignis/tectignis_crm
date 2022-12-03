@@ -410,6 +410,10 @@ if(isset($_GET['del_id'])){
                 let Rname = $("#Rname").val();
                 let social_media = $("#social_media").val();
                 let sub = $("#sub").val();
+                if(firm_name=='' and package=='' and number=='' and cname=='' and Rname=='' and social_media==''){
+                    alert('Please fill all fields');
+                }
+                else{
                 $.ajax({
                     type: "POST",
                     url: "action_clients.php",
@@ -428,6 +432,7 @@ if(isset($_GET['del_id'])){
                         $('.modal-backdrop').css('display', 'none');
                     }
                 });
+            }
             });
         });
     </script>
