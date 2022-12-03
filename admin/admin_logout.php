@@ -1,8 +1,8 @@
 <?php
-include("config.php");
 session_start();
-$dnk=session_destroy();
-if($dnk){
+include("config.php");
+
+if(session_destroy()){
     header("location:auth-login-basic.php");
 }else{
     header("location:dashboard.php");

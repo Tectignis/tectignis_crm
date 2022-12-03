@@ -1,5 +1,11 @@
 <?php
+session_start();
 include("config.php");
+
+if(!isset($_SESSION['aid'])){
+    header('location:auth-login-basic.php');
+}
+else{
 $leadTotal=mysqli_query($conn,"select * from lead where nature='Hot'");
 $leadTotalFetch=mysqli_num_rows($leadTotal);
 $leadHot=mysqli_query($conn,"select * from lead where nature='Hot'");
@@ -292,3 +298,4 @@ $ndeactivated=mysqli_num_rows($qdeactivated);
 <!-- END: Body-->
 
 </html>
+<?php } ?>
