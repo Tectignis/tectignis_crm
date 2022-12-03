@@ -87,8 +87,23 @@ if(!isset($_SESSION['id'])){
             <div class="content-overlay"></div>
             <div class="header-navbar-shadow"></div>
             <div class="content-wrapper container-xxl p-0">
-                <div class="content-header row">
+            <div class="content-header row">
+                <div class="content-header-left col-md-9 col-12 mb-2">
+                    <div class="row breadcrumbs-top">
+                        <div class="col-12">
+                            <h2 class="content-header-title float-start mb-0">Profile</h2>
+                            <div class="breadcrumb-wrapper">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.html">Home</a>
+                                    </li>
+                                    <li class="breadcrumb-item"><a href="#">Profile</a>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
                 <div class="content-body">
                     <section class="app-user-view-account">
                         <div class="row">
@@ -96,6 +111,7 @@ if(!isset($_SESSION['id'])){
                             <div class="col-xl-4 col-lg-5 col-md-5 order-1 order-md-0">
                                 <!-- User Card -->
                                 <div class="card">
+                                    
                                     <div class="card-body">
                                         <?php
                                             
