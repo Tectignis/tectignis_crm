@@ -39,6 +39,11 @@ echo '
                               class="fas fa-pen"></i>
                           </button>
 
+                          <button
+                          class="btn btn-primary btn-rounded btn-icon usereditid"
+                          data-bs-toggle="modal" data-bs-target="#m'. $row['id'] .'" data-id="'. $row['id'] .'"> <i class="fa fa-eye" ></i>
+                          </button>
+
                         </td>
                       </tr>';
                       $count++; }
