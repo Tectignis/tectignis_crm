@@ -249,7 +249,7 @@ if(isset($_GET['del_id'])){
                 <h1 class="text-center mb-1" id="addNewCardTitle">Add New Client</h1>
                 <div class="modal-body">
                     <form method="post" class="add-new-record pt-0">
-                        <div class="row">
+                        <div class="row" style="padding-bottom: 21px;">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Package</label>
@@ -266,7 +266,7 @@ if(isset($_GET['del_id'])){
                                     </select> -->
                                 </div>
                                 <!-- /.form-group -->
-                                <div class="form-group">
+                                <div class="form-group" style="padding-top: 15px;">
                                     <label class="form-label">Client Mobile Number</label>
                                     <input type="tel" minlength="10" maxlength="10"
                                         onkeypress="return onlyNumberKey(event)" class="form-control" name="number"
@@ -284,7 +284,7 @@ if(isset($_GET['del_id'])){
                                     <span id="cnamespan" class="mb-4"></span>
                                 </div>
                                 <!-- /.form-group -->
-                                <div class="form-group">
+                                <div class="form-group" style="padding-top: 15px;">
                                     <label class="form-label">Requirement</label>
                                     <input type="text" class="form-control" name="requirement" id="Rname"
                                         placeholder="Requirement" required>
@@ -292,11 +292,9 @@ if(isset($_GET['del_id'])){
                                 <!-- /.form-group -->
                             </div>
                             <!-- /.form-group -->
-                        </div>
-                        <div class="row">
-                            <!-- /.col -->
+
                             <div class="col-md-6">
-                                <div class="form-group">
+                                <div class="form-group" style="padding-top: 15px;">
                                     <label class="form-label">Social Media</label>
                                     <select class="form-control select2" name="social_media" id="social_media"
                                         style="width: 100%;">
@@ -310,12 +308,9 @@ if(isset($_GET['del_id'])){
                                 </div>
                                 <!-- /.form-group -->
                             </div>
-                            <!-- /.form-group -->
                         </div>
-
                         <div class="modal-footer">
-                            <button type="close" class="btn btn-default" data-dismiss="modal" name="close"
-                                id="close">Close</button>
+                        <button type="reset" class="btn btn-outline-secondary waves-effect" data-bs-dismiss="modal">Close</button>
                             <button type="button" name="submitt" class="btn btn-primary float-right my-3 " id="sub"
                                 style="margin-right: 5px;">Submit </button>
                         </div>
