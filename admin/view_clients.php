@@ -22,7 +22,7 @@ if(isset($_GET['del_id'])){
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
     <style>
         .select{
-            border:none !important;
+            /* border:none !important; */
             padding: 0.571rem 2rem !important;
         }
         .select option{
