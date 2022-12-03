@@ -108,7 +108,7 @@ if(!isset($_SESSION['id'])){
                         $firm_id_check=$_SESSION['id'];
                         $qsidepackage=mysqli_query($conn,"select *,package_assign.id as id from package inner join package_assign on package.id=package_assign.lead_id where package_assign.firm_id='$firm_id_check'");
                         while($fsidepackage=mysqli_fetch_array($qsidepackage)){ ?>
-                        <div class="col-lg-4 col-md-6 col-4">
+                        <div class="col-lg-4 col-md-6 col-12">
                             <div class="card earnings-card">
                                 <div class="card-body">
                                     <div class="row">
