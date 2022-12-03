@@ -154,8 +154,8 @@ else{
 
 <?php
 //client edit fetch
-  if(isset($_POST['dnk'])){
-    $id=$_POST['dnk'];
+  if(isset($_POST['editclient'])){
+    $id=$_POST['editclient'];
          $sql=mysqli_query($conn,"select category.*,client.* from category inner join client on category.id=client.category where Client_Code='".$id."'");
               
            $row=mysqli_fetch_array($sql)
@@ -211,12 +211,12 @@ else{
   <div class="col-6" style="display: flex;">
       <?php
                   if($row['image']==""){
-                 echo '<img src="app-assets/images/portrait/small/avatar-s-9.jpg" alt="Profile Picture" width="50" height="50" class="mt-2"/>';
+                 echo '<img src="app-assets/images/portrait/small/avatar-s-9.jpg" alt="Profile Picture" class="img-fluid rounded-circle card-avatar mt-2" style="width:50px;height:50px"/>';
                  }else{
 
                 ?>
-      <img alt="user-image" class="img-fluid rounded-circle card-avatar mt-2"
-        src="images/clientImage/<?php echo $row['image'] ?>" width="100" height="100">
+      <img alt="user-image" class="img-fluid rounded-circle card-avatar mt-2 mr-2"
+        src="images/clientImage/<?php echo $row['image'] ?>" style="width:50px;height:50px">
 
       <?php } ?>
     <div class="form-group mb-2">

@@ -398,13 +398,13 @@ if(isset($_POST["submi"])){
 
             $(document).ready(function () {
                 $('.usereditid').click(function () {
-                    let dnk = $(this).data('id');
+                    let editclient = $(this).data('id');
 
                     $.ajax({
                         url: 'action_clients.php',
                         type: 'post',
                         data: {
-                            dnk: dnk
+                            editclient: editclient
                         },
                         success: function (response1) {
                             $('.body1').html(response1);
