@@ -12,7 +12,7 @@ if(isset($_GET['del_id'])){
 <!-- BEGIN: Head-->
 
 <head>
-    <base href="http://localhost/tectignis_crm/admin/" />
+    <base href="http://localhost:8000/tectignis_crm/admin/" />
     <title>View Clients</title>
     <!-- DataTables -->
     <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
@@ -268,9 +268,9 @@ if(isset($_GET['del_id'])){
                                 <!-- /.form-group -->
                                 <div class="form-group" style="padding-top: 15px;">
                                     <label class="form-label">Client Mobile Number</label>
-                                    <input type="tel" minlength="10" maxlength="10"
-                                        onkeypress="return onlyNumberKey(event)" class="form-control" name="number"
-                                        id="number" placeholder="Mobile Number" required>
+                                    <input type="tel" 
+                                        class="form-control number" minlength="10" maxlength="10" name="number"
+                                        id="number " placeholder="Mobile Number" required>
                                     <span id="numberspan" class="mb-4"></span>
                                 </div>
                                 <!-- /.form-group -->
@@ -331,15 +331,6 @@ if(isset($_GET['del_id'])){
                 buttons: ["No", "Yes"],
             });
 
-            mobile_err = true;
-
-            mobile_check();
-
-            if (mobile_err = true) {
-                return true;
-            } else {
-                return false;
-            }
         }
     </script>
     <script>
@@ -410,7 +401,7 @@ if(isset($_GET['del_id'])){
                 let Rname = $("#Rname").val();
                 let social_media = $("#social_media").val();
                 let sub = $("#sub").val();
-                if(firm_name=='' and package=='' and number=='' and cname=='' and Rname=='' and social_media==''){
+                if(firm_name=='' || package=='' || number=='' || cname=='' || Rname=='' || social_media==''){
                     alert('Please fill all fields');
                 }
                 else{
@@ -435,6 +426,21 @@ if(isset($_GET['del_id'])){
             }
             });
         });
+        $(document).ready(function(){
+            $(".number").keyup(function(){
+                num_check();
+            });
+            function num_check(){
+                let txt=$(".number").val();
+                let text=/^\d{10}$/;
+                if(!text.test(txt)){
+                    $("#numberspan").show().html('please enter valid mobile number').css('color','red').focus();
+                }
+                else{
+                    $("#numberspan").hide();
+                }
+            }
+        })
     </script>
     <script src="plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
