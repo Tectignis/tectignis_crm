@@ -3,9 +3,10 @@
       <div class="navbar-header">
           <ul class="nav navbar-nav flex-row">
               <li class="nav-item me-auto"><a class="navbar-brand" href="index"><span class="brand-logo">
-                          <img src="../../../../../admin/images/favicon/<?php echo $fetchlogo['logo'] ?>"
-                              style="max-width:125px;"></span>
-                      <!-- <h2 class="brand-text">Client</h2> -->
+                          <img src="../../../../../admin/images/favicon/images.jpeg"
+                              style="width:50px;"></span>
+                              <?php// echo $fetchlogo['logo'] ?>
+                      <h2 class="brand-text">Client</h2>
                   </a></li>
               <!-- <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse"><i class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i><i class="d-none d-xl-block collapse-toggle-icon font-medium-4  text-primary" data-feather="disc" data-ticon="disc"></i></a></li> -->
           </ul>
