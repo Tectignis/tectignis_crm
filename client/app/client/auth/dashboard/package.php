@@ -146,11 +146,11 @@ $packageId=$_GET['packageId'];
                             <h2 class="content-header-title float-start mb-0">Leads</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.php">Home</a>
+                                    <li class="breadcrumb-item"><a href="index">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="package_box.php">Packages</a>
+                                    <li class="breadcrumb-item"><a href="package_box">Packages</a>
                                     </li>
-                                    <li class="breadcrumb-item"><a href="#">Leads</a>
+                                    <li class="breadcrumb-item">Leads
                                     </li>
                                 </ol>
                             </div>
