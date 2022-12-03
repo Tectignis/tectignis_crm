@@ -12,9 +12,9 @@
         <div class="shadow-bottom"></div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class=" nav-item"><a class="d-flex align-items-center" href="index.php"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Dashboard</span></a></li>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="index.php"><i class="fa fa-bars"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Dashboard</span></a></li>
              
-                <li class=" nav-item"><a class="d-flex align-items-center" href="package_box"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Invoice">Packages</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="package_box"><i class="fa fa-file" aria-hidden="true"></i><span class="menu-title text-truncate" data-i18n="Invoice">Packages</span></a>
                     <!-- <ul class="menu-content">
                     <?php
              // $qsidepackage=mysqli_query($conn,"select *,package_assign.id as id from package inner join package_assign on package.id=package_assign.lead_id where package_assign.firm_id='35'");
@@ -25,13 +25,12 @@
                         <?php //} ?>
                     </ul> -->
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="tickets.php"><i data-feather="save"></i><span class="menu-title text-truncate" data-i18n="File Manager">Tickets</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="tickets.php"><i class="fa fa-ticket-alt" aria-hidden="true"></i><span class="menu-title text-truncate" data-i18n="File Manager">Tickets</span></a>
                 </li>               
                 <!-- <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">Payment</span></a>
                 </li> -->
                 </li>              
-                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="file-text">
-                 </i><span class="menu-title text-truncate" data-i18n="Invoice">Setting</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i class="fa fa-cog" aria-hidden="true"></i><span class="menu-title text-truncate" data-i18n="Invoice">Setting</span></a>
                     <ul class="menu-content">
                         <li><a class="d-flex align-items-center" href="profile.php"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="List">Profile</span></a>
                         </li>
