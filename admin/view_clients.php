@@ -4,7 +4,7 @@ $id=$_GET['view'];
 if(isset($_GET['del_id'])){
     $delid = $_GET['del_id'];
     $client_id=$_GET['client_id'];
-    // $sql = mysqli_query($conn,"DELETE FROM lead WHERE id = '$delid'");
+    $sql = mysqli_query($conn,"DELETE FROM lead WHERE id = '$delid'");
     header ('location:view_clients/'.$client_id);
   }
 ?>
