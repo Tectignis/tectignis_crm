@@ -7,7 +7,8 @@ if(isset($_POST['dnkk'])){
     $query=mysqli_query($conn,"select * from ticket where id='".$_POST['dnkk']."'");
     $row=mysqli_fetch_array($query);
     echo ' 
-    <h1 class="text-center" id="addNewCardTitle"> Edit ticket Details</h1>
+    <h1 class="text-center" id="addNewCardTitle" style="margin-top: -36px;
+    margin-bottom: 45px;"> Edit ticket Details</h1>
      <div class="row">
     <div class="col-md-12">
     <div class="row">

@@ -68,7 +68,7 @@ if(isset($_GET['delid'])){
                             <h2 class="content-header-title float-start mb-0">Support Table</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.php">Home</a>
+                                    <li class="breadcrumb-item"><a href="dashboard.php">Home</a>
                                     </li>
                                     <li class="breadcrumb-item active">Support Table
                                     </li>
@@ -85,7 +85,7 @@ if(isset($_GET['delid'])){
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Ticket</h4>
+                                <h4 class="card-title">Support</h4>
 
                             </div>
                             <div class="card-body">
@@ -140,7 +140,7 @@ if(isset($_GET['delid'])){
                                                 </td>
 
                                                 <td style="text-align:center">
-                                                    <button class="btn btn-primary btn-rounded btn-icon setting "
+                                                    <button class="btn btn-primary btn-rounded btn-icon setting delbtn"
                                                         data-id='<?php echo $row['id']; ?> '><i
                                                             class="fas fa-wrench"></i></button>
                                                     <a href="support.php?delid=<?php echo $row['id']; ?>"
@@ -248,6 +248,32 @@ if(isset($_GET['delid'])){
             });
 
 
+        });
+    </script>
+
+<script>
+        $(document).ready(function () {
+            $('.delbtn').click(function (e) {
+                e.preventDefault();
+                let delid = $(this).data('id');
+                swal({
+                        title: "Are you sure?",
+                        text: "Once deleted, you will not be able to recover this file!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            swal("Poof! Your file has been deleted!", {
+                                icon: "success",
+                            });
+                            window.location.href = "support.php?delid" + delid;
+                        } else {
+                            swal("Your file is safe!");
+                        }
+                    });
+            })
         });
     </script>
 

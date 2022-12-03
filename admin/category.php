@@ -46,12 +46,12 @@ if(isset($_GET['delid'])){
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-start mb-0">Support Table</h2>
+                            <h2 class="content-header-title float-start mb-0">Category</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a>
+                                    <li class="breadcrumb-item"><a href="dashboard.php">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Support Table
+                                    <li class="breadcrumb-item active">Category
                                     </li>
                                 </ol>
                             </div>
@@ -76,7 +76,7 @@ if(isset($_GET['delid'])){
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Ticket</h4>
+                                <h4 class="card-title">Category</h4>
 
                             </div>
                             <div class="card-body">
@@ -246,19 +246,19 @@ if(isset($_GET['delid'])){
                     let del_id = $(this).data('id');
                     swal({
                         title: "Are you sure?",
-                        text: "Once deleted, you will not be able to recover this imaginary file!",
+                        text: "Once deleted, you will not be able to recover this file!",
                         icon: "warning",
                         buttons: true,
                         dangerMode: true,
                     })
                     .then((willDelete) => {
                         if (willDelete) {
-                            swal("Poof! Your imaginary file has been deleted!", {
+                            swal("Poof! Your file has been deleted!", {
                                 icon: "success",
                             });
                             window.location.href = "ticket.update.php?del_id="+del_id;
                         } else {
-                            swal("Your imaginary file is safe!");
+                            swal("Your file is safe!");
                         }
                     });
                     })

@@ -22,6 +22,15 @@ if(isset($_POST['update'])){
     $sql=mysqli_query($conn,"UPDATE package_assign SET `first_payment`='$newbal',`balance`='$bal',`update_date`='$date',`account_name`='$account_name',`payment_mode`='$paymentmode',`3moth_discount`='$month3',`6month_discount`='$month6',`1year_discount`='$year',`transaction_date`='$transaction',`due_date`='$due_date' WHERE id='$assignId'");
    
 }
+
+if(isset($_GET['delid'])){
+    $id=mysqli_real_escape_string($conn,$_GET['delid']);
+    $sql=mysqli_query($conn,"delete from package_assign where id='$id'");
+    if($sql=1){
+      header("location:package.php");
+    }
+    else{ echo "<script>alert('Failed to Delete')</script>"; }
+  }
 ?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
@@ -36,6 +45,11 @@ if(isset($_POST['update'])){
     <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <style>
+        .btn-icon {
+            padding: 5px!important;
+        }
+    </style>
 
     <!-- BEGIN: Content-->
     <div class="app-content content ">
@@ -46,12 +60,12 @@ if(isset($_POST['update'])){
                 <div class="content-header-left col-md-9 col-12 mb-2">
                     <div class="row breadcrumbs-top">
                         <div class="col-12">
-                            <h2 class="content-header-title float-start mb-0">Package Table</h2>
+                            <h2 class="content-header-title float-start mb-0">Package</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a>
+                                    <li class="breadcrumb-item"><a href="dashboard.php">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item active">Package Table
+                                    <li class="breadcrumb-item active">Package
                                     </li>
                                 </ol>
                             </div>
@@ -66,7 +80,7 @@ if(isset($_POST['update'])){
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Ticket</h4>
+                                <h4 class="card-title">Package</h4>
   
                             </div>
                             <div class="card-body">
@@ -106,6 +120,14 @@ if(isset($_POST['update'])){
                                                         class="btn btn-primary btn-rounded assidnmodal btn-icon"
                                                         style="color: aliceblue" data-id="<?php echo $row['id']; ?>"> <i
                                                             class="fas fa-edit"></i> </button>
+
+                                                                <a class="btn btn-danger btn-rounded btn-icon delbtn"
+                                                        href="package.php?delid=<?php echo $row['id']; ?>"
+                                                        onclick="return checkDelete()"
+                                                        class="btn btn-primary btn-rounded btn-icon"
+                                                        data-id="=<?php echo $row['id']; ?>">
+                                                        <i data-feather="trash-2"></i>
+                                                    </a>
                                                 </td>
                                                 <td><?php echo $row['assign_date']; ?></td>
                                             </tr>
@@ -137,8 +159,10 @@ if(isset($_POST['update'])){
 
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Close</button>
+                                        <button type="reset" class="btn btn-outline-secondary mt-1" data-bs-dismiss="modal"
+                                aria-label="Close">
+                                Close
+                            </button>
                                             <button type="submit" name="update" class="btn btn-primary">Update</button>
                                         </div>
                                     </form>
@@ -203,6 +227,32 @@ if(isset($_POST['update'])){
     });
    
 </script>
+
+<script>
+        $(document).ready(function () {
+            $('.delbtn').click(function (e) {
+                e.preventDefault();
+                let delid = $(this).data('id');
+                swal({
+                        title: "Are you sure?",
+                        text: "Once deleted, you will not be able to recover this file!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            swal("Poof! Your file has been deleted!", {
+                                icon: "success",
+                            });
+                            window.location.href = "package.php?delid" + delid;
+                        } else {
+                            swal("Your file is safe!");
+                        }
+                    });
+            })
+        });
+    </script>
     </body>
     <!-- END: Body-->
 

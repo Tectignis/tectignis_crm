@@ -61,7 +61,7 @@ if(isset($_POST['Assign'])){
                             <h2 class="content-header-title float-start mb-0">Package Card</h2>
                             <div class="breadcrumb-wrapper">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a>
+                                    <li class="breadcrumb-item"><a href="dashboard.php">Home</a>
                                     </li>
                                     
                                     <li class="breadcrumb-item active">Package Card
@@ -146,18 +146,18 @@ if(isset($_POST['Assign'])){
                     <form id="editUserForm" class="row gy-1 pt-75" method="post" action="package_card.php">
                         <div class="col-12 col-md-6">
                             <label class="form-label" for="modalEditUserFirstName">Title</label>
-                            <input type="text" class="form-control " id="title" name="title">
+                            <input type="text" class="form-control " id="title" name="title" required>
                         </div>
                         <div class="col-12 col-md-6">
                             <label class="form-label" for="modalEditUserStatus">Assign To:</label>
-                            <select name="assignto" id="assignto" class="form-select">
+                            <select name="assignto" id="assignto" class="form-select" required>
                             <?php $qfirm=mysqli_query($conn,"select * from client");
                             while($ffirm=mysqli_fetch_array($qfirm)){ ?>
                                 <option value="<?php echo $ffirm['Client_Code']; ?>"><?php echo $ffirm['Firm_Name']; ?></option>
                                 <?php } ?>
                             </select>
                         </div>
-                        <input type="hidden" value="<?php echo $fpackage['id']; ?>" name="leadid" >
+                        <input type="hidden" value="<?php echo $fpackage['id']; ?>" name="leadid" required >
                         <!-- <div class="col-12 col-md-6">
                             <label class="form-label" for="lead">Leads</label>
                             
@@ -165,7 +165,7 @@ if(isset($_POST['Assign'])){
                         </div> -->
                         <div class="col-12 col-md-6">
                             <label class="form-label" for="modalEditUserStatus">Payment To</label>
-                            <select class="form-select" name="account_name" id="account_name">
+                            <select class="form-select" name="account_name" id="account_name" required>
                                 <option value="Tectignis It Solution Pvt. Ltd">Tectignis It Solution Pvt. Ltd</option>
                                 <option value="Cash">Sachin Enterprises</option>
                                 <option value="Bank">Cash</option>
@@ -173,7 +173,7 @@ if(isset($_POST['Assign'])){
                         </div>
                         <div class="col-12 col-md-6">
                             <label class="form-label" for="paymentmode">Payment Mode</label>
-                            <select name="paymentmode" id="paymentmode" class="form-select">
+                            <select name="paymentmode" id="paymentmode" class="form-select" required>
                                 <option value="Cash">Cash</option>
                                 <option value="Imps/NEFT">Imps/NEFT</option>
                                 <option value="Gpay/UPI">Gpay/UPI</option>
@@ -181,8 +181,8 @@ if(isset($_POST['Assign'])){
                         </div>
                         <div class="col-12 col-md-6">
                             <label class="form-label" for="modalEditUserPhone">Payment Received</label>
-                            <input type="hidden" value="<?= $fpackage['total_amt']; ?>"  id="totalamt<?php echo $fpackage['id']; ?>" name="totalamt">
-                           <input type="text" class="form-control " id="payment<?php echo $fpackage['id']; ?>" name="payment">
+                            <input type="hidden" value="<?= $fpackage['total_amt']; ?>"  id="totalamt<?php echo $fpackage['id']; ?>" name="totalamt" required>
+                           <input type="text" class="form-control " id="payment<?php echo $fpackage['id']; ?>" name="payment" required>
                         </div>
                         <div class="col-12 col-md-6">
                             <label class="form-label" for="modalEditUserPhone">Balance</label>
@@ -190,15 +190,15 @@ if(isset($_POST['Assign'])){
                         </div>
                         <div class="col-12 col-md-6">
                             <label class="form-label" for="modalEditUserPhone">Date Of Transaction</label>
-                            <input type="datetime-local" class="form-control" value=""  id="transaction" name="transaction">
+                            <input type="datetime-local" class="form-control" value=""  id="transaction" name="transaction" required>
                         </div>
                         <div class="col-12 col-md-6">
                             <label class="form-label" for="modalEditUserPhone">Due Date</label>
-                            <input type="datetime-local" class="form-control" value=""  id="due_date" name="due_date">
+                            <input type="datetime-local" class="form-control" value=""  id="due_date" name="due_date" required>
                         </div>
                         <div class="col-12 col-md-6">
                             <label class="form-label" for="modalEditUserPhone">Transaction Number</label>
-                            <input type="tel" class="form-control" value=""  id="due_date" name="trans_no">
+                            <input type="tel" class="form-control" value=""  id="due_date" name="trans_no" required>
                         </div>
                         <div class="col-12 text-center mt-2 pt-50">
                             <button type="submit" name="Assign" class="btn btn-primary me-1">Submit</button>
@@ -274,7 +274,7 @@ if(isset($_POST['Assign'])){
                         <div class="col-12">
                             <label class="form-label" for="modalAddCardNumber">Total Amount</label>
                             <div class="input-group input-group-merge">
-                            <input type="text" class="form-control Tamt" name="tamt" id="Tamt" style="border-right:1px solid #d8d6de">
+                            <input type="text" class="form-control Tamt" name="tamt" id="Tamt" style="border-right:1px solid #d8d6de" required>
                                     <span class="add-card-type"></span>
                                 </span>
                             </div>
