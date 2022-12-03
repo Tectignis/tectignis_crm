@@ -166,7 +166,7 @@ $id=$_SESSION['id'];
                                                 <!-- <button type="button" data-id="<?php echo $row['id'] ?>" class="delete-row btn-sm btn-info"> -->
                                                 <!-- <i class="fas fa-trash"></i> -->
                                                 <a href="ticket.php?delid=<?php echo $row['id']; ?>"
-                                                    <?php if($status=='Closed'){ ?>style="display:none" <?php } ?> onclick="return confirm('Are you sure You wamt to delete');" ><i
+                                                    <?php if($status=='Closed'){ ?>style="display:none" <?php } ?> onclick="return confirm('Are you sure You want to delete');" ><i
                                                         class="fa fa-trash"
                                                         style="font-size:15px; margin: right 80px;"></i></a>
 
