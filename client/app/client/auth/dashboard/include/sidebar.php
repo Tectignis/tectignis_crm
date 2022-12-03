@@ -27,8 +27,8 @@
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="tickets.php"><i data-feather="save"></i><span class="menu-title text-truncate" data-i18n="File Manager">Tickets</span></a>
                 </li>               
-                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">Payment</span></a>
-                </li>
+                <!-- <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">Payment</span></a>
+                </li> -->
                 </li>              
                 <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="file-text">
                  </i><span class="menu-title text-truncate" data-i18n="Invoice">Setting</span></a>
