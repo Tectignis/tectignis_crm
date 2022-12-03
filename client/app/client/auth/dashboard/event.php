@@ -280,19 +280,17 @@ if(isset($_POST['submit'])){
                         </div>
                         <div class="mb-1 position-relative">
                             <label for="start-date" class="form-label">Start Date</label>
-                            <input type="text" class="form-control" id="start-date" name="start_date"
-                                placeholder="Start Date" />
+                            <input type="text" class="form-control" id="start-date" name="start_date" placeholder="Start Date" required/>
                         </div>
                         <div class="mb-1 position-relative">
                             <label for="end-date" class="form-label">End Date</label>
-                            <input type="text" class="form-control" id="end-date" name="end_date"
-                                placeholder="End Date" />
+                            <input type="text" class="form-control" id="end-date" name="end_date" placeholder="End Date" required/>
                         </div>
 
 
                         <div class="mb-1">
                             <label class="form-label">Description</label>
-                            <textarea name="description" id="event-description-editor" class="form-control"></textarea>
+                            <textarea name="description" id="event-description-editor" class="form-control" required></textarea>
                         </div>
                         <div class="mb-1 d-flex">
 

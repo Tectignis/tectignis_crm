@@ -62,7 +62,7 @@ if(isset($_GET['del_id'])){
                             <h4 class="mb-0">Leads</h4>
                         </div>
                         <div class="dt-action-buttons text-end">
-                            <a href="ticketform.php" button="" type="button"
+                            <a href="" button="" type="button"
                                 class="btn btn-primary float-right waves-effect waves-float waves-light"
                                 data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-right: 5px;">
                                 + Add Lead
@@ -246,15 +246,15 @@ if(isset($_GET['del_id'])){
                 <div class="modal-header bg-transparent">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <h1 class="text-center mb-1" id="addNewCardTitle">Add New Client</h1>
+                <h1 class="text-center mb-1" id="addNewCardTitle">Add Lead</h1>
                 <div class="modal-body">
                     <form method="post" class="add-new-record pt-0">
                         <div class="row" style="padding-bottom: 21px;">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Package</label>
-                                    <input type="hidden" value="<?php echo $id; ?>" id="firm_name" name="firm_name">
-                                    <input type="text" value="" class="form-control" name="package" id="package">
+                                    <input type="hidden" value="<?php echo $id; ?>" id="firm_name" name="firm_name" required>
+                                    <input type="text" value="" class="form-control" name="package" id="package" required>
                                     <!-- <select class="form-control" name="package" >
                                         <option value="" id="package" ></option>
                                         <?php 
@@ -279,15 +279,13 @@ if(isset($_GET['del_id'])){
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label">Client Name</label>
-                                    <input type="text" class="form-control" name="Cname" id="cname"
-                                        placeholder="Client Name" required>
+                                    <input type="text" class="form-control" name="Cname" id="cname" placeholder="Client Name" required>
                                     <span id="cnamespan" class="mb-4"></span>
                                 </div>
                                 <!-- /.form-group -->
                                 <div class="form-group" style="padding-top: 15px;">
                                     <label class="form-label">Requirement</label>
-                                    <input type="text" class="form-control" name="requirement" id="Rname"
-                                        placeholder="Requirement" required>
+                                    <input type="text" class="form-control" name="requirement" id="Rname"  placeholder="Requirement" required>
                                 </div>
                                 <!-- /.form-group -->
                             </div>
@@ -297,7 +295,7 @@ if(isset($_GET['del_id'])){
                                 <div class="form-group" style="padding-top: 15px;">
                                     <label class="form-label">Social Media</label>
                                     <select class="form-control select2" name="social_media" id="social_media"
-                                        style="width: 100%;">
+                                        style="width: 100%;" required>
                                         <option selected="selected" disabled>Select</option>
                                         <option>Facebook</option>
                                         <option>Instagram</option>

@@ -38,8 +38,7 @@
                           data-feather="folder"></i><span class="menu-title text-truncate"
                           data-i18n="Documentation">Notification</span></a>
               </li>
-              <li class=" nav-item"><a class="d-flex align-items-center" href="event.php"><i
-                          data-feather="folder"></i><span class="menu-title text-truncate"
+              <li class=" nav-item"><a class="d-flex align-items-center" href="event.php"><i class="fa fa-calendar" aria-hidden="true"></i><span class="menu-title text-truncate"
                           data-i18n="Documentation">Event</span></a>
               </li>
               <li class=" nav-item"><a class="d-flex align-items-center" href="todo"><i data-feather="folder"></i><span
