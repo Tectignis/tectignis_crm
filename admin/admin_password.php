@@ -1,19 +1,19 @@
 <?php
-include('config.php');
-if(isset($_POST['forget'])){
-    $Email=mysqli_real_escape_string($conn,$_POST['email']);
-  
-    $sql=mysqli_query($conn,"select * from login where Email='$Email'");
-    $count=mysqli_num_rows($sql);
-    $arr=mysqli_fetch_array($sql);
-    $clientid=$arr['id'];
-    if($count == 1){
-      echo '<script>alert("data successfully submitted");</script>';
-          header("location:admin_password.php?id=".$clientid);
-    }else{
-      echo '<script>alert("oops...somthing went wrong");</script>';
-    }
-}
+include("config.php");
+
+$id=$_GET['id'];
+if(isset($_POST['change'])){
+	$new_password=$_POST['newpassword'];
+
+	$hashpassword=password_hash($new_password,PASSWORD_BCRYPT);
+
+			$query=mysqli_query($conn,"UPDATE `login` SET `Password`='$hashpassword' WHERE id='$id'");
+      if($query){
+        echo "<script>alert('Password Changed Successfully'),window.location='auth-login-basic';</script>";
+      }
+	
+	}
+
 ?>
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
@@ -97,23 +97,34 @@ if(isset($_POST['forget'])){
                                             </g>
                                         </g>
                                     </svg>
-                                    <h2 class="brand-text text-primary ms-1">Crm</h2>
+                                    <h2 class="brand-text text-primary ms-1">CRM</h2>
                                 </a>
 
-                                <h4 class="card-title mb-1">Forgot Password? 🔒</h4>
-                                <p class="card-text mb-2">Enter your email and we'll send you instructions to reset your password</p>
-
+                                <h4 class="card-title mb-1">Generate New Password? 🔒</h4>
                                 <form class="auth-forgot-password-form mt-2" action="" method="POST">
-                                    <div class="mb-1">
-                                        <label for="forgot-password-email" class="form-label">Email</label>
-                                        <input type="text" class="form-control" id="forgot-password-email" name="email" placeholder="john@example.com" aria-describedby="forgot-password-email" tabindex="1" autofocus required/>
-                                    </div>
-                                    <button class="btn btn-primary w-100" tabindex="2" name="forget">Send reset link</button>
+                                <div class="mb-1 col-md-12 form-password-toggle">
+                                                <label class="form-label" for="newPassword">New Password</label>
+                                                <div class="input-group input-group-merge form-password-toggle">
+                                                    <input class="form-control" type="password" id="newpassword" name="newpassword" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" required/>
+                                                    <span class="input-group-text cursor-pointer">
+                                                        <i data-feather="eye"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="mb-1 col-md-12 form-password-toggle">
+                                                <label class="form-label" for="confirmPassword">Confirm New Password</label>
+                                                <div class="input-group input-group-merge">
+                                                    <input class="form-control" type="password" name="confirmpassword" id="confirmpassword" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" required/>
+                                                    <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
+                                                </div>
+                                                <span id="message"></span>
+                                            </div>
+                                    <button class="btn btn-primary w-100" name="change" tabindex="2" id="send_pass">Send New Password</button>
                                 </form>
 
-                                <p class="text-center mt-2">
-                                    <a href="auth-login-basic.php"> <i data-feather="chevron-left"></i> Back to login </a>
-                                </p>
+                                <!-- <p class="text-center mt-2">
+                                    <a href="auth-login-basic.html"> <i data-feather="chevron-left" name="cancel"></i> Back to login </a>
+                                </p> -->
                             </div>
                         </div>
                         <!-- /Forgot Password basic -->
@@ -124,6 +135,7 @@ if(isset($_POST['forget'])){
         </div>
     </div>
     <!-- END: Content-->
+
 
 
     <!-- BEGIN: Vendor JS-->
@@ -152,6 +164,42 @@ if(isset($_POST['forget'])){
                 });
             }
         })
+    </script>
+<script>
+    //      $(function () {
+    //     $("#send_pass").(function () {
+    //         var password = $("#newpassword").val();
+    //         var confirmPassword = $("#confirmpassword").val();
+    //         if (password != confirmPassword) {
+    //             $("#message").html('Password do not match');
+    //             $("#send_pass").prop('disabled','disabled');
+    //             // alert("Passwords do not match.");
+    //             return false;
+    //         }
+    //         return true;
+    //     });
+    // });
+
+    $(document).ready(function(){
+        $("#confirmpassword").keyup(function(){
+            fun_check();
+        });
+        function fun_check(){
+            let password = $("#newpassword").val();
+            let confirmPassword = $("#confirmpassword").val();
+            if (password != confirmPassword) {
+                $("#message").show().html('Password do not match').css('color','red');
+                $("#send_pass").prop('disabled',true);
+                // alert("Passwords do not match.");
+                return false;
+            }
+            else{
+                $("#message").hide();
+                $("#send_pass").prop('disabled',false);
+            }
+            return true;
+        }
+    })
     </script>
 </body>
 <!-- END: Body-->

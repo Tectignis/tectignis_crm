@@ -35,9 +35,9 @@
                           aria-hidden="true"></i><span class="menu-title text-truncate"
                           data-i18n="File Manager">Tickets</span></a>
               </li>
-              <!-- <li class=" nav-item"><a class="d-flex align-items-center" href="notification"><i class="fa fa-bell" aria-hidden="true"></i><span class="menu-title text-truncate"
+              <li class=" nav-item"><a class="d-flex align-items-center" href="notification"><i class="fa fa-bell" aria-hidden="true"></i><span class="menu-title text-truncate"
                           data-i18n="Documentation">Notification</span></a>
-              </li> -->
+              </li>
               <li class=" nav-item"><a class="d-flex align-items-center" href="event.php"><i class="fa fa-calendar-alt" aria-hidden="true"></i><span class="menu-title text-truncate"
                           data-i18n="Documentation">Event</span></a>
               </li>
