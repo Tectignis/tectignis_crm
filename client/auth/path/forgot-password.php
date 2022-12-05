@@ -191,7 +191,7 @@ if(isset($_POST['forgot'])){
                                 <form class="auth-forgot-password-form mt-2" action="" method="POST">
                                     <div class="mb-1">
                                         <label for="forgot-password-email" class="form-label">Email</label>
-                                        <input type="text" class="form-control" id="forgot-password-email" name="email" placeholder="john@example.com" aria-describedby="forgot-password-email" tabindex="1" autofocus required/>
+                                        <input type="email" class="form-control" id="forgot-password-email" name="email" placeholder="john@example.com" aria-describedby="forgot-password-email" tabindex="1" autofocus required/>
                                     </div>
                                     <button class="btn btn-primary w-100" name="forgot" tabindex="2">Send New Password</button>
                                 </form>
