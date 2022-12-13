@@ -99,7 +99,7 @@
                                 </tr>
                                 <tr>
                                   <td style="font-family: 'Montserrat', sans-serif; mso-line-height-rule: exactly; width: 80%; padding-top: 10px; padding-bottom: 10px; font-size: 16px;">
-                                    Frest – Admin Dashboard & UI Kit Sketch Template
+                                    Frest – Admin index & UI Kit Sketch Template
                                   </td>
                                   <td align="right" style="font-family: 'Montserrat', sans-serif; mso-line-height-rule: exactly; width: 20%; text-align: right; font-size: 16px;">$24.00</td>
                                 </tr>
