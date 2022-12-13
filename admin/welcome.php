@@ -62,7 +62,7 @@
                         </a>
                         <p style="font-family: 'Montserrat', sans-serif; mso-line-height-rule: exactly; margin: 0; margin-top: 24px; margin-bottom: 24px;">
                           <span style="font-weight: 600;">Vuexy</span>
-                          is the most developer friendly & highly customisable VueJS + HTML Admin Dashboard Template
+                          is the most developer friendly & highly customisable VueJS + HTML Admin index Template
                           based on Vue CLI, Vuex & Vuexy component framework. 🤩
                         </p>
                         <table style="width: 100%;" cellpadding="0" cellspacing="0" role="presentation">
