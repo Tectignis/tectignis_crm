@@ -29,7 +29,7 @@ $id=$_SESSION['aid'];
     <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-        <?php
+    <?php
     $logosql=mysqli_query($conn,'select * from setting_system');
     $fetchlogo=mysqli_fetch_array($logosql);
     ?>
@@ -68,8 +68,6 @@ $id=$_SESSION['aid'];
                 </div>
             </div>
             <div class="content-body">
-
-
                 <div class="row">
                     <div class="col-12">
 
@@ -140,7 +138,8 @@ $id=$_SESSION['aid'];
                                                 <!-- <button type="button" data-id="<?php echo $row['id'] ?>" class="delete-row btn-sm btn-info"> -->
                                                 <!-- <i class="fas fa-trash"></i> -->
                                                 <a href="ticket.php?delid=<?php echo $row['id']; ?>"
-                                                    <?php if($status=='Closed'){ ?>style="display:none" <?php } ?> onclick="return confirm('Are you sure You want to delete');" ><i
+                                                    <?php if($status=='Closed'){ ?>style="display:none" <?php } ?>
+                                                    onclick="return confirm('Are you sure You want to delete');"><i
                                                         class="fa fa-trash"
                                                         style="font-size:15px; margin: right 80px;"></i></a>
 
@@ -158,12 +157,6 @@ $id=$_SESSION['aid'];
                     <!-- /.col -->
                 </div>
                 <!-- /.row -->
-                <!-- Basic table -->
-
-                <!--/ Basic table -->
-
-
-
             </div>
         </div>
     </div>
@@ -173,51 +166,52 @@ $id=$_SESSION['aid'];
     <div class="drag-target"></div>
     <?php include "include/footer.php"; ?>
     <div class="modal fade" id="addNewCard" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header bg-transparent">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75" onsubmit="return false" action="ticket.update.php">
-
-                            <div class="modal-body px-sm-5 mx-50 pb-5 body">
-
-                            </div>
-                         
-                         </form>
-                        
-                        </div>
-                    </div>
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-transparent">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75" onsubmit="return false"
+                    action="ticket.update.php">
 
-               <div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="addNewCardTitle"       aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header bg-transparent">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <form id="addNewCardValidation" method="post" action="ticket.update.php" class="row gy-1 gx-2 mt-75" >
+                    <div class="modal-body px-sm-5 mx-50 pb-5 body">
 
-                            <div class="modal-body px-sm-5 mx-50 pb-5 body1">
-
-                                </div>
-                                
-                         </form>
-                        
-                        </div>
                     </div>
-                </div>
-                <!--/ edit customer -->
-               
-                <!--/ Edit User Modal -->
 
-            
-
+                </form>
 
             </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-transparent">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="addNewCardValidation" method="post" action="ticket.update.php" class="row gy-1 gx-2 mt-75">
+
+                    <div class="modal-body px-sm-5 mx-50 pb-5 body1">
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <!--/ edit customer -->
+
+    <!--/ Edit User Modal -->
 
 
-            <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+
+
+    </div>
+
+
+    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
     <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
     <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>

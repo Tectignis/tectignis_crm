@@ -12,34 +12,34 @@
       <div class="shadow-bottom"></div>
       <div class="main-menu-content">
           <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-              <li class=" nav-item"><a class="d-flex align-items-center" href="dashboard.php"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Dashboard</span></a></li>
+              <li class=" nav-item"><a class="d-flex align-items-center" href="index"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Dashboard</span></a></li>
             
-              <li class=" nav-item"><a class="d-flex align-items-center" href="support.php"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Invoice">Support</span></a>
+              <li class=" nav-item"><a class="d-flex align-items-center" href="support"><i data-feather="file-text"></i><span class="menu-title text-truncate" data-i18n="Invoice">Support</span></a>
               </li>
-              <li class=" nav-item"><a class="d-flex align-items-center" href="clients.php"><i data-feather="save"></i><span class="menu-title text-truncate" data-i18n="File Manager">Clients</span></a>
+              <li class=" nav-item"><a class="d-flex align-items-center" href="clients"><i data-feather="save"></i><span class="menu-title text-truncate" data-i18n="File Manager">Clients</span></a>
               </li>
               
 
-              <li class=" nav-item"><a class="d-flex align-items-center" href="category.php"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">category</span></a>
+              <li class=" nav-item"><a class="d-flex align-items-center" href="category"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">category</span></a>
               </li>
-              <li class=" nav-item"><a class="d-flex align-items-center" href="ticket.php"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">Ticket</span></a>
+              <li class=" nav-item"><a class="d-flex align-items-center" href="ticket"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">Ticket</span></a>
               </li>
-              <li class=" nav-item"><a class="d-flex align-items-center" href="package.php"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">package</span></a>
+              <li class=" nav-item"><a class="d-flex align-items-center" href="package"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">package</span></a>
               </li>
-              <li class=" nav-item"><a class="d-flex align-items-center" href="package_card.php"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">package_card</span></a>
+              <li class=" nav-item"><a class="d-flex align-items-center" href="package_card"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">package_card</span></a>
               
               </li>
 
              
               <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="save"></i><span class="menu-title text-truncate" data-i18n="Card">Account Settings</span></a>
                   <ul class="menu-content">
-                      <li><a class="d-flex align-items-center" href="admin_account.php"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">Account</span></a>
+                      <li><a class="d-flex align-items-center" href="admin_account"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">Account</span></a>
                       </li>
-                      <li><a class="d-flex align-items-center" href="account_password.php"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">Security</span></a>
+                      <li><a class="d-flex align-items-center" href="account_password"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">Security</span></a>
                       </li>
-                      <li><a class="d-flex align-items-center" href="payment_method.php"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">Payment method</span></a>
+                      <li><a class="d-flex align-items-center" href="payment_method"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">Payment method</span></a>
                       </li>
-                      <li><a class="d-flex align-items-center" href="system-setting.php"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">system setting</span></a>
+                      <li><a class="d-flex align-items-center" href="system-setting"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">system setting</span></a>
                       </li>
                       <li><a class="d-flex align-items-center" href="google_analytics"><i data-feather="circle"></i><span class="menu-item text-truncate" data-i18n="Preview">Google Analytics</span></a>
                       </li>
@@ -47,7 +47,7 @@
                       </li>
                   </ul>
               </li>
-              <!-- <li class=" nav-item"><a class="d-flex align-items-center" href="changepassword.php"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">change password</span></a>
+              <!-- <li class=" nav-item"><a class="d-flex align-items-center" href="changepassword"><i data-feather="folder"></i><span class="menu-title text-truncate" data-i18n="Documentation">change password</span></a>
               </li> -->
           </ul>
       </div>

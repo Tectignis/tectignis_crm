@@ -13,7 +13,7 @@ if(mysqli_num_rows($sql)>0){
  if($verify==1){
     $_SESSION['aid']=$row['id'];
    
-    header("location:index.php");
+    header("location:index");
     }else{
         echo "<script>alert('Password is incorrect');</script>";
     }

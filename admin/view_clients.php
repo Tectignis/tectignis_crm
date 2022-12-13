@@ -13,7 +13,7 @@ if(isset($_GET['del_id'])){
 <!-- BEGIN: Head-->
 
 <head>
-    <base href="http://localhost/tectignis_crm/admin/" />
+    <base href="http://localhost:8000/tectignis_crm/admin/" />
     <title>View Clients</title>
     <!-- DataTables -->
     <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
@@ -220,7 +220,8 @@ if(isset($_GET['del_id'])){
                                                         <button type="button" onclick="deleteBtn()"
                                                             class="btn btn-sm btn-danger m-1 delbtn" 
                                                             data-id="=<?php echo $row['id']; ?>"><i
-                                                                data-feather='trash-2'></i></button>
+                                                        class="fa fa-trash"
+                                                        style="font-size:15px; margin: right 80px;"></i></button>
                                                     </div>
                                                 </td>
                                             </tr>

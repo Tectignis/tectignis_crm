@@ -206,7 +206,7 @@ if(isset($_POST["submi"])){
             </div>
         </div>
         <!-- END: Content-->
-
+                                                    </div>
         <div class="sidenav-overlay"></div>
         <div class="drag-target"></div>
         <!-- Edit User Modal -->

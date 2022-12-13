@@ -85,31 +85,37 @@ if(isset($_GET['delid'])){
                                         <thead>
                                             <tr>
 
-                                            <th>Sr.no</th>
-                                            <th>Category</th>
-                                            <th>Action</th>
+                                                <th>Sr.no</th>
+                                                <th>Category</th>
+                                                <th>Action</th>
 
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <?php
+                                            <?php
                                         $sql=mysqli_query($conn,"select * from category");
                                         $count=1;
                                             while ($row=mysqli_fetch_array($sql)){ 
                                             ?>
-                                        <tr>
-                                            <td><?php echo $count;?></td>
-                                            <td><?php echo $row['category']; ?></td>
-                                            <td>
-                                                <button type="button" class="delete-row btn-sm btn-info useredit " data-id='<?php echo $row['id']; ?>'><i class="fa fa-pen"></i></button>
+                                            <tr>
+                                                <td><?php echo $count;?></td>
+                                                <td><?php echo $row['category']; ?></td>
+                                                <td>
 
-                                                
+                                                    <a type="button" href="" data-id="<?php echo $row['id'] ?>"
+                                                        class="edit useredit" data-bs-toggle="modal">
+                                                        <i class="fa fa-edit"
+                                                            style="font-size:15px;margin: right 5px;"></i>
+                                                    </a>
 
-                                                <a href=""><button type="button"  class="delete-row delbtn btn-sm btn-danger" data-id="<?php echo $row['id']; ?>" style="color: aliceblue"> <i class="fas fa-trash"></i> </button></a>
-                                             </td>
-                                        </tr>
-                                        <?php $count++; } ?>
-                                          
+
+                                                    <a type="button" href="" class="delete-row delbtn "
+                                                        data-id="<?php echo $row['id']; ?>"><i class="fa fa-trash"
+                                                            style="font-size:15px; margin: right 80px;"></i></a>
+                                                </td>
+                                            </tr>
+                                            <?php $count++; } ?>
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -120,170 +126,177 @@ if(isset($_GET['delid'])){
                 <!-- Basic Tables end -->
 
                 <!-- Edit User Modal -->
-                <div class="modal fade" id="catModal" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header bg-transparent">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body px-sm-5 mx-50 pb-5">
-                    <h1 class="text-center mb-1" id="addNewCardTitle">Create Category</h1>
-                <form method="post">
-                <div class=" body1" >
-                </div>
-                <div class="col-12 text-center">
-                            <button type="submit" name="update" class="btn btn-primary me-1 mt-1">Update</button>
-                            <button type="reset" class="btn btn-outline-secondary mt-1" data-bs-dismiss="modal"
-                                aria-label="Close">
-                                Cancel
-                            </button>
-                        </div>
-               
-                </form>
-            </div>
-        </div>
-    </div>
-                <!--/ Edit User Modal -->
+                <div class="modal fade" id="catModal" tabindex="-1" aria-labelledby="addNewCardTitle"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-transparent">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-sm-5 mx-50 pb-5">
+                                <h1 class="text-center mb-1" id="addNewCardTitle">Create Category</h1>
+                                <form method="post">
+                                    <div class=" body1">
+                                    </div>
+                                    <div class="col-12 text-center">
+                                        <button type="submit" name="update"
+                                            class="btn btn-primary me-1 mt-1">Update</button>
+                                        <button type="reset" class="btn btn-outline-secondary mt-1"
+                                            data-bs-dismiss="modal" aria-label="Close">
+                                            Cancel
+                                        </button>
+                                    </div>
 
-
-
-
-            </div>
-        </div>
-    </div>
-    <!-- END: Content-->
-
-    <div class="sidenav-overlay"></div>
-    <div class="drag-target"></div>
-
-    <?php
-       include('include/footer.php');
-       ?>
-    <div class="modal fade" id="addNewCard" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header bg-transparent">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body px-sm-5 mx-50 pb-5">
-                    <h1 class="text-center mb-1" id="addNewCardTitle">Create Category</h1>
-
-
-                    <!-- form -->
-                    <form id="" method="post" action="ticket.update.php" class="row gy-1 gx-2 mt-75" >
-                        <div class="col-12">
-                            <label class="form-label" for="modalAddCardNumber">Category</label>
-                            <div class="input-group input-group-merge">
-                                <input type="text" name="category" class="form-control" id="inputcategory" placeholder="Enter Category" required> 
-                                <span class="input-group-text cursor-pointer p-25" id="modalAddCard2">
-                                    <span class="add-card-type"></span>
-                                </span>
+                                </form>
                             </div>
                         </div>
+                    </div>
+                    <!--/ Edit User Modal -->
 
-                        <div class="col-12 text-center">
-                            <button type="submit" name="submitt" class="btn btn-primary me-1 mt-1">Create</button>
-                            <button type="reset" class="btn btn-outline-secondary mt-1" data-bs-dismiss="modal"
-                                aria-label="Close">
-                                Cancel
-                            </button>
-                        </div>
-                    </form>
+
+
+
                 </div>
             </div>
         </div>
-    </div>
+        <!-- END: Content-->
+                                            </div>
+        <div class="sidenav-overlay"></div>
+        <div class="drag-target"></div>
 
-    <script src="plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-    <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-    <script src="plugins/jszip/jszip.min.js"></script>
-    <script src="plugins/pdfmake/pdfmake.min.js"></script>
-    <script src="plugins/pdfmake/vfs_fonts.js"></script>
-    <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-    <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
-    <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-    <script src="app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
+        <?php
+       include('include/footer.php');
+       ?>
+        <div class="modal fade" id="addNewCard" tabindex="-1" aria-labelledby="addNewCardTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header bg-transparent">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body px-sm-5 mx-50 pb-5">
+                        <h1 class="text-center mb-1" id="addNewCardTitle">Create Category</h1>
 
-    <script>
-        $(function () {
-            $("#example1").DataTable({
-                "responsive": true,
-                "lengthChange": true,
-                "autoWidth": false,
-                "buttons": ["csv", "excel", "pdf", "print"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
-        });
-    </script>
-     <script>
-        function deleteBtn() {
+                        <!-- form -->
+                        <form id="" method="post" action="ticket.update.php" class="row gy-1 gx-2 mt-75">
+                            <div class="col-12">
+                                <label class="form-label" for="modalAddCardNumber">Category</label>
+                                <div class="input-group input-group-merge">
+                                    <input type="text" name="category" class="form-control" id="inputcategory"
+                                        placeholder="Enter Category" required>
+                                    <span class="input-group-text cursor-pointer p-25" id="modalAddCard2">
+                                        <span class="add-card-type"></span>
+                                    </span>
+                                </div>
+                            </div>
 
-            swal({
-                title: "Are You Sure...?",
-                text: "This action can not be undone. Do you want to continue?",
-                icon: "warning",
-                buttons: ["No", "Yes"],
+                            <div class="col-12 text-center">
+                                <button type="submit" name="submitt" class="btn btn-primary me-1 mt-1">Create</button>
+                                <button type="reset" class="btn btn-outline-secondary mt-1" data-bs-dismiss="modal"
+                                    aria-label="Close">
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+        <script src="plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+        <script src="plugins/jszip/jszip.min.js"></script>
+        <script src="plugins/pdfmake/pdfmake.min.js"></script>
+        <script src="plugins/pdfmake/vfs_fonts.js"></script>
+        <script src="plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+        <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
+        <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+        <script src="app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js"></script>
+
+        <script>
+            $(function () {
+                $("#example1").DataTable({
+                    "responsive": true,
+                    "lengthChange": true,
+                    "autoWidth": false,
+                    "buttons": ["csv", "excel", "pdf", "print"]
+                }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
             });
+        </script>
+        <script>
+            function deleteBtn() {
 
-            mobile_err = true;
+                swal({
+                    title: "Are You Sure...?",
+                    text: "This action can not be undone. Do you want to continue?",
+                    icon: "warning",
+                    buttons: ["No", "Yes"],
+                });
 
-            mobile_check();
+                mobile_err = true;
 
-            if (mobile_err = true) {
-                return true;
+                mobile_check();
+
+                if (mobile_err = true) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
-            else { return false; }
-        }
-    </script>
-    <script>
-            $(document).ready(function(){
-                $('.delbtn').click(function(e){
+        </script>
+        <script>
+            $(document).ready(function () {
+                $('.delbtn').click(function (e) {
                     e.preventDefault();
                     let del_id = $(this).data('id');
                     swal({
-                        title: "Are you sure?",
-                        text: "Once deleted, you will not be able to recover this file!",
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true,
-                    })
-                    .then((willDelete) => {
-                        if (willDelete) {
-                            swal("Poof! Your file has been deleted!", {
-                                icon: "success",
-                            });
-                            window.location.href = "ticket.update.php?del_id="+del_id;
-                        } else {
-                            swal("Your file is safe!");
+                            title: "Are you sure?",
+                            text: "Once deleted, you will not be able to recover this file!",
+                            icon: "warning",
+                            buttons: true,
+                            dangerMode: true,
+                        })
+                        .then((willDelete) => {
+                            if (willDelete) {
+                                swal("Poof! Your file has been deleted!", {
+                                    icon: "success",
+                                });
+                                window.location.href = "ticket.update.php?del_id=" + del_id;
+                            } else {
+                                swal("Your file is safe!");
+                            }
+                        });
+                })
+            });
+        </script>
+
+        <script>
+            $(document).ready(function () {
+                $('.useredit').click(function () {
+                    let cateid = $(this).data('id');
+
+                    $.ajax({
+                        url: 'ticket.update.php',
+                        type: 'post',
+                        data: {
+                            cateid: cateid
+                        },
+                        success: function (response1) {
+                            $('.body1').html(response1);
+                            $('#catModal').modal('show');
                         }
                     });
-                    })
                 });
-                </script>
-               
-               <script>
-          $(document).ready(function(){
-          $('.useredit').click(function(){
-            let cateid = $(this).data('id');
 
-            $.ajax({
-            url: 'ticket.update.php',
-            type: 'post',
-            data: {cateid: cateid},
-            success: function(response1){ 
-              $('.body1').html(response1);
-              $('#catModal').modal('show'); 
-            }
-          });
-          });
-
-          });
-          </script>
-    </body>
-    <!-- END: Body-->
+            });
+        </script>
+        </body>
+        <!-- END: Body-->
 
 </html>
