@@ -800,7 +800,7 @@ echo '<div style="font-size: xxx-large;text-align: center;color: blue;">No Any L
     </script>
     <script>
         function get_fb() {
-            let package_id = < ? php echo $packageId ? > ;
+            let package_id = <?php echo $packageId ?> ;
             let leadid = "<?php echo $title ?>";
             let feedback = $.ajax({
                 type: "POST",
