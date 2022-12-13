@@ -142,7 +142,7 @@ $id=$_SESSION['aid'];
                                                 <a href="ticket.php?delid=<?php echo $row['id']; ?>"
                                                     <?php if($status=='Closed'){ ?>style="display:none" <?php } ?> onclick="return confirm('Are you sure You want to delete');" ><i
                                                         class="fa fa-trash"
-                                                        style="font-size:15px; margin: right 80px; color:#ee0b1d"></i></a>
+                                                        style="font-size:15px; margin: right 80px;"></i></a>
 
                                                 </button>
                                             </td>
