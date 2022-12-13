@@ -1,7 +1,7 @@
 <?php
 session_start();
 include("config.php");
-$id=$_SESSION['id'];
+$id=$_SESSION['aid'];
 
   if(isset($_GET['delid'])){
     $id=mysqli_real_escape_string($conn,$_GET['delid']);
