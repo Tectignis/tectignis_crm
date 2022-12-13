@@ -124,7 +124,7 @@ if(isset($_GET['delid'])){
                                                                 <a class="btn btn-danger btn-rounded btn-icon delbtn"
                                                         href="package.php?delid=<?php echo $row['id']; ?>"
                                                         onclick="return checkDelete()"
-                                                        class="btn btn-primary btn-rounded btn-icon"
+                                                        class="btn btn-primary btn-rounded btn-icon" 
                                                         data-id="=<?php echo $row['id']; ?>">
                                                         <i data-feather="trash-2"></i>
                                                     </a>
