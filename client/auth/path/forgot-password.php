@@ -6,12 +6,12 @@ if(isset($_POST['forgot'])){
   $sql=mysqli_query($conn,"select * from client where Email='$Email' and Status='Activated'");
   $count=mysqli_num_rows($sql);
   $arr=mysqli_fetch_array($sql);
-  $clientid=$arr['Client_Code'];
+  $clientid=$arr['Client_Code'] ?? null;
   if($count == 1){
     echo '<script>alert("data successfully submitted");</script>';
         header("location:password.php?id=".$clientid);
   }else{
-    echo '<script>alert("oops...somthing went wrong");</script>';
+    echo '<script>alert("oops...Email is not Exist");</script>';
   }
 
 // $Password= rand(100000, 999999);
